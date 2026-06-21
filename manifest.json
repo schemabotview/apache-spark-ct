@@ -1,0 +1,103 @@
+{
+  "scenes": {
+    "spark-cluster": {
+      "id": "spark-cluster",
+      "title": "Spark cluster architecture",
+      "defaultViewport": { "x": 40, "y": 40, "zoom": 0.9 },
+      "nodes": [
+        { "id": "driver", "position": { "x": 250, "y": 0 }, "data": { "label": "Driver\n(SparkContext)" }, "type": "default" },
+        { "id": "cm", "position": { "x": 250, "y": 130 }, "data": { "label": "Cluster Manager" }, "type": "default" },
+        { "id": "w1", "position": { "x": 60, "y": 280 }, "data": { "label": "Worker 1\nExecutor" }, "type": "default" },
+        { "id": "w2", "position": { "x": 250, "y": 280 }, "data": { "label": "Worker 2\nExecutor" }, "type": "default" },
+        { "id": "w3", "position": { "x": 440, "y": 280 }, "data": { "label": "Worker 3\nExecutor" }, "type": "default" }
+      ],
+      "edges": [
+        { "id": "e-driver-cm", "source": "driver", "target": "cm" },
+        { "id": "e-cm-w1", "source": "cm", "target": "w1" },
+        { "id": "e-cm-w2", "source": "cm", "target": "w2" },
+        { "id": "e-cm-w3", "source": "cm", "target": "w3" }
+      ]
+    },
+    "spark-rdd-lineage": {
+      "id": "spark-rdd-lineage",
+      "title": "RDD lineage",
+      "nodes": [
+        { "id": "textfile", "position": { "x": 0, "y": 0 }, "data": { "label": "textFile" }, "type": "input" },
+        { "id": "flatmap", "position": { "x": 0, "y": 110 }, "data": { "label": "flatMap" }, "type": "default" },
+        { "id": "map", "position": { "x": 0, "y": 220 }, "data": { "label": "map (word, 1)" }, "type": "default" },
+        { "id": "reduce", "position": { "x": 0, "y": 330 }, "data": { "label": "reduceByKey" }, "type": "output" }
+      ],
+      "edges": [
+        { "id": "l1", "source": "textfile", "target": "flatmap" },
+        { "id": "l2", "source": "flatmap", "target": "map" },
+        { "id": "l3", "source": "map", "target": "reduce" }
+      ]
+    }
+  },
+  "presentations": [
+    {
+      "id": "spark-intro",
+      "title": "Apache Spark: An Introduction",
+      "topic": "apache-spark",
+      "pages": [
+        {
+          "id": "what-is-spark",
+          "sceneId": "spark-cluster",
+          "slide": {
+            "title": "What is Apache Spark?",
+            "bullets": [
+              "A unified engine for large-scale data processing",
+              "In-memory computation makes it fast",
+              "APIs in Scala, Python, Java and R"
+            ]
+          },
+          "narration": {
+            "text": "Apache Spark is a unified analytics engine for large-scale data processing."
+          }
+        },
+        {
+          "id": "the-driver",
+          "sceneId": "spark-cluster",
+          "slide": {
+            "title": "The Driver",
+            "bullets": [
+              "Hosts the SparkContext / SparkSession",
+              "Builds the DAG and schedules tasks",
+              "The 'brain' of your application"
+            ]
+          },
+          "overrides": { "highlightNodeIds": ["driver"] }
+        },
+        {
+          "id": "the-executors",
+          "sceneId": "spark-cluster",
+          "slide": {
+            "title": "Executors on Workers",
+            "bullets": [
+              "Run the actual tasks in parallel",
+              "Hold data partitions in memory",
+              "Report results back to the driver"
+            ]
+          },
+          "overrides": { "highlightNodeIds": ["w1", "w2", "w3"] }
+        },
+        {
+          "id": "rdd-lineage",
+          "sceneId": "spark-rdd-lineage",
+          "slide": {
+            "title": "RDD Lineage (Word Count)",
+            "bullets": [
+              "Transformations are lazy — they build a lineage",
+              "An action (e.g. collect) triggers execution",
+              "Lineage enables fault recovery by recomputation"
+            ],
+            "code": {
+              "language": "scala",
+              "source": "sc.textFile(\"in.txt\")\n  .flatMap(_.split(\" \"))\n  .map((_, 1))\n  .reduceByKey(_ + _)"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
