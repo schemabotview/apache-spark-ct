@@ -13,8 +13,42 @@ apache-spark-ct/
 ├── notebooks/<n>.ipynb  # source notebooks (the content of notebook-backed modules)
 ├── tts/<module>/<s>.tts # per-section narration scripts (TTS input)
 ├── audio/<module>/<s>.wav  # per-section pre-rendered narration audio
-└── scripts/sync-notebooks.sh  # refresh notebooks/ from the source repo
+└── scripts/
+    ├── sync-notebooks.sh   # refresh notebooks/ from the source repo (../../Projects/apache-spark)
+    └── build-modules.py    # regenerate the 8 non-RDD module entries in manifest.json
 ```
+
+## Modules
+
+The Apache Spark track is **9 notebook-backed modules**, mirroring the 9 source
+notebooks (one module = one study session, ~30–60 min):
+
+| # | Module (`id`) | Notebook | Default scene |
+|---|---|---|---|
+| 1 | `spark-foundations` | `01-spark-foundations-execution-model` | `spark-execution` |
+| 2 | `spark-rdd` | `02-rdd-api` | `spark-rdd-api` |
+| 3 | `spark-dataframes` | `03-dataframes` | `spark-dataframe-api` |
+| 4 | `spark-reading-writing` | `04-reading-writing` | `spark-reading-sources` (+ `spark-writing-sinks`) |
+| 5 | `spark-transformations` | `05-data-transformations` | `spark-transformations` |
+| 6 | `spark-sql-udfs` | `06-sql-udfs` | `spark-sql-api` |
+| 7 | `spark-streaming` | `07-structured-streaming` | `spark-structured-streaming` (+ windowing/watermarking) |
+| 8 | `spark-performance` | `08-performance-tuning` | `spark-performance-tuning` (+ `spark-cache-persist`) |
+| 9 | `spark-pandas` | `09-pandas-api` | `spark-pandas-api` |
+
+**Regenerating.** Edit content in the source notebooks, then:
+
+```sh
+scripts/sync-notebooks.sh     # copy notebooks/ in from ../../Projects/apache-spark
+python3 scripts/build-modules.py   # rebuild the 8 non-RDD module overlays in manifest.json
+```
+
+`build-modules.py` holds a `CONFIG` of per-section scene/highlight rules and
+preserves the hand-tuned `spark-rdd` entry. The UI renders prose + code straight
+from the notebook, so most edits need no manifest change.
+
+**Narration/audio status.** Per-section `.tts` scripts exist for `spark-rdd` only;
+the other 8 modules and all `.wav` audio are TODO (audio is rendered by the
+ChatterboxTTS Colab, then wired via each section's `audio` field).
 
 ## Notebook-backed modules
 
@@ -55,6 +89,8 @@ pixel boxes at render time. No positions are ever hand-authored here.
 ## manifest.json schema
 
 `scenes` is a list of scene ids; the UI loads each from `scenes/<id>.json`.
+A presentation is either **notebook-backed** (the norm — see above) or
+**hand-authored** with explicit `pages`, shown here:
 
 ```jsonc
 {
