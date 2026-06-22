@@ -46,7 +46,11 @@
               "Coordinates the whole job"
             ]
           },
-          "overrides": { "highlightNodeIds": ["driver"] }
+          "overrides": {
+            "highlightNodeIds": [
+              "driver"
+            ]
+          }
         },
         {
           "id": "catalyst",
@@ -60,7 +64,13 @@
             ]
           },
           "overrides": {
-            "highlightNodeIds": ["catalyst", "ulp", "logical", "optimized", "physical"]
+            "highlightNodeIds": [
+              "catalyst",
+              "ulp",
+              "logical",
+              "optimized",
+              "physical"
+            ]
           }
         },
         {
@@ -75,7 +85,12 @@
             ]
           },
           "overrides": {
-            "highlightNodeIds": ["dag", "stage1", "stage2", "stage3"]
+            "highlightNodeIds": [
+              "dag",
+              "stage1",
+              "stage2",
+              "stage3"
+            ]
           }
         },
         {
@@ -90,7 +105,14 @@
             ]
           },
           "overrides": {
-            "highlightNodeIds": ["cluster", "cm-local", "cm-standalone", "cm-yarn", "cm-k8s", "cm-databricks"]
+            "highlightNodeIds": [
+              "cluster",
+              "cm-local",
+              "cm-standalone",
+              "cm-yarn",
+              "cm-k8s",
+              "cm-databricks"
+            ]
           }
         },
         {
@@ -104,7 +126,301 @@
               "Report results back to the driver"
             ]
           },
-          "overrides": { "highlightNodeIds": ["executors", "ex1", "ex2"] }
+          "overrides": {
+            "highlightNodeIds": [
+              "executors",
+              "ex1",
+              "ex2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "spark-rdd",
+      "title": "RDD API — Spark's Low-Level Core",
+      "topic": "apache-spark",
+      "pages": [
+        {
+          "id": "overview",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "RDDs — the Bedrock",
+            "bullets": [
+              "Every DataFrame and SQL query compiles down to RDDs",
+              "The shape of this scene is the lesson: create → transform → act",
+              "Transforms split into narrow (no shuffle), wide (shuffle), and pair (key/value)"
+            ]
+          },
+          "narration": {
+            "text": "Before DataFrames existed, there were RDDs. Everything in Spark still runs on top of them, so understanding the RDD model explains how the whole engine behaves."
+          }
+        },
+        {
+          "id": "what-is",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "What an RDD Actually Is",
+            "bullets": [
+              "Resilient Distributed Dataset — an immutable, partitioned collection",
+              "Resilient: rebuildable from lineage; Distributed: split across executors",
+              "You describe transformations; nothing runs until an action fires"
+            ]
+          },
+          "narration": {
+            "text": "An RDD is a resilient distributed dataset. Resilient because Spark can rebuild any lost piece from its lineage. Distributed because it is split into partitions spread across the cluster. And immutable, so every transformation produces a brand new RDD."
+          }
+        },
+        {
+          "id": "partitions",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Partitions — the Unit of Parallelism",
+            "bullets": [
+              "An RDD is a set of partitions; one task processes one partition",
+              "More partitions means more parallelism — up to your core count",
+              "numSlices on parallelize, or the source layout, sets the count"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-create",
+              "rdd-numslices"
+            ]
+          },
+          "narration": {
+            "text": "A partition is the unit of parallelism. Spark runs one task per partition, so the number of partitions sets how much work can happen at once. Too few and you leave cores idle; too many and the scheduling overhead dominates."
+          }
+        },
+        {
+          "id": "lineage",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Lineage — Fault Recovery",
+            "bullets": [
+              "Each RDD remembers the chain of transformations that built it",
+              "Lose a partition and Spark recomputes only that slice from its parents",
+              "This lineage graph is why RDDs are 'resilient' — no replication needed"
+            ]
+          },
+          "narration": {
+            "text": "Spark does not replicate data to survive failures. Instead each RDD records its lineage, the recipe of transformations that produced it. If an executor dies, Spark replays just the missing partition's recipe. That is the resilient in resilient distributed dataset."
+          }
+        },
+        {
+          "id": "sparkcontext",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "SparkContext — the Entry Point",
+            "bullets": [
+              "RDDs come from the SparkContext, reachable as spark.sparkContext",
+              "It is the low-level handle the SparkSession wraps",
+              "All RDD creation methods hang off this object"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-create"
+            ]
+          },
+          "narration": {
+            "text": "Where DataFrames start from the SparkSession, RDDs start from the SparkContext. You can reach it through spark dot sparkContext. It is the older, lower-level entry point that the session quietly wraps."
+          }
+        },
+        {
+          "id": "creating",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Creating RDDs",
+            "bullets": [
+              "parallelize — distribute an in-memory collection (great for demos)",
+              "textFile — one record per line; wholeTextFiles — one record per file",
+              "numSlices controls how many partitions parallelize produces"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-create",
+              "rdd-parallelize",
+              "rdd-textfile",
+              "rdd-wholetext",
+              "rdd-numslices"
+            ]
+          },
+          "narration": {
+            "text": "There are two ways to get an RDD. Parallelize takes a collection that already lives in the driver and spreads it across the cluster. Text file and whole text files read from storage — line by line, or one whole file per record."
+          }
+        },
+        {
+          "id": "transforms-actions",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Transformations vs Actions",
+            "bullets": [
+              "Transformations are lazy — they only build the lineage graph",
+              "Actions trigger execution and return a value to the driver or write out",
+              "If your job seems instant, you have only declared transformations"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-transforms",
+              "rdd-actions"
+            ]
+          },
+          "narration": {
+            "text": "Two kinds of operations. Transformations like map and filter are lazy; they just extend the recipe. Actions like collect and count are what actually run the job and hand a result back. Nothing computes until an action asks for it."
+          }
+        },
+        {
+          "id": "objects",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "RDDs of Objects — an OOP Note",
+            "bullets": [
+              "An RDD can hold any object — Spark sees an opaque function over elements",
+              "Contrast: a DataFrame sees columns and can optimize them",
+              "Power and flexibility, but Catalyst can't help you here"
+            ]
+          },
+          "narration": {
+            "text": "An RDD can hold any object you like, and your transformation is just an arbitrary function. That is flexible, but it also means Spark cannot see inside it. With a DataFrame, Spark understands the columns and can optimize; with an RDD it runs your code blind."
+          }
+        },
+        {
+          "id": "narrow-wide",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Narrow vs Wide Transformations",
+            "bullets": [
+              "Narrow: each output partition depends on one input partition — no shuffle",
+              "Wide: output partitions pull from many inputs — forces a shuffle",
+              "Shuffles are the expensive part; wide transforms mark stage boundaries"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-narrow",
+              "rdd-wide"
+            ]
+          },
+          "narration": {
+            "text": "The single most important distinction. A narrow transformation, like map or filter, keeps each partition independent — no data crosses the network. A wide transformation, like groupByKey or join, must reshuffle data across partitions. Shuffles are slow, so knowing which is which tells you where the cost lives."
+          }
+        },
+        {
+          "id": "pair",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Pair RDDs — the (key, value) View",
+            "bullets": [
+              "An RDD of tuples unlocks the byKey family of operations",
+              "mapToPair / keyBy turn elements into (key, value) pairs",
+              "Keys decide how data is grouped and shuffled"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-pair"
+            ]
+          },
+          "narration": {
+            "text": "When an RDD holds key value pairs, a whole new family of operations opens up: the byKey methods. The key controls how Spark groups and shuffles your data, which makes pair RDDs the foundation of aggregation."
+          }
+        },
+        {
+          "id": "reduce-vs-group",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "reduceByKey vs groupByKey",
+            "bullets": [
+              "reduceByKey combines values map-side first — less data shuffled",
+              "groupByKey ships every value across the network, then groups",
+              "The exam classic: prefer reduceByKey for associative aggregations"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-reducebykey",
+              "rdd-groupbykey"
+            ]
+          },
+          "narration": {
+            "text": "A favourite exam question. Both can sum values per key, but reduceByKey combines partially on each partition before the shuffle, so far less data crosses the network. GroupByKey ships everything first. Reach for reduceByKey whenever your operation is associative."
+          }
+        },
+        {
+          "id": "persistence",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Persistence — cache & persist",
+            "bullets": [
+              "By default an RDD recomputes from lineage on every action",
+              "cache() keeps it in memory; persist(level) picks the StorageLevel",
+              "Cache only when you reuse an RDD — caching once-used data wastes memory"
+            ]
+          },
+          "narration": {
+            "text": "Because RDDs are lazy and lineage-based, reusing one recomputes it from scratch each time. Cache and persist break that cycle by storing the materialized partitions. Persist lets you choose the storage level — memory, disk, or a mix. Only cache data you will actually reuse."
+          }
+        },
+        {
+          "id": "partition-ops",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Partition-Level Operations",
+            "bullets": [
+              "mapPartitions runs your function once per partition, not per element",
+              "repartition reshuffles to any count; coalesce only shrinks, no shuffle",
+              "Use coalesce to reduce partitions cheaply before writing"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-mappart",
+              "rdd-repartition",
+              "rdd-coalesce"
+            ]
+          },
+          "narration": {
+            "text": "Sometimes you work a whole partition at a time. Map partitions runs once per partition — handy for setting up a connection once instead of per row. Repartition reshuffles to any number of partitions; coalesce only shrinks, and avoids a full shuffle, which makes it the cheap way to consolidate before a write."
+          }
+        },
+        {
+          "id": "shared-vars",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "Broadcast & Accumulators",
+            "bullets": [
+              "Broadcast: ship a read-only copy of a value to every executor once",
+              "Accumulator: a write-only counter the driver aggregates across tasks",
+              "Both avoid the trap of capturing large objects in a closure"
+            ]
+          },
+          "overrides": {
+            "highlightNodeIds": [
+              "rdd-broadcast",
+              "rdd-accumulator"
+            ]
+          },
+          "narration": {
+            "text": "Two shared variables solve two problems. A broadcast variable sends one read-only copy of a lookup table to each executor, instead of bundling it with every task. An accumulator is a counter that tasks add to and the driver reads back, useful for metrics."
+          }
+        },
+        {
+          "id": "rdd-vs-df",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "RDD vs DataFrame — When to Reach for Each",
+            "bullets": [
+              "Default to DataFrames: Catalyst and Tungsten optimize them for you",
+              "Drop to RDDs for unstructured data or fine-grained control",
+              "Mixing is fine — convert with .rdd and back via toDF / createDataFrame"
+            ]
+          },
+          "narration": {
+            "text": "So when do you actually use raw RDDs? Almost always, prefer DataFrames — the optimizer makes them faster with less effort. Reach for RDDs only when your data has no structure, or you need precise control the higher-level API cannot give. And you can convert between the two whenever you need."
+          }
         }
       ]
     },
