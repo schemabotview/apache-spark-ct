@@ -1,0 +1,1 @@
+Two kinds of operations. Transformations like map and filter are lazy; they just extend the recipe. Actions like collect and count are what actually run the job and hand a result back. Nothing computes until an action asks for it.

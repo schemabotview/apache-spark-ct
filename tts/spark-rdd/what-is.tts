@@ -1,0 +1,1 @@
+An RDD is a resilient distributed dataset. Resilient because Spark can rebuild any lost piece from its lineage. Distributed because it is split into partitions spread across the cluster. And immutable, so every transformation produces a brand new RDD.

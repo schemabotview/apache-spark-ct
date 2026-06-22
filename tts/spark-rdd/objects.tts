@@ -1,0 +1,1 @@
+An RDD can hold any object you like, and your transformation is just an arbitrary function. That is flexible, but it also means Spark cannot see inside it. With a DataFrame, Spark understands the columns and can optimize; with an RDD it runs your code blind.

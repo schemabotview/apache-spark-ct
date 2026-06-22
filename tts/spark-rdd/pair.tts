@@ -1,0 +1,1 @@
+When an RDD holds key value pairs, a whole new family of operations opens up: the byKey methods. The key controls how Spark groups and shuffles your data, which makes pair RDDs the foundation of aggregation.

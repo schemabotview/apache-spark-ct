@@ -1,0 +1,1 @@
+So when do you actually use raw RDDs? Almost always, prefer DataFrames — the optimizer makes them faster with less effort. Reach for RDDs only when your data has no structure, or you need precise control the higher-level API cannot give.

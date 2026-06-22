@@ -1,0 +1,1 @@
+Before DataFrames existed, there were RDDs. Everything in Spark still runs on top of them, so understanding the RDD model explains how the whole engine behaves.

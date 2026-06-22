@@ -1,0 +1,1 @@
+Spark does not replicate data to survive failures. Instead each RDD records its lineage, the recipe of transformations that produced it. If an executor dies, Spark replays just the missing partition's recipe. That is the resilient in resilient distributed dataset.

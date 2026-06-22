@@ -1,0 +1,1 @@
+Because RDDs are lazy and lineage-based, reusing one recomputes it from scratch each time. Cache and persist break that cycle by storing the materialized partitions. Persist lets you choose the storage level — memory, disk, or a mix. Only cache data you will actually reuse.

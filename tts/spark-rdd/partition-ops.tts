@@ -1,0 +1,1 @@
+Sometimes you work a whole partition at a time. Map partitions runs once per partition — handy for setting up a connection once instead of per row. Repartition reshuffles to any number of partitions; coalesce only shrinks, and avoids a full shuffle, which makes it the cheap way to consolidate before a write.

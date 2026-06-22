@@ -1,0 +1,1 @@
+A favourite exam question. Both can sum values per key, but reduceByKey combines partially on each partition before the shuffle, so far less data crosses the network. GroupByKey ships everything first. Reach for reduceByKey whenever your operation is associative.

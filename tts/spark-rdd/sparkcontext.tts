@@ -1,0 +1,1 @@
+Where DataFrames start from the SparkSession, RDDs start from the SparkContext. You can reach it through spark dot sparkContext. It is the older, lower-level entry point that the session quietly wraps.

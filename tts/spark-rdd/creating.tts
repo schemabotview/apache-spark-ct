@@ -1,0 +1,1 @@
+There are several ways to get an RDD. Parallelize and range build one from the driver. Text file and whole text files read from storage. And df dot rdd drops a DataFrame down to its underlying rows. But in real pipelines, most RDDs are born from transforming another RDD.

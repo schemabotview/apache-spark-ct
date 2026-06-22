@@ -1,0 +1,1 @@
+The single most important distinction. A narrow transformation, like map or filter, keeps each partition independent — no data crosses the network. A wide transformation, like groupByKey or join, must reshuffle data across partitions. Shuffles are slow, so knowing which is which tells you where the cost lives.

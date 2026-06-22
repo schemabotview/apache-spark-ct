@@ -1,0 +1,1 @@
+A partition is the unit of parallelism. Spark runs one task per partition, so the number of partitions sets how much work can happen at once. Too few and you leave cores idle; too many and the scheduling overhead dominates.

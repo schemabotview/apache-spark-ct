@@ -1,0 +1,1 @@
+Two shared variables solve two problems. A broadcast variable sends one read-only copy of a lookup table to each executor, instead of bundling it with every task. An accumulator is a counter that tasks add to and the driver reads back, useful for metrics.
