@@ -12,127 +12,181 @@
     "spark-windowing",
     "spark-watermarking",
     "spark-cache-persist",
-    "spark-performance-tuning"
+    "spark-performance-tuning",
+    "spark-transformations"
   ],
   "presentations": [
     {
-      "id": "spark-execution",
-      "title": "How a Spark Query Executes",
+      "id": "spark-foundations",
+      "title": "Spark Foundations & Execution Model",
       "topic": "apache-spark",
-      "pages": [
+      "notebook": "notebooks/01-spark-foundations-execution-model.ipynb",
+      "defaultScene": "spark-execution",
+      "sections": [
         {
           "id": "overview",
-          "sceneId": "spark-execution",
-          "slide": {
-            "title": "The Execution Path",
-            "bullets": [
-              "One query flows top-down: Driver → Catalyst → Tungsten → DAG → executors",
-              "Geometry is the lesson: stacked = sequential, side-by-side = parallel",
-              "Each stage hands off to the next; tasks within a stage run in parallel"
-            ]
-          },
-          "narration": {
-            "text": "Every Spark query takes the same journey, from the driver down to the executors that do the work."
-          }
+          "heading": "What's covered",
+          "title": "Spark Foundations & Execution Model"
         },
         {
-          "id": "driver",
-          "sceneId": "spark-execution",
-          "slide": {
-            "title": "The Driver",
-            "bullets": [
-              "Runs your application code",
-              "Creates the SparkSession and the logical plan",
-              "Coordinates the whole job"
-            ]
-          },
-          "overrides": {
-            "highlightNodeIds": [
-              "driver"
-            ]
-          }
+          "id": "the-problem-spark-solves",
+          "heading": "The problem Spark solves"
         },
         {
-          "id": "catalyst",
-          "sceneId": "spark-execution",
-          "slide": {
-            "title": "Catalyst Optimizer",
-            "bullets": [
-              "Unresolved → Logical → Optimized → Physical plan",
-              "Rule-based and cost-based optimization",
-              "Produces the most efficient physical plan to run"
-            ]
-          },
-          "overrides": {
-            "highlightNodeIds": [
-              "catalyst",
-              "ulp",
-              "logical",
-              "optimized",
-              "physical"
-            ]
-          }
+          "id": "what-spark-actually-is",
+          "heading": "What Spark actually is",
+          "highlightNodeIds": [
+            "driver",
+            "executors",
+            "cluster"
+          ]
         },
         {
-          "id": "dag",
-          "sceneId": "spark-execution",
-          "slide": {
-            "title": "DAG Scheduler",
-            "bullets": [
-              "Splits the job into stages at shuffle boundaries",
-              "Stages run in sequence; each waits for the previous shuffle",
-              "Each stage is a set of tasks — one per partition"
-            ]
-          },
-          "overrides": {
-            "highlightNodeIds": [
-              "dag",
-              "stage1",
-              "stage2",
-              "stage3"
-            ]
-          }
+          "id": "the-cluster-driver-executors-cluster-manager",
+          "heading": "The cluster — driver, executors, cluster manager",
+          "highlightNodeIds": [
+            "cluster",
+            "cm-local",
+            "cm-standalone",
+            "cm-yarn",
+            "cm-k8s",
+            "cm-databricks",
+            "driver",
+            "executors"
+          ]
         },
         {
-          "id": "cluster",
-          "sceneId": "spark-execution",
-          "slide": {
-            "title": "Cluster Manager",
-            "bullets": [
-              "Allocates executors on the cluster",
-              "Pluggable backend: Local, Standalone, YARN, Kubernetes, Databricks",
-              "Independent of the rest of the execution path"
-            ]
-          },
-          "overrides": {
-            "highlightNodeIds": [
-              "cluster",
-              "cm-local",
-              "cm-standalone",
-              "cm-yarn",
-              "cm-k8s",
-              "cm-databricks"
-            ]
-          }
+          "id": "memory-first-execution",
+          "heading": "Memory-first execution",
+          "highlightNodeIds": [
+            "executors",
+            "ex1",
+            "ex2"
+          ]
         },
         {
-          "id": "executors",
-          "sceneId": "spark-execution",
-          "slide": {
-            "title": "Executors",
-            "bullets": [
-              "Run the dispatched tasks in parallel",
-              "Hold data partitions in memory",
-              "Report results back to the driver"
-            ]
-          },
-          "overrides": {
-            "highlightNodeIds": [
-              "executors",
-              "ex1",
-              "ex2"
-            ]
-          }
+          "id": "from-your-code-to-distributed-work",
+          "heading": "From your code to distributed work",
+          "highlightNodeIds": [
+            "driver",
+            "catalyst",
+            "dag",
+            "executors"
+          ]
+        },
+        {
+          "id": "deployment-modes",
+          "heading": "Deployment modes",
+          "highlightNodeIds": [
+            "cm-local",
+            "cm-standalone",
+            "cm-yarn",
+            "cm-k8s",
+            "cm-databricks"
+          ]
+        },
+        {
+          "id": "when-not-to-use-spark",
+          "heading": "When NOT to use Spark"
+        },
+        {
+          "id": "setup-your-first-sparksession",
+          "heading": "Setup — your first SparkSession",
+          "highlightNodeIds": [
+            "driver"
+          ]
+        },
+        {
+          "id": "lazy-evaluation-first-taste",
+          "heading": "Lazy evaluation — first taste",
+          "highlightNodeIds": [
+            "catalyst",
+            "dag"
+          ]
+        },
+        {
+          "id": "hello-spark-a-multi-step-query",
+          "heading": "Hello Spark — a multi-step query",
+          "highlightNodeIds": [
+            "driver",
+            "catalyst",
+            "dag",
+            "executors"
+          ]
+        },
+        {
+          "id": "lazy-evaluation-in-depth",
+          "heading": "Lazy evaluation, in depth",
+          "highlightNodeIds": [
+            "catalyst",
+            "dag"
+          ]
+        },
+        {
+          "id": "the-four-catalyst-plans",
+          "heading": "The four Catalyst plans",
+          "highlightNodeIds": [
+            "catalyst",
+            "ulp",
+            "logical",
+            "optimized",
+            "physical"
+          ]
+        },
+        {
+          "id": "tungsten-making-the-jvm-go-fast",
+          "heading": "Tungsten — making the JVM go fast",
+          "highlightNodeIds": [
+            "tungsten"
+          ]
+        },
+        {
+          "id": "explain-modes-seeing-inside-catalyst",
+          "heading": "`.explain()` modes — seeing inside Catalyst",
+          "highlightNodeIds": [
+            "catalyst",
+            "physical"
+          ]
+        },
+        {
+          "id": "adaptive-query-execution-aqe",
+          "heading": "Adaptive Query Execution (AQE)",
+          "highlightNodeIds": [
+            "catalyst"
+          ]
+        },
+        {
+          "id": "the-split-driver-architecture",
+          "heading": "The split-driver architecture",
+          "highlightNodeIds": [
+            "driver"
+          ]
+        },
+        {
+          "id": "why-spark-connect-exists",
+          "heading": "Why Spark Connect exists",
+          "highlightNodeIds": [
+            "driver"
+          ]
+        },
+        {
+          "id": "starting-a-server-and-connecting-from-a-client",
+          "heading": "Starting a server and connecting from a client",
+          "highlightNodeIds": [
+            "driver",
+            "executors"
+          ]
+        },
+        {
+          "id": "detecting-which-mode-you-re-in",
+          "heading": "Detecting which mode you're in",
+          "highlightNodeIds": [
+            "driver"
+          ]
+        },
+        {
+          "id": "what-works-and-what-doesn-t-in-connect-mode",
+          "heading": "What works and what doesn't in Connect mode"
         }
       ]
     },
@@ -263,96 +317,588 @@
       ]
     },
     {
-      "id": "spark-api-stack",
-      "title": "The Spark API Stack",
+      "id": "spark-dataframes",
+      "title": "DataFrames",
       "topic": "apache-spark",
-      "pages": [
+      "notebook": "notebooks/03-dataframes.ipynb",
+      "defaultScene": "spark-dataframe-api",
+      "sections": [
         {
           "id": "overview",
-          "sceneId": "apache-spark-api-stack",
-          "slide": {
-            "title": "One Engine, Four APIs",
-            "bullets": [
-              "The vertical spine is the dataflow: Input → Read → process → Write → Output",
-              "RDD, DataFrame, SQL and pandas are interchangeable lenses over the same engine",
-              "Cross-cutting concerns (cache, shuffle, tuning) apply to every API"
-            ]
-          },
-          "narration": {
-            "text": "Spark gives you four ways to express the same job. Pick the lens that fits the problem."
-          }
+          "heading": "What's covered",
+          "title": "DataFrames"
         },
         {
-          "id": "read",
-          "sceneId": "spark-reading-sources",
-          "slide": {
-            "title": "Reading Data — spark.read",
-            "bullets": [
-              "One reader for many sources: CSV, Parquet, JSON, JDBC, Delta",
-              "Control schema, format options and bad-record handling",
-              "Read multiple files / partitions as one DataFrame"
-            ]
-          }
+          "id": "the-spark-api-hierarchy",
+          "heading": "The Spark API hierarchy",
+          "scene": "apache-spark-api-stack",
+          "highlightNodeIds": [
+            "rdd",
+            "dataframe",
+            "sql",
+            "pandas"
+          ]
         },
         {
-          "id": "rdd",
-          "sceneId": "spark-rdd-api",
-          "slide": {
-            "title": "RDD API — the low-level core",
-            "bullets": [
-              "create → transform → act",
-              "Narrow vs wide transformations decide where shuffles happen",
-              "Pair RDDs power key-based operations like reduceByKey"
-            ]
-          }
+          "id": "what-a-dataframe-really-is",
+          "heading": "What a DataFrame really is",
+          "highlightNodeIds": [
+            "df-create",
+            "df-transforms"
+          ]
         },
         {
-          "id": "dataframe",
-          "sceneId": "spark-dataframe-api",
-          "slide": {
-            "title": "DataFrame API — the workhorse",
-            "bullets": [
-              "Typed columns with built-in functions, joins and aggregations",
-              "Catalyst optimizes the plan for you",
-              "The default choice for most batch work"
-            ]
-          }
+          "id": "schemas-structtype-vs-ddl-string",
+          "heading": "Schemas — `StructType` vs DDL string",
+          "highlightNodeIds": [
+            "df-structtype",
+            "df-ddl"
+          ]
         },
         {
-          "id": "sql",
-          "sceneId": "spark-sql-api",
-          "slide": {
-            "title": "SQL API — Spark in plain SQL",
-            "bullets": [
-              "Register a view, then SELECT against it",
-              "Joins, aggregations and functions in standard SQL",
-              "Same engine and optimizer as the DataFrame API"
-            ]
-          }
+          "id": "creating-dataframes",
+          "heading": "Creating DataFrames",
+          "highlightNodeIds": [
+            "df-create",
+            "df-createdf",
+            "df-read",
+            "df-sql"
+          ]
         },
         {
-          "id": "pandas",
-          "sceneId": "spark-pandas-api",
-          "slide": {
-            "title": "pandas API on Spark",
-            "bullets": [
-              "Write familiar pandas code, run it distributed",
-              "Bridge for analysts moving from single-node pandas",
-              "Backed by Spark's distributed execution"
-            ]
-          }
+          "id": "exploring-a-dataframe",
+          "heading": "Exploring a DataFrame",
+          "highlightNodeIds": [
+            "df-show",
+            "df-printschema",
+            "df-describe"
+          ]
         },
         {
-          "id": "write",
-          "sceneId": "spark-writing-sinks",
-          "slide": {
-            "title": "Writing Data — df.write",
-            "bullets": [
-              "Choose format, save mode and output layout (partitionBy)",
-              "Write to files, Hive, JDBC or Delta",
-              "Layout choices here shape how the data reads back"
-            ]
-          }
+          "id": "column-references-the-four-ways",
+          "heading": "Column references — the four ways",
+          "highlightNodeIds": [
+            "df-colref",
+            "df-colname",
+            "df-col",
+            "df-expr",
+            "df-dfcol"
+          ]
+        },
+        {
+          "id": "common-dataframe-operations",
+          "heading": "Common DataFrame operations",
+          "highlightNodeIds": [
+            "df-transforms",
+            "df-select",
+            "df-withcolumn",
+            "df-filter",
+            "df-orderby"
+          ]
+        },
+        {
+          "id": "dataframe-pandas-rdd-interop",
+          "heading": "DataFrame ↔ pandas / RDD interop"
+        },
+        {
+          "id": "three-dataframe-types-keep-them-straight",
+          "heading": "Three DataFrame types — keep them straight",
+          "scene": "spark-pandas-api",
+          "highlightNodeIds": [
+            "ps-create",
+            "ps-frompandas",
+            "ps-pandasapi"
+          ]
+        },
+        {
+          "id": "operations-look-like-pandas",
+          "heading": "Operations look like pandas",
+          "scene": "spark-pandas-api",
+          "highlightNodeIds": [
+            "ps-transforms",
+            "ps-select",
+            "ps-filter",
+            "ps-groupby"
+          ]
+        },
+        {
+          "id": "converting-between-the-three-types",
+          "heading": "Converting between the three types",
+          "scene": "spark-pandas-api",
+          "highlightNodeIds": [
+            "ps-topandas",
+            "ps-pandasapi"
+          ]
+        },
+        {
+          "id": "default-indexes-the-most-tested-gotcha",
+          "heading": "Default indexes — the most-tested gotcha",
+          "scene": "spark-pandas-api",
+          "highlightNodeIds": [
+            "ps-index",
+            "ps-sequence",
+            "ps-distributed",
+            "ps-distseq"
+          ]
+        },
+        {
+          "id": "limitations-and-gotchas",
+          "heading": "Limitations and gotchas",
+          "scene": "spark-pandas-api",
+          "highlightNodeIds": [
+            "ps-opsdiff"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spark-reading-writing",
+      "title": "Reading & Writing Data",
+      "topic": "apache-spark",
+      "notebook": "notebooks/04-reading-writing.ipynb",
+      "defaultScene": "spark-reading-sources",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "What's covered",
+          "title": "Reading & Writing Data"
+        },
+        {
+          "id": "the-unified-read-write-api",
+          "heading": "The unified read/write API",
+          "highlightNodeIds": [
+            "rd-sources"
+          ]
+        },
+        {
+          "id": "reading-the-four-formats",
+          "heading": "Reading the four formats",
+          "highlightNodeIds": [
+            "rd-csv",
+            "rd-parquet",
+            "rd-json",
+            "rd-orc"
+          ]
+        },
+        {
+          "id": "schema-inference-vs-explicit",
+          "heading": "Schema inference vs explicit",
+          "highlightNodeIds": [
+            "rd-mergeschema",
+            "rd-format"
+          ]
+        },
+        {
+          "id": "predicate-and-projection-pushdown-what-actually-reads-less-data",
+          "heading": "Predicate and projection pushdown — what actually reads less data",
+          "highlightNodeIds": [
+            "rd-parquet"
+          ]
+        },
+        {
+          "id": "bad-record-handling-the-mode-option",
+          "heading": "Bad-record handling — the `mode` option",
+          "highlightNodeIds": [
+            "rd-badrecord",
+            "rd-permissive",
+            "rd-failfast",
+            "rd-dropmalformed",
+            "rd-corruptcol"
+          ]
+        },
+        {
+          "id": "reading-multiple-files-globs-and-directories",
+          "heading": "Reading multiple files — globs and directories",
+          "highlightNodeIds": [
+            "rd-multifile",
+            "rd-glob",
+            "rd-regex",
+            "rd-multipaths",
+            "rd-recursive"
+          ]
+        },
+        {
+          "id": "write-modes",
+          "heading": "Write modes",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-mode",
+            "wr-overwrite",
+            "wr-append",
+            "wr-error",
+            "wr-ignore"
+          ]
+        },
+        {
+          "id": "writing-the-four-formats",
+          "heading": "Writing the four formats",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-parquet",
+            "wr-csv",
+            "wr-json",
+            "wr-delta"
+          ]
+        },
+        {
+          "id": "partitionby-the-partition-pruning-win",
+          "heading": "`partitionBy` — the partition-pruning win",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-partitionby"
+          ]
+        },
+        {
+          "id": "bucketby-bucketing-for-join-friendly-layouts",
+          "heading": "`bucketBy` — bucketing for join-friendly layouts",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-bucketby",
+            "wr-sortby"
+          ]
+        },
+        {
+          "id": "saveastable-vs-save-catalog-vs-filesystem",
+          "heading": "`saveAsTable` vs `save` — catalog vs filesystem",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-save",
+            "wr-saveastable"
+          ]
+        },
+        {
+          "id": "coalesce-vs-repartition-before-writing",
+          "heading": "`coalesce` vs `repartition` before writing",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-layout",
+            "wr-write"
+          ]
+        },
+        {
+          "id": "jdbc-briefly",
+          "heading": "JDBC briefly",
+          "scene": "spark-writing-sinks",
+          "highlightNodeIds": [
+            "wr-jdbc",
+            "wr-jdbctarget"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spark-transformations",
+      "title": "Transformations & Aggregations",
+      "topic": "apache-spark",
+      "notebook": "notebooks/05-data-transformations.ipynb",
+      "defaultScene": "spark-transformations",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "What's covered",
+          "title": "Transformations & Aggregations"
+        },
+        {
+          "id": "the-function-library-pyspark-sql-functions",
+          "heading": "The function library — `pyspark.sql.functions`",
+          "highlightNodeIds": [
+            "tf-functions",
+            "tf-str",
+            "tf-date",
+            "tf-array",
+            "tf-when"
+          ]
+        },
+        {
+          "id": "string-functions",
+          "heading": "String functions",
+          "highlightNodeIds": [
+            "tf-str"
+          ]
+        },
+        {
+          "id": "date-and-timestamp-functions",
+          "heading": "Date and timestamp functions",
+          "highlightNodeIds": [
+            "tf-date"
+          ]
+        },
+        {
+          "id": "array-functions",
+          "heading": "Array functions",
+          "highlightNodeIds": [
+            "tf-array"
+          ]
+        },
+        {
+          "id": "conditional-columns-when-otherwise",
+          "heading": "Conditional columns — `when` / `otherwise`",
+          "highlightNodeIds": [
+            "tf-when"
+          ]
+        },
+        {
+          "id": "combining-dataframes-vertically-union-vs-unionbyname",
+          "heading": "Combining DataFrames vertically — `union` vs `unionByName`",
+          "highlightNodeIds": [
+            "tf-union",
+            "tf-unionbyname"
+          ]
+        },
+        {
+          "id": "set-operations-intersect-except",
+          "heading": "Set operations — `intersect`, `except`",
+          "highlightNodeIds": [
+            "tf-intersect",
+            "tf-except"
+          ]
+        },
+        {
+          "id": "joins-types-syntax-and-the-duplicate-column-trap",
+          "heading": "Joins — types, syntax, and the duplicate-column trap",
+          "highlightNodeIds": [
+            "tf-joins",
+            "tf-inner",
+            "tf-left",
+            "tf-right",
+            "tf-outer",
+            "tf-semi",
+            "tf-anti",
+            "tf-cross"
+          ]
+        },
+        {
+          "id": "groupby-agg",
+          "heading": "`groupBy` + `agg`",
+          "highlightNodeIds": [
+            "tf-groupby",
+            "tf-aggcall"
+          ]
+        },
+        {
+          "id": "aggregate-function-reference",
+          "heading": "Aggregate function reference",
+          "highlightNodeIds": [
+            "tf-agg",
+            "tf-aggcall"
+          ]
+        },
+        {
+          "id": "filtering-groups-spark-s-having-equivalent",
+          "heading": "Filtering groups — Spark's `HAVING` equivalent",
+          "highlightNodeIds": [
+            "tf-having"
+          ]
+        },
+        {
+          "id": "pivot-tables",
+          "heading": "Pivot tables",
+          "highlightNodeIds": [
+            "tf-pivot"
+          ]
+        },
+        {
+          "id": "unpivot-stack-unpivot-melt",
+          "heading": "Unpivot — `stack`, `unpivot`, `melt`",
+          "highlightNodeIds": [
+            "tf-unpivot"
+          ]
+        },
+        {
+          "id": "sampling-sample-and-sampleby",
+          "heading": "Sampling — `sample` and `sampleBy`",
+          "highlightNodeIds": [
+            "tf-sample"
+          ]
+        },
+        {
+          "id": "window-functions-concept-and-spec",
+          "heading": "Window functions — concept and spec",
+          "highlightNodeIds": [
+            "tf-window",
+            "tf-rownumber",
+            "tf-rank",
+            "tf-lag",
+            "tf-lead"
+          ]
+        },
+        {
+          "id": "ranking-row-number-rank-dense-rank-ntile",
+          "heading": "Ranking — `row_number`, `rank`, `dense_rank`, `ntile`",
+          "highlightNodeIds": [
+            "tf-rownumber",
+            "tf-rank",
+            "tf-denserank",
+            "tf-ntile"
+          ]
+        },
+        {
+          "id": "lag-and-lead",
+          "heading": "`lag` and `lead`",
+          "highlightNodeIds": [
+            "tf-lag",
+            "tf-lead"
+          ]
+        },
+        {
+          "id": "running-aggregates-rowsbetween-vs-rangebetween",
+          "heading": "Running aggregates — `rowsBetween` vs `rangeBetween`",
+          "highlightNodeIds": [
+            "tf-rowsbetween",
+            "tf-rangebetween"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spark-sql-udfs",
+      "title": "Spark SQL & UDFs",
+      "topic": "apache-spark",
+      "notebook": "notebooks/06-sql-udfs.ipynb",
+      "defaultScene": "spark-sql-api",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "What's covered",
+          "title": "Spark SQL & UDFs"
+        },
+        {
+          "id": "sql-is-a-first-class-citizen",
+          "heading": "SQL is a first-class citizen",
+          "highlightNodeIds": [
+            "sql-queries",
+            "sql-select"
+          ]
+        },
+        {
+          "id": "setup-register-the-seven-bank-tables-as-views",
+          "heading": "Setup — register the seven bank tables as views",
+          "highlightNodeIds": [
+            "sql-views",
+            "sql-tempview",
+            "sql-listtables"
+          ]
+        },
+        {
+          "id": "temporary-views-session-global-and-managed-tables",
+          "heading": "Temporary views — session, global, and managed tables",
+          "highlightNodeIds": [
+            "sql-tempview",
+            "sql-globalview",
+            "sql-saveastable"
+          ]
+        },
+        {
+          "id": "basic-sql-queries",
+          "heading": "Basic SQL queries",
+          "highlightNodeIds": [
+            "sql-select",
+            "sql-from",
+            "sql-where",
+            "sql-orderby",
+            "sql-limit"
+          ]
+        },
+        {
+          "id": "null-semantics-col-null-always-returns-null",
+          "heading": "Null semantics — `col == null` always returns null",
+          "highlightNodeIds": [
+            "sql-null",
+            "sql-eq",
+            "sql-nulleq",
+            "sql-isnull",
+            "sql-coalesce"
+          ]
+        },
+        {
+          "id": "ctes-with-clause",
+          "heading": "CTEs — `WITH` clause",
+          "highlightNodeIds": [
+            "sql-cte"
+          ]
+        },
+        {
+          "id": "sql-joins",
+          "heading": "SQL JOINs",
+          "highlightNodeIds": [
+            "sql-joins",
+            "sql-innerjoin",
+            "sql-leftjoin",
+            "sql-fulljoin",
+            "sql-semianti"
+          ]
+        },
+        {
+          "id": "subqueries",
+          "heading": "Subqueries",
+          "highlightNodeIds": [
+            "sql-subquery"
+          ]
+        },
+        {
+          "id": "window-functions-in-sql",
+          "heading": "Window functions in SQL",
+          "highlightNodeIds": [
+            "sql-rownumber",
+            "sql-rank",
+            "sql-laglead",
+            "sql-cumedist"
+          ]
+        },
+        {
+          "id": "monotonically-increasing-id-monotonic-not-sequential",
+          "heading": "`monotonically_increasing_id` — monotonic, not sequential"
+        },
+        {
+          "id": "the-catalog-api",
+          "heading": "The catalog API",
+          "highlightNodeIds": [
+            "sql-listtables",
+            "sql-listcolumns"
+          ]
+        },
+        {
+          "id": "dataframe-api-vs-sql-same-plan",
+          "heading": "DataFrame API vs SQL — same plan",
+          "highlightNodeIds": [
+            "sql-queries"
+          ]
+        },
+        {
+          "id": "numeric-functions",
+          "heading": "Numeric functions",
+          "highlightNodeIds": [
+            "sql-mathfns",
+            "sql-roundfns"
+          ]
+        },
+        {
+          "id": "advanced-date-functions",
+          "heading": "Advanced date functions",
+          "highlightNodeIds": [
+            "sql-datefns",
+            "sql-dateadd"
+          ]
+        },
+        {
+          "id": "higher-order-array-functions",
+          "heading": "Higher-order array functions",
+          "highlightNodeIds": [
+            "sql-arraycontains",
+            "sql-arraysort"
+          ]
+        },
+        {
+          "id": "python-udfs-udf-and-spark-udf-register",
+          "heading": "Python UDFs — `@udf` and `spark.udf.register`"
+        },
+        {
+          "id": "pandas-udfs-vectorized-via-apache-arrow",
+          "heading": "Pandas UDFs — vectorized via Apache Arrow"
+        },
+        {
+          "id": "performance-tiers-when-to-use-each",
+          "heading": "Performance tiers — when to use each"
         }
       ]
     },
@@ -360,76 +906,346 @@
       "id": "spark-streaming",
       "title": "Structured Streaming",
       "topic": "apache-spark",
-      "pages": [
+      "notebook": "notebooks/07-structured-streaming.ipynb",
+      "defaultScene": "spark-structured-streaming",
+      "sections": [
         {
-          "id": "micro-batch",
-          "sceneId": "spark-structured-streaming",
-          "slide": {
-            "title": "Batch in a Loop",
-            "bullets": [
-              "A stream is a series of micro-batches over an unbounded table",
-              "Offsets track progress; triggers pace each batch",
-              "State + checkpoint give exactly-once and fault recovery"
-            ]
-          },
-          "narration": {
-            "text": "Structured streaming is just the batch engine, run over and over on small slices of an endless table."
-          }
+          "id": "overview",
+          "heading": "What's covered",
+          "title": "Structured Streaming"
         },
         {
-          "id": "windows",
-          "sceneId": "spark-windowing",
-          "slide": {
-            "title": "Event-time Windows",
-            "bullets": [
-              "Bucket events by event time, not arrival time",
-              "Tumbling, sliding and session windows",
-              "Aggregations run per window"
-            ]
-          }
+          "id": "batch-vs-structured-streaming-the-mental-model",
+          "heading": "Batch vs Structured Streaming — the mental model",
+          "highlightNodeIds": [
+            "ss-process"
+          ]
         },
         {
-          "id": "watermark",
-          "sceneId": "spark-watermarking",
-          "slide": {
-            "title": "Watermarking",
-            "bullets": [
-              "The watermark line splits accepted from dropped late data",
-              "Bounds how long state is kept for a window",
-              "Trades a little completeness for bounded memory"
-            ]
-          }
+          "id": "micro-means-time-not-data-size",
+          "heading": "\"Micro\" means time, not data size",
+          "highlightNodeIds": [
+            "ss-trigger"
+          ]
+        },
+        {
+          "id": "api-parity-what-actually-changes",
+          "heading": "API parity — what actually changes",
+          "highlightNodeIds": [
+            "ss-process"
+          ]
+        },
+        {
+          "id": "setup",
+          "heading": "Setup"
+        },
+        {
+          "id": "your-first-streaming-query-rate-source-memory-sink",
+          "heading": "Your first streaming query — rate source → memory sink",
+          "highlightNodeIds": [
+            "ss-offset",
+            "ss-process",
+            "ss-sink"
+          ]
+        },
+        {
+          "id": "sources-rate-file-kafka-reference",
+          "heading": "Sources — rate, file, Kafka (reference)",
+          "highlightNodeIds": [
+            "ss-offset"
+          ]
+        },
+        {
+          "id": "sinks-memory-console-file-delta-kafka-foreachbatch",
+          "heading": "Sinks — memory, console, file, Delta, Kafka, foreachBatch",
+          "highlightNodeIds": [
+            "ss-sink"
+          ]
+        },
+        {
+          "id": "output-modes-append-update-complete",
+          "heading": "Output modes — append, update, complete",
+          "highlightNodeIds": [
+            "ss-sink",
+            "ss-process"
+          ]
+        },
+        {
+          "id": "triggers-controlling-micro-batch-cadence",
+          "heading": "Triggers — controlling micro-batch cadence",
+          "highlightNodeIds": [
+            "ss-trigger"
+          ]
+        },
+        {
+          "id": "checkpointing-and-fault-tolerance",
+          "heading": "Checkpointing and fault tolerance",
+          "highlightNodeIds": [
+            "ss-checkpoint"
+          ]
+        },
+        {
+          "id": "monitoring-streaming-queries",
+          "heading": "Monitoring streaming queries",
+          "highlightNodeIds": [
+            "ss-process"
+          ]
+        },
+        {
+          "id": "time-and-windows-tumbling-sliding-session",
+          "heading": "Time and windows — tumbling, sliding, session",
+          "scene": "spark-windowing",
+          "highlightNodeIds": [
+            "win-tumbling",
+            "win-sliding",
+            "win-session"
+          ]
+        },
+        {
+          "id": "watermarking-how-it-works",
+          "heading": "Watermarking — how it works",
+          "scene": "spark-watermarking",
+          "highlightNodeIds": [
+            "wm-line",
+            "wm-closed",
+            "wm-open",
+            "wm-drop",
+            "wm-keep"
+          ]
+        },
+        {
+          "id": "joins-stream-static-and-stream-stream",
+          "heading": "Joins — stream-static and stream-stream",
+          "highlightNodeIds": [
+            "ss-state"
+          ]
+        },
+        {
+          "id": "stateful-operations-deduplication-arbitrary-state",
+          "heading": "Stateful operations — deduplication, arbitrary state",
+          "highlightNodeIds": [
+            "ss-state"
+          ]
+        },
+        {
+          "id": "state-store-backends-monitoring-state",
+          "heading": "State store backends + monitoring state",
+          "highlightNodeIds": [
+            "ss-state",
+            "ss-checkpoint"
+          ]
         }
       ]
     },
     {
       "id": "spark-performance",
-      "title": "Performance & Memory",
+      "title": "Performance Tuning",
       "topic": "apache-spark",
-      "pages": [
+      "notebook": "notebooks/08-performance-tuning.ipynb",
+      "defaultScene": "spark-performance-tuning",
+      "sections": [
         {
-          "id": "cache",
-          "sceneId": "spark-cache-persist",
-          "slide": {
-            "title": "Caching & the Memory Model",
-            "bullets": [
-              "cache / persist keep a reused DataFrame in memory",
-              "Storage levels trade memory for CPU and disk",
-              "Cache only what you reuse — it isn't free"
-            ]
-          }
+          "id": "overview",
+          "heading": "What's covered",
+          "title": "Performance Tuning"
         },
         {
-          "id": "tuning",
-          "sceneId": "spark-performance-tuning",
-          "slide": {
-            "title": "Taming the Shuffle",
-            "bullets": [
-              "The shuffle is usually the bottleneck",
-              "Tune partitioning and shuffle config to match data size",
-              "Broadcast small tables to avoid shuffling the big one"
-            ]
-          }
+          "id": "partition-sizing-the-unit-of-parallelism",
+          "heading": "Partition sizing — the unit of parallelism",
+          "highlightNodeIds": [
+            "pt-partitioning",
+            "pt-shufparts"
+          ]
+        },
+        {
+          "id": "repartition-vs-coalesce-vs-partitionby-three-different-things",
+          "heading": "`repartition` vs `coalesce` vs `partitionBy` — three different things",
+          "highlightNodeIds": [
+            "pt-repartition",
+            "pt-coalesce",
+            "pt-partitionby"
+          ]
+        },
+        {
+          "id": "tuning-spark-sql-shuffle-partitions",
+          "heading": "Tuning `spark.sql.shuffle.partitions`",
+          "highlightNodeIds": [
+            "pt-shuffleconf",
+            "pt-shufparts"
+          ]
+        },
+        {
+          "id": "what-triggers-a-shuffle",
+          "heading": "What triggers a shuffle",
+          "highlightNodeIds": [
+            "pt-shuffle"
+          ]
+        },
+        {
+          "id": "reading-shuffles-in-explain",
+          "heading": "Reading shuffles in `explain()`",
+          "highlightNodeIds": [
+            "pt-shuffle"
+          ]
+        },
+        {
+          "id": "catalyst-s-free-wins-predicate-pushdown-column-pruning",
+          "heading": "Catalyst's free wins — predicate pushdown + column pruning"
+        },
+        {
+          "id": "aqe-in-depth-runtime-re-optimization",
+          "heading": "AQE in depth — runtime re-optimization"
+        },
+        {
+          "id": "caching-dataframes-cache-and-persist",
+          "heading": "Caching DataFrames — `cache()` and `persist()`",
+          "scene": "spark-cache-persist",
+          "highlightNodeIds": [
+            "cp-cache",
+            "cp-persist",
+            "cp-api"
+          ]
+        },
+        {
+          "id": "storage-levels-reference",
+          "heading": "Storage levels — reference",
+          "scene": "spark-cache-persist",
+          "highlightNodeIds": [
+            "cp-levels",
+            "cp-memonly",
+            "cp-memonlyser",
+            "cp-memdisk",
+            "cp-memdisk2"
+          ]
+        },
+        {
+          "id": "cachetable-unpersist-and-anti-patterns",
+          "heading": "`cacheTable`, `unpersist`, and anti-patterns"
+        },
+        {
+          "id": "checkpointing-truncating-long-lineage",
+          "heading": "Checkpointing — truncating long lineage"
+        },
+        {
+          "id": "driver-side-bottlenecks-collect-withcolumn-in-a-loop",
+          "heading": "Driver-side bottlenecks — `collect`, `withColumn` in a loop",
+          "highlightNodeIds": [
+            "pt-levers"
+          ]
+        },
+        {
+          "id": "join-strategies-broadcast-and-when-not-to-broadcast",
+          "heading": "Join strategies, broadcast, and when NOT to broadcast",
+          "highlightNodeIds": [
+            "pt-smj",
+            "pt-broadcast",
+            "pt-broadcastdf",
+            "pt-autobroadcast"
+          ]
+        },
+        {
+          "id": "detecting-and-fixing-data-skew",
+          "heading": "Detecting and fixing data skew",
+          "highlightNodeIds": [
+            "pt-shuffle",
+            "pt-shufparts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spark-pandas",
+      "title": "Pandas API on Spark",
+      "topic": "apache-spark",
+      "notebook": "notebooks/09-pandas-api.ipynb",
+      "defaultScene": "spark-pandas-api",
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "What's covered",
+          "title": "Pandas API on Spark"
+        },
+        {
+          "id": "why-this-api-exists",
+          "heading": "Why this API exists",
+          "highlightNodeIds": [
+            "ps-pandasapi"
+          ]
+        },
+        {
+          "id": "setup",
+          "heading": "Setup",
+          "highlightNodeIds": [
+            "ps-create"
+          ]
+        },
+        {
+          "id": "three-dataframe-types-keep-them-straight",
+          "heading": "Three DataFrame types — keep them straight",
+          "highlightNodeIds": [
+            "ps-create",
+            "ps-frompandas",
+            "ps-pandasapi"
+          ]
+        },
+        {
+          "id": "creating-a-ps-dataframe",
+          "heading": "Creating a `ps.DataFrame`",
+          "highlightNodeIds": [
+            "ps-create",
+            "ps-fromdict",
+            "ps-read",
+            "ps-frompandas"
+          ]
+        },
+        {
+          "id": "transformations-lazy-return-another-ps-dataframe",
+          "heading": "Transformations — lazy, return another `ps.DataFrame`",
+          "highlightNodeIds": [
+            "ps-transforms",
+            "ps-select",
+            "ps-filter",
+            "ps-groupby",
+            "ps-rename",
+            "ps-apply",
+            "ps-accessors"
+          ]
+        },
+        {
+          "id": "actions-eager-trigger-a-spark-job",
+          "heading": "Actions — eager, trigger a Spark job",
+          "highlightNodeIds": [
+            "ps-actions",
+            "ps-tocsv",
+            "ps-toparquet",
+            "ps-tojson",
+            "ps-topandas"
+          ]
+        },
+        {
+          "id": "the-spark-bridge-to-spark-and-pandas-api",
+          "heading": "The Spark bridge — `to_spark()` and `pandas_api()`",
+          "highlightNodeIds": [
+            "ps-topandas",
+            "ps-pandasapi"
+          ]
+        },
+        {
+          "id": "default-index-types-the-most-tested-gotcha",
+          "heading": "Default index types — the most-tested gotcha",
+          "highlightNodeIds": [
+            "ps-index",
+            "ps-sequence",
+            "ps-distributed",
+            "ps-distseq"
+          ]
+        },
+        {
+          "id": "gotchas-where-the-pandas-api-ends",
+          "heading": "Gotchas — where the pandas API ends",
+          "highlightNodeIds": [
+            "ps-opsdiff"
+          ]
         }
       ]
     }

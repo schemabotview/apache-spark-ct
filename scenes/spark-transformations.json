@@ -1,0 +1,77 @@
+{
+  "id": "spark-transformations",
+  "topic": "apache-spark",
+  "title": "Transformations & Aggregations",
+  "subtitle": "functions → combine → join → aggregate → window",
+  "grid": { "cols": 4, "rows": 10, "gap": 0.3, "padding": 0.5 },
+  "nodes": [
+    {
+      "id": "tf-functions", "label": "pyspark.sql.functions", "sub": "the function library",
+      "kind": "container", "color": "#ff5d6c", "cell": [0, 0, 4, 2],
+      "layout": { "cols": 4, "rows": 1, "padding": 0.2 },
+      "children": [
+        { "id": "tf-str",   "label": "String",      "kind": "term", "color": "#ff5d6c", "cell": [0, 0] },
+        { "id": "tf-date",  "label": "Date / Time", "kind": "term", "color": "#ff5d6c", "cell": [1, 0] },
+        { "id": "tf-array", "label": "Array",       "kind": "term", "color": "#ff5d6c", "cell": [2, 0] },
+        { "id": "tf-when",  "label": "when / otherwise", "kind": "term", "color": "#ff5d6c", "cell": [3, 0] }
+      ]
+    },
+    {
+      "id": "tf-combine", "label": "Combine & Set", "kind": "container", "color": "#37d39a",
+      "cell": [0, 2, 2, 2], "layout": { "cols": 2, "rows": 2, "padding": 0.18 },
+      "children": [
+        { "id": "tf-union",      "label": "union",       "kind": "term", "color": "#37d39a", "cell": [0, 0] },
+        { "id": "tf-unionbyname","label": "unionByName", "kind": "term", "color": "#37d39a", "cell": [1, 0] },
+        { "id": "tf-intersect",  "label": "intersect",   "kind": "term", "color": "#37d39a", "cell": [0, 1] },
+        { "id": "tf-except",     "label": "except",      "kind": "term", "color": "#37d39a", "cell": [1, 1] }
+      ]
+    },
+    {
+      "id": "tf-joins", "label": "Joins", "sub": "+ duplicate-column trap", "kind": "container",
+      "color": "#3fd0d6", "cell": [2, 2, 2, 4], "layout": { "cols": 2, "rows": 4, "padding": 0.18 },
+      "children": [
+        { "id": "tf-inner", "label": "inner",     "kind": "term", "color": "#3fd0d6", "cell": [0, 0] },
+        { "id": "tf-left",  "label": "left",      "kind": "term", "color": "#3fd0d6", "cell": [1, 0] },
+        { "id": "tf-right", "label": "right",     "kind": "term", "color": "#3fd0d6", "cell": [0, 1] },
+        { "id": "tf-outer", "label": "outer",     "kind": "term", "color": "#3fd0d6", "cell": [1, 1] },
+        { "id": "tf-semi",  "label": "left_semi", "kind": "term", "color": "#3fd0d6", "cell": [0, 2] },
+        { "id": "tf-anti",  "label": "left_anti", "kind": "term", "color": "#3fd0d6", "cell": [1, 2] },
+        { "id": "tf-cross", "label": "cross",     "kind": "term", "color": "#3fd0d6", "cell": [0, 3] }
+      ]
+    },
+    {
+      "id": "tf-agg", "label": "Group & Aggregate", "kind": "container", "color": "#b98bff",
+      "cell": [0, 4, 2, 3], "layout": { "cols": 2, "rows": 3, "padding": 0.18 },
+      "children": [
+        { "id": "tf-groupby", "label": "groupBy",        "kind": "term", "color": "#b98bff", "cell": [0, 0] },
+        { "id": "tf-aggcall", "label": "agg",            "kind": "term", "color": "#b98bff", "cell": [1, 0] },
+        { "id": "tf-having",  "label": "HAVING / filter","kind": "term", "color": "#b98bff", "cell": [0, 1] },
+        { "id": "tf-pivot",   "label": "pivot",          "kind": "term", "color": "#b98bff", "cell": [1, 1] },
+        { "id": "tf-unpivot", "label": "unpivot / stack","kind": "term", "color": "#b98bff", "cell": [0, 2] },
+        { "id": "tf-sample",  "label": "sample / sampleBy","kind": "term", "color": "#b98bff", "cell": [1, 2] }
+      ]
+    },
+    {
+      "id": "tf-window", "label": "Window functions", "sub": "partition · order · frame",
+      "kind": "container", "color": "#ff7a59", "cell": [0, 7, 4, 3],
+      "layout": { "cols": 4, "rows": 2, "padding": 0.18 },
+      "children": [
+        { "id": "tf-rownumber",   "label": "row_number",  "kind": "term", "color": "#ff7a59", "cell": [0, 0] },
+        { "id": "tf-rank",        "label": "rank",        "kind": "term", "color": "#ff7a59", "cell": [1, 0] },
+        { "id": "tf-denserank",   "label": "dense_rank",  "kind": "term", "color": "#ff7a59", "cell": [2, 0] },
+        { "id": "tf-ntile",       "label": "ntile",       "kind": "term", "color": "#ff7a59", "cell": [3, 0] },
+        { "id": "tf-lag",         "label": "lag",         "kind": "term", "color": "#ff7a59", "cell": [0, 1] },
+        { "id": "tf-lead",        "label": "lead",        "kind": "term", "color": "#ff7a59", "cell": [1, 1] },
+        { "id": "tf-rowsbetween", "label": "rowsBetween", "kind": "term", "color": "#ff7a59", "cell": [2, 1] },
+        { "id": "tf-rangebetween","label": "rangeBetween","kind": "term", "color": "#ff7a59", "cell": [3, 1] }
+      ]
+    }
+  ],
+  "edges": [
+    { "from": "tf-functions", "to": "tf-combine" },
+    { "from": "tf-functions", "to": "tf-joins" },
+    { "from": "tf-combine", "to": "tf-agg" },
+    { "from": "tf-joins", "to": "tf-agg" },
+    { "from": "tf-agg", "to": "tf-window" }
+  ]
+}
