@@ -1,0 +1,350 @@
+{
+  "id": "spark-writing-sinks",
+  "topic": "apache-spark",
+  "title": "Writing data — df.write",
+  "subtitle": "format · mode · layout → sink → output",
+  "grid": {
+    "cols": 3,
+    "rows": 9,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "wr-config",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "wr-format",
+          "label": "Format",
+          "color": "#37d39a",
+          "sub": "encode the bytes",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 2,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#37d39a",
+              "id": "wr-parquet",
+              "label": "parquet",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "wr-csv",
+              "label": "csv",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "wr-json",
+              "label": "json",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "wr-delta",
+              "label": "delta",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wr-mode",
+          "label": "mode()",
+          "color": "#ff7a59",
+          "sub": "if target exists",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 2,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff7a59",
+              "id": "wr-overwrite",
+              "label": "overwrite",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "wr-append",
+              "label": "append",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "wr-error",
+              "label": "error",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "wr-ignore",
+              "label": "ignore",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wr-write",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        3,
+        3,
+        4
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "wr-layout",
+          "label": "Layout",
+          "color": "#3fd0d6",
+          "sub": "organize the files",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 3,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#3fd0d6",
+              "id": "wr-partitionby",
+              "label": "partitionBy",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "wr-bucketby",
+              "label": "bucketBy",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "wr-sortby",
+              "label": "sortBy",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wr-sinks",
+          "label": "Sinks",
+          "color": "#b98bff",
+          "sub": "write it out",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 2,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#b98bff",
+              "id": "wr-save",
+              "label": "save",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "wr-saveastable",
+              "label": "saveAsTable",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "wr-jdbc",
+              "label": "jdbc",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "wr-insertinto",
+              "label": "insertInto",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wr-output",
+      "label": "Output",
+      "color": "#5b8cff",
+      "sub": "where it lands",
+      "kind": "container",
+      "cell": [
+        0,
+        7,
+        3,
+        2
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 1,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#5b8cff",
+          "id": "wr-files",
+          "label": "Files",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "wr-hivetable",
+          "label": "Hive table",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "wr-jdbctarget",
+          "label": "JDBC target",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "wr-deltatable",
+          "label": "Delta table",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "wr-format",
+      "to": "wr-sinks"
+    },
+    {
+      "from": "wr-mode",
+      "to": "wr-sinks"
+    },
+    {
+      "from": "wr-layout",
+      "to": "wr-sinks"
+    },
+    {
+      "from": "wr-sinks",
+      "to": "wr-output"
+    }
+  ]
+}

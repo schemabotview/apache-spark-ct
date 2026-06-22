@@ -1,5 +1,19 @@
 {
-  "scenes": ["spark-execution"],
+  "scenes": [
+    "spark-execution",
+    "apache-spark-api-stack",
+    "spark-reading-sources",
+    "spark-rdd-api",
+    "spark-dataframe-api",
+    "spark-sql-api",
+    "spark-pandas-api",
+    "spark-writing-sinks",
+    "spark-structured-streaming",
+    "spark-windowing",
+    "spark-watermarking",
+    "spark-cache-persist",
+    "spark-performance-tuning"
+  ],
   "presentations": [
     {
       "id": "spark-execution",
@@ -91,6 +105,177 @@
             ]
           },
           "overrides": { "highlightNodeIds": ["executors", "ex1", "ex2"] }
+        }
+      ]
+    },
+    {
+      "id": "spark-api-stack",
+      "title": "The Spark API Stack",
+      "topic": "apache-spark",
+      "pages": [
+        {
+          "id": "overview",
+          "sceneId": "apache-spark-api-stack",
+          "slide": {
+            "title": "One Engine, Four APIs",
+            "bullets": [
+              "The vertical spine is the dataflow: Input → Read → process → Write → Output",
+              "RDD, DataFrame, SQL and pandas are interchangeable lenses over the same engine",
+              "Cross-cutting concerns (cache, shuffle, tuning) apply to every API"
+            ]
+          },
+          "narration": {
+            "text": "Spark gives you four ways to express the same job. Pick the lens that fits the problem."
+          }
+        },
+        {
+          "id": "read",
+          "sceneId": "spark-reading-sources",
+          "slide": {
+            "title": "Reading Data — spark.read",
+            "bullets": [
+              "One reader for many sources: CSV, Parquet, JSON, JDBC, Delta",
+              "Control schema, format options and bad-record handling",
+              "Read multiple files / partitions as one DataFrame"
+            ]
+          }
+        },
+        {
+          "id": "rdd",
+          "sceneId": "spark-rdd-api",
+          "slide": {
+            "title": "RDD API — the low-level core",
+            "bullets": [
+              "create → transform → act",
+              "Narrow vs wide transformations decide where shuffles happen",
+              "Pair RDDs power key-based operations like reduceByKey"
+            ]
+          }
+        },
+        {
+          "id": "dataframe",
+          "sceneId": "spark-dataframe-api",
+          "slide": {
+            "title": "DataFrame API — the workhorse",
+            "bullets": [
+              "Typed columns with built-in functions, joins and aggregations",
+              "Catalyst optimizes the plan for you",
+              "The default choice for most batch work"
+            ]
+          }
+        },
+        {
+          "id": "sql",
+          "sceneId": "spark-sql-api",
+          "slide": {
+            "title": "SQL API — Spark in plain SQL",
+            "bullets": [
+              "Register a view, then SELECT against it",
+              "Joins, aggregations and functions in standard SQL",
+              "Same engine and optimizer as the DataFrame API"
+            ]
+          }
+        },
+        {
+          "id": "pandas",
+          "sceneId": "spark-pandas-api",
+          "slide": {
+            "title": "pandas API on Spark",
+            "bullets": [
+              "Write familiar pandas code, run it distributed",
+              "Bridge for analysts moving from single-node pandas",
+              "Backed by Spark's distributed execution"
+            ]
+          }
+        },
+        {
+          "id": "write",
+          "sceneId": "spark-writing-sinks",
+          "slide": {
+            "title": "Writing Data — df.write",
+            "bullets": [
+              "Choose format, save mode and output layout (partitionBy)",
+              "Write to files, Hive, JDBC or Delta",
+              "Layout choices here shape how the data reads back"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "spark-streaming",
+      "title": "Structured Streaming",
+      "topic": "apache-spark",
+      "pages": [
+        {
+          "id": "micro-batch",
+          "sceneId": "spark-structured-streaming",
+          "slide": {
+            "title": "Batch in a Loop",
+            "bullets": [
+              "A stream is a series of micro-batches over an unbounded table",
+              "Offsets track progress; triggers pace each batch",
+              "State + checkpoint give exactly-once and fault recovery"
+            ]
+          },
+          "narration": {
+            "text": "Structured streaming is just the batch engine, run over and over on small slices of an endless table."
+          }
+        },
+        {
+          "id": "windows",
+          "sceneId": "spark-windowing",
+          "slide": {
+            "title": "Event-time Windows",
+            "bullets": [
+              "Bucket events by event time, not arrival time",
+              "Tumbling, sliding and session windows",
+              "Aggregations run per window"
+            ]
+          }
+        },
+        {
+          "id": "watermark",
+          "sceneId": "spark-watermarking",
+          "slide": {
+            "title": "Watermarking",
+            "bullets": [
+              "The watermark line splits accepted from dropped late data",
+              "Bounds how long state is kept for a window",
+              "Trades a little completeness for bounded memory"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "spark-performance",
+      "title": "Performance & Memory",
+      "topic": "apache-spark",
+      "pages": [
+        {
+          "id": "cache",
+          "sceneId": "spark-cache-persist",
+          "slide": {
+            "title": "Caching & the Memory Model",
+            "bullets": [
+              "cache / persist keep a reused DataFrame in memory",
+              "Storage levels trade memory for CPU and disk",
+              "Cache only what you reuse — it isn't free"
+            ]
+          }
+        },
+        {
+          "id": "tuning",
+          "sceneId": "spark-performance-tuning",
+          "slide": {
+            "title": "Taming the Shuffle",
+            "bullets": [
+              "The shuffle is usually the bottleneck",
+              "Tune partitioning and shuffle config to match data size",
+              "Broadcast small tables to avoid shuffling the big one"
+            ]
+          }
         }
       ]
     }

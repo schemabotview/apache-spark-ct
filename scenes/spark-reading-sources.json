@@ -1,0 +1,420 @@
+{
+  "id": "spark-reading-sources",
+  "topic": "apache-spark",
+  "title": "Reading data — spark.read",
+  "subtitle": "sources → format · bad-record · multi-file · JDBC",
+  "grid": {
+    "cols": 3,
+    "rows": 13,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "rd-sources",
+      "label": "Input Sources",
+      "color": "#5b8cff",
+      "sub": "read from anything",
+      "kind": "container",
+      "cell": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 2,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#5b8cff",
+          "id": "rd-csv",
+          "label": "CSV",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-parquet",
+          "label": "Parquet",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-json",
+          "label": "JSON",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-orc",
+          "label": "ORC",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-jdbc",
+          "label": "JDBC",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-hive",
+          "label": "Hive",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-files",
+          "label": "Files",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "rd-delta",
+          "label": "Delta",
+          "kind": "term",
+          "cell": [
+            3,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-knobs-top",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        3,
+        3,
+        5
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "rd-format",
+          "label": "Format options",
+          "color": "#3fd0d6",
+          "sub": "parse the bytes",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 2,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#3fd0d6",
+              "id": "rd-header",
+              "label": "header",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rd-sep",
+              "label": "sep",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rd-mergeschema",
+              "label": "mergeSchema",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rd-multiline",
+              "label": "multiLine",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rd-badrecord",
+          "label": "Bad-record mode()",
+          "color": "#ff5d6c",
+          "sub": "handle garbage rows",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 5,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff5d6c",
+              "id": "rd-permissive",
+              "label": "permissive",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff5d6c",
+              "id": "rd-failfast",
+              "label": "failFast",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#ff5d6c",
+              "id": "rd-dropmalformed",
+              "label": "dropMalformed",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#ff5d6c",
+              "id": "rd-corruptcol",
+              "label": "columnNameOfCorrupt",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#ff5d6c",
+              "id": "rd-badpath",
+              "label": "badRecordsPath",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-knobs-bot",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        8,
+        3,
+        5
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "rd-multifile",
+          "label": "Multi-file lookup",
+          "color": "#b98bff",
+          "sub": "pick the files",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#b98bff",
+              "id": "rd-glob",
+              "label": "glob",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rd-regex",
+              "label": "regex",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rd-multipaths",
+              "label": "multiple paths",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rd-recursive",
+              "label": "recursiveFileLookup",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rd-jdbcreads",
+          "label": "JDBC parallel reads",
+          "color": "#ff7a59",
+          "sub": "parallelize a table",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 5,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff7a59",
+              "id": "rd-partcol",
+              "label": "partitionColumn",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "rd-lower",
+              "label": "lowerBound",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "rd-upper",
+              "label": "upperBound",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "rd-numpart",
+              "label": "numPartitions",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "rd-fetchsize",
+              "label": "fetchSize",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "rd-sources",
+      "to": "rd-format"
+    },
+    {
+      "from": "rd-sources",
+      "to": "rd-badrecord"
+    },
+    {
+      "from": "rd-format",
+      "to": "rd-multifile"
+    },
+    {
+      "from": "rd-badrecord",
+      "to": "rd-jdbcreads"
+    }
+  ]
+}

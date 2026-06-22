@@ -1,0 +1,230 @@
+{
+  "id": "apache-spark-api-stack",
+  "topic": "apache-spark",
+  "title": "The Spark API stack",
+  "subtitle": "Input → Read → RDD / DataFrame / SQL / pandas → Write → Output",
+  "grid": {
+    "cols": 3,
+    "rows": 8,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "input",
+      "label": "Input Sources",
+      "color": "#5b8cff",
+      "kind": "symbol",
+      "sub": "CSV · Parquet · JSON · JDBC · Delta",
+      "cell": [
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "read",
+      "label": "Read API",
+      "color": "#5b8cff",
+      "kind": "symbol",
+      "sub": "spark.read",
+      "cell": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "apis",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        2,
+        3,
+        2
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 1,
+        "padding": 0.15
+      },
+      "children": [
+        {
+          "id": "rdd",
+          "label": "RDD API",
+          "color": "#ff5d6c",
+          "kind": "symbol",
+          "sub": "low-level",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "dataframe",
+          "label": "DataFrame API",
+          "color": "#ff7a59",
+          "kind": "symbol",
+          "sub": "typed columns",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "sql",
+          "label": "SQL API",
+          "color": "#37d39a",
+          "kind": "symbol",
+          "sub": "queries + views",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "id": "pandas",
+          "label": "pandas API",
+          "color": "#5b8cff",
+          "kind": "symbol",
+          "sub": "pandas on Spark",
+          "cell": [
+            3,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write",
+      "label": "Write API",
+      "color": "#37d39a",
+      "kind": "symbol",
+      "sub": "df.write",
+      "cell": [
+        1,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "output",
+      "label": "Output",
+      "color": "#37d39a",
+      "kind": "symbol",
+      "sub": "Files · Hive · JDBC · Delta",
+      "cell": [
+        1,
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "crosscut",
+      "label": "Cross-cutting",
+      "color": "#b98bff",
+      "sub": "applies across all APIs",
+      "kind": "container",
+      "cell": [
+        0,
+        6,
+        3,
+        2
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 2,
+        "padding": 0.2
+      },
+      "children": [
+        {
+          "color": "#b98bff",
+          "id": "cc-cache",
+          "label": "Cache / Persist",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#b98bff",
+          "id": "cc-shuffle",
+          "label": "Shuffle",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#b98bff",
+          "id": "cc-perf",
+          "label": "Perf Tuning",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#b98bff",
+          "id": "cc-broadcast",
+          "label": "Broadcast joins",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "input",
+      "to": "read"
+    },
+    {
+      "from": "read",
+      "to": "rdd"
+    },
+    {
+      "from": "read",
+      "to": "dataframe"
+    },
+    {
+      "from": "read",
+      "to": "sql"
+    },
+    {
+      "from": "read",
+      "to": "pandas"
+    },
+    {
+      "from": "rdd",
+      "to": "write"
+    },
+    {
+      "from": "dataframe",
+      "to": "write"
+    },
+    {
+      "from": "sql",
+      "to": "write"
+    },
+    {
+      "from": "pandas",
+      "to": "write"
+    },
+    {
+      "from": "write",
+      "to": "output"
+    }
+  ]
+}

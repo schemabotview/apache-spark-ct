@@ -1,0 +1,192 @@
+{
+  "id": "spark-watermarking",
+  "topic": "apache-spark",
+  "title": "Watermarking",
+  "subtitle": "late data, bounded state — the watermark line splits accepted from dropped",
+  "grid": {
+    "cols": 3,
+    "rows": 8,
+    "gap": 0.4,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "wm-windows",
+      "label": "Tumbling windows · 5 min",
+      "sub": "a window closes once its end falls behind the watermark",
+      "kind": "container",
+      "cell": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 25,
+        "rows": 1,
+        "gap": 0.12,
+        "padding": 0.3
+      },
+      "children": [
+        {
+          "id": "wm-w1",
+          "label": "W1",
+          "sub": "12:00–05 · emitted & evicted",
+          "color": "#9aa3b2",
+          "kind": "term",
+          "cell": [
+            0,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "wm-w2",
+          "label": "W2",
+          "sub": "12:05–10 · open",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            5,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "wm-w3",
+          "label": "W3",
+          "sub": "12:10–15 · open",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            10,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "wm-w4",
+          "label": "W4",
+          "sub": "12:15–20 · open",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            15,
+            0,
+            5,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wm-line",
+      "label": "Watermark = latest event 12:18 − delay 10 min = 12:08",
+      "sub": "a line that only moves forward · withWatermark(\"ts\", \"10 min\")",
+      "kind": "container",
+      "cell": [
+        0,
+        3,
+        3,
+        2
+      ],
+      "layout": {
+        "cols": 25,
+        "rows": 1,
+        "gap": 0.12,
+        "padding": 0.3
+      },
+      "children": [
+        {
+          "id": "wm-closed",
+          "label": "≤ 12:08",
+          "sub": "finalized & evicted — bounded memory",
+          "color": "#9aa3b2",
+          "kind": "term",
+          "cell": [
+            0,
+            0,
+            8,
+            1
+          ]
+        },
+        {
+          "id": "wm-open",
+          "label": "> 12:08 — still open",
+          "sub": "recent enough to still accept late data",
+          "color": "#3fd0d6",
+          "kind": "term",
+          "cell": [
+            8,
+            0,
+            17,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wm-events",
+      "label": "A late event arrives — which side of the line?",
+      "sub": "event time decides, not arrival time",
+      "kind": "container",
+      "cell": [
+        0,
+        5,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 25,
+        "rows": 1,
+        "gap": 0.12,
+        "padding": 0.3
+      },
+      "children": [
+        {
+          "id": "wm-drop",
+          "label": "event @ 12:03",
+          "sub": "behind watermark → dropped (too late)",
+          "color": "#ff5d6c",
+          "kind": "term",
+          "cell": [
+            1,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "wm-keep",
+          "label": "event @ 12:11",
+          "sub": "past watermark → accepted into W3",
+          "color": "#37d39a",
+          "kind": "term",
+          "cell": [
+            9,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "wm-latest",
+          "label": "latest 12:18",
+          "sub": "max event time seen so far",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            18,
+            0,
+            3,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": []
+}

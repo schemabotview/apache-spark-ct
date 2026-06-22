@@ -1,0 +1,231 @@
+{
+  "id": "spark-windowing",
+  "topic": "apache-spark",
+  "title": "Event-time windows",
+  "subtitle": "tumbling · sliding · session — bucket a stream by event time",
+  "grid": {
+    "cols": 3,
+    "rows": 12,
+    "gap": 0.4,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "win-tumbling",
+      "label": "Tumbling · 5 min",
+      "sub": "fixed size, no overlap — each event in exactly one window",
+      "kind": "container",
+      "cell": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 25,
+        "rows": 1,
+        "gap": 0.12,
+        "padding": 0.3
+      },
+      "children": [
+        {
+          "id": "win-t1",
+          "label": "W1",
+          "sub": "12:00–05",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            0,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "win-t2",
+          "label": "W2",
+          "sub": "12:05–10",
+          "color": "#ff7a59",
+          "kind": "term",
+          "cell": [
+            5,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "win-t3",
+          "label": "W3",
+          "sub": "12:10–15",
+          "color": "#37d39a",
+          "kind": "term",
+          "cell": [
+            10,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "win-t4",
+          "label": "W4",
+          "sub": "12:15–20",
+          "color": "#b98bff",
+          "kind": "term",
+          "cell": [
+            15,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "win-t5",
+          "label": "W5",
+          "sub": "12:20–25",
+          "color": "#3fd0d6",
+          "kind": "term",
+          "cell": [
+            20,
+            0,
+            5,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "win-sliding",
+      "label": "Sliding · 10 min, slide 5 min",
+      "sub": "overlap — one event falls in multiple windows",
+      "kind": "container",
+      "cell": [
+        0,
+        3,
+        3,
+        6
+      ],
+      "layout": {
+        "cols": 25,
+        "rows": 4,
+        "gap": 0.12,
+        "padding": 0.3
+      },
+      "children": [
+        {
+          "id": "win-s1",
+          "label": "W1",
+          "sub": "12:00–10",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            0,
+            0,
+            10,
+            1
+          ]
+        },
+        {
+          "id": "win-s2",
+          "label": "W2",
+          "sub": "12:05–15",
+          "color": "#ff7a59",
+          "kind": "term",
+          "cell": [
+            5,
+            1,
+            10,
+            1
+          ]
+        },
+        {
+          "id": "win-s3",
+          "label": "W3",
+          "sub": "12:10–20",
+          "color": "#37d39a",
+          "kind": "term",
+          "cell": [
+            10,
+            2,
+            10,
+            1
+          ]
+        },
+        {
+          "id": "win-s4",
+          "label": "W4",
+          "sub": "12:15–25",
+          "color": "#b98bff",
+          "kind": "term",
+          "cell": [
+            15,
+            3,
+            10,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "win-session",
+      "label": "Session · 5 min gap",
+      "sub": "dynamic — grows with activity, closes after a quiet gap",
+      "kind": "container",
+      "cell": [
+        0,
+        9,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 25,
+        "rows": 1,
+        "gap": 0.12,
+        "padding": 0.3
+      },
+      "children": [
+        {
+          "id": "win-g1",
+          "label": "W1",
+          "sub": "events 12:04, 12:09 → closes 12:09+5 = 12:14",
+          "color": "#5b8cff",
+          "kind": "term",
+          "cell": [
+            4,
+            0,
+            10,
+            1
+          ]
+        },
+        {
+          "id": "win-g2",
+          "label": "W2",
+          "sub": "12:15 → closes 12:15+5 = 12:20",
+          "color": "#ff7a59",
+          "kind": "term",
+          "cell": [
+            15,
+            0,
+            5,
+            1
+          ]
+        },
+        {
+          "id": "win-g3",
+          "label": "W3",
+          "sub": "12:22 → active",
+          "color": "#37d39a",
+          "kind": "term",
+          "cell": [
+            22,
+            0,
+            3,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": []
+}

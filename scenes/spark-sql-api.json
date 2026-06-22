@@ -1,0 +1,594 @@
+{
+  "id": "spark-sql-api",
+  "topic": "apache-spark",
+  "title": "SQL API — Spark in plain SQL",
+  "subtitle": "register a view → SELECT → join · aggregate · functions",
+  "grid": {
+    "cols": 3,
+    "rows": 17,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "sql-views",
+      "label": "Views + Catalog",
+      "color": "#37d39a",
+      "sub": "name a table",
+      "kind": "container",
+      "cell": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 3,
+        "rows": 2,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#37d39a",
+          "id": "sql-tempview",
+          "label": "createTempView",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "sql-globalview",
+          "label": "createGlobalTempView",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "sql-saveastable",
+          "label": "saveAsTable",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "sql-listtables",
+          "label": "catalog.listTables",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "sql-listcolumns",
+          "label": "catalog.listColumns",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sql-queries",
+      "label": "Queries",
+      "color": "#5b8cff",
+      "sub": "the SELECT clauses",
+      "kind": "container",
+      "cell": [
+        0,
+        3,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 2,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#5b8cff",
+          "id": "sql-select",
+          "label": "SELECT",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-from",
+          "label": "FROM",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-where",
+          "label": "WHERE",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-groupby",
+          "label": "GROUP BY",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-having",
+          "label": "HAVING",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-orderby",
+          "label": "ORDER BY",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-limit",
+          "label": "LIMIT",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "sql-offset",
+          "label": "OFFSET",
+          "kind": "term",
+          "cell": [
+            3,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sql-combine",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        6,
+        3,
+        5
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "sql-joins",
+          "label": "Joins + Sets + CTE",
+          "color": "#ff7a59",
+          "sub": "combine tables",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff7a59",
+              "id": "sql-innerjoin",
+              "label": "INNER JOIN",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-leftjoin",
+              "label": "LEFT JOIN",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-fulljoin",
+              "label": "FULL JOIN",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-semianti",
+              "label": "SEMI / ANTI",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-union",
+              "label": "UNION",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-intersect",
+              "label": "INTERSECT",
+              "kind": "term",
+              "cell": [
+                1,
+                2
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-cte",
+              "label": "WITH (CTE)",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "sql-subquery",
+              "label": "subquery",
+              "kind": "term",
+              "cell": [
+                1,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sql-aggs",
+          "label": "Aggregates + Window",
+          "color": "#b98bff",
+          "sub": "summarize + rank",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#b98bff",
+              "id": "sql-avg",
+              "label": "AVG",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-sum",
+              "label": "SUM",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-minmax",
+              "label": "MIN / MAX",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-count",
+              "label": "COUNT",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-rownumber",
+              "label": "ROW_NUMBER",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-rank",
+              "label": "RANK",
+              "kind": "term",
+              "cell": [
+                1,
+                2
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-laglead",
+              "label": "LAG / LEAD",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "sql-cumedist",
+              "label": "CUME_DIST",
+              "kind": "term",
+              "cell": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sql-functions",
+      "label": "Functions",
+      "color": "#3fd0d6",
+      "sub": "scalar expressions",
+      "kind": "container",
+      "cell": [
+        0,
+        11,
+        3,
+        4
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 4,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#3fd0d6",
+          "id": "sql-mathfns",
+          "label": "abs / ceil / floor",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-roundfns",
+          "label": "round / sqrt / log",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-strfns",
+          "label": "concat / substring",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-casefns",
+          "label": "upper / lower / trim",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-datefns",
+          "label": "current_date / ts",
+          "kind": "term",
+          "cell": [
+            0,
+            2
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-dateadd",
+          "label": "date_add / format",
+          "kind": "term",
+          "cell": [
+            1,
+            2
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-arraycontains",
+          "label": "array_contains",
+          "kind": "term",
+          "cell": [
+            0,
+            3
+          ]
+        },
+        {
+          "color": "#3fd0d6",
+          "id": "sql-arraysort",
+          "label": "array_sort / union",
+          "kind": "term",
+          "cell": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sql-null",
+      "label": "Null semantics",
+      "color": "#ff5d6c",
+      "sub": "how NULL behaves",
+      "kind": "container",
+      "cell": [
+        0,
+        15,
+        3,
+        2
+      ],
+      "layout": {
+        "cols": 5,
+        "rows": 1,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#ff5d6c",
+          "id": "sql-eq",
+          "label": "=",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "sql-nulleq",
+          "label": "<=>",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "sql-isnull",
+          "label": "IS NULL",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "sql-coalesce",
+          "label": "COALESCE",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "sql-nullif",
+          "label": "NULLIF",
+          "kind": "term",
+          "cell": [
+            4,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "sql-views",
+      "to": "sql-queries"
+    },
+    {
+      "from": "sql-queries",
+      "to": "sql-joins"
+    },
+    {
+      "from": "sql-queries",
+      "to": "sql-aggs"
+    },
+    {
+      "from": "sql-joins",
+      "to": "sql-functions"
+    },
+    {
+      "from": "sql-aggs",
+      "to": "sql-functions"
+    },
+    {
+      "from": "sql-functions",
+      "to": "sql-null"
+    }
+  ]
+}

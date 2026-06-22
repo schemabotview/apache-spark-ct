@@ -1,0 +1,120 @@
+{
+  "id": "spark-structured-streaming",
+  "topic": "apache-spark",
+  "title": "Structured Streaming — batch in a loop",
+  "subtitle": "offset · trigger · state · checkpoint, around a micro-batch",
+  "grid": {
+    "cols": 1,
+    "rows": 6,
+    "gap": 0.45,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "ss-offset",
+      "label": "Offset tracker",
+      "color": "#37d39a",
+      "kind": "symbol",
+      "sub": "what’s new since the last checkpoint?",
+      "cell": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ss-trigger",
+      "label": "Micro-batch trigger",
+      "color": "#9aa3b2",
+      "kind": "symbol",
+      "sub": "processingTime · availableNow · once",
+      "cell": [
+        0,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ss-process",
+      "label": "Partition + process",
+      "color": "#37d39a",
+      "kind": "symbol",
+      "sub": "same executor model as batch",
+      "cell": [
+        0,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ss-state",
+      "label": "State store · RocksDB",
+      "color": "#ff7a59",
+      "kind": "symbol",
+      "sub": "running counts · windows",
+      "cell": [
+        0,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ss-sink",
+      "label": "Sink + output mode",
+      "color": "#37d39a",
+      "kind": "symbol",
+      "sub": "append · update · complete",
+      "cell": [
+        0,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ss-checkpoint",
+      "label": "Checkpoint save",
+      "color": "#9aa3b2",
+      "kind": "symbol",
+      "sub": "offsets + WAL + state",
+      "cell": [
+        0,
+        5,
+        1,
+        1
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "ss-offset",
+      "to": "ss-trigger"
+    },
+    {
+      "from": "ss-trigger",
+      "to": "ss-process"
+    },
+    {
+      "from": "ss-process",
+      "to": "ss-state"
+    },
+    {
+      "from": "ss-state",
+      "to": "ss-sink"
+    },
+    {
+      "from": "ss-sink",
+      "to": "ss-checkpoint"
+    },
+    {
+      "from": "ss-checkpoint",
+      "to": "ss-offset",
+      "sourceHandle": "r-source",
+      "targetHandle": "r-target"
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "id": "spark-pandas-api",
+  "topic": "apache-spark",
+  "title": "pandas API on Spark",
+  "subtitle": "write pandas, run it distributed",
+  "grid": {
+    "cols": 3,
+    "rows": 10,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "ps-create",
+      "label": "Creation",
+      "color": "#5b8cff",
+      "sub": "get a ps DataFrame",
+      "kind": "container",
+      "cell": [
+        0,
+        0,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 2,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#5b8cff",
+          "id": "ps-fromdict",
+          "label": "ps.DataFrame(dict)",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "ps-read",
+          "label": "read_csv/json/parquet",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "ps-pandasapi",
+          "label": "sdf.pandas_api()",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#5b8cff",
+          "id": "ps-frompandas",
+          "label": "ps.from_pandas(pdf)",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ps-transforms",
+      "label": "Transformations",
+      "color": "#37d39a",
+      "sub": "pandas verbs",
+      "kind": "container",
+      "cell": [
+        0,
+        3,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 3,
+        "rows": 2,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#37d39a",
+          "id": "ps-select",
+          "label": "select / asgn",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "ps-filter",
+          "label": "filter / qry",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "ps-groupby",
+          "label": "groupby / agg",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "ps-rename",
+          "label": "na / rename",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "ps-apply",
+          "label": "apply / trans",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "ps-accessors",
+          "label": "str / dt / num",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ps-finish",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        6,
+        3,
+        4
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "ps-actions",
+          "label": "Actions",
+          "color": "#ff7a59",
+          "sub": "write / convert",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff7a59",
+              "id": "ps-tocsv",
+              "label": "to_csv",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "ps-toparquet",
+              "label": "to_parquet",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "ps-tojson",
+              "label": "to_json",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "ps-topandas",
+              "label": "to_pandas",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ps-index",
+          "label": "Index Strategies",
+          "color": "#b98bff",
+          "sub": "the distributed index",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#b98bff",
+              "id": "ps-sequence",
+              "label": "sequence",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "ps-distributed",
+              "label": "distributed",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "ps-distseq",
+              "label": "distributed-sequence",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "ps-opsdiff",
+              "label": "compute.ops_on_diff",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "ps-create",
+      "to": "ps-transforms"
+    },
+    {
+      "from": "ps-transforms",
+      "to": "ps-actions"
+    },
+    {
+      "from": "ps-transforms",
+      "to": "ps-index"
+    }
+  ]
+}

@@ -1,0 +1,732 @@
+{
+  "id": "spark-dataframe-api",
+  "topic": "apache-spark",
+  "title": "DataFrame API — the workhorse",
+  "subtitle": "create → transform (functions / joins / aggregations) → act",
+  "grid": {
+    "cols": 3,
+    "rows": 21,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "df-setup",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        0,
+        3,
+        5
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "df-create",
+          "label": "Create + Schema",
+          "color": "#ff7a59",
+          "sub": "get a DataFrame",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 5,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff7a59",
+              "id": "df-structtype",
+              "label": "StructType",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "df-ddl",
+              "label": "DDL string",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "df-createdf",
+              "label": "createDataFrame",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "df-sql",
+              "label": "spark.sql()",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "df-read",
+              "label": "spark.read",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "id": "df-colref",
+          "label": "Column refs",
+          "color": "#5b8cff",
+          "sub": "name a column",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 5,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#5b8cff",
+              "id": "df-colname",
+              "label": "\"name\"",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#5b8cff",
+              "id": "df-col",
+              "label": "col(\"n\")",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#5b8cff",
+              "id": "df-expr",
+              "label": "expr(\"…\")",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#5b8cff",
+              "id": "df-dfcol",
+              "label": "df.col(\"n\")",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#5b8cff",
+              "id": "df-dfindex",
+              "label": "df[\"n\"]",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "df-transforms",
+      "label": "Transformations + when",
+      "color": "#37d39a",
+      "sub": "reshape the data",
+      "kind": "container",
+      "cell": [
+        0,
+        5,
+        3,
+        4
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 3,
+        "padding": 0.16
+      },
+      "children": [
+        {
+          "color": "#37d39a",
+          "id": "df-select",
+          "label": "select",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-selectexpr",
+          "label": "selectExpr",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-withcolumn",
+          "label": "withColumn",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-withrenamed",
+          "label": "withColumnRenamed",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-drop",
+          "label": "drop",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-filter",
+          "label": "filter / where",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-orderby",
+          "label": "orderBy / sort",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-dropdupes",
+          "label": "dropDuplicates",
+          "kind": "term",
+          "cell": [
+            3,
+            1
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-cast",
+          "label": "cast",
+          "kind": "term",
+          "cell": [
+            0,
+            2
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-nadrop",
+          "label": "na.drop",
+          "kind": "term",
+          "cell": [
+            1,
+            2
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-nafill",
+          "label": "na.fill",
+          "kind": "term",
+          "cell": [
+            2,
+            2
+          ]
+        },
+        {
+          "color": "#37d39a",
+          "id": "df-when",
+          "label": "when / otherwise",
+          "kind": "term",
+          "cell": [
+            3,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "df-augment",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        9,
+        3,
+        5
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "df-functions",
+          "label": "pyspark.sql.functions",
+          "color": "#b98bff",
+          "sub": "column expressions",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#b98bff",
+              "id": "df-strfns",
+              "label": "string fns",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "df-datefns",
+              "label": "date / time fns",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "df-arrayfns",
+              "label": "array fns",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "df-udf",
+              "label": "UDF / pandas_udf",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "df-joins",
+          "label": "Joins + Set ops",
+          "color": "#3fd0d6",
+          "sub": "combine DataFrames",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 2,
+            "rows": 4,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#3fd0d6",
+              "id": "df-inner",
+              "label": "inner",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-left",
+              "label": "left",
+              "kind": "term",
+              "cell": [
+                1,
+                0
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-right",
+              "label": "right",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-outer",
+              "label": "outer",
+              "kind": "term",
+              "cell": [
+                1,
+                1
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-semianti",
+              "label": "semi / anti",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-cross",
+              "label": "cross",
+              "kind": "term",
+              "cell": [
+                1,
+                2
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-union",
+              "label": "union",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "df-intersect",
+              "label": "intersect",
+              "kind": "term",
+              "cell": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "df-aggs",
+      "label": "Aggregations",
+      "color": "#ff5d6c",
+      "sub": "group + window",
+      "kind": "container",
+      "cell": [
+        0,
+        14,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 2,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#ff5d6c",
+          "id": "df-groupby",
+          "label": "groupBy",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-agg",
+          "label": "agg",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-countdistinct",
+          "label": "countDistinct",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-rollupcube",
+          "label": "rollup / cube",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-pivot",
+          "label": "pivot",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-stackmelt",
+          "label": "stack / melt",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-window",
+          "label": "Window.over",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "df-rank",
+          "label": "rank / row_num",
+          "kind": "term",
+          "cell": [
+            3,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "df-actions",
+      "label": "Actions · Persist · Explore",
+      "color": "#ff7a59",
+      "sub": "trigger + inspect",
+      "kind": "container",
+      "cell": [
+        0,
+        17,
+        3,
+        4
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 3,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#ff7a59",
+          "id": "df-collect",
+          "label": "collect",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-count",
+          "label": "count",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-show",
+          "label": "show",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-take",
+          "label": "take",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-cache",
+          "label": "cache",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-persist",
+          "label": "persist",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-printschema",
+          "label": "printSchema",
+          "kind": "term",
+          "cell": [
+            0,
+            2
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-describe",
+          "label": "describe",
+          "kind": "term",
+          "cell": [
+            1,
+            2
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-sample",
+          "label": "sample",
+          "kind": "term",
+          "cell": [
+            2,
+            2
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "df-sampleby",
+          "label": "sampleBy",
+          "kind": "term",
+          "cell": [
+            3,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "df-create",
+      "to": "df-transforms"
+    },
+    {
+      "from": "df-colref",
+      "to": "df-transforms"
+    },
+    {
+      "from": "df-transforms",
+      "to": "df-functions"
+    },
+    {
+      "from": "df-transforms",
+      "to": "df-joins"
+    },
+    {
+      "from": "df-functions",
+      "to": "df-aggs"
+    },
+    {
+      "from": "df-joins",
+      "to": "df-aggs"
+    },
+    {
+      "from": "df-aggs",
+      "to": "df-actions"
+    }
+  ]
+}

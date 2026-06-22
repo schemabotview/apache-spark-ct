@@ -1,0 +1,512 @@
+{
+  "id": "spark-rdd-api",
+  "topic": "apache-spark",
+  "title": "RDD API — Spark’s low-level core",
+  "subtitle": "create → transform (narrow / wide / pair) → act",
+  "grid": {
+    "cols": 3,
+    "rows": 12,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "rdd-create",
+      "label": "Create",
+      "color": "#ff5d6c",
+      "sub": "get an RDD",
+      "kind": "container",
+      "cell": [
+        0,
+        0,
+        3,
+        2
+      ],
+      "layout": {
+        "cols": 2,
+        "rows": 2,
+        "padding": 0.2
+      },
+      "children": [
+        {
+          "color": "#ff5d6c",
+          "id": "rdd-parallelize",
+          "label": "parallelize",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "rdd-textfile",
+          "label": "textFile",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "rdd-wholetext",
+          "label": "wholeTextFiles",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#ff5d6c",
+          "id": "rdd-numslices",
+          "label": "numSlices",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rdd-transforms",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        2,
+        3,
+        7
+      ],
+      "layout": {
+        "cols": 3,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "rdd-narrow",
+          "label": "Narrow",
+          "color": "#37d39a",
+          "sub": "no shuffle",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 6,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#37d39a",
+              "id": "rdd-map",
+              "label": "map",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "rdd-mappart",
+              "label": "mapPartitions",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "rdd-flatmap",
+              "label": "flatMap",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "rdd-filter",
+              "label": "filter",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "rdd-repartition",
+              "label": "repartition",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "rdd-coalesce",
+              "label": "coalesce",
+              "kind": "term",
+              "cell": [
+                0,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rdd-wide",
+          "label": "Wide",
+          "color": "#3fd0d6",
+          "sub": "shuffle",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 8,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-union",
+              "label": "union",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-distinct",
+              "label": "distinct",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-intersection",
+              "label": "intersection",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-sortby",
+              "label": "sortBy",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-subtract",
+              "label": "subtract",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-join",
+              "label": "join",
+              "kind": "term",
+              "cell": [
+                0,
+                5
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-cartesian",
+              "label": "cartesian",
+              "kind": "term",
+              "cell": [
+                0,
+                6
+              ]
+            },
+            {
+              "color": "#3fd0d6",
+              "id": "rdd-cogroup",
+              "label": "cogroup",
+              "kind": "term",
+              "cell": [
+                0,
+                7
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rdd-pair",
+          "label": "Pair RDD · byKey",
+          "color": "#b98bff",
+          "sub": "key / value",
+          "kind": "container",
+          "cell": [
+            2,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 8,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#b98bff",
+              "id": "rdd-maptopair",
+              "label": "mapToPair",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-reducebykey",
+              "label": "reduceByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-groupbykey",
+              "label": "groupByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-aggbykey",
+              "label": "aggregateByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                3
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-foldbykey",
+              "label": "foldByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                4
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-combinebykey",
+              "label": "combineByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                5
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-countbykey",
+              "label": "countByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                6
+              ]
+            },
+            {
+              "color": "#b98bff",
+              "id": "rdd-samplebykey",
+              "label": "sampleByKey",
+              "kind": "term",
+              "cell": [
+                0,
+                7
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rdd-actions",
+      "label": "Actions · Misc",
+      "color": "#ff7a59",
+      "sub": "trigger the job",
+      "kind": "container",
+      "cell": [
+        0,
+        9,
+        3,
+        3
+      ],
+      "layout": {
+        "cols": 4,
+        "rows": 3,
+        "padding": 0.18
+      },
+      "children": [
+        {
+          "color": "#ff7a59",
+          "id": "rdd-collect",
+          "label": "collect",
+          "kind": "term",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-count",
+          "label": "count",
+          "kind": "term",
+          "cell": [
+            1,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-take",
+          "label": "take",
+          "kind": "term",
+          "cell": [
+            2,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-first",
+          "label": "first",
+          "kind": "term",
+          "cell": [
+            3,
+            0
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-reduce",
+          "label": "reduce",
+          "kind": "term",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-fold",
+          "label": "fold",
+          "kind": "term",
+          "cell": [
+            1,
+            1
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-aggregate",
+          "label": "aggregate",
+          "kind": "term",
+          "cell": [
+            2,
+            1
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-savetext",
+          "label": "saveAsTextFile",
+          "kind": "term",
+          "cell": [
+            0,
+            2
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-broadcast",
+          "label": "broadcast",
+          "kind": "term",
+          "cell": [
+            1,
+            2
+          ]
+        },
+        {
+          "color": "#ff7a59",
+          "id": "rdd-accumulator",
+          "label": "accumulator",
+          "kind": "term",
+          "cell": [
+            2,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "rdd-create",
+      "to": "rdd-narrow"
+    },
+    {
+      "from": "rdd-create",
+      "to": "rdd-wide"
+    },
+    {
+      "from": "rdd-create",
+      "to": "rdd-pair"
+    },
+    {
+      "from": "rdd-narrow",
+      "to": "rdd-actions"
+    },
+    {
+      "from": "rdd-wide",
+      "to": "rdd-actions"
+    },
+    {
+      "from": "rdd-pair",
+      "to": "rdd-actions"
+    }
+  ]
+}

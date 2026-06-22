@@ -1,0 +1,190 @@
+{
+  "id": "spark-performance-tuning",
+  "topic": "apache-spark",
+  "title": "Performance tuning — taming the shuffle",
+  "subtitle": "partitioning · shuffle config · broadcast joins",
+  "grid": {
+    "cols": 3,
+    "rows": 7,
+    "gap": 0.3,
+    "padding": 0.5
+  },
+  "nodes": [
+    {
+      "id": "pt-shuffle",
+      "label": "The Shuffle",
+      "color": "#ff5d6c",
+      "kind": "symbol",
+      "sub": "wide ops move data across the network — Spark’s #1 cost",
+      "cell": [
+        1,
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "pt-levers",
+      "label": "",
+      "kind": "group",
+      "cell": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "layout": {
+        "cols": 3,
+        "rows": 1,
+        "padding": 0
+      },
+      "children": [
+        {
+          "id": "pt-partitioning",
+          "label": "Partitioning",
+          "color": "#5b8cff",
+          "sub": "control the split",
+          "kind": "container",
+          "cell": [
+            0,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 3,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#5b8cff",
+              "id": "pt-repartition",
+              "label": "repartition",
+              "sub": "full shuffle · ↑ or ↓",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#5b8cff",
+              "id": "pt-coalesce",
+              "label": "coalesce",
+              "sub": "merge · no shuffle · ↓ only",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            },
+            {
+              "color": "#5b8cff",
+              "id": "pt-partitionby",
+              "label": "partitionBy",
+              "sub": "folders on write",
+              "kind": "term",
+              "cell": [
+                0,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pt-shuffleconf",
+          "label": "Shuffle config",
+          "color": "#ff7a59",
+          "sub": "how it runs",
+          "kind": "container",
+          "cell": [
+            1,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 2,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#ff7a59",
+              "id": "pt-smj",
+              "label": "sortMergeJoin",
+              "sub": "default big-table join",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#ff7a59",
+              "id": "pt-shufparts",
+              "label": "shuffle partitions",
+              "sub": "default 200 — tune it",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pt-broadcast",
+          "label": "Broadcast joins",
+          "color": "#37d39a",
+          "sub": "skip the shuffle",
+          "kind": "container",
+          "cell": [
+            2,
+            0
+          ],
+          "layout": {
+            "cols": 1,
+            "rows": 2,
+            "padding": 0.18
+          },
+          "children": [
+            {
+              "color": "#37d39a",
+              "id": "pt-broadcastdf",
+              "label": "broadcast(df)",
+              "sub": "ship the small side",
+              "kind": "term",
+              "cell": [
+                0,
+                0
+              ]
+            },
+            {
+              "color": "#37d39a",
+              "id": "pt-autobroadcast",
+              "label": "autoBroadcastJoin",
+              "sub": "auto when < 10 MB",
+              "kind": "term",
+              "cell": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "pt-shuffle",
+      "to": "pt-partitioning"
+    },
+    {
+      "from": "pt-shuffle",
+      "to": "pt-shuffleconf"
+    },
+    {
+      "from": "pt-shuffle",
+      "to": "pt-broadcast"
+    }
+  ]
+}
