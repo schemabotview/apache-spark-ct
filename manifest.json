@@ -89,9 +89,9 @@
           "heading": "RDD vs DataFrame vs Dataset — the API stack",
           "notebook": "notebooks/01-10-api-stack.ipynb",
           "slide": "slides/01-10-api-stack.slide",
-          "scene": "spark-architecture",
-          "focus": ["master"],
-          "highlight": ["session", "logical-plan", "job"],
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd", "b-df"],
+          "highlight": ["b-rdd", "b-df"],
           "spine": true
         }
       ]
