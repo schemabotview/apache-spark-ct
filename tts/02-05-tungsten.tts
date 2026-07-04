@@ -1,0 +1,11 @@
+Tungsten — whole-stage code generation.
+
+Catalyst gives you the right plan. Tungsten is what makes that plan run fast on the java virtual machine. Two ideas do most of the work.
+
+The first is off-heap memory management. Spark allocates structured binary buffers off the java heap, which bypasses the garbage collector. That means less garbage-collector pause time, and memory layouts that are far friendlier to the cache-pee-you cache.
+
+The second is whole-stage code generation. For each stage, Catalyst generates a single, tightly-fused java method that pushes a row through every operator at once — filter, then project, then aggregate — in one loop. Compare that with the alternative, which is one method call per operator, per row.
+
+This is the deep reason dataframes beat R-D-Ds on structured data. An R-D-D has no schema, so Tungsten cannot lay it out efficiently or generate stage-level code. With a dataframe, the schema is a contract that Tungsten can compile against.
+
+And you can see the proof directly in a physical plan. The dataframe operators are wrapped in a whole-stage-codegen block, where the number in that block is the codegen stage identifier.

@@ -1,0 +1,17 @@
+# Lazy evaluation, in depth
+
+## The reference
+
+- **Transformations — lazy** · append to the plan, return a DataFrame
+  - `select`, `filter`, `withColumn`, `groupBy`, `join`, `orderBy`
+- **Actions — eager** · trigger DAG execution, return a value/file/output
+  - `show`, `count`, `collect`, `take`, `first`, `write`
+
+## What waiting buys Spark
+
+- **Push filters early** — run next to the scan, so less data flows
+- **Prune projections** — drop unreferenced columns before reading
+- **Fuse operations** — narrow steps collapse into one loop (codegen)
+- **Skip everything** — no action, no work
+
+Every win is possible **only because Spark waited**.

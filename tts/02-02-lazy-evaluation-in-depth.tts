@@ -1,0 +1,19 @@
+Lazy evaluation, in depth.
+
+The rule is simple, but here is the reference to keep in your head when you read other people's code.
+
+Transformations are lazy. They append to the plan and return another dataframe. Select, filter, with-column, group-by, join, order-by — all transformations.
+
+Actions are eager. They trigger execution and return a value, a file, or printed output. Show, count, collect, take, first, write — all actions.
+
+Because evaluation is lazy, Spark gets room to be clever before any data moves.
+
+It can push filters early, so a filter you wrote at the very end of the chain may actually execute right next to the data scan. That means less data flows through the pipeline.
+
+It can prune projections, dropping columns you never reference before it even reads them.
+
+It can fuse operations, collapsing several narrow transformations into one tight loop. That is whole-stage code generation, which we reach three sections from now.
+
+And it can skip everything. If you define transformations but never call an action, no work runs at all.
+
+Every one of these wins is possible only because Spark waited.

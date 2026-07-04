@@ -1,0 +1,13 @@
+Why Spark Connect exists.
+
+The classic, single-process model has friction in four places, and Connect was designed to fix each one.
+
+The first is the shared java virtual machine. Because the client and the driver share one machine, you hit version mismatches, dependency conflicts, and classpath surprises. With Connect, the client is a thin library and the server owns all of the java dependencies.
+
+The second is java-only languages. In the classic model, every language needed its own py-four-jay style bridge to talk to Spark. Connect speaks gee-are-pee-see, so any language that has a gee-are-pee-see stub — Go, Rust, Node — can be a client.
+
+The third is fragile development sessions. Restarting a notebook used to kill the driver. Now the server lives independently, and clients connect and disconnect freely.
+
+The fourth is hard upgrades. Every client used to have to match the cluster's Spark version. With Connect, the client and the server can differ, within protocol compatibility.
+
+In practice, you start a server with the start-connect-server script, and you point a client at it using session builder dot remote, with an s-c address. Or you set the spark-remote environment variable, which get-or-create picks up automatically. Spark Connect became generally available in Spark three point five, and Databricks Connect is built on top of it.

@@ -1,0 +1,13 @@
+The four Catalyst plans.
+
+When you call an action, your dataframe chain travels through the Catalyst optimizer as four distinct plans, before a single task ever hits the cluster.
+
+The first is the parsed logical plan. This is just your code as a tree of unresolved references. Column names are still plain strings, and the types are unknown.
+
+The second is the analyzed logical plan. Here Catalyst resolves those column names against the schema, checks the types, and binds the function calls. If something is wrong at this stage, you get an analysis exception.
+
+The third is the optimized logical plan. This is where the rule-based rewrites happen — predicate pushdown, which moves filters toward the scan; projection pruning, which drops unused columns; constant folding, which turns one plus two into three; along with reordering and removing redundant projects.
+
+The fourth is the physical plan. Now Catalyst picks concrete operators — for example, a broadcast hash join versus a sort-merge join — and a physical strategy. This is what actually runs on the executors.
+
+Here is a clean way to remember it. The first two plans are about correctness. The last two are about speed. And you can inspect all four with explain, extended equals true — which is the next section.

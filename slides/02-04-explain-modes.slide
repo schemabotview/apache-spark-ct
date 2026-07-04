@@ -1,0 +1,19 @@
+# Reading plans with `.explain()`
+
+## Five lenses on one query
+
+- **`simple`** (default) — just the physical plan
+- **`extended`** — all four plans (parsed → analyzed → optimized → physical)
+- **`codegen`** — the generated JVM code per stage
+- **`cost`** — optimized plan + row-count estimates
+- **`formatted`** — physical plan + operator-details section
+
+```python
+df.groupBy("category").count().explain(mode="formatted")
+```
+
+## Read it bottom-up
+
+- Scan at the bottom; data flows **upward** through operators
+- **`Exchange`** = a shuffle = a stage boundary
+- **`*(N) WholeStageCodegen`** = operators Tungsten fused into one loop

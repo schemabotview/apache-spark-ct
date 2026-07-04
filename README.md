@@ -4,7 +4,7 @@ Video-first content for the **Apache Spark** concept, consumed at runtime by the
 
 This file is the **course outline** — the human-facing map of modules and sections. It is the plan we author against; the machine source of truth for structure is `manifest.json`.
 
-**Status:** scaffolded (slice 1) — dir tree + Colab script + `CLAUDE.md` + this file, concept wired into the app catalog (`apache-spark`). Not yet pushed. **Module spine agreed** (slice 2, 10 modules × ~10 sections — below). Now porting `spark-architecture` into `graphl-movie` and authoring module 01 end-to-end as the vertical proof.
+**Status:** scaffolded + spine agreed (10 modules × ~10 sections — below). **Modules 01 & 02 authored end-to-end** — every section has a per-section notebook + slide + fresh `.tts`, and `manifest.json` wires them onto the `spark-architecture` scene (per-section `focus`/`highlight`). `audio/` is empty by design: the owner generates the `.wav`s from `tts/` via Colab, then the manifest `audio` fields get added back. Module 01 is pushed to the remote; module 02 pending push. Scenes `spark-architecture` (icons added) and `spark-batch-api` (ported) live app-side in `graphl-movie`. Next: modules 03–10.
 
 ## Module spine (agreed — 10 modules × ~10 sections)
 

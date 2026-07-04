@@ -1,0 +1,18 @@
+# Why Spark Connect exists
+
+## Four frictions in the classic model
+
+- **Shared JVM** — version mismatches, dependency conflicts → *client is thin, server owns the deps*
+- **JVM-only languages** — each needed a Py4J bridge → *gRPC, so any language with a stub (Go, Rust, Node)*
+- **Fragile dev sessions** — notebook restart killed the driver → *server lives independently*
+- **Hard upgrades** — every client matched the cluster → *client & server versions can differ*
+
+## Connecting
+
+```python
+spark = SparkSession.builder.remote(
+    "sc://host:15002").getOrCreate()
+```
+
+- Or set `SPARK_REMOTE`, which `getOrCreate()` picks up
+- **GA in Spark 3.5** · **Databricks Connect** is built on it

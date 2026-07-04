@@ -1,0 +1,20 @@
+# What works in Connect mode
+
+## The rule
+
+- A serializable **plan** works; direct **JVM access** from the client does not
+
+## Supported ✅
+
+- `DataFrame` / `Dataset`, `spark.sql(...)`, `spark.read` / `df.write`
+- Built-in functions + regular & pandas **UDFs** (shipped to the server)
+- Structured Streaming, pandas API on Spark (3.5+)
+
+## Not supported ❌
+
+- `spark.sparkContext` + the whole **RDD API** — no `SparkContext` on the client
+- Py4J handles (`spark._jvm`), client-side JAR injection
+
+## Exam takeaway
+
+- Mentions `SparkContext`, `RDD`, or client JARs → **incompatible**. Sticks to DataFrame / SQL / UDFs → **works**

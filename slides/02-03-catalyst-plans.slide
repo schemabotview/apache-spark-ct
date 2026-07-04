@@ -1,0 +1,13 @@
+# The four Catalyst plans
+
+## From your code to the cluster
+
+1. **Parsed logical plan** — code as a tree of *unresolved* references (names are strings, types unknown)
+2. **Analyzed logical plan** — resolve names against the schema, check types, bind functions → errors are `AnalysisException`
+3. **Optimized logical plan** — rule rewrites: **predicate pushdown**, **projection pruning**, constant folding, reordering
+4. **Physical plan** — pick operators (`BroadcastHashJoin` vs `SortMergeJoin`) + strategy — *this runs on executors*
+
+## The split
+
+- **Parsed + analyzed** → correctness · **optimized + physical** → speed
+- Inspect all four with `.explain(extended=True)`

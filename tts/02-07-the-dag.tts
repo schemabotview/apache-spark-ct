@@ -1,0 +1,15 @@
+The directed acyclic graph — stages and shuffle boundaries.
+
+Once Catalyst hands over a physical plan, the D-A-G scheduler turns it into the units that actually run. A directed acyclic graph is simply the plan drawn as a graph of steps that only ever flows forward.
+
+The scheduler's one big decision is where to cut that graph into stages, and the rule is precise. A stage boundary is a shuffle.
+
+To see why, think about the two kinds of transformation. Narrow transformations — map, filter, select — need only their own partition's data. So they chain together inside a single stage, with no data movement at all.
+
+Wide transformations — group-by, join, distinct — need data from other partitions. That forces a shuffle across the network. And that shuffle is exactly where one stage ends and the next one begins.
+
+Inside a stage, the work fans out into tasks — one task per partition, each running on an executor core.
+
+So here is the full hierarchy. One action triggers a job. The job splits, at its shuffles, into stages. And each stage fans out into tasks.
+
+This is why counting the shuffles in an explain plan tells you how many stages a query has. And it is why removing a shuffle is one of the biggest wins in tuning.

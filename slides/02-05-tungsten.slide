@@ -1,0 +1,13 @@
+# Tungsten — whole-stage codegen
+
+## Catalyst plans it, Tungsten runs it fast
+
+- **Off-heap memory** — structured binary buffers *outside* the JVM heap → bypass the garbage collector, cache-friendlier layout
+- **Whole-stage code generation** — one fused JVM method per stage pushes a row through every operator at once (filter → project → aggregate)
+  - **One loop**, not one call per operator per row
+
+## Why DataFrames beat RDDs
+
+- An RDD has **no schema** — Tungsten can't lay it out or generate stage code
+- A DataFrame's schema is a **contract Tungsten compiles against**
+- Proof in the plan: operators wrapped in **`*(N) WholeStageCodegen`**

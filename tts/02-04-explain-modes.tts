@@ -1,0 +1,17 @@
+Reading plans with explain.
+
+The explain method exposes the plans that Catalyst built, and it is the single best way to see why a query is slow. There are five modes, each a different lens on the same query.
+
+Simple mode is the default. It shows just the physical plan.
+
+Extended mode shows all four plans — parsed, analyzed, optimized, and physical.
+
+Codegen mode shows the generated java virtual machine code, per stage.
+
+Cost mode shows the optimized plan, annotated with row-count estimates for each node.
+
+And formatted mode shows the physical plan, plus a separate operator-details section.
+
+Now, the real skill is reading the physical plan, and you read it bottom-up. The scan is at the bottom, and data flows upward through each operator.
+
+Two things to look for. An exchange node marks a shuffle, and a shuffle is a stage boundary. And a whole-stage-codegen wrapper marks the operators that Tungsten fused together into a single loop.

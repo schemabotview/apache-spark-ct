@@ -1,0 +1,17 @@
+# Adaptive Query Execution (AQE)
+
+## The problem it fixes
+
+- Pre-3.0 Catalyst decided **upfront** from *estimated* stats — and estimates are often wrong
+- **AQE re-optimizes at runtime**, after each shuffle, using the *real* partition stats it just measured
+
+## Three things it does
+
+- **Coalesce partitions** — merge many tiny post-shuffle partitions into right-sized ones (less task-startup overhead)
+- **Switch join strategy** — promote sort-merge → broadcast when a side turns out small
+- **Handle skew** — split oversized partitions so one task doesn't stall the stage
+
+## Mental model
+
+- The **same optimizer**, given a second chance at **each stage boundary** with facts, not guesses
+- On by default since **Spark 3.2**

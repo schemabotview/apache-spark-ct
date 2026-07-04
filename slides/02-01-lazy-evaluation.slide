@@ -1,0 +1,15 @@
+# Lazy evaluation
+
+## Two kinds of operations
+
+- **Transformations** — `filter`, `select`, `groupBy`, `join`, `withColumn`
+  - Build the recipe; **nothing runs**. Each returns a new DataFrame with a step appended to the plan
+- **Actions** — `count`, `show`, `collect`, `write`
+  - **Trigger execution** against the recipe
+
+## Why laziness wins
+
+- By the action, Spark sees the **entire** chain and plans the most efficient run — reorder, combine, drop work
+- Eager steps would each commit before the next — **nothing left to optimize**
+
+**Transformation builds · action triggers** — the rest of this module is what Spark does the instant an action fires.

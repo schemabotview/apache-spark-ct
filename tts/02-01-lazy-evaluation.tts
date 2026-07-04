@@ -1,0 +1,11 @@
+Lazy evaluation — transformations versus actions.
+
+Spark's whole execution model rests on one idea, and everything in this module builds on it. Spark is lazy.
+
+Operations split into two kinds, and only one of them actually runs anything. The first kind is transformations — things like filter, select, group-by, join, and with-column. A transformation builds the recipe. Nothing runs. Each one simply returns a new dataframe, with the step appended to a plan.
+
+The second kind is actions — things like count, show, collect, and write. An action is what triggers execution against that recipe.
+
+So why does this matter? Because by the time you call an action, Spark can see the entire chain of transformations at once. That lets it plan the most efficient execution — reordering steps, combining them, and dropping work you don't need. If transformations ran eagerly, each step would commit before the next one, and the optimizer would have nothing left to optimize.
+
+Hold on to that distinction — a transformation builds, an action triggers — because the next several sections are all about what Spark does with that plan the instant an action fires.

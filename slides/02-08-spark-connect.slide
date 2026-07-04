@@ -1,0 +1,17 @@
+# Spark Connect — the split-driver architecture
+
+## Classic mode
+
+- Your Python process **is** the driver — PySpark ↔ a JVM in the same process via Py4J
+- That JVM holds the `SparkContext`; script and driver **share a lifetime** (script exits → driver dies)
+
+## Spark Connect
+
+- The driver runs as a long-lived **server**
+- The client is a thin library: builds an unresolved plan → sends it over **gRPC** → gets **Arrow** batches back
+- The cluster keeps running **between client connections**
+
+## Like JDBC for Spark
+
+- Server is one process, client another, speaking a protocol
+- **Client has no JVM** — a tiny script, notebook, IDE, or Go program, none bundling Spark

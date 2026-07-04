@@ -1,0 +1,11 @@
+What works, and what doesn't, in Connect mode.
+
+The rule follows directly from the design. Anything that describes a serializable plan works. Anything that needs direct java-virtual-machine access from the client does not.
+
+Start with what is supported — the dataframe and sequel surface. Dataframe and dataset operations work. Spark dot sequel works. Spark dot read and dataframe dot write work. The built-in functions work, and so do regular and pandas user-defined functions — because their code is shipped to the server and executed there. Structured streaming works, and the pandas interface on Spark works, both from version three point five onward.
+
+Now what is not supported — anything reaching for the java virtual machine. Spark dot spark-context does not work, and neither does the whole R-D-D interface, like parallelize or R-D-D dot map, because there is no spark context on the client. The internal py-four-jay handles do not exist. And you cannot inject jars from the client — they have to be on the server's classpath.
+
+One trap is worth naming. The two builders look identical, but they resolve to different classes — a classic session class, and a connect session class. If the spark-remote environment variable is set, get-or-create can hand you a connect session, even when your code looks classic.
+
+Here is the exam takeaway. If a question mentions spark context, R-D-Ds, or client-side jars, that code is incompatible with Connect. If it sticks to dataframes, sequel, and user-defined functions, it works.

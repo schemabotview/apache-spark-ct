@@ -95,6 +95,101 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "02-the-execution-model",
+      "title": "The Execution Model",
+      "sections": [
+        {
+          "heading": "Lazy evaluation — transformations vs actions",
+          "notebook": "notebooks/02-01-lazy-evaluation.ipynb",
+          "slide": "slides/02-01-lazy-evaluation.slide",
+          "scene": "spark-architecture",
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "Lazy evaluation, in depth",
+          "notebook": "notebooks/02-02-lazy-evaluation-in-depth.ipynb",
+          "slide": "slides/02-02-lazy-evaluation-in-depth.slide",
+          "scene": "spark-architecture",
+          "focus": ["catalyst"],
+          "highlight": ["session", "logical-plan", "optimized-plan"],
+          "spine": true
+        },
+        {
+          "heading": "The four Catalyst plans",
+          "notebook": "notebooks/02-03-catalyst-plans.ipynb",
+          "slide": "slides/02-03-catalyst-plans.slide",
+          "scene": "spark-architecture",
+          "focus": ["catalyst"],
+          "highlight": ["logical-plan", "analyzed-plan", "optimized-plan", "physical-plan"],
+          "spine": true
+        },
+        {
+          "heading": "Reading plans with .explain()",
+          "notebook": "notebooks/02-04-explain-modes.ipynb",
+          "slide": "slides/02-04-explain-modes.slide",
+          "scene": "spark-architecture",
+          "focus": ["catalyst"],
+          "highlight": ["physical-plan"],
+          "spine": true
+        },
+        {
+          "heading": "Tungsten — whole-stage codegen",
+          "notebook": "notebooks/02-05-tungsten.ipynb",
+          "slide": "slides/02-05-tungsten.slide",
+          "scene": "spark-architecture",
+          "focus": ["master"],
+          "highlight": ["tungsten", "physical-plan"],
+          "spine": true
+        },
+        {
+          "heading": "Adaptive Query Execution (AQE)",
+          "notebook": "notebooks/02-06-adaptive-query-execution.ipynb",
+          "slide": "slides/02-06-adaptive-query-execution.slide",
+          "scene": "spark-architecture",
+          "focus": ["catalyst", "dag-scheduler"],
+          "highlight": ["optimized-plan", "dag-scheduler"],
+          "spine": true
+        },
+        {
+          "heading": "The DAG — stages & shuffle boundaries",
+          "notebook": "notebooks/02-07-the-dag.ipynb",
+          "slide": "slides/02-07-the-dag.slide",
+          "scene": "spark-architecture",
+          "focus": ["dag-scheduler"],
+          "highlight": ["job", "stage-1", "shuffle", "stage-2", "tasks"],
+          "spine": true
+        },
+        {
+          "heading": "Spark Connect — the split-driver architecture",
+          "notebook": "notebooks/02-08-spark-connect.ipynb",
+          "slide": "slides/02-08-spark-connect.slide",
+          "scene": "spark-architecture",
+          "focus": ["master", "cluster-mgr"],
+          "highlight": ["driver", "session"],
+          "spine": true
+        },
+        {
+          "heading": "Why Spark Connect exists",
+          "notebook": "notebooks/02-09-why-spark-connect.ipynb",
+          "slide": "slides/02-09-why-spark-connect.slide",
+          "scene": "spark-architecture",
+          "focus": ["master"],
+          "highlight": ["session"],
+          "spine": true
+        },
+        {
+          "heading": "What works (and what doesn't) in Connect mode",
+          "notebook": "notebooks/02-10-connect-compatibility.ipynb",
+          "slide": "slides/02-10-connect-compatibility.slide",
+          "scene": "spark-architecture",
+          "focus": ["master"],
+          "highlight": ["session", "logical-plan", "job"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

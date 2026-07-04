@@ -1,0 +1,16 @@
+# The DAG — stages & shuffle boundaries
+
+## The DAG scheduler cuts the plan into stages
+
+- A **DAG** = the physical plan as a forward-only graph of steps
+- The one rule: **a stage boundary is a shuffle**
+
+## Narrow vs wide
+
+- **Narrow** (`map`, `filter`, `select`) — need only their own partition → chain inside **one stage**, no data movement
+- **Wide** (`groupBy`, `join`, `distinct`) — need other partitions → force a **shuffle** → new stage starts
+
+## The hierarchy
+
+- One action → a **job** · split at shuffles into **stages** · each stage fans out into **tasks** (one per partition)
+- Shuffles in `.explain()` = number of stages → **removing a shuffle is a top tuning win**

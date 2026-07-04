@@ -1,0 +1,13 @@
+Adaptive query execution, or A-Q-E.
+
+Before Spark three point zero, Catalyst made every decision upfront, using estimated statistics. The trouble is that estimates are often wrong. Adaptive query execution fixes this by re-optimizing the plan at runtime — after each shuffle — using the real partition statistics it just measured.
+
+There are three things A-Q-E actually does.
+
+First, it dynamically coalesces partitions. If a shuffle produces two hundred partitions, but most of them are tiny, A-Q-E merges them into a smaller number of right-sized partitions. That cuts down on task-startup overhead.
+
+Second, it switches the join strategy at runtime. A sort-merge join can be promoted to a broadcast join, if one side turns out to be small enough once it has actually been measured.
+
+Third, it handles skew. It splits oversized partitions, so that one slow task does not stall an entire stage. We cover skew in detail in the performance-tuning module.
+
+Here is the mental model to keep. This is the same Catalyst optimizer, but now it gets a second chance at each stage boundary, working with facts instead of guesses. And A-Q-E has been on by default since Spark three point two.
