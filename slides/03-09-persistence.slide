@@ -1,0 +1,18 @@
+# Persistence — cache, persist, StorageLevel
+
+## The default is wasteful
+
+- **Every action re-runs the whole lineage** from source
+- `.count()` then `.collect()` on the same RDD = computed **twice**
+
+## Fix it
+
+- **`.cache()`** — materialize on first action, reuse after
+- **`.persist(level)`** — pick the storage policy:
+  - **`MEMORY_ONLY`** — RAM; default for `.cache()` on RDDs
+  - **`MEMORY_AND_DISK`** — RAM then spill; default for DataFrames
+  - **`DISK_ONLY`** · **`*_SER`** (less RAM, more CPU) · **`*_2`** (replicate ×2)
+
+## Clean up
+
+- **`.unpersist()`** when done — a cache holds executor memory until released

@@ -1,0 +1,15 @@
+R-D-D versus dataframe — when to actually reach for each.
+
+The two interfaces sit over the same engine, but they buy you very different things. Let's line them up.
+
+On interface style, an R-D-D is functional and row-by-row, while a dataframe is declarative and column-based.
+
+On the optimizer, an R-D-D has none — your code is the plan — while a dataframe runs through Catalyst.
+
+On code generation, an R-D-D leans on Python lambdas and java-virtual-machine round-trips, while a dataframe gets Tungsten whole-stage code generation.
+
+On schema, an R-D-D has none, while a dataframe requires one.
+
+And on performance, for structured data, the dataframe is faster — often by a lot.
+
+So here is the honest guideline for the rest of this curriculum. Prefer dataframes. Drop down to R-D-Ds only when you need something the dataframe interface genuinely cannot express — a custom map-partitions pattern, a non-tabular input, or a closure that just does not fit into Spark sequel. And that is the R-D-D-versus-dataframe corner of the very same map we spend the next several modules inside.

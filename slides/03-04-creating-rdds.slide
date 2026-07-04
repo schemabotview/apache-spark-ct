@@ -1,0 +1,17 @@
+# Creating RDDs & SparkContext
+
+## Two doors into Spark
+
+- **`spark`** (SparkSession) — the high-level door: DataFrames, SQL
+- **`sc`** (SparkContext) — the low-level door: RDDs, broadcasts, accumulators
+- Grab it with `spark.sparkContext` — same JVM, same cluster
+
+## Where an RDD comes from
+
+- **`sc.parallelize(seq)`** — distribute a driver list (tests/demos)
+- **`sc.range(start, end)`** — an RDD of longs, no Python list
+- **`sc.textFile(path)`** — one element per line
+- **`sc.wholeTextFiles(path)`** — `(filename, content)` per small file
+- **`df.rdd`** — drop to a DataFrame's underlying `Row` RDD
+
+Most RDDs, in practice, are born from **transformations** on other RDDs.

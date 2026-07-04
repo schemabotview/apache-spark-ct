@@ -1,0 +1,9 @@
+Partitions — the unit of parallelism.
+
+An R-D-D is split into partitions — chunks of data that can be processed independently. And here is the key fact: each partition is processed by exactly one task, on one executor core.
+
+That one fact sets the degree of parallelism. The number of partitions is the degree of parallelism for that R-D-D. If you have more partitions than cores, some tasks queue up, but every core stays busy. If you have fewer partitions than cores, some cores just sit idle.
+
+There are two defaults worth knowing. After a shuffle, the number of output partitions defaults to the shuffle-partitions setting, which is two hundred unless you change it. And for an R-D-D created with parallelize, the default is the default-parallelism value, which is usually the total number of cores available.
+
+Right-sizing partitions — enough to use every core, but not so many that task-startup overhead takes over — is a theme we return to in the performance-tuning module.

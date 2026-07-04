@@ -1,0 +1,9 @@
+Transformations and actions — the R-D-D edition.
+
+R-D-Ds follow the same lazy model as dataframes, split into two categories.
+
+Transformations build the recipe, and they are lazy. Each one returns a new R-D-D. Map takes one element in and gives one out. Flat-map takes one in and gives zero or more out, then flattens the result. Filter keeps the elements where your function is truthy. Distinct drops duplicates, and it causes a shuffle. Union concatenates two R-D-Ds. And repartition and coalesce change the partition count.
+
+Actions trigger execution against that recipe. Count gives you the number of elements. Take gives you the first n elements, and first gives you just the first one. Collect brings all the elements back to the driver as a Python list — and you have to be careful with that on large data. Reduce does a pairwise aggregate. And save-as-text-file writes one file per partition.
+
+The rule is unchanged from the last module. Nothing runs until an action fires.

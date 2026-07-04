@@ -1,0 +1,11 @@
+Reduce-by-key versus group-by-key — the exam classic.
+
+Both of these group values by key, and both are wide transformations, so both of them shuffle. The difference is how much they shuffle — and this is the single most-tested R-D-D gotcha.
+
+Reduce-by-key combines the values locally, on each partition, first. That is called a map-side combine. Then it shuffles only the partial results. So very little data crosses the network.
+
+Group-by-key does the opposite. It ships every value across the network to the reducer, and only then do you combine. On a large dataset, that floods the shuffle, and it can blow up executor memory.
+
+So here is the rule. Whenever you are going to aggregate, prefer reduce-by-key — or its relatives, aggregate-by-key and combine-by-key — over group-by-key followed by a reduce. Use group-by-key only when you genuinely need every value in a group as a collection, rather than an aggregate.
+
+And the same lesson carries straight to dataframes. Group-by dot agg does that map-side combine for you automatically. It is one more reason to prefer the dataframe interface.

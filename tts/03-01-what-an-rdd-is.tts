@@ -1,0 +1,13 @@
+What an R-D-D actually is.
+
+An R-D-D — a resilient distributed dataset — is the original Spark data abstraction. Every dataframe you write today eventually compiles down to R-D-D operations under the hood. So understanding R-D-Ds explains why Spark behaves the way it does — the lazy evaluation, the fault tolerance through lineage, and the partition-level parallelism.
+
+The clearest way in is to read the three letters of the name.
+
+Resilient means fault-tolerant. If a partition is lost, Spark recomputes it from the recipe — the lineage — rather than fetching it from a replica.
+
+Distributed means the data is partitioned across executor memory, on many machines.
+
+And dataset means a collection of records, where a record can be any object — a string, a tuple, a custom class. Unlike a dataframe, there is no schema and there are no column names.
+
+Four more properties are worth memorizing. An R-D-D is immutable — every transformation makes a new one. It is lazy — transformations are recorded, and nothing runs until an action. It is schema-free — just elements, and you handle the structure yourself in code. And it is typed at runtime — fully type-parameterized in Scala, and untyped at the language level in Python, but still typed as it runs.

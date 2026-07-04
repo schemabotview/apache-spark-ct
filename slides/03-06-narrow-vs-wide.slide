@@ -1,0 +1,15 @@
+# Narrow vs wide transformations
+
+## The most important performance distinction
+
+- **Narrow** — each output partition depends on **one** input partition
+  - **No data crosses the network**; pipelines inside one stage
+  - `map`, `filter`, `flatMap`, `mapPartitions`, `union`
+- **Wide** — each output partition depends on **many** input partitions
+  - Data must be **shuffled** across the network
+  - Each one creates a **new stage boundary**
+  - `reduceByKey`, `groupByKey`, `join`, `distinct`, `repartition`
+
+## The rule of thumb
+
+- **Narrow is cheap; wide is where the cost lives** (disk + network + a new stage)

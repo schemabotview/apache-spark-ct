@@ -1,0 +1,16 @@
+# What an RDD actually is
+
+## The original Spark abstraction
+
+- **RDD** = Resilient Distributed Dataset — every DataFrame compiles down to RDD ops
+- Understanding it explains **why** Spark is lazy, fault-tolerant, and partition-parallel
+
+## Read the three letters
+
+- **Resilient** — lost partitions **recomputed from lineage**, not a replica
+- **Distributed** — partitioned across executor memory on many machines
+- **Dataset** — a collection of records (any object) — **no schema, no columns**
+
+## Four properties
+
+- **Immutable** · **Lazy** · **Schema-free** · **Typed** at runtime

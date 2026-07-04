@@ -1,0 +1,15 @@
+Pair R-D-Ds — the key-value view.
+
+A pair R-D-D is simply an R-D-D where every element is a key-value tuple. That one shape unlocks a whole family of grouping and aggregation operations that mirror sequel's group-by.
+
+Reduce-by-key combines the values for each key using a function you give it, and importantly, it combines locally before it shuffles.
+
+Group-by-key groups all of the values for each key into an iterable, and it shuffles every single value.
+
+Map-values and flat-map-values transform the values while keeping the keys, and they are narrow.
+
+Keys and values project down to just one side. Sort-by-key sorts by the key, and it shuffles. And join does an inner join on the key.
+
+To build a pair R-D-D, you map your records into key-value tuples — you pick the field you want to group on, and make that the key.
+
+The next section digs into the one comparison the exam loves — reduce-by-key versus group-by-key.

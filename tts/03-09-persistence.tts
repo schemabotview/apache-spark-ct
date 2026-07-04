@@ -1,0 +1,9 @@
+Persistence — cache, persist, and storage levels.
+
+Start with the default behavior, because it surprises people. Every action re-executes the entire lineage, from the source. So if you call count, and then call collect on the same R-D-D, you just computed that R-D-D twice.
+
+Cache fixes this. It materializes the R-D-D on the first action, and reuses it afterward. Persist is the more general form — it lets you pick the storage policy.
+
+Let's walk the storage levels. Memory-only keeps the data in executor ram, and it is the default for cache on R-D-Ds. On a miss, it recomputes. Memory-and-disk keeps it in ram if it fits, and spills to disk otherwise, and it is the default for cache on dataframes. Disk-only always goes to disk — cheap on memory, but slow to read. The serialized variants store the data as serialized bytes, which uses less ram but more cee-pee-you. And the times-two variants replicate each partition across two executors, for resilience.
+
+One last thing. Call unpersist when you are done. A cache holds executor memory until you explicitly release it.

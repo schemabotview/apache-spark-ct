@@ -1,0 +1,17 @@
+# Lineage — recovery from failure
+
+## Recompute, don't replicate
+
+- Spark does **not** replicate RDD data (unlike HDFS)
+- It remembers the **recipe** — the transformations that built each RDD — the **lineage graph**
+
+## When a partition is lost
+
+- Executor crashes → Spark **replays just that slice** of the lineage to rebuild the partition
+- **Short lineage** → cheap · **long lineage** → expensive
+- Resilience = pure functions + lineage, *not* copies of the data
+
+## Why caching matters
+
+- Without `.cache()`, every action **re-runs the full lineage** from source
+- Reuse an RDD twice → compute it twice

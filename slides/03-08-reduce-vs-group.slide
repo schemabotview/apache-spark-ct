@@ -1,0 +1,16 @@
+# reduceByKey vs groupByKey
+
+## Both shuffle — the question is *how much*
+
+- **`reduceByKey(f)`** — combines values **locally on each partition first** (map-side combine), then shuffles only the **partial results**
+- **`groupByKey()`** — ships **every value** across the network, then you combine
+  - On big data: floods the shuffle, can blow up executor memory
+
+## The rule
+
+- Aggregating? **Prefer `reduceByKey`** (or `aggregateByKey` / `combineByKey`)
+- Use `groupByKey` **only** when you truly need every value as a collection, not an aggregate
+
+## Carries to DataFrames
+
+- `groupBy().agg()` does the **map-side combine for you** — one more reason to prefer it

@@ -1,0 +1,19 @@
+Creating R-D-Ds, and the spark context.
+
+R-D-Ds predate the SparkSession, and they have their own entry point, called the spark context — usually written as s-c. A SparkSession owns one, and you grab it with spark dot spark-context.
+
+Here is the mental model. Spark, the session, is the high-level door — that is dataframes and sequel. The spark context is the low-level door — that is R-D-Ds, broadcast variables, and accumulators. Same java virtual machine, same cluster, just two different interfaces.
+
+Now, where does an R-D-D come from? From one of four places — a driver collection, a file, another R-D-D via a transformation, or a dataframe.
+
+Parallelize takes a Python list that is already in the driver and distributes it across the executors. It is great for tests and demos.
+
+Range gives you an R-D-D of longs without materializing a Python list on the driver.
+
+Text-file reads a text file, or a directory of them, into an R-D-D where each element is one line.
+
+Whole-text-files is for directories of many small files — each element is a filename and content pair.
+
+And dataframe dot R-D-D drops you from a dataframe down to its underlying R-D-D of row objects, when you need low-level control.
+
+In real pipelines, though, most R-D-Ds are born from transformations on other R-D-Ds, not from an explicit creation call.

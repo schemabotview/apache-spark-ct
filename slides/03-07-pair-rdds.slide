@@ -1,0 +1,17 @@
+# Pair RDDs — the (key, value) view
+
+## An RDD of tuples
+
+- A **Pair RDD** = every element is a `(key, value)` tuple
+- Unlocks grouping/aggregation that mirrors SQL's `GROUP BY`
+
+## The byKey family
+
+- **`reduceByKey(f)`** — combine values per key; **combines locally before shuffling**
+- **`groupByKey()`** — group all values per key; **shuffles every value**
+- **`mapValues(f)`** / **`flatMapValues(f)`** — transform values, keep keys *(narrow)*
+- **`keys()`** / **`values()`** · **`sortByKey()`** *(shuffle)* · **`join(rdd2)`**
+
+## Building one
+
+- `map` records into `(key, value)` — pick the field to group on as the key

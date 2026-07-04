@@ -1,0 +1,15 @@
+# Partitions — the unit of parallelism
+
+## One partition, one task, one core
+
+- An RDD is split into **partitions** processed independently
+- **Number of partitions = degree of parallelism**
+- **More partitions than cores** → tasks queue, cores stay busy
+- **Fewer partitions than cores** → cores sit idle
+
+## Two defaults to know
+
+- After a shuffle → `spark.sql.shuffle.partitions` = **200** (unless changed)
+- From `parallelize` → `sc.defaultParallelism` (usually total cores)
+
+Right-sizing partitions returns as a theme in **performance tuning**.

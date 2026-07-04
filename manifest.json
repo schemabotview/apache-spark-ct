@@ -190,6 +190,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "03-rdds",
+      "title": "RDDs",
+      "sections": [
+        {
+          "heading": "What an RDD actually is",
+          "notebook": "notebooks/03-01-what-an-rdd-is.ipynb",
+          "slide": "slides/03-01-what-an-rdd-is.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "Partitions — the unit of parallelism",
+          "notebook": "notebooks/03-02-partitions.ipynb",
+          "slide": "slides/03-02-partitions.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd-create"],
+          "highlight": ["b-rdd-parallelize", "b-rdd-numslices"],
+          "spine": true
+        },
+        {
+          "heading": "Lineage — how Spark recovers from failure",
+          "notebook": "notebooks/03-03-lineage.ipynb",
+          "slide": "slides/03-03-lineage.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd-narrow", "b-rdd-wide"],
+          "highlight": ["b-rdd-narrow", "b-rdd-wide"],
+          "spine": true
+        },
+        {
+          "heading": "Creating RDDs & SparkContext",
+          "notebook": "notebooks/03-04-creating-rdds.ipynb",
+          "slide": "slides/03-04-creating-rdds.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd-create"],
+          "highlight": ["b-rdd-parallelize", "b-rdd-numslices", "b-rdd-textfile", "b-rdd-whole"],
+          "spine": true
+        },
+        {
+          "heading": "Transformations and actions — RDD edition",
+          "notebook": "notebooks/03-05-transformations-and-actions.ipynb",
+          "slide": "slides/03-05-transformations-and-actions.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd"],
+          "highlight": ["b-rdd-narrow", "b-rdd-wide", "b-rdd-actions"],
+          "spine": true
+        },
+        {
+          "heading": "Narrow vs wide transformations",
+          "notebook": "notebooks/03-06-narrow-vs-wide.ipynb",
+          "slide": "slides/03-06-narrow-vs-wide.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd-narrow", "b-rdd-wide"],
+          "highlight": ["b-rdd-narrow", "b-rdd-wide"],
+          "spine": true
+        },
+        {
+          "heading": "Pair RDDs — the (key, value) view",
+          "notebook": "notebooks/03-07-pair-rdds.ipynb",
+          "slide": "slides/03-07-pair-rdds.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd-pair"],
+          "highlight": ["b-rdd-pair", "b-rdd-maptopair"],
+          "spine": true
+        },
+        {
+          "heading": "reduceByKey vs groupByKey — the exam classic",
+          "notebook": "notebooks/03-08-reduce-vs-group.ipynb",
+          "slide": "slides/03-08-reduce-vs-group.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd-pair"],
+          "highlight": ["b-rdd-rbk", "b-rdd-gbk"],
+          "spine": true
+        },
+        {
+          "heading": "Persistence — cache(), persist(), StorageLevel",
+          "notebook": "notebooks/03-09-persistence.ipynb",
+          "slide": "slides/03-09-persistence.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-cache"],
+          "highlight": ["b-perf-cache-c", "b-perf-cache-p", "b-perf-cache-u"],
+          "spine": true
+        },
+        {
+          "heading": "RDD vs DataFrame — when to actually reach for each",
+          "notebook": "notebooks/03-10-rdd-vs-dataframe.ipynb",
+          "slide": "slides/03-10-rdd-vs-dataframe.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd", "b-df"],
+          "highlight": ["b-rdd", "b-df"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

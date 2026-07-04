@@ -1,0 +1,19 @@
+# Transformations and actions — RDD edition
+
+## Transformations — lazy, build the recipe
+
+- `map(f)` — one in, one out
+- `flatMap(f)` — one in, zero-or-more out, then flatten
+- `filter(f)` — keep where `f` is truthy
+- `distinct()` — drop duplicates *(shuffle)*
+- `union(rdd2)` — concatenate
+- `repartition(n)` / `coalesce(n)` — change partition count
+
+## Actions — trigger execution
+
+- `count()` · `take(n)` / `first()`
+- `collect()` — all elements to the driver *(careful on big data)*
+- `reduce(f)` — pairwise aggregate
+- `saveAsTextFile(path)` — one file per partition
+
+**Nothing runs until an action fires.**

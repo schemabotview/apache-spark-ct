@@ -1,0 +1,14 @@
+# RDD vs DataFrame — when to reach for each
+
+## Same engine, different trade-offs
+
+- **API style** — RDD functional, row-by-row · DataFrame declarative, column-based
+- **Optimizer** — RDD none (*your code is the plan*) · DataFrame **Catalyst**
+- **Codegen** — RDD Python lambdas + JVM hops · DataFrame **Tungsten** codegen
+- **Schema** — RDD none · DataFrame required
+- **Performance** — DataFrame faster on structured data, often by a lot
+
+## The guideline
+
+- **Prefer DataFrames.** Drop to RDD only when the DataFrame API *can't* express it —
+  a custom `mapPartitions`, non-tabular input, or a closure Spark SQL won't take
