@@ -1,0 +1,12 @@
+# The problem Spark solves
+
+## One machine hits a wall
+
+- **200 GB of data, 16 GB of RAM** — pandas crashes on load
+- Chunk-and-loop yourself and you inherit a **distributed system**: which chunks finished, which failed, and how to group-by across *all* of them
+
+## Spark's pitch
+
+- The pattern — **big data + work coordinated across many machines** — recurs past a few hundred GB
+- One engine handles the chunking, retries, and coordination for you
+- You describe **one giant table**; Spark splits the data, spreads the work, and returns the answer

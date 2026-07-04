@@ -1,0 +1,9 @@
+The problem Spark solves.
+
+Picture a comma-separated file with two hundred gigabytes of bank transactions, and a laptop with sixteen gigabytes of ram. Pandas crashes the moment you try to load it. You could split the file into chunks and loop over them — but the instant you do that, you own a small distributed system. Which chunks finished? Which ones failed? And how do you run a group-by that spans the whole file, not just one chunk at a time?
+
+Spark exists because this pattern keeps coming back. Data too big for one machine, and work that has to be coordinated across many machines. It shows up again and again once you get past a few hundred gigabytes.
+
+Instead of hand-writing your own chunking, retry, and coordination layer, Spark hands you one engine that does all of it, behind a familiar, table-shaped interface.
+
+Here is the whole pitch. You describe the computation as if it were one giant table. Spark figures out how to split the data, spread the work across a cluster, and bring the answer back.

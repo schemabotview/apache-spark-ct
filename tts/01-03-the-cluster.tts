@@ -1,0 +1,9 @@
+The cluster — driver, executors, and the cluster manager.
+
+Every time Spark runs, three roles are in play. Once you can picture all three, the whole execution model gets much easier to follow.
+
+The first role is the driver. This is the process running your Python script. The driver owns the SparkSession, it builds the execution plan, and it decides what work to send out to the rest of the cluster. Think of it as the project manager. It coordinates everything, but it never lifts a box itself.
+
+The second role is the executors. These are the worker processes. Each one holds partitions of your data in memory and runs the actual computations on them. Picture the executors as delivery drivers, each one responsible for its own route.
+
+The third role is the cluster manager. Its only job is to allocate machines to your Spark application. It does not understand your query or your data. It simply hands out resources when the driver asks for them. In practice the cluster manager might be Spark's own standalone manager, or yarn, or kubernetes. And when you are working on your laptop, you are usually in local mode, where the driver and the executors collapse into a single java virtual machine on one machine.

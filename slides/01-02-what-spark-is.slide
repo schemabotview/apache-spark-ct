@@ -1,0 +1,13 @@
+# What Spark actually is
+
+## A distributed compute engine
+
+- Write code as if you have **one giant table**
+- Spark slices it into **partitions**, assigns each to a machine (which file + byte range to read)
+- Runs your code on every partition **in parallel**, then gathers the results
+
+## The shift from pandas
+
+- **pandas** — one process, memory it owns directly, runs immediately
+- **Spark** — a *plan* you describe, scheduled across many machines, data moved for you
+- Every later idea in the course builds on this distinction

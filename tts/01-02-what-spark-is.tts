@@ -1,0 +1,7 @@
+What Spark actually is.
+
+Apache Spark is a distributed compute engine. You write code as if you have one giant table. Behind the scenes, Spark slices that data into pieces called partitions. It assigns each partition to a machine, telling that machine exactly which file and which byte range to read. It runs your code on every partition in parallel, and then it brings the results back.
+
+The mental shift from pandas is the important part. Pandas runs your code in one process, against memory it owns directly. Spark runs a plan that you describe, across many processes on many machines, and it moves data between them for you.
+
+So you are no longer calling functions that execute immediately in local memory. You are describing work that Spark will schedule and distribute. That distinction — one process on owned memory, versus a distributed plan — is what every later idea in this course builds on.

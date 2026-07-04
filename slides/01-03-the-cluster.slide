@@ -1,0 +1,11 @@
+# The cluster
+
+## Three roles, every time Spark runs
+
+- **Driver** — runs your script, owns the SparkSession, builds the plan, decides what to send out — *the project manager, never lifts a box*
+- **Executors** — worker processes that hold **partitions** in memory and run the computations — *the delivery drivers, each on their own route*
+- **Cluster manager** — allocates machines to the app; hands out resources, doesn't understand the job
+
+## Cluster manager options
+
+- **Standalone**, **YARN**, **Kubernetes**, or **local mode** (driver + executors in one JVM on your laptop)

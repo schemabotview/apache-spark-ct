@@ -1,0 +1,37 @@
+{
+  "concept": "Apache Spark",
+  "modules": [
+    {
+      "id": "01-foundations-and-the-cluster",
+      "title": "Foundations & the Cluster",
+      "sections": [
+        {
+          "heading": "The problem Spark solves",
+          "notebook": "notebooks/01-01-the-problem-spark-solves.ipynb",
+          "slide": "slides/01-01-the-problem-spark-solves.slide",
+          "scene": "spark-architecture",
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "What Spark actually is",
+          "notebook": "notebooks/01-02-what-spark-is.ipynb",
+          "slide": "slides/01-02-what-spark-is.slide",
+          "scene": "spark-architecture",
+          "focus": ["master", "worker-a", "worker-b"],
+          "highlight": ["driver", "exec-a", "exec-b"],
+          "spine": true
+        },
+        {
+          "heading": "The cluster — driver, executors, cluster manager",
+          "notebook": "notebooks/01-03-the-cluster.ipynb",
+          "slide": "slides/01-03-the-cluster.slide",
+          "scene": "spark-architecture",
+          "focus": ["master", "cluster-mgr", "worker-a", "worker-b"],
+          "highlight": ["driver", "cluster-mgr", "exec-a", "exec-b"],
+          "spine": true
+        }
+      ]
+    }
+  ]
+}
