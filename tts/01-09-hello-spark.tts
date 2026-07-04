@@ -1,0 +1,9 @@
+Hello Spark — a multi-step query.
+
+With a session in hand, let's run a first end-to-end query. We read a file, transform it, and pull back a result.
+
+We call spark dot read dot parquet to load a file of transactions into a dataframe. Then we filter to the rows where the amount is greater than one hundred, group by category, and count. Finally we call show.
+
+The important thing to notice is when the work actually happens. The read, the filter, and the group-by lines build up a plan and run nothing at all. These are transformations, and Spark records them lazily. It is only show — which is an action — that forces Spark to execute. At that point it plans the job, distributes the tasks across the cluster, and brings the rows back to the driver.
+
+That split is the whole mental model. You describe a pipeline of transformations, and then a single action at the end triggers all of it at once. You can add or reorder transformations freely, and nothing runs until the next action. We will unpack exactly why in the next module, on the execution model.

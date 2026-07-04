@@ -1,0 +1,21 @@
+From your code to distributed work.
+
+Let's trace what happens when you write a chain like filter, then group-by, then count.
+
+First, the driver builds a logical plan from your dataframe chain. This is just a description of the work, not the work itself.
+
+Second, the Catalyst optimizer rewrites that plan. It pushes filters down so you read less data, it reorders joins, and it drops columns you never use.
+
+Third, the optimized plan becomes a physical plan, and then a directed acyclic graph of stages.
+
+Fourth, each stage splits into tasks. There is one task per partition.
+
+Fifth, those tasks ship to the executors and run in parallel across their see-pee-you cores.
+
+Now lock in three vocabulary words, because they show up constantly on the exam.
+
+A job is what one action triggers. One count call produces one job.
+
+A stage is a slice of work between shuffles. Every time Spark has to shuffle data across the network, it starts a new stage.
+
+And a task is the smallest unit of work. It is one partition, processed by one executor core.

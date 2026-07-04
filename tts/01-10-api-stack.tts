@@ -1,0 +1,11 @@
+Our final foundation topic: the API stack — R-D-D, versus dataframe, versus dataset.
+
+Spark exposes three layered interfaces over the same engine, and knowing which one to reach for is a common exam question.
+
+At the bottom is the R-D-D. This is the original, low-level interface — a distributed collection of objects, with full control and no built-in schema. It is powerful, but you pay a price. You get no Catalyst optimization, because Spark cannot see inside the functions you hand it.
+
+In the middle is the dataframe. This is a distributed table with named, typed columns, and it is the interface you will use almost all of the time. Because you express operations as column expressions, Catalyst can look at them and optimize them. And in Python, the dataframe is the only structured interface — there is no typed dataset in pyspark.
+
+At the top is the dataset. This is a java-virtual-machine-only view, available in Scala and Java, that adds compile-time type safety on top of a dataframe. It simply does not exist in Python.
+
+So here is the practical rule. Default to dataframes. They are optimized, they are concise, and they port across languages. Drop down to R-D-Ds only when you need low-level control that the dataframe interface cannot express, such as custom partitioning, or non-tabular data. In pyspark, dataframe versus dataset is not a real choice. The real choice is dataframe versus R-D-D, and the answer is almost always dataframe.

@@ -1,0 +1,9 @@
+Your first SparkSession.
+
+Everything you do in Spark starts from a SparkSession. It is your handle to the engine — you use it to read data, to register views, and to run queries.
+
+To run locally, you need java seventeen or newer installed. Then you pip install pyspark, version three point five point three.
+
+The pattern is the same every time. You build a session from the builder, you give it an app name, you point it at a master — for us that is local mode — and you call get-or-create. The object it returns is your entry point to everything Spark can do.
+
+Now, one key gotcha, and it catches people constantly. Get-or-create is sticky. If a SparkSession already exists in your kernel — maybe from an earlier cell, maybe from a previous notebook, anywhere at all — the builder returns that existing session, and it silently ignores the new configuration you just set. To pick up new configuration in a running notebook, you have to call spark dot stop first, and then build again.

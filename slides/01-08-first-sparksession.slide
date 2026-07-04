@@ -1,0 +1,20 @@
+# Your first SparkSession
+
+## The entry point to everything
+
+- A **SparkSession** is your handle to the engine — read data, register views, run queries
+- Local setup: **Java 17+**, then `pip install pyspark==3.5.3`
+
+## The pattern (every time)
+
+```python
+spark = (SparkSession.builder
+    .appName("spark-course")
+    .master("local[*]")
+    .getOrCreate())
+```
+
+## Gotcha — `getOrCreate()` is sticky
+
+- If a session already exists, it's **returned as-is** and your new config is **silently ignored**
+- To apply new config: `spark.stop()` first, then rebuild

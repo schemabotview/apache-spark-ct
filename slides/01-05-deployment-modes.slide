@@ -1,0 +1,13 @@
+# Deployment modes & cluster managers
+
+## Where the driver + executors land
+
+- **`local[*]`** — one JVM on your laptop; `*` = all cores (this course's mode)
+- **Standalone** — Spark's built-in manager; simple, no dependency
+- **YARN** — on Hadoop clusters; legacy on-prem
+- **Kubernetes** — driver + executors as pods; cloud-native default
+- **Databricks** — managed; the manager is hidden behind the platform
+
+## For the exam
+
+- Recognize **each name and what it runs on** — you rarely configure them by hand

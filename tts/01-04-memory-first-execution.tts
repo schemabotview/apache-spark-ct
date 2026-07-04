@@ -1,0 +1,11 @@
+Memory-first execution.
+
+Here is the single design choice that makes Spark fast. Spark keeps intermediate results in executor memory, instead of writing them to disk between every step.
+
+To see why that matters, compare it with the previous generation, Hadoop map-reduce. Map-reduce did a full disk round-trip after every stage. It wrote the intermediate output to disk, then read it back for the next step. On a pipeline with many steps, all of that disk traffic dominated the runtime.
+
+Spark keeps the data in memory and hands it straight to the next step. Data only spills to disk when something forces it out — usually memory pressure, or an explicit checkpoint. That one decision is most of Spark's speed advantage over map-reduce.
+
+Everything else you will learn later — caching, broadcast joins, adaptive query execution — is an optimization layered on top of this memory-first core.
+
+There is a trade-off, of course. Memory is finite. A job that tries to hold too much will spill to local disk, and in the worst case it will fail with an out-of-memory error. Sizing your partitions so they fit comfortably in executor memory is a theme we return to when we reach performance tuning.

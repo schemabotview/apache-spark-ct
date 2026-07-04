@@ -30,6 +30,69 @@
           "focus": ["master", "cluster-mgr", "worker-a", "worker-b"],
           "highlight": ["driver", "cluster-mgr", "exec-a", "exec-b"],
           "spine": true
+        },
+        {
+          "heading": "Memory-first execution",
+          "notebook": "notebooks/01-04-memory-first-execution.ipynb",
+          "slide": "slides/01-04-memory-first-execution.slide",
+          "scene": "spark-architecture",
+          "focus": ["worker-a"],
+          "highlight": ["heap-a", "unified-a", "execution-a", "storage-a"],
+          "spine": true
+        },
+        {
+          "heading": "Deployment modes & cluster managers",
+          "notebook": "notebooks/01-05-deployment-modes.ipynb",
+          "slide": "slides/01-05-deployment-modes.slide",
+          "scene": "spark-architecture",
+          "focus": ["cluster-mgr"],
+          "highlight": ["cluster-mgr", "mode-local", "mode-standalone", "mode-yarn", "mode-k8s", "mode-databricks"],
+          "spine": true
+        },
+        {
+          "heading": "From your code to distributed work",
+          "notebook": "notebooks/01-06-code-to-distributed-work.ipynb",
+          "slide": "slides/01-06-code-to-distributed-work.slide",
+          "scene": "spark-architecture",
+          "focus": ["dag-scheduler"],
+          "highlight": ["job", "stage-1", "shuffle", "stage-2", "tasks"],
+          "spine": true
+        },
+        {
+          "heading": "When NOT to use Spark",
+          "notebook": "notebooks/01-07-when-not-to-use-spark.ipynb",
+          "slide": "slides/01-07-when-not-to-use-spark.slide",
+          "scene": "spark-architecture",
+          "focus": ["cluster-mgr"],
+          "highlight": ["mode-local"],
+          "spine": true
+        },
+        {
+          "heading": "Your first SparkSession",
+          "notebook": "notebooks/01-08-first-sparksession.ipynb",
+          "slide": "slides/01-08-first-sparksession.slide",
+          "scene": "spark-architecture",
+          "focus": ["master"],
+          "highlight": ["session"],
+          "spine": true
+        },
+        {
+          "heading": "Hello Spark — a multi-step query",
+          "notebook": "notebooks/01-09-hello-spark.ipynb",
+          "slide": "slides/01-09-hello-spark.slide",
+          "scene": "spark-architecture",
+          "focus": ["master"],
+          "highlight": ["session", "logical-plan", "job"],
+          "spine": true
+        },
+        {
+          "heading": "RDD vs DataFrame vs Dataset — the API stack",
+          "notebook": "notebooks/01-10-api-stack.ipynb",
+          "slide": "slides/01-10-api-stack.slide",
+          "scene": "spark-architecture",
+          "focus": ["master"],
+          "highlight": ["session", "logical-plan", "job"],
+          "spine": true
         }
       ]
     }

@@ -1,0 +1,12 @@
+# Memory-first execution
+
+## The one choice behind Spark's speed
+
+- Keep **intermediate results in executor RAM** between steps — don't round-trip to disk
+- **Hadoop MapReduce** wrote every stage's output to disk and re-read it; that I/O dominated multi-step jobs
+- Spark hands data straight to the next step; it **spills to disk only under memory pressure**
+
+## What rides on top
+
+- Caching, broadcast joins, adaptive query execution — all **optimizations on the memory-first core**
+- Trade-off: memory is finite — oversized partitions spill, or fail with out-of-memory (→ tuning later)

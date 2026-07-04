@@ -1,0 +1,15 @@
+Deployment modes, and the cluster managers behind them.
+
+The cluster manager decides how the driver and the executors actually get placed onto machines. You choose it with a master url when you build the session.
+
+The first option is local mode, written as local in square brackets with a star. This runs everything in one java virtual machine on your laptop. The star means use all available cores. This is the mode we use for learning, and for every notebook in this course.
+
+Next is standalone. That is Spark's own built-in cluster manager. It is simple, with no external dependency.
+
+Then there is yarn, which runs on Hadoop clusters. You will see it in legacy, on-premises stacks.
+
+Then kubernetes, where the driver and executors run as pods. That is the modern, cloud-native default.
+
+And finally Databricks, which is managed Spark. There the cluster manager is hidden behind the platform, so you never touch it directly.
+
+For learning, local mode is plenty. For the exam, the thing to recognize is each name and what it runs on. You rarely have to configure them by hand.

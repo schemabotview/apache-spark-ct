@@ -1,0 +1,15 @@
+# From your code to distributed work
+
+## What one query does behind the scenes
+
+1. Driver builds a **logical plan** from your DataFrame chain
+2. **Catalyst** rewrites it — filter pushdown, join reorder, drop unused columns
+3. Optimized plan → **physical plan** → a **DAG** of stages
+4. Each stage splits into **tasks** — one per partition
+5. Tasks ship to executors, run in parallel across CPU cores
+
+## Three exam words
+
+- **Job** — what one action triggers (one `count()` is one job)
+- **Stage** — a slice of work between shuffles (a shuffle starts a new stage)
+- **Task** — smallest unit: one partition on one executor core

@@ -1,0 +1,13 @@
+When not to use Spark.
+
+Spark earns its complexity only at scale, so before you reach for it, it is worth knowing when it is the wrong tool.
+
+The first case: your data fits comfortably in pandas. Below roughly ten gigabytes on a modern laptop, pandas is faster, simpler, and carries no cluster overhead at all.
+
+The second case: you need single-row, sub-millisecond lookups. Spark is optimized for throughput, not for latency. For that kind of work, reach for Postgres, or DynamoDB, or Redis.
+
+The third case: you need online transaction processing semantics. Spark is built for analytical workloads that are read-heavy and write-batched. It is not a transactional database.
+
+And the fourth case: you only need a scheduled script. Sometimes a cron job plus a plain Python script is exactly the right answer.
+
+Here is the honest rule. Spark earns its complexity only when a single machine actually stops being enough — when scale, or fault tolerance, genuinely demand it.

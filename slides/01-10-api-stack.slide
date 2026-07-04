@@ -1,0 +1,13 @@
+# RDD vs DataFrame vs Dataset — the API stack
+
+## Three layers over one engine
+
+- **RDD** — original low-level API: distributed objects, full control, **no schema, no Catalyst** (Spark can't see inside your lambdas)
+- **DataFrame** — distributed **table** of named, typed columns; **Catalyst optimizes** it; the only structured API in **PySpark**
+- **Dataset** — **JVM-only** (Scala/Java) typed view over a DataFrame; compile-time safety; **not in Python**
+
+## The rule
+
+- **Default to DataFrames** — optimized, concise, cross-language
+- Drop to **RDD** only for low-level control (custom partitioning, non-tabular data)
+- In PySpark the real choice is **DataFrame vs RDD** — almost always DataFrame

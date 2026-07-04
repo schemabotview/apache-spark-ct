@@ -1,0 +1,21 @@
+# Hello Spark — a multi-step query
+
+## Read → transform → act
+
+```python
+df = spark.read.parquet("transactions.parquet")
+result = (df.filter(df.amount > 100)
+            .groupBy("category")
+            .count())
+result.show()
+```
+
+## When does work happen?
+
+- `read`, `filter`, `groupBy` — **transformations**, recorded **lazily**, run *nothing*
+- `show()` — an **action**, forces Spark to plan, distribute tasks, return rows
+
+## The mental model
+
+- Describe a **pipeline of transformations**; one **action** triggers it all
+- Nothing runs until the next action (→ next module: the execution model)

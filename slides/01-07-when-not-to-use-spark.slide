@@ -1,0 +1,12 @@
+# When NOT to use Spark
+
+## Reach for something else when…
+
+- **Data fits in pandas** — below ~10 GB, pandas is faster, simpler, no cluster overhead
+- **Sub-millisecond single-row lookups** — Spark is throughput- not latency-optimized → Postgres, DynamoDB, Redis
+- **OLTP semantics** — Spark is analytical (read-heavy, write-batched), not a transactional database
+- **Just a scheduled script** — sometimes `cron` + a Python file is the right answer
+
+## The honest rule
+
+- Spark earns its complexity **only when one machine stops being enough** — when scale or fault tolerance actually demand it
