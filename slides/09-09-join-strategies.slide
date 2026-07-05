@@ -1,0 +1,14 @@
+# Join strategies & broadcast
+
+## Spark picks from sizes + hints
+
+- **Broadcast Hash Join** — small side ≤ 10 MB or `broadcast()` — **no shuffle** — star-schema win
+- **Sort-Merge Join** — both sides large — shuffles both — big fact-to-fact
+- **Shuffle Hash Join** — one side fits per partition — shuffles one side
+- **Cartesian / Nested Loop** — cross joins only
+
+## Force it — and know when not to
+
+- `broadcast(df)` / `/*+ BROADCAST(t) */`
+- < 10 MB **auto** · ≤ 100 MB **force** · 100–500 MB **test** · **> 500 MB never**
+- A broadcast that doesn't fit executor memory → **OOM**

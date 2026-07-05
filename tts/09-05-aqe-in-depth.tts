@@ -1,0 +1,9 @@
+Adaptive query execution, in depth.
+
+Back in module two, we introduced A-Q-E with its first behavior — the dynamic coalescing of post-shuffle partitions. Two more behaviors complete the picture, and both of them fire after a shuffle's real statistics are known.
+
+The first is the dynamic join-strategy switch. At runtime, Spark can promote a sort-merge join to a broadcast hash join, if one side turns out to be small enough once measured. The threshold for that is the adaptive auto-broadcast-join-threshold.
+
+The second is skew-join handling. Spark detects an oversized partition, and it splits that partition into sub-tasks, so that one slow task cannot stall the whole stage. A partition counts as skewed when it meets two conditions at once — it is at least five times the median size, and it is at least two hundred fifty-six megabytes.
+
+The theme here is exactly the same as it was in module two. It is the same Catalyst optimizer, but it is given a second chance, at each stage boundary, with real numbers instead of estimates. A-Q-E has been on by default since Spark three point two — and it is why so much of the manual tuning we are discussing is now automatic.

@@ -1,0 +1,15 @@
+# Partition sizing — the unit of parallelism
+
+## One partition = one task = one core
+
+- The partition count **is** your parallelism — wrong in either direction hurts:
+- **Too few** — idle cores, one slow task stalls the stage, OOM risk on a huge partition
+- **Too many** — scheduling overhead dominates; tiny tasks cost more to set up than to run
+
+## Rules of thumb
+
+- **Cluster** — **128–256 MB per partition**
+- **Local** — **2–4× CPU cores**
+- **After a shuffle** — `spark.sql.shuffle.partitions` (default 200 → next)
+
+Inspect: `df.rdd.getNumPartitions()` · `spark_partition_id()`

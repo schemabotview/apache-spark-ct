@@ -1,0 +1,13 @@
+Repartition, versus coalesce, versus partition-by — three different things.
+
+These three operations all have the word partition in the name, and they get confused constantly. But they do completely different jobs.
+
+Repartition, of n, redistributes the rows across n partitions, in memory. It does a full shuffle. Use it to increase the partition count, or to rebalance.
+
+Coalesce, of n, merges the existing partitions down to n, without redistributing. It does no shuffle — it is a narrow transformation. And it can only decrease the count.
+
+Write dot partition-by, of a column, is completely different. At write time, it creates one on-disk subdirectory per distinct value of the column. We saw this back in module five. It has no in-memory effect — it only changes the file layout.
+
+The key distinction is runtime versus write-time. Repartition and coalesce change how the rows sit in memory, for the next stage. Partition-by changes how they sit on disk, for downstream readers.
+
+And there is one more form worth knowing — repartition of n and a column. This hash-partitions in memory, by that column, so all the rows with the same key value land in the same partition. Do this before a join on that column, and you eliminate the shuffle at join time.

@@ -1,0 +1,9 @@
+Tuning the shuffle-partitions setting.
+
+After any wide transformation, the number of output partitions defaults to two hundred. That value was sized for large clusters. But on local mode, with eight cores, that is about one hundred ninety-two mostly-empty partitions, and a whole pile of scheduling overhead. And on a genuinely big dataset, two hundred can actually be far too few, giving you oversized partitions that spill to disk.
+
+So the fix depends on your setting. In local mode, set it to two to four times your core count. On a real cluster, target the one hundred twenty-eight to two hundred fifty-six megabytes-per-partition rule, measured against your largest expected post-shuffle dataset.
+
+You change it with spark dot conf dot set, on the shuffle-partitions key.
+
+And one important note. Adaptive query execution now coalesces the empty post-shuffle partitions automatically — which is the next section. So tuning this setting by hand matters most when the default is too small, rather than too large.

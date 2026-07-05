@@ -1,0 +1,19 @@
+# What triggers a shuffle
+
+## Redistributing data across partitions — the costliest op
+
+Every shuffle is three steps:
+
+1. **Shuffle write** — tasks write intermediate output to local disk
+2. **Network transfer** — data moves to target executors
+3. **Shuffle read** — receiving tasks read & deserialize
+
+## Always shuffles (wide)
+
+- `groupBy`, `join`, `distinct`, `orderBy`, `repartition`, `dropDuplicates`, `union`(dedup)
+
+## Never shuffles (narrow)
+
+- `filter`, `select`, `withColumn`, `coalesce`(reduce), `map`, `flatMap`
+
+Spot them: each is an **`Exchange`** in `.explain()` = a stage boundary. **Fewer shuffles = faster.**

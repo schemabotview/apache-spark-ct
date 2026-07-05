@@ -1,0 +1,14 @@
+# Driver-side bottlenecks
+
+## `collect()` pulls every row to the driver
+
+- Undoes distribution → all rows into one Python list → **OOMs the driver**
+- Aggregate or `limit()` first:
+  - ✅ `groupBy(...).count().collect()` · ✅ `limit(100).collect()`
+  - ❌ `big_df.collect()` (and `toPandas()` — same trap)
+
+## `withColumn` in a loop is exponentially slow
+
+- Each call returns a **new plan containing the whole prior plan** → 100-deep nested `Project`
+- Catalyst re-analyzes the tree each time (super-linear in depth) → **minutes**
+- **Fix**: build columns once, apply in a **single `select`** → milliseconds

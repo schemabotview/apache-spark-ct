@@ -1,0 +1,15 @@
+# AQE in depth — runtime re-optimization
+
+## Module 02 covered dynamic coalescing — two more behaviors
+
+*(both fire after a shuffle's real stats are known)*
+
+- **Dynamic join switch** — promote sort-merge → **broadcast hash join** if one side is small enough
+  - threshold: `adaptive.autoBroadcastJoinThreshold`
+- **Skew join handling** — **split** an oversized partition into sub-tasks
+  - skewed = ≥ **5× median** *and* ≥ **256 MB**
+
+## The theme (same as module 02)
+
+- The **same Catalyst optimizer**, a second chance at each stage boundary with *real* numbers
+- On by default since **Spark 3.2** — why so much manual tuning is now automatic

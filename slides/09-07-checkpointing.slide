@@ -1,0 +1,17 @@
+# Checkpointing — truncating long lineage
+
+## Cache keeps lineage; checkpoint breaks it
+
+- **`cache()`** — keeps the recipe; can still recompute from source on loss
+- **`checkpoint()`** — writes to reliable storage, **forgets the lineage**, just reads the files
+
+## When to checkpoint
+
+- **Iterative algorithms** — ML loops with 100+ iterations (lineage grows unbounded)
+- **Long-running streaming** with stateful ops
+- **Any DAG longer than ~20 shuffle stages**
+
+## Key contrast
+
+- **`cache()` is lazy · `checkpoint()` is eager** (runs immediately)
+- Cache to **reuse**; checkpoint to **cut** a lineage that's grown too deep

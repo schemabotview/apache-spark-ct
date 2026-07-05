@@ -1,0 +1,16 @@
+# Tuning spark.sql.shuffle.partitions
+
+## The default is 200 — sized for big clusters
+
+- On `local[*]` with 8 cores → ~192 mostly-empty partitions + scheduling overhead
+- On a big dataset → far too **few** → oversized partitions that spill
+
+## The fix
+
+- **Local** — **2–4× core count**
+- **Cluster** — the **128–256 MB-per-partition** rule on the largest post-shuffle dataset
+- `spark.conf.set("spark.sql.shuffle.partitions", n)`
+
+## Note
+
+- **AQE now coalesces** empty post-shuffle partitions → matters most when the default is too **small**

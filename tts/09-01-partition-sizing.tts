@@ -1,0 +1,11 @@
+Partition sizing — the unit of parallelism.
+
+A partition is processed by exactly one task, on one executor core. So the partition count is your parallelism — and getting it wrong hurts in two directions.
+
+Too few partitions, and your cores sit idle. One slow task stalls the whole stage, and a single huge partition risks an out-of-memory error.
+
+Too many partitions, and task-scheduling overhead takes over. The tiny tasks finish in milliseconds, while the scheduler spends longer setting them up than the actual work takes.
+
+So here are the rules of thumb. On a production cluster, target somewhere between one hundred twenty-eight and two hundred fifty-six megabytes per partition. In local mode, two to four times the number of see-pee-you cores is plenty. And after a shuffle, the count is set by the shuffle-partitions setting, which defaults to two hundred — and we tune that next.
+
+Finally, two ways to inspect. You can ask a dataframe how many partitions it currently has, with dataframe dot R-D-D dot get-num-partitions. And you can look at how the rows are distributed, using the spark-partition-id function.

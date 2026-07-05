@@ -1,0 +1,13 @@
+Join strategies, broadcast, and when not to broadcast.
+
+Spark picks a join algorithm based on the table sizes, and any hints you give it. There are four to know.
+
+The broadcast hash join fires when one side is at or below the auto-broadcast threshold — ten megabytes by default — or when you add a broadcast hint. It does no shuffle at all. The small side is shipped to every executor, and the join runs locally. This is the single biggest win for star-schema queries.
+
+The sort-merge join is the default when both sides are large. It shuffles both sides. It is for big fact-to-fact joins.
+
+The shuffle hash join fires when one side fits in memory per partition. It shuffles just that one side.
+
+And the cartesian, or nested-loop join, is for cross joins only.
+
+You force a broadcast by wrapping the small side in the broadcast function — or, in sequel, with the broadcast hint. But you must know when not to. Below ten megabytes, Spark broadcasts automatically. Up to about a hundred megabytes, it is safe to force. Between a hundred and five hundred, test it on your cluster. And above five hundred megabytes, do not broadcast — because a broadcast that does not fit in executor memory will run the cluster out of memory.

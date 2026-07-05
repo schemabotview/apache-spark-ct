@@ -1,0 +1,15 @@
+Detecting and fixing data skew.
+
+Data skew is when a few keys dominate the partition distribution. And because a stage cannot complete until its very last task finishes, a single oversized partition stalls the entire stage.
+
+So what are the symptoms? One task runs ten to a hundred times longer than the median — you can see this in the Spark U-I, under stages. One executor shows garbage-collector pressure, or disk spill, while all the others sit idle. And the stage finishes quickly, except for the last one or two tasks.
+
+There are three fixes, and here they are in order of preference.
+
+First, the A-Q-E skew join. This is the modern default — Spark three point two and later ship with skew-join enabled. A-Q-E detects the skewed partitions at runtime, and splits them. Try this first.
+
+Second, salting. You manually break up the hot keys — you append a random suffix to the join key on the large side, and you explode the small side n times to match. This is the most reliable fix, when A-Q-E is not enough.
+
+And third, repartition-by-range. You sort by the column, and split into equal-sized ranges, so the partitions are balanced regardless of key frequency.
+
+And note — the same disease shows up in group-by. Same medicine. Salt the key, and aggregate twice — a partial aggregate, then a final one.

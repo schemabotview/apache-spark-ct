@@ -1,0 +1,9 @@
+Checkpointing — truncating a long lineage.
+
+Caching keeps the lineage. That means Spark can still recompute a cached partition from the source, if it is lost. Checkpointing goes a step further. It writes the dataframe out to reliable storage, and it breaks the lineage entirely. So Spark forgets how the data was produced, and it just reads the saved files.
+
+When should you checkpoint? Reach for it when the plan itself becomes the problem.
+
+The first case is iterative algorithms — machine-learning training loops with a hundred or more iterations, where the lineage grows without bound. The second is long-running streaming jobs, with stateful operations that accumulate lineage over time. And the third is any directed acyclic graph longer than about twenty shuffle stages.
+
+Here is the key contrast with cache. Cache is lazy. Checkpointing is eager — it executes immediately when you call it, not on the next action. So the way to hold it in your head is this. You cache in order to reuse. You checkpoint in order to cut a lineage that has grown too deep.

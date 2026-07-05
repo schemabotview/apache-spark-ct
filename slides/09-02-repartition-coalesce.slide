@@ -1,0 +1,16 @@
+# repartition vs coalesce vs partitionBy
+
+## Same word, three different jobs
+
+- **`repartition(n)`** — redistribute **in memory**; **full shuffle**; *increase* or rebalance
+- **`coalesce(n)`** — merge down **without redistributing**; **no shuffle**; *decrease* only
+- **`write.partitionBy("col")`** — **write-time** on-disk subdirectories; no in-memory effect
+
+## The key split
+
+- **runtime** (`repartition`/`coalesce`) → how rows sit **in memory** for the next stage
+- **write-time** (`partitionBy`) → how rows sit **on disk** for readers
+
+## Bonus
+
+- **`repartition(n, col)`** — hash by a column → same keys together → **kills the join shuffle**

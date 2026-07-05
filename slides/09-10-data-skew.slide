@@ -1,0 +1,19 @@
+# Detecting and fixing data skew
+
+## A few keys dominate the distribution
+
+- A stage waits for its **last** task → one oversized partition stalls everything
+
+## Symptoms
+
+- One task **10–100× longer** than the median (Spark UI → Stages)
+- One executor: GC pressure / disk spill while others idle
+- Stage finishes fast except the last one or two tasks
+
+## Three fixes, in order
+
+1. **AQE skew join** — default (3.2+, `skewJoin.enabled`) — splits skewed partitions — **try first**
+2. **Salting** — random suffix on the hot key + explode the small side N× — most reliable
+3. **`repartitionByRange(n, col)`** — equal-sized ranges, key-frequency-independent
+
+`groupBy` skew → same medicine: **salt + aggregate twice**.

@@ -766,6 +766,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "09-performance-tuning",
+      "title": "Performance Tuning",
+      "sections": [
+        {
+          "heading": "Partition sizing — the unit of parallelism",
+          "notebook": "notebooks/09-01-partition-sizing.ipynb",
+          "slide": "slides/09-01-partition-sizing.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-part"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "repartition vs coalesce vs partitionBy — three different things",
+          "notebook": "notebooks/09-02-repartition-coalesce.ipynb",
+          "slide": "slides/09-02-repartition-coalesce.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-part"],
+          "highlight": ["b-perf-rp", "b-perf-co", "b-perf-pb"],
+          "spine": true
+        },
+        {
+          "heading": "What triggers a shuffle",
+          "notebook": "notebooks/09-03-what-triggers-shuffle.ipynb",
+          "slide": "slides/09-03-what-triggers-shuffle.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-shuffle"],
+          "highlight": ["b-perf-sp", "b-perf-smj"],
+          "spine": true
+        },
+        {
+          "heading": "Tuning spark.sql.shuffle.partitions",
+          "notebook": "notebooks/09-04-tuning-shuffle-partitions.ipynb",
+          "slide": "slides/09-04-tuning-shuffle-partitions.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-shuffle"],
+          "highlight": ["b-perf-sp"],
+          "spine": true
+        },
+        {
+          "heading": "AQE in depth — runtime re-optimization",
+          "notebook": "notebooks/09-05-aqe-in-depth.ipynb",
+          "slide": "slides/09-05-aqe-in-depth.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf"],
+          "highlight": ["b-perf-shuffle", "b-perf-bcast"],
+          "spine": true
+        },
+        {
+          "heading": "Caching DataFrames — cache() and persist()",
+          "notebook": "notebooks/09-06-caching.ipynb",
+          "slide": "slides/09-06-caching.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-cache"],
+          "highlight": ["b-perf-cache-c", "b-perf-cache-p", "b-perf-cache-u"],
+          "spine": true
+        },
+        {
+          "heading": "Checkpointing — truncating long lineage",
+          "notebook": "notebooks/09-07-checkpointing.ipynb",
+          "slide": "slides/09-07-checkpointing.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-cache"],
+          "highlight": ["b-perf-cache-p", "b-sl-mad"],
+          "spine": true
+        },
+        {
+          "heading": "Driver-side bottlenecks — collect, withColumn in a loop",
+          "notebook": "notebooks/09-08-driver-bottlenecks.ipynb",
+          "slide": "slides/09-08-driver-bottlenecks.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-actions"],
+          "highlight": ["b-df-act-collect"],
+          "spine": true
+        },
+        {
+          "heading": "Join strategies, broadcast, and when NOT to broadcast",
+          "notebook": "notebooks/09-09-join-strategies.ipynb",
+          "slide": "slides/09-09-join-strategies.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-bcast"],
+          "highlight": ["b-perf-bc-fn", "b-perf-bc-cfg", "b-perf-smj"],
+          "spine": true
+        },
+        {
+          "heading": "Detecting and fixing data skew",
+          "notebook": "notebooks/09-10-data-skew.ipynb",
+          "slide": "slides/09-10-data-skew.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-shuffle"],
+          "highlight": ["b-perf-sp"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

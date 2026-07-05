@@ -1,0 +1,7 @@
+Driver-side bottlenecks — collect, and with-column in a loop.
+
+Some patterns look fast, but they stall the driver, or the planner — not the executors. Two are worth calling out.
+
+The first is collect. A dataframe is distributed across the executors. Collect undoes that — every single row travels back to the driver, and lands in one Python list. On large data, that runs the driver out of memory. So always aggregate, or limit, first. Group-by, then count, then collect is safe, because the result is already tiny. Limit one hundred, then collect, is safe, because it is bounded. But a raw collect on a big dataframe is not. And to-pandas has exactly the same trap.
+
+The second is with-column in a loop, and this one is genuinely surprising. Each with-column call returns a new dataframe, whose plan contains the entire prior plan. So after a hundred iterations, you have a hundred-deep nested project operator. And Catalyst re-analyzes that whole tree, every single time you add a layer — and analysis cost is super-linear in the plan depth. A loop that takes minutes becomes milliseconds, once you build all the columns first, and apply them in a single select. The same rule applies to any iterate-and-extend pattern.

@@ -1,0 +1,11 @@
+What triggers a shuffle.
+
+A shuffle happens whenever Spark has to redistribute data across partitions. And it is the single most expensive thing that Spark does. Every shuffle is three steps.
+
+First, the shuffle write — each task writes its intermediate output to local disk. Second, the network transfer — that data moves across the network to the target executors. And third, the shuffle read — the receiving tasks read the data back, and deserialize it.
+
+So which operations always shuffle? The wide ones — group-by, join, distinct, order-by, repartition, drop-duplicates, and a union with deduplication.
+
+And which never shuffle? The narrow ones — filter, select, with-column, coalesce when you are reducing, map, and flat-map.
+
+The practical skill is learning to spot the shuffles in a plan. Each shuffle appears as an exchange node in the explain output, and each one marks a stage boundary. So the rule to carry away is simple. Fewer shuffles means fewer stages, which means a faster job.

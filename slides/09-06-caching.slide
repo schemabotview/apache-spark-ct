@@ -1,0 +1,16 @@
+# Caching DataFrames — cache() & persist()
+
+## The default trap
+
+- **Every action re-runs the whole lineage** — `count()` then `collect()` = computed **twice**
+- Spark remembers the **recipe, not the result**
+
+## Fix — materialize once, reuse
+
+- **`df.cache()`** — `persist(MEMORY_AND_DISK)`; **lazy** — the *next action* materializes
+- **`df.persist(level)`** — pick the policy (`MEMORY_ONLY`, `_AND_DISK`, `_SER`, `_2`)
+
+## Two gotchas
+
+- A `cache()` with **no following action** is never populated
+- **DataFrame `cache()` = MEMORY_AND_DISK** (spills) vs **RDD `cache()` = MEMORY_ONLY** — always **`unpersist()`** when done

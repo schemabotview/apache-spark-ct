@@ -1,0 +1,11 @@
+Caching dataframes — cache and persist.
+
+Let's start from Spark's default behavior, because it is the first performance trap you have to internalize. Every action re-runs the entire lineage, from the source. So if you call count, and then call collect, on the same dataframe, the whole read-and-transform pipeline runs twice. Spark remembers the recipe — not the result.
+
+Caching fixes this, by materializing once, and then reusing.
+
+Cache is shorthand for persist, with the memory-and-disk storage level. And it is important that cache is lazy. Calling cache, by itself, does nothing. The next action materializes the result, and every action after that reads the cached copy.
+
+Persist, with a level, lets you choose the storage policy explicitly — memory-only, memory-and-disk, and the serialized and replicated variants we saw in module three.
+
+Because cache is lazy, there are two consequences. A cache call you forgot to use costs nothing. And a cache with no following action is never actually populated. One more detail — the default level differs by interface. On a dataframe, cache is memory-and-disk, which spills safely. On an R-D-D, cache is memory-only, which just recomputes on a miss. And always call unpersist when you are done.
