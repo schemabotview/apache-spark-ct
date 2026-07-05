@@ -1,0 +1,13 @@
+# Creating a ps.DataFrame
+
+## `import pyspark.pandas as ps` — three entry points
+
+- **From a dict** — same constructor as pandas — tiny fixtures
+- **From files** — `ps.read_csv`, `ps.read_parquet` (Spark's readers under the hood)
+- **From a Spark DataFrame** — `sdf.pandas_api()` — **cheap, no data movement** — the one you'll use most
+
+## The reverse
+
+- **`ps.from_pandas(pdf)`** — **fixtures only** — serializes the pandas frame and re-reads it through Spark
+
+In practice: start from a Spark DataFrame → `pandas_api()`.

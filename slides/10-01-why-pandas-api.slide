@@ -1,0 +1,14 @@
+# Why this API exists
+
+## pandas syntax, Spark engine
+
+- pandas is the lingua franca — but caps at **one machine's memory**
+- **`pyspark.pandas`** (ex-**Koalas**, merged into PySpark 3.2) = the pandas API on a Spark backend
+- `psdf.groupby(...).mean()` now runs **distributed, lazy, through Catalyst**
+
+## Two anchors
+
+- **Surface is pandas; engine is Spark** — a `ps.DataFrame` wraps a `pyspark.sql.DataFrame` + an index
+- **Transformation / action split still applies** — `psdf['new'] = ...` does **nothing** until an action
+
+Import: `import pyspark.pandas as ps`

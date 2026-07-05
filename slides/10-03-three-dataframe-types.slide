@@ -1,0 +1,13 @@
+# Three DataFrame types — keep them straight
+
+## The axis everything here turns on
+
+- **pandas** (`pandas.DataFrame`) — **driver memory only** — final-mile, plotting, fixtures
+- **Pandas-on-Spark** (`pyspark.pandas.DataFrame`) — **distributed** — pandas syntax at Spark scale
+- **Spark** (`pyspark.sql.DataFrame`) — **distributed** — native API, best performance, most features
+
+## The key relationship
+
+- Only the first lives on the driver; the other two are distributed on the **same engine**
+- Pandas-on-Spark = a Spark DataFrame **+ a pandas-style index**
+- That index is the source of this module's **gotchas**
