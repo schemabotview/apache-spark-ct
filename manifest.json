@@ -382,6 +382,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "05-reading-and-writing",
+      "title": "Reading & Writing",
+      "sections": [
+        {
+          "heading": "The unified read/write API",
+          "notebook": "notebooks/05-01-unified-read-write-api.ipynb",
+          "slide": "slides/05-01-unified-read-write-api.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-read", "b-write"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "Reading the four formats",
+          "notebook": "notebooks/05-02-reading-four-formats.ipynb",
+          "slide": "slides/05-02-reading-four-formats.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sources"],
+          "highlight": ["b-src-csv", "b-src-json", "b-src-parquet", "b-src-orc"],
+          "spine": true
+        },
+        {
+          "heading": "Schema inference vs explicit",
+          "notebook": "notebooks/05-03-schema-inference.ipynb",
+          "slide": "slides/05-03-schema-inference.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-read-fmt"],
+          "highlight": ["b-r-header", "b-r-merge", "b-r-multiline"],
+          "spine": true
+        },
+        {
+          "heading": "Predicate & projection pushdown",
+          "notebook": "notebooks/05-04-pushdown.ipynb",
+          "slide": "slides/05-04-pushdown.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sources"],
+          "highlight": ["b-src-parquet", "b-src-orc", "b-src-delta"],
+          "spine": true
+        },
+        {
+          "heading": "Bad-record handling — the mode option",
+          "notebook": "notebooks/05-05-bad-records.ipynb",
+          "slide": "slides/05-05-bad-records.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-read-mode"],
+          "highlight": ["b-r-permissive", "b-r-failfast", "b-r-drop", "b-r-badpath"],
+          "spine": true
+        },
+        {
+          "heading": "Write modes",
+          "notebook": "notebooks/05-06-write-modes.ipynb",
+          "slide": "slides/05-06-write-modes.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-w-mode"],
+          "highlight": ["b-w-m-over", "b-w-m-append", "b-w-m-error", "b-w-m-ignore"],
+          "spine": true
+        },
+        {
+          "heading": "partitionBy — the partition-pruning win",
+          "notebook": "notebooks/05-07-partitionby.ipynb",
+          "slide": "slides/05-07-partitionby.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-w-layout"],
+          "highlight": ["b-w-partby"],
+          "spine": true
+        },
+        {
+          "heading": "bucketBy — bucketing for join-friendly layouts",
+          "notebook": "notebooks/05-08-bucketby.ipynb",
+          "slide": "slides/05-08-bucketby.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-w-layout"],
+          "highlight": ["b-w-bucket", "b-w-sortby"],
+          "spine": true
+        },
+        {
+          "heading": "saveAsTable vs save — catalog vs filesystem",
+          "notebook": "notebooks/05-09-savetable-vs-save.ipynb",
+          "slide": "slides/05-09-savetable-vs-save.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-w-sinks"],
+          "highlight": ["b-w-save", "b-w-saveTbl", "b-w-insert"],
+          "spine": true
+        },
+        {
+          "heading": "coalesce vs repartition before writing",
+          "notebook": "notebooks/05-10-coalesce-vs-repartition.ipynb",
+          "slide": "slides/05-10-coalesce-vs-repartition.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-perf-part"],
+          "highlight": ["b-perf-rp", "b-perf-co"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

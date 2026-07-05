@@ -1,0 +1,16 @@
+# coalesce vs repartition before writing
+
+## Both set the output file count
+
+- **`coalesce(n)`** — **no shuffle** (narrow), fast, sizes can be uneven
+  - Use to **reduce** partitions, no rebalancing needed
+- **`repartition(n)`** — **full shuffle**, slower, sizes roughly equal
+  - Use to **increase** partitions or **rebalance** skew
+
+## The classic trap
+
+- `df.coalesce(1).write...` → one output file — cheap, but one partition holds **everything** if upstream was skewed
+
+## Rule
+
+- **`coalesce`** to shrink · **`repartition`** to grow or rebalance

@@ -1,0 +1,16 @@
+# Write modes
+
+## `df.write.mode(...)` — a directory-level check
+
+- Spark only checks whether the **path exists** — it never opens the old files
+
+## The four modes
+
+- **`overwrite`** — delete existing files, then write new ones (total replacement)
+- **`append`** — add new part-files; old files untouched → **can't dedupe** (double append = duplicates)
+- **`ignore`** — do nothing, silently (no write, no error)
+- **`error`** *(default)* — raise `AnalysisException: path already exists`
+
+## For row-level updates
+
+- Need a **transactional layer** — Delta Lake / Iceberg. Plain files have no row-level update.

@@ -1,0 +1,14 @@
+# saveAsTable vs save — catalog vs filesystem
+
+## The difference is discoverability
+
+- **`save(path)`** — writes files only; the catalog knows nothing
+  - Reload with `spark.read.format(...).load(path)`
+- **`saveAsTable(name)`** — writes files **and** registers in `spark.catalog`
+  - Then `spark.table(name)` or `SELECT * FROM name`
+
+## Which to use
+
+- **`saveAsTable`** — anything someone might query (SQL discoverability)
+- **`save`** — file-only outputs: staging, exports for non-catalog tools
+- Remember: **`bucketBy` needs `saveAsTable`**

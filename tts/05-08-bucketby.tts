@@ -1,0 +1,9 @@
+Bucket-by — bucketing for join-friendly layouts.
+
+Bucket-by, with a number n and a column, hashes the rows into n files per partition. That fixes the column's value-to-file mapping — a given value always lands in the same bucket. There are two payoffs for doing this.
+
+First, a later join on that column can avoid the shuffle entirely, as long as both sides are bucketed identically — the same number of buckets, and the same key.
+
+Second, aggregations on the bucket column can run per bucket, with no network step.
+
+But there is a catch, and the exam likes it. Bucket-by only works with save-as-table. It needs the metastore to record the bucketing metadata. A plain save to a path ignores the bucketing completely.

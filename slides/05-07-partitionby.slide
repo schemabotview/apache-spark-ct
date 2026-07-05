@@ -1,0 +1,18 @@
+# partitionBy — the partition-pruning win
+
+## One subdirectory per distinct value
+
+```text
+transactions_by_status/
+    status=APPROVED/  part-00000.parquet
+    status=DECLINED/  part-00000.parquet
+    status=REVERSED/  part-00000.parquet
+```
+
+- A filter on that column reads **only the matching subdirectories** — the rest never open
+- That's **partition pruning** — the biggest write-time decision for read speed
+
+## The one rule
+
+- Pick a **low-cardinality** column (a few dozen values)
+- `partitionBy("customer_id")` → millions of tiny directories → disaster

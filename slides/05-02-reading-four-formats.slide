@@ -1,0 +1,14 @@
+# Reading the four formats
+
+## One method, per-format options
+
+- **CSV** — `header`, `sep`, `inferSchema` (or pass a schema — preferred)
+- **JSON** — one object per line; `multiLine` for pretty-printed arrays
+- **Parquet** — no options; schema + column stats travel inside the file
+- **ORC** — same as Parquet: columnar and self-describing
+
+## Rule of thumb
+
+- **CSV / JSON** → always think about the **schema**
+- **Parquet / ORC** → the file already knows
+- → the schema decision is the next section

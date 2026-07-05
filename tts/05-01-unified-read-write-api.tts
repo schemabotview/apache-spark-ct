@@ -1,0 +1,15 @@
+The unified read and write interface.
+
+Spark reads and writes data through a single, fluent interface. To read, you call spark dot read, dot format, dot option, dot load, with a path. To write, you call dataframe dot write, dot format, dot mode, dot save, with a path. And the short methods — dot csv, dot json, dot parquet, dot orc — are just aliases for that longer format-and-load form. Same plumbing, less typing.
+
+Four formats matter for everyday Spark work.
+
+C-S-V takes its schema from a header row, or from an explicit schema you provide. It is human-readable, but slow, and it is plain text.
+
+Jason is inferred or explicit, and it is good for semi-structured payloads and A-P-I dumps.
+
+Parquet embeds its schema in the file footer. It is columnar, and it is the default for analytics.
+
+And O-R-C is the same story — schema in the footer, columnar, and common in Hadoop pipelines.
+
+The nice thing is that the reader and the writer are symmetric. Nearly everything you learn about one applies directly to the other.

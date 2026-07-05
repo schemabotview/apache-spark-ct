@@ -1,0 +1,13 @@
+Reading the four formats.
+
+The read side is one method, with a format and a set of options. And each format has its own characteristic options.
+
+For C-S-V, you set the header option to true to use the first row as the column names, you set the separator option for the delimiter, and you can set infer-schema to true to guess the types — though passing an explicit schema is preferred.
+
+For jason, the default is one jason object per line. You set the multi-line option to true when you have pretty-printed arrays instead.
+
+For parquet, you need no options at all. The schema and the column statistics travel inside the file.
+
+And O-R-C is the same story as parquet — columnar, and self-describing.
+
+So here is the rule of thumb. For C-S-V and jason, always think about the schema. For parquet and O-R-C, the file already knows. And that schema decision is exactly what the next section is about.

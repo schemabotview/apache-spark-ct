@@ -1,0 +1,11 @@
+Bad-record handling — the mode option.
+
+When a row in your input does not conform to the schema, Spark needs a policy for what to do. You set that policy with the mode option, and there are three choices.
+
+Permissive is the default. It sets the bad row's failed columns to null, and it keeps the row. And if you set the column-name-of-corrupt-record option, the raw bad string gets stashed into that column, so you do not lose it.
+
+Drop-malformed silently drops the bad row entirely.
+
+And fail-fast throws an exception on the very first bad row.
+
+Separately from mode, there is one more option worth knowing — bad-records-path. Set it, and Spark writes the rejected rows to their own location, for offline inspection. This is very useful in production, where you want the pipeline to keep running, but you still want to capture exactly what it skipped.

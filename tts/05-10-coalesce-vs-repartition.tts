@@ -1,0 +1,11 @@
+Coalesce versus repartition, before writing.
+
+Both of these control the number of output files, and the choice affects your write speed, your output file sizes, and the downstream read parallelism.
+
+Coalesce with a number n does no shuffle — it is a narrow transformation. So it is fast. But the output sizes can be uneven. You use coalesce to reduce the partition count, when you do not need any rebalancing.
+
+Repartition with a number n does a full shuffle. So it is slower. But the output sizes come out roughly equal. You use repartition to increase the partition count, or to rebalance skewed data.
+
+The classic case is coalesce of one, then write — to produce a single output file. That is cheap. But be careful — if the upstream stage had wildly uneven partitions, that single output partition now has to hold all of the data.
+
+So when in doubt, remember it this way. Coalesce to shrink. Repartition to grow, or to rebalance.

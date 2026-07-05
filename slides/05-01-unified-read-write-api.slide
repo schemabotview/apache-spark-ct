@@ -1,0 +1,19 @@
+# The unified read/write API
+
+## One fluent API, both directions
+
+```python
+df = spark.read.format("parquet").option(...).load("path/")
+df.write.format("parquet").mode("overwrite").save("path/")
+```
+
+- Short methods `.csv()` `.json()` `.parquet()` `.orc()` = aliases for `.format(...).load(...)`
+
+## Four everyday formats
+
+- **CSV** — header/explicit schema; human-readable, slow, text
+- **JSON** — inferred/explicit; semi-structured payloads
+- **Parquet** — schema in the footer; columnar, the analytics default
+- **ORC** — footer schema; columnar, common in Hadoop
+
+Reader and writer are **symmetric** — learn one, you know the other.

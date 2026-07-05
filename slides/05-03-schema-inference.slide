@@ -1,0 +1,15 @@
+# Schema inference vs explicit
+
+## Two ways, not equal
+
+- **Explicit** — fast (no scan), type-safe, nulls declared per column → **production**
+- **Inferred** — slow (a scan *before* your query), best-effort guess, all nullable → **exploration only**
+
+## Why inference bites
+
+- It's a **separate full/sampled scan** before the real job — a non-trivial pre-job on 100 GB
+- One malformed row **silently changes the type**: `credit_limit` was `decimal`; a `"NA"` makes it `string`; downstream `sum()` fails
+
+## The rule
+
+- **Always pass an explicit schema in production.**

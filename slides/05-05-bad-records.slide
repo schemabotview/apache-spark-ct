@@ -1,0 +1,13 @@
+# Bad-record handling — the `mode` option
+
+## When a row doesn't match the schema
+
+- **`PERMISSIVE`** *(default)* — null out the failed columns, **keep the row**
+  - With `columnNameOfCorruptRecord`, the raw bad string is stored there
+- **`DROPMALFORMED`** — silently drop the bad row
+- **`FAILFAST`** — throw on the first bad row
+
+## For production
+
+- **`badRecordsPath`** — write rejected rows to their own location for offline inspection
+- Keeps the pipeline running while still capturing what it skipped

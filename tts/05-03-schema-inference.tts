@@ -1,0 +1,11 @@
+Schema inference versus an explicit schema.
+
+When you read C-S-V or jason, there are two ways to get a schema, and they are not equal.
+
+An explicit schema is fast, because there is no scan. It is type-safe, because the types are guaranteed. And nulls are declared per column. This is what you want for production pipelines.
+
+An inferred schema is slow, because it does a full or sampled scan before your query even runs. It is only a best-effort type guess. And every column is assumed to be nullable. This is fine for exploratory work only.
+
+Let me stress why inference bites. It triggers a separate scan over the data, before the real job starts. On a one-hundred-gigabyte C-S-V, that is a non-trivial pre-job. And worse — a single malformed row can silently change the inferred type. Your credit-limit column was a decimal yesterday. Today, one row contains the string N-A. So now it is inferred as a string. And every downstream sum call fails.
+
+So the rule is simple. Always pass an explicit schema in production.

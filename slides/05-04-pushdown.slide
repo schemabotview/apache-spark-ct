@@ -1,0 +1,16 @@
+# Predicate & projection pushdown
+
+## Columnar formats (Parquet/ORC) read less
+
+- **Projection pushdown** — `select("a","b")` reads only those columns; the rest never decode
+  - CSV/JSON must read whole rows (no per-column layout)
+- **Predicate pushdown** — `filter("status='APPROVED'")` skips whole **row groups / stripes** via footer min/max stats
+
+## What pushes
+
+- Simple equality/range on top-level columns; filters on **partition** columns → **partition pruning**
+
+## What doesn't
+
+- **UDFs**, computed exprs (`(col+1)==5` → rewrite `col==4`), non-deterministic fns
+- Verify with `.explain()` → look for **`PushedFilters: [...]`**

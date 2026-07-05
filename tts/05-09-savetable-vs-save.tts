@@ -1,0 +1,9 @@
+Save-as-table versus save — the catalog versus the filesystem.
+
+There are two ways to write out a dataframe, and the crucial difference between them is discoverability.
+
+Save, with a path, writes files, and that is all. You get a directory of files that the catalog knows nothing about. To read them back, you have to go through spark dot read, dot format, dot load, with the path again.
+
+Save-as-table, with a name, writes the files, and also registers the table in the catalog. After that, you can just say spark dot table with the name, or query it directly in sequel — select star from the name.
+
+So which do you use? Use save-as-table for anything that someone else might want to query — that gives you sequel-style discoverability. Use save for file-only outputs, like intermediate staging, or exports for downstream tools that do not read the catalog. And recall the point from the last section — bucket-by needs save-as-table.

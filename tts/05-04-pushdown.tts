@@ -1,0 +1,11 @@
+Predicate and projection pushdown — what actually reads less data.
+
+Columnar formats, like parquet and O-R-C, give Spark two scan-layer wins that the row-oriented formats simply cannot offer.
+
+The first is projection pushdown. When you select just columns A and B, Spark reads only those columns from disk. The other columns never even get decoded. Compare that with C-S-V or jason, which have to read whole rows, even when you only want a subset — because there is no per-column layout.
+
+The second is predicate pushdown. When you filter on, say, status equals approved, Spark can skip entire row groups in parquet, or stripes in O-R-C, using the minimum and maximum statistics stored in the file footer. If a row group's status minimum and maximum are both declined, the whole group is skipped, without decoding a single row.
+
+So what pushes? Simple equality and range filters on top-level columns. And filters on partition columns, which become partition pruning — skipping whole directories, which is even stronger.
+
+And what does not push? User-defined functions inside the filter. Expressions that compute on the column — so col plus one equals five does not push, but col equals four does. And non-deterministic functions. To check, read the physical plan with explain, and look for pushed-filters in the scan node.
