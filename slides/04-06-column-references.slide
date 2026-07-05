@@ -1,0 +1,13 @@
+# Column references — the four ways
+
+## Four styles, each with a place
+
+- **`"col_name"`** (string) — simple `select` / `groupBy` / `sort`
+  - Can't apply functions or build expressions
+- **`col("col_name")`** — building expressions; `when`, `coalesce`, `F.sum` — **the safe default**
+- **`df["col_name"]`** — disambiguating columns in a **join**
+- **`expr("amount * 0.02")`** — pasting a SQL-style snippet *(parsed at runtime)*
+
+## Rule of thumb
+
+- **string** for a name · **`col()`** for an expression · **`df["c"]`** for joins · **`expr()`** sparingly

@@ -1,0 +1,13 @@
+# Schemas — StructType vs DDL string
+
+## Two ways, same result
+
+- **Programmatic** — `StructType([StructField("amount", DecimalType(18,2)), ...])`
+  - Verbose, explicit, easy to build from code
+- **DDL string** — `"transaction_id STRING, amount DECIMAL(18,2)"`
+  - Compact, SQL-flavored, easy to paste
+
+## Always prefer explicit schemas in production
+
+- **Inference triggers a full data scan** just to decide types — slow at scale
+- It can **guess wrong** — e.g. a sparse `is_flagged` read as `string`, not `boolean`

@@ -1,0 +1,13 @@
+The Spark API hierarchy.
+
+Spark has three structured-data interfaces, in increasing order of abstraction.
+
+At the bottom is the R-D-D — the original. It is functional and row-by-row, and crucially, it gets no Catalyst optimization and no Tungsten code generation.
+
+In the middle is the dataframe — a distributed table with a schema. This is the everyday interface.
+
+At the top is the dataset — a typed dataframe with compile-time type safety. But it is available in Scala and Java only.
+
+In pyspark, you only ever get dataframes. Internally, a dataframe is just an alias for a dataset of rows — the same engine, without a static type parameter.
+
+And here is the practical fact to carry forward. Sequel, the dataframe interface, and the Scala dataset all compile through Catalyst, and they produce identical execution plans. Only the R-D-D bypasses Catalyst — and that is exactly why the R-D-D is slower for structured data.

@@ -1,0 +1,9 @@
+Converting between the three types.
+
+Conversion is the central skill the exam tests, because each direction has a specific method, and a specific cost.
+
+Let's take the cheap conversions first — the ones that are just a wrapper, with no data movement. Spark dataframe to pandas-on-Spark is the pandas-api method. Pandas-on-Spark back to a Spark dataframe is to-spark. And going from a plain pandas dataframe into the distributed world — either from-pandas, or create-dataframe — has Spark read the pandas data and distribute it.
+
+Now the expensive conversions — the ones that pull every row back to the driver. Spark dataframe to pandas is to-pandas. And pandas-on-Spark to pandas is also to-pandas. Both of those bring all of the rows to the driver.
+
+Here is the rule of thumb. The methods with the lowercase word pandas in them — and I mean the plain word pandas, not the pandas-api wrapper — pull the data to the driver. Treat them exactly like collect. Only use them on small, or already-aggregated, results.

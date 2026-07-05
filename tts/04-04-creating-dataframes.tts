@@ -1,0 +1,15 @@
+Creating dataframes.
+
+There are five common ways to create a dataframe. The first three are workhorses for testing, and the last two are what you use every day.
+
+The first is create-dataframe with data and a schema — a Python list plus an explicit schema. That is the preferred form.
+
+The second is create-dataframe with just data — a Python list, and let Spark infer the schema.
+
+The third is range of n — a fast integer-sequence dataframe, handy for testing.
+
+The fourth is create-dataframe from a pandas dataframe — a round-trip from pandas.
+
+And the fifth is spark dot read, dot format, dot load — reading from real files. We cover that in the next module.
+
+In real pipelines, that last one dominates. The in-memory constructors are mostly for tests and demos.

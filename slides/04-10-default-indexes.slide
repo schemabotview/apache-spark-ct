@@ -1,0 +1,16 @@
+# Default indexes — the most-tested gotcha
+
+## Why it exists
+
+- pandas has a **built-in row index**; Spark DataFrames **do not** (no inherent order)
+- Pandas-on-Spark must **fabricate** one — the strategy has perf + correctness effects
+
+## Three strategies (`compute.default_index_type`)
+
+- **`sequence`** — one executor counts `0,1,2…` — sequential but **non-distributed** (slow)
+- **`distributed-sequence`** *(default)* — parallel from partition offsets — sequential, slight overhead — **the right answer**
+- **`distributed`** — monotonic ids — cheapest, fully parallel — **not sequential** (`0, 1, 8589934592…`)
+
+## The trap
+
+- Under `distributed`, index-dependent pandas code (`loc`, index joins, `.iloc`) **silently breaks**

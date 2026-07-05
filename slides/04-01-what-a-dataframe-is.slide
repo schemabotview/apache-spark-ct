@@ -1,0 +1,16 @@
+# What a DataFrame really is
+
+## A distributed table
+
+- One **schema** (column names + types) shared across the whole dataset
+- Rows **partitioned** across executor memory
+- Shorthand: **a DataFrame is an RDD with metadata**; Catalyst translates between the two
+
+## Partitioning is horizontal
+
+- Each partition holds a **subset of rows with all columns** — never a subset of columns
+- That's what enables parallel processing across executors
+
+## Four properties
+
+- **Immutable** · **Lazy** · **Schema-enforced** · **Partitioned**

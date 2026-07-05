@@ -1,0 +1,15 @@
+# Exploring a DataFrame
+
+## "What does this DataFrame contain?"
+
+- **`df.count()`** — number of rows *(action — runs a job)*
+- **`df.columns`** — column names as a list
+- **`df.dtypes`** — `(name, type_string)` tuples
+- **`df.schema`** / **`df.printSchema()`** — the full `StructType`, raw or pretty
+- **`df.describe()`** — count, mean, stddev, min, max; **`df.summary()`** adds quartiles
+- **`df.show(n, truncate=False)`** — print rows in full
+
+## Cheap vs not
+
+- `columns` / `dtypes` / `schema` are **metadata** — cheap
+- `count` / `describe` / `summary` / `show` are **actions** — run a job

@@ -1,0 +1,13 @@
+Exploring a dataframe.
+
+This is the cheatsheet for answering one question — what does this dataframe actually contain?
+
+Count gives you the number of rows. Note that count is an action, so it triggers a job.
+
+Columns gives you the column names as a Python list. D-types gives you name-and-type-string tuples. Schema gives you the full struct-type object, and print-schema pretty-prints it.
+
+Describe gives you the count, mean, standard deviation, minimum, and maximum for the numeric columns. And summary gives you all of that, plus the quartiles.
+
+Finally, show prints the actual rows. Pass truncate equals false when you want to see the full content of each cell.
+
+One thing to keep in mind. Columns, d-types, and schema are cheap metadata reads. But count, describe, summary, and show are actions — each one actually runs a job on the cluster.

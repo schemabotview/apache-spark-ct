@@ -1,0 +1,13 @@
+Column references — the four ways.
+
+Pyspark accepts four different styles for naming a column. They are mostly interchangeable, but each one has a place.
+
+The first is a plain string — just the column name in quotes. It is perfect for a simple select, group-by, or sort. But it cannot apply functions or build expressions.
+
+The second is col of the column name. This is for building expressions, and for passing a column into things like when, coalesce, or the sum function. This is the safest default.
+
+The third is dataframe, square brackets, column name. Its main job is disambiguating columns when you join two dataframes that share a column name. It is a bit verbose for normal use.
+
+The fourth is expr, with a sequel-style snippet inside — for example, expr of amount times zero point zero two. It is handy for pasting a sequel expression, but it is easy to typo, because the string is parsed at runtime.
+
+So, rule of thumb. Use a string when the interface just needs a name. Use col when you are building an expression. Use dataframe square brackets when you are joining. And use expr sparingly.

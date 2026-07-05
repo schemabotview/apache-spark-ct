@@ -1,0 +1,14 @@
+# Creating DataFrames
+
+## Five common ways
+
+- **`spark.createDataFrame(data, schema)`** — list + explicit schema *(preferred)*
+- **`spark.createDataFrame(data)`** — list + schema inference
+- **`spark.range(n)`** — fast integer-sequence DataFrame for tests
+- **`spark.createDataFrame(pandas_df)`** — round-trip from pandas
+- **`spark.read.format(...).load(path)`** — from real files *(next module)*
+
+## In practice
+
+- **`spark.read`** dominates real pipelines
+- The in-memory constructors are mostly for **tests and demos**

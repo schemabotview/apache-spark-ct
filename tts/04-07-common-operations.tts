@@ -1,0 +1,15 @@
+Common dataframe operations.
+
+This is the day-to-day toolkit, grouped into five families.
+
+The first family is select and project — select, and select-expr.
+
+The second is add, rename, and drop — with-column to add or replace, with-column-renamed to rename, and drop to remove.
+
+The third is filter. Filter and where are the same method. You combine conditions with the ampersand for and, the pipe for or, and the tilde for not. And here is the trap — you must parenthesize each individual condition, because Python's operator precedence will otherwise mislead you.
+
+The fourth is nulls — is-null, is-not-null, drop-n-a, fill-n-a, and coalesce.
+
+And the fifth is cast, sort, and dedupe — the cast method, order-by with descending, and distinct versus drop-duplicates on a specific set of columns.
+
+Remember that these are all transformations. They are lazy, they chain, and Catalyst fuses them together when an action finally fires.

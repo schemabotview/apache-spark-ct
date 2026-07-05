@@ -1,0 +1,9 @@
+Schemas — struct-type versus the D-D-L string.
+
+There are two ways to define a schema, and both produce the exact same result, so pick whichever reads better in your code.
+
+The first is programmatic. You build a struct-type out of struct-fields — one field per column, each with a name and a type. It is verbose and explicit, and it is easy to build up from code.
+
+The second is a D-D-L string. You write the columns as one sequel-flavored string — for example, transaction-id string, amount decimal, timestamp. It is compact and easy to paste.
+
+Now, here is the rule that matters. Always prefer an explicit schema in production. Schema inference does work, but it triggers a full scan of the data, just to decide the types. That is slow on large datasets. And it can guess wrong — for instance, reading a sparse is-flagged column as a string, when what you actually wanted was a boolean.

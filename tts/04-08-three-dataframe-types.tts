@@ -1,0 +1,11 @@
+Three dataframe types — keep them straight.
+
+There are three different things all called a dataframe, and the exam wants you to keep them straight.
+
+The first is the pandas dataframe. It lives entirely in driver memory. Use it for final-mile analysis, for plotting, and for small fixtures.
+
+The second is the pandas-on-Spark dataframe. This one is distributed across the executors. Use it when you want pandas syntax, but at Spark scale.
+
+The third is the Spark dataframe. It is also distributed, and it is the native interface — the best performance, and the most features.
+
+So the key relationship is this. The first one is single-machine. The other two are distributed, over the very same engine. And pandas-on-Spark is simply a Spark dataframe with a pandas-style index added on top. That added index is exactly where the gotchas in the next two sections come from.

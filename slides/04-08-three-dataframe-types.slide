@@ -1,0 +1,15 @@
+# Three DataFrame types — keep them straight
+
+## All called "DataFrame" — very different
+
+- **pandas** (`pandas.DataFrame`) — **driver memory only**
+  - Final-mile analysis, plotting, small fixtures
+- **Pandas-on-Spark** (`pyspark.pandas.DataFrame`) — **distributed**
+  - pandas *syntax* at Spark *scale*
+- **Spark** (`pyspark.sql.DataFrame`) — **distributed**
+  - Native API — best performance, most features
+
+## The key relationship
+
+- The first is single-machine; the other two are distributed on the same engine
+- Pandas-on-Spark = a Spark DataFrame **+ a pandas-style index** (→ next two gotchas)

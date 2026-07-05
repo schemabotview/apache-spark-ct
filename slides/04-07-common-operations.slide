@@ -1,0 +1,14 @@
+# Common DataFrame operations
+
+## The day-to-day toolkit — five families
+
+- **Select / project** — `select`, `selectExpr`
+- **Add / rename / drop** — `withColumn`, `withColumnRenamed`, `drop`
+- **Filter** — `filter` ≡ `where`; combine with `&` `|` `~` and **parenthesize each condition**
+- **Nulls** — `isNull`, `isNotNull`, `dropna`, `fillna`, `coalesce(...)`
+- **Cast / sort / dedupe** — `.cast()`, `orderBy(desc(...))`, `distinct()` vs `dropDuplicates(["col"])`
+
+## Remember
+
+- All **transformations** — lazy, chainable, fused by Catalyst when an action fires
+- The parenthesis trap: `df.filter((a > 1) & (b < 2))`, not `a > 1 & b < 2`

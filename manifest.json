@@ -286,6 +286,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "04-dataframes",
+      "title": "DataFrames",
+      "sections": [
+        {
+          "heading": "What a DataFrame really is",
+          "notebook": "notebooks/04-01-what-a-dataframe-is.ipynb",
+          "slide": "slides/04-01-what-a-dataframe-is.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "The Spark API hierarchy",
+          "notebook": "notebooks/04-02-api-hierarchy.ipynb",
+          "slide": "slides/04-02-api-hierarchy.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-rdd", "b-df"],
+          "highlight": ["b-rdd", "b-df", "b-sql"],
+          "spine": true
+        },
+        {
+          "heading": "Schemas — StructType vs DDL string",
+          "notebook": "notebooks/04-03-schemas.ipynb",
+          "slide": "slides/04-03-schemas.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-create"],
+          "highlight": ["b-df-structtype", "b-df-ddl"],
+          "spine": true
+        },
+        {
+          "heading": "Creating DataFrames",
+          "notebook": "notebooks/04-04-creating-dataframes.ipynb",
+          "slide": "slides/04-04-creating-dataframes.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-create"],
+          "highlight": ["b-df-createdf", "b-df-sql-create", "b-df-read"],
+          "spine": true
+        },
+        {
+          "heading": "Exploring a DataFrame",
+          "notebook": "notebooks/04-05-exploring.ipynb",
+          "slide": "slides/04-05-exploring.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-actions"],
+          "highlight": ["b-df-act-show", "b-df-act-print", "b-df-act-count", "b-df-act-desc"],
+          "spine": true
+        },
+        {
+          "heading": "Column references — the four ways",
+          "notebook": "notebooks/04-06-column-references.ipynb",
+          "slide": "slides/04-06-column-references.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-col"],
+          "highlight": ["b-df-colstr", "b-df-colfn", "b-df-expr", "b-df-dfcol", "b-df-dfidx"],
+          "spine": true
+        },
+        {
+          "heading": "Common DataFrame operations",
+          "notebook": "notebooks/04-07-common-operations.ipynb",
+          "slide": "slides/04-07-common-operations.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-trans"],
+          "highlight": ["b-df-t-select", "b-df-t-withcol", "b-df-t-filter", "b-df-t-drop"],
+          "spine": true
+        },
+        {
+          "heading": "Three DataFrame types — keep them straight",
+          "notebook": "notebooks/04-08-three-dataframe-types.ipynb",
+          "slide": "slides/04-08-three-dataframe-types.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df", "b-ps"],
+          "highlight": ["b-df", "b-ps"],
+          "spine": true
+        },
+        {
+          "heading": "Converting between the three types",
+          "notebook": "notebooks/04-09-converting-types.ipynb",
+          "slide": "slides/04-09-converting-types.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-ps"],
+          "highlight": ["b-ps-papi", "b-ps-fp", "b-ps-tpd"],
+          "spine": true
+        },
+        {
+          "heading": "Default indexes — the most-tested gotcha",
+          "notebook": "notebooks/04-10-default-indexes.ipynb",
+          "slide": "slides/04-10-default-indexes.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-ps-index"],
+          "highlight": ["b-ps-idx-seq", "b-ps-idx-dist", "b-ps-idx-ds"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

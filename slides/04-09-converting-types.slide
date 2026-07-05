@@ -1,0 +1,17 @@
+# Converting between the three types
+
+## Cheap — a wrapper, no data movement
+
+- **Spark DF → Pandas-on-Spark**: `sdf.pandas_api()`
+- **Pandas-on-Spark → Spark DF**: `psdf.to_spark()`
+- **pandas → distributed**: `ps.from_pandas(pdf)` · `spark.createDataFrame(pdf)`
+
+## Expensive — all rows to the driver
+
+- **Spark DF → pandas**: `sdf.toPandas()`
+- **Pandas-on-Spark → pandas**: `psdf.to_pandas()`
+
+## Rule of thumb
+
+- Methods with the word **`pandas`** (not `pandas_api`) **pull to the driver**
+- Treat them like `collect()` — small or already-aggregated results only

@@ -1,0 +1,7 @@
+What a dataframe really is.
+
+A dataframe is a distributed table. It has one schema — the column names and their types — shared across the whole dataset, plus rows partitioned across executor memory. A useful shorthand is this: a dataframe is an R-D-D with metadata, where the column names are just human-friendly aliases for the fields, and Catalyst is the translation layer between the two.
+
+Now, the partitioning is always horizontal. Each partition holds a subset of the rows, but with all of their columns — never a subset of columns. That horizontal split is exactly what lets Spark process the partitions in parallel across the executors.
+
+Four properties define a dataframe. It is immutable, so every transformation returns a new dataframe. It is lazy, so transformations build a plan, and an action executes it. It is schema-enforced, so every row matches the same column types. And it is partitioned, so the rows are split across partitions for parallel processing.

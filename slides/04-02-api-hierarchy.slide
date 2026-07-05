@@ -1,0 +1,16 @@
+# The Spark API hierarchy
+
+## Three structured APIs, low → high
+
+- **RDD** — original, functional, row-by-row — **no Catalyst, no Tungsten**
+- **DataFrame** — a distributed table with a schema — the everyday API
+- **Dataset[T]** — a typed DataFrame, compile-time safety — **Scala / Java only**
+
+## In PySpark
+
+- You only get **DataFrames** — internally just `Dataset[Row]` (no static type param)
+
+## The fact that matters
+
+- **SQL, DataFrame, and Dataset all compile through Catalyst** → identical plans
+- Only **RDD bypasses Catalyst** — why it's slower on structured data
