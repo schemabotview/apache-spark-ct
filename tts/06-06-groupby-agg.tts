@@ -1,0 +1,7 @@
+Group-by and agg.
+
+Group-by partitions the rows by one or more keys. And agg applies one or more aggregate functions to each of those groups. Both are lazy, so execution waits for an action.
+
+Inside agg, you use the aggregate functions from the library — count, count-distinct, sum, average, min, max, collect-list, and collect-set. And you can alias each result, so for example, agg of sum of amount, aliased as total.
+
+Now, what happens under the hood? Group-by triggers a shuffle — it is a wide transformation. But before the shuffle, Catalyst does a map-side partial aggregate. That is the very same map-side-combine win you saw earlier with reduce-by-key. And it is one more reason to prefer the dataframe group-by over hand-rolled R-D-D grouping — you get the efficient combine for free.

@@ -1,0 +1,11 @@
+Lag, lead, and running aggregates.
+
+Two more families of window functions, both built on the frame.
+
+First, the offset functions — lag and lead. Within a partition, lag, with a column, an offset n, and a default, looks back n rows. And lead, with the same arguments, looks forward n rows. Both return the default — or null — at the partition boundary. These are perfect for delta calculations, like days since the previous transaction, or time to the next event.
+
+Second, the running aggregates, which are all about the frame. Rows-between counts physical row positions, relative to the current row. Range-between, by contrast, counts the value range of the order-by column — which is what you want when the order-by column is a number or a date, and you want something like all rows within plus-or-minus seven days.
+
+There are three frames worth memorizing. A cumulative frame is rows-between unbounded-preceding and current-row. An n-row trailing window is rows-between negative-n and current-row. And a centered n-row window is rows-between negative-n and positive-n.
+
+And if you remember one thing from this section, make it this — rows versus range is the most-tested window distinction. Rows is a physical row offset. Range is a value offset.

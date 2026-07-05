@@ -1,0 +1,17 @@
+# Joins — types & the duplicate-column trap
+
+## `df1.join(df2, on, how)` — six kinds
+
+- **`inner`** (default) · **`left`** / **`right`** / **`full`** (outer, null-fill)
+- **`left_semi`** — rows of `df1` *with* a match (no `df2` cols)
+- **`left_anti`** — rows of `df1` *without* a match · **`cross`** — Cartesian
+
+## Two ways to name the key
+
+- **String** `join(df2, "k")` — same name → Spark **de-duplicates** the key
+- **Expression** `df1.x == df2.y` — different names → both columns survive
+
+## The trap
+
+- Expression form on same-named cols → **two** `k` columns → `select("k")` is **ambiguous**
+- Null keys never match (null-unsafe `=`) → use **`eqNullSafe`** if needed

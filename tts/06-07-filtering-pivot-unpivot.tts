@@ -1,0 +1,11 @@
+Filtering groups, pivot, and unpivot.
+
+Three group-shaping tools here.
+
+The first is filtering groups. Spark has no having keyword, the way sequel does. Instead, you simply chain a filter after the agg, to filter on an aggregated column. So — group-by a column, agg the sum of x as t, then filter where t is greater than one hundred.
+
+The second is pivot. Pivot rotates a column's distinct values into separate columns. And there is one strong recommendation — always pass the value list explicitly. When you do, Spark skips the discovery scan it would otherwise run to find the distinct values, and it also locks in the output column order.
+
+The third is unpivot — the inverse of pivot, rotating columns back into rows. There are three forms, depending on your Spark version. Stack, used through select-expr, is a sequel-style expression that works on all three-point-x versions, including older clusters. And the dataframe methods, unpivot and its alias melt, are available from Spark three point four onward, and will feel familiar if you came from pandas.
+
+The typical use case — a wide reporting table, with one column per category, becomes a long, category-and-value table, ready for downstream charting or storage.

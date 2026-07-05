@@ -1,0 +1,13 @@
+# Combining DataFrames — union vs unionByName
+
+## Both stack rows — they differ on column pairing
+
+- **`union`** — pairs columns **positionally** (by index); names ignored
+  - Mismatched-but-compatible schemas **silently mix wrong columns** — no error
+- **`unionByName`** — pairs columns **by name**
+  - Missing column → `AnalysisException` (unless `allowMissingColumns=True` → null-fill)
+
+## The rule
+
+- **Prefer `unionByName`** unless you truly need positional pairing — a favorite exam trap
+- `intersect` / `except` also stack vertically, comparing **whole rows**

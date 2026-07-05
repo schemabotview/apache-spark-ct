@@ -1,0 +1,13 @@
+Ranking — row-number, rank, dense-rank, and n-tile.
+
+These are four ranking functions that run over a window. And the entire difference between them is how they handle ties. Picture three rows, where the first two are tied.
+
+Row-number gives every row a unique, sequential number. Ties are broken arbitrarily. So the three rows get one, two, three.
+
+Rank lets the tied rows share the same rank, and then the next rank skips ahead. So you get one, one, three.
+
+Dense-rank also lets the tied rows share the rank, but it leaves no gap. So you get one, one, two.
+
+And n-tile of n assigns each row to one of n quantile buckets.
+
+The classic use case is top-n per group. You apply row-number over a window that partitions by the group and orders by the metric descending, and then you filter to the rows where the rank is less than or equal to n.

@@ -1,0 +1,13 @@
+Window functions — the concept, and the spec.
+
+A window function computes a value, per row, using a frame of neighboring rows. And here is the crucial difference from group-by — the original rows survive. There is no collapse. That is the whole point of a window function. You can compute a rank, or a running total, or a value compared to the previous row, and place it right alongside the raw data.
+
+A window spec has three parts.
+
+The first is partition-by. This groups the rows, and the frame resets at each partition boundary.
+
+The second is order-by. This defines the order of the rows within each partition.
+
+And the third is the frame itself. You define it with either rows-between, using physical row offsets, or range-between, using value offsets along the order-by column.
+
+Two things to remember about defaults. The defaults differ by function — ranking functions ignore the frame entirely, while aggregate functions default to the running frame. And the frame boundaries are named by three constants — unbounded-preceding, current-row, and unbounded-following.

@@ -1,0 +1,11 @@
+Combining dataframes vertically — union versus union-by-name.
+
+Both of these stack two dataframes row-wise, one on top of the other. The difference is entirely in how they pair up the columns across the two inputs.
+
+Union pairs columns positionally, by index. The column names are completely ignored. So if the two schemas do not line up positionally, but the types happen to be compatible, union will silently mix the wrong columns together — and it gives you no error at all.
+
+Union-by-name, on the other hand, pairs columns by name. If a column is present on one side but missing on the other, it raises an analysis exception — unless you pass allow-missing-columns equals true, in which case it fills the missing side with null.
+
+So here is the rule. Prefer union-by-name, unless you specifically need positional pairing. The exam loves this trap, and so does real production data.
+
+And one related note. The set operations — intersect and except — also stack vertically, but they compare whole rows against each other.

@@ -1,0 +1,11 @@
+The function library — pyspark dot sequel dot functions.
+
+Most of the data work from here on calls into pyspark dot sequel dot functions. This is Spark's library of column-level functions — for strings, dates, arrays, conditionals, and aggregations. There are three rules worth internalizing.
+
+First, import explicitly. Either import the specific names you need — col, when, sum, and so on — or alias the whole module, commonly as capital F. Either style is fine.
+
+Second, and this is the important one — the java-virtual-machine functions beat Python user-defined functions. Every function in this library runs inside the Spark java virtual machine, and it benefits from Tungsten code generation. A Python user-defined function, by contrast, requires a serialization round-trip, per row, through a separate Python worker. That is orders of magnitude slower.
+
+Third, watch out for builtin collisions. Sum, min, max, round, and filter all clash with Python builtins. So import them with an alias — for example, sum as underscore-sum — so that a stray sum call does not quietly hit the Python builtin instead of the Spark function.
+
+Module four already covered select, filter, with-column, casting, sorting, and null handling. This module builds the column expressions on top of those.

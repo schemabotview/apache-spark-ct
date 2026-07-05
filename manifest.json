@@ -478,6 +478,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "06-transformations-and-aggregations",
+      "title": "Transformations & Aggregations",
+      "sections": [
+        {
+          "heading": "The function library — pyspark.sql.functions",
+          "notebook": "notebooks/06-01-function-library.ipynb",
+          "slide": "slides/06-01-function-library.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-fns"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "Column expressions — string, date, array functions",
+          "notebook": "notebooks/06-02-column-expressions.ipynb",
+          "slide": "slides/06-02-column-expressions.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-fns"],
+          "highlight": ["b-df-fn-str", "b-df-fn-date", "b-df-fn-array"],
+          "spine": true
+        },
+        {
+          "heading": "Conditional columns — when / otherwise",
+          "notebook": "notebooks/06-03-conditional-columns.ipynb",
+          "slide": "slides/06-03-conditional-columns.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-col"],
+          "highlight": ["b-df-when"],
+          "spine": true
+        },
+        {
+          "heading": "Combining DataFrames — union vs unionByName",
+          "notebook": "notebooks/06-04-combining-dataframes.ipynb",
+          "slide": "slides/06-04-combining-dataframes.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-joins"],
+          "highlight": ["b-df-set-union", "b-df-set-inter"],
+          "spine": true
+        },
+        {
+          "heading": "Joins — types, syntax, and the duplicate-column trap",
+          "notebook": "notebooks/06-05-joins.ipynb",
+          "slide": "slides/06-05-joins.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-joins"],
+          "highlight": ["b-df-j-inner", "b-df-j-left", "b-df-j-right", "b-df-j-outer", "b-df-j-semi"],
+          "spine": true
+        },
+        {
+          "heading": "groupBy + agg",
+          "notebook": "notebooks/06-06-groupby-agg.ipynb",
+          "slide": "slides/06-06-groupby-agg.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-agg"],
+          "highlight": ["b-df-a-groupby", "b-df-a-agg", "b-df-a-cntdist"],
+          "spine": true
+        },
+        {
+          "heading": "Filtering groups, pivot & unpivot",
+          "notebook": "notebooks/06-07-filtering-pivot-unpivot.ipynb",
+          "slide": "slides/06-07-filtering-pivot-unpivot.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-agg"],
+          "highlight": ["b-df-a-pivot", "b-df-a-stack", "b-df-a-rollup"],
+          "spine": true
+        },
+        {
+          "heading": "Window functions — concept and spec",
+          "notebook": "notebooks/06-08-window-functions.ipynb",
+          "slide": "slides/06-08-window-functions.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-agg"],
+          "highlight": ["b-df-w-over"],
+          "spine": true
+        },
+        {
+          "heading": "Ranking — row_number, rank, dense_rank, ntile",
+          "notebook": "notebooks/06-09-ranking.ipynb",
+          "slide": "slides/06-09-ranking.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-agg"],
+          "highlight": ["b-df-w-rank", "b-df-w-over"],
+          "spine": true
+        },
+        {
+          "heading": "lag / lead & running aggregates",
+          "notebook": "notebooks/06-10-lag-lead-running.ipynb",
+          "slide": "slides/06-10-lag-lead-running.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-agg"],
+          "highlight": ["b-df-w-over", "b-df-w-rank"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

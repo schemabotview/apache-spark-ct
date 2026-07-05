@@ -1,0 +1,18 @@
+# Window functions — concept and spec
+
+## Per-row, over a frame of neighbors
+
+- Computes a value **per row** using nearby rows
+- **Original rows survive** — no collapse (unlike `groupBy`)
+- Rank / running total / "vs. previous row" **alongside** the raw data
+
+## A window spec has three parts
+
+1. **`partitionBy(...)`** — groups rows; the frame resets at each boundary
+2. **`orderBy(...)`** — row order within a partition
+3. **Frame** — `rowsBetween` (row offsets) or `rangeBetween` (value offsets)
+
+## Defaults & boundaries
+
+- Ranking fns ignore the frame; aggregates default to the **running** frame
+- `Window.unboundedPreceding` · `currentRow` · `unboundedFollowing`

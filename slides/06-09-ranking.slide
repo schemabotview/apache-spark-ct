@@ -1,0 +1,15 @@
+# Ranking functions
+
+## The difference is tie handling
+
+*(three rows, first two tie)*
+
+- **`row_number()`** — unique sequential, ties broken arbitrarily → **`1, 2, 3`**
+- **`rank()`** — tied share, next rank **skips** → **`1, 1, 3`**
+- **`dense_rank()`** — tied share, **no gap** → **`1, 1, 2`**
+- **`ntile(n)`** — assigns rows to one of `n` quantile buckets
+
+## The classic use — top-N per group
+
+- `row_number()` over `partitionBy(group).orderBy(desc(metric))`
+- then filter to `rank <= N`

@@ -1,0 +1,14 @@
+# The function library
+
+## `pyspark.sql.functions`
+
+- Column-level functions for **strings, dates, arrays, conditionals, aggregations**
+
+## Three rules
+
+- **Import explicitly** — `from pyspark.sql.functions import col, when, sum as _sum`
+  - or `import pyspark.sql.functions as F`
+- **JVM functions beat Python UDFs** — they get Tungsten codegen; a UDF pays a per-row serialization round-trip
+- **Watch builtin collisions** — `sum`, `min`, `max`, `round`, `filter` clash with Python — **alias them**
+
+Module 04 covered `select` / `filter` / `withColumn`; this builds the **expressions** on top.

@@ -1,0 +1,16 @@
+# groupBy + agg
+
+## Group, then aggregate
+
+- **`groupBy(...)`** partitions rows by one or more keys
+- **`agg(...)`** applies aggregate functions per group — both **lazy**
+
+## Inside agg
+
+- `count`, `countDistinct`, `sum`, `avg`, `min`, `max`, `collect_list`, `collect_set`
+- Alias each result: `agg(_sum("amount").alias("total"))`
+
+## Under the hood
+
+- `groupBy` is a **wide** transformation → a **shuffle**
+- Catalyst does a **map-side partial aggregate** first (the `reduceByKey` win) — one more reason to prefer it over RDD grouping

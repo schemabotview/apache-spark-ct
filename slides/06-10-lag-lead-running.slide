@@ -1,0 +1,17 @@
+# lag / lead & running aggregates
+
+## Offset — look back / forward
+
+- **`lag(col, n, default)`** — `n` rows **back** · **`lead(col, n, default)`** — `n` rows **forward**
+- Returns the default (or `null`) at the partition boundary
+- For deltas: "days since previous transaction," "time to next event"
+
+## Running aggregates — the frame
+
+- **`rowsBetween`** — physical **row** positions
+- **`rangeBetween`** — **value** range of the order-by column (e.g. ±7 days)
+
+## Three frames to memorize
+
+- **Cumulative** — `rowsBetween(unboundedPreceding, currentRow)`
+- **Trailing N** — `rowsBetween(-N, currentRow)` · **Centered** — `rowsBetween(-N, N)`

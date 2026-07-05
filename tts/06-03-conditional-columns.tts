@@ -1,0 +1,9 @@
+Conditional columns — when and otherwise.
+
+This is the dataframe version of a sequel case-when. You chain a when, with a condition and a value, for each branch, and you finish with an otherwise, giving the default. And you should always provide that otherwise — because without it, any unmatched rows silently become null.
+
+Now here is the key gotcha, and it surprises people coming from regular programming. Every branch is evaluated, for every row. Unlike Python's if-elif, where evaluation stops at the first true condition, Spark computes every single result expression in the chain, for every row, and only then picks the one whose condition matched.
+
+So consider a guard like — when divisor is not equal to zero, compute value divided by divisor, otherwise zero. That does not save you from divide-by-zero. The division is computed for every row, including the rows where the divisor is zero. So warnings, or nulls, can leak through.
+
+There are two safe fixes. One — coalesce the input, so that null propagates harmlessly. For example, value divided by — when divisor equals zero, null, otherwise divisor. Two — pull the unsafe expression out of the chain entirely, into its own with-column that uses null-safe operators.

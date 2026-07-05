@@ -1,0 +1,12 @@
+# Column expressions
+
+## Vectorized, JVM-resident, over three types
+
+- **String** — `upper`/`lower`, `trim`, `length`, `substring`, `concat_ws`, `split`, `regexp_replace`, `regexp_extract`
+- **Date & timestamp** — `year`/`month`/`hour`, `date_format`, `to_date`, `datediff`, `date_add`, `current_date`, `date_trunc`
+- **Array** — `array`, `array_contains`, `size`, `array_distinct`/`union`/`intersect`, `flatten`
+  - **`explode`** — one row per element (`explode_outer` keeps a null array as one null row)
+
+## The theme
+
+- Reach for a **built-in before a UDF** — it stays in the JVM and gets optimized

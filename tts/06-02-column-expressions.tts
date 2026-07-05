@@ -1,0 +1,11 @@
+Column expressions — string, date, and array functions.
+
+The bulk of the library is vectorized, java-virtual-machine-resident functions, over three column types.
+
+For strings, you have upper and lower for case, trim, length, substring, concat-with-separator, split on a regular expression, regex-replace, regex-extract to pull out a capture group, and left-pad and right-pad.
+
+For dates and timestamps, you have the extractors — year, month, day-of-week, hour — plus date-format to turn a date into a string, to-date and to-timestamp to parse a string, date-diff and months-between for durations, date-add and date-subtract for arithmetic, current-date for now, and date-truncate to round to a unit.
+
+And for arrays, you have array to build one, array-contains, size, the set operations — array-distinct, union, intersect, and except — flatten, and explode. Explode gives you one row per element. And note the variant, explode-outer, which keeps a null array as a single null row, rather than dropping it.
+
+The theme across all three is the same. Reach for a built-in function before you write a user-defined function, because the built-in stays inside the java virtual machine and gets optimized.

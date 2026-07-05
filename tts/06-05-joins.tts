@@ -1,0 +1,9 @@
+Joins — the types, the syntax, and the duplicate-column trap.
+
+The method is dataframe-one dot join, with a second dataframe, an on-condition, and a how. There are six how-values worth knowing. Inner, which is the default, keeps rows where the key matches on both sides. Left, right, and full — the outer joins — keep all rows from one side, or both, and null-fill the missing side. Left-semi keeps rows from the left that have a match, but adds none of the right side's columns. Left-anti keeps rows from the left that have no match. And cross gives you the full cartesian product — use it with caution.
+
+Now, there are two ways to name the join key, and the trap lives right here. The first way is a string — join with the key name in quotes — and you use this when both sides share the column name. Spark then de-duplicates the join column for you. The second way is a boolean expression — dataframe-one dot x equals dataframe-two dot y — and you use this when the names differ. In that case, both columns survive in the result.
+
+Here is the trap. If you use the expression form on columns that have the same name — dataframe-one dot k equals dataframe-two dot k — the result ends up with two columns both called k. So any later select of k raises the error, reference k is ambiguous. The fix is to use the string form whenever the names match.
+
+And one more note. Joins use null-unsafe equality by default, so null keys never match. If you genuinely need null keys to match each other, use the equals-null-safe operator.

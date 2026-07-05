@@ -1,0 +1,16 @@
+# Filtering groups, pivot & unpivot
+
+## Filtering groups — no `HAVING` keyword
+
+- Chain **`.filter()` after `.agg()`**:
+  - `groupBy("c").agg(_sum("x").alias("t")).filter(col("t") > 100)`
+
+## Pivot — distinct values → columns
+
+- **Always pass the value list explicitly**: `pivot("col", [...])`
+- Skips the discovery scan and **locks the output column order**
+
+## Unpivot — columns → rows (inverse)
+
+- **`stack(n, ...)`** via `selectExpr` — all 3.x
+- **`df.unpivot(...)`** / **`df.melt(...)`** — Spark 3.4+ (pandas-familiar)
