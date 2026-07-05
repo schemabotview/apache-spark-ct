@@ -1,0 +1,15 @@
+# Actions — eager
+
+## Each one fires a Spark job
+
+- Plan runs through Catalyst, materializes → pandas-side data or a write
+
+## Five families
+
+- **Display** — `head`, `tail`, `print(df)`
+- **Driver materialization** — `to_pandas`, `.values`, `.iloc[i]` — **pull to driver** (treat like `collect()`)
+- **Reductions** — `count`, `sum`, `mean`, `describe`, `len(df)`
+- **Writes** — `to_csv`, `to_parquet`, `to_table`
+- **Iteration** — `iterrows`, `itertuples` — **avoid on large data**
+
+The dangerous families = driver materialization + iteration — **module 09's driver-bottleneck lesson**, in pandas clothing.

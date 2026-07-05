@@ -9,6 +9,7 @@
           "heading": "The problem Spark solves",
           "notebook": "notebooks/01-01-the-problem-spark-solves.ipynb",
           "slide": "slides/01-01-the-problem-spark-solves.slide",
+          "audio": "audio/01-01-the-problem-spark-solves.wav",
           "scene": "spark-architecture",
           "spine": true,
           "role": "hook"
@@ -17,81 +18,152 @@
           "heading": "What Spark actually is",
           "notebook": "notebooks/01-02-what-spark-is.ipynb",
           "slide": "slides/01-02-what-spark-is.slide",
+          "audio": "audio/01-02-what-spark-is.wav",
           "scene": "spark-architecture",
-          "focus": ["master", "worker-a", "worker-b"],
-          "highlight": ["driver", "exec-a", "exec-b"],
+          "focus": [
+            "master",
+            "worker-a",
+            "worker-b"
+          ],
+          "highlight": [
+            "driver",
+            "exec-a",
+            "exec-b"
+          ],
           "spine": true
         },
         {
           "heading": "The cluster — driver, executors, cluster manager",
           "notebook": "notebooks/01-03-the-cluster.ipynb",
           "slide": "slides/01-03-the-cluster.slide",
+          "audio": "audio/01-03-the-cluster.wav",
           "scene": "spark-architecture",
-          "focus": ["master", "cluster-mgr", "worker-a", "worker-b"],
-          "highlight": ["driver", "cluster-mgr", "exec-a", "exec-b"],
+          "focus": [
+            "master",
+            "cluster-mgr",
+            "worker-a",
+            "worker-b"
+          ],
+          "highlight": [
+            "driver",
+            "cluster-mgr",
+            "exec-a",
+            "exec-b"
+          ],
           "spine": true
         },
         {
           "heading": "Memory-first execution",
           "notebook": "notebooks/01-04-memory-first-execution.ipynb",
           "slide": "slides/01-04-memory-first-execution.slide",
+          "audio": "audio/01-04-memory-first-execution.wav",
           "scene": "spark-architecture",
-          "focus": ["worker-a"],
-          "highlight": ["heap-a", "unified-a", "execution-a", "storage-a"],
+          "focus": [
+            "worker-a"
+          ],
+          "highlight": [
+            "heap-a",
+            "unified-a",
+            "execution-a",
+            "storage-a"
+          ],
           "spine": true
         },
         {
           "heading": "Deployment modes & cluster managers",
           "notebook": "notebooks/01-05-deployment-modes.ipynb",
           "slide": "slides/01-05-deployment-modes.slide",
+          "audio": "audio/01-05-deployment-modes.wav",
           "scene": "spark-architecture",
-          "focus": ["cluster-mgr"],
-          "highlight": ["cluster-mgr", "mode-local", "mode-standalone", "mode-yarn", "mode-k8s", "mode-databricks"],
+          "focus": [
+            "cluster-mgr"
+          ],
+          "highlight": [
+            "cluster-mgr",
+            "mode-local",
+            "mode-standalone",
+            "mode-yarn",
+            "mode-k8s",
+            "mode-databricks"
+          ],
           "spine": true
         },
         {
           "heading": "From your code to distributed work",
           "notebook": "notebooks/01-06-code-to-distributed-work.ipynb",
           "slide": "slides/01-06-code-to-distributed-work.slide",
+          "audio": "audio/01-06-code-to-distributed-work.wav",
           "scene": "spark-architecture",
-          "focus": ["dag-scheduler"],
-          "highlight": ["job", "stage-1", "shuffle", "stage-2", "tasks"],
+          "focus": [
+            "dag-scheduler"
+          ],
+          "highlight": [
+            "job",
+            "stage-1",
+            "shuffle",
+            "stage-2",
+            "tasks"
+          ],
           "spine": true
         },
         {
           "heading": "When NOT to use Spark",
           "notebook": "notebooks/01-07-when-not-to-use-spark.ipynb",
           "slide": "slides/01-07-when-not-to-use-spark.slide",
+          "audio": "audio/01-07-when-not-to-use-spark.wav",
           "scene": "spark-architecture",
-          "focus": ["cluster-mgr"],
-          "highlight": ["mode-local"],
+          "focus": [
+            "cluster-mgr"
+          ],
+          "highlight": [
+            "mode-local"
+          ],
           "spine": true
         },
         {
           "heading": "Your first SparkSession",
           "notebook": "notebooks/01-08-first-sparksession.ipynb",
           "slide": "slides/01-08-first-sparksession.slide",
+          "audio": "audio/01-08-first-sparksession.wav",
           "scene": "spark-architecture",
-          "focus": ["master"],
-          "highlight": ["session"],
+          "focus": [
+            "master"
+          ],
+          "highlight": [
+            "session"
+          ],
           "spine": true
         },
         {
           "heading": "Hello Spark — a multi-step query",
           "notebook": "notebooks/01-09-hello-spark.ipynb",
           "slide": "slides/01-09-hello-spark.slide",
+          "audio": "audio/01-09-hello-spark.wav",
           "scene": "spark-architecture",
-          "focus": ["master"],
-          "highlight": ["session", "logical-plan", "job"],
+          "focus": [
+            "master"
+          ],
+          "highlight": [
+            "session",
+            "logical-plan",
+            "job"
+          ],
           "spine": true
         },
         {
           "heading": "RDD vs DataFrame vs Dataset — the API stack",
           "notebook": "notebooks/01-10-api-stack.ipynb",
           "slide": "slides/01-10-api-stack.slide",
+          "audio": "audio/01-10-api-stack.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd", "b-df"],
-          "highlight": ["b-rdd", "b-df"],
+          "focus": [
+            "b-rdd",
+            "b-df"
+          ],
+          "highlight": [
+            "b-rdd",
+            "b-df"
+          ],
           "spine": true
         }
       ]
@@ -104,6 +176,7 @@
           "heading": "Lazy evaluation — transformations vs actions",
           "notebook": "notebooks/02-01-lazy-evaluation.ipynb",
           "slide": "slides/02-01-lazy-evaluation.slide",
+          "audio": "audio/02-01-lazy-evaluation.wav",
           "scene": "spark-architecture",
           "spine": true,
           "role": "hook"
@@ -112,81 +185,142 @@
           "heading": "Lazy evaluation, in depth",
           "notebook": "notebooks/02-02-lazy-evaluation-in-depth.ipynb",
           "slide": "slides/02-02-lazy-evaluation-in-depth.slide",
+          "audio": "audio/02-02-lazy-evaluation-in-depth.wav",
           "scene": "spark-architecture",
-          "focus": ["catalyst"],
-          "highlight": ["session", "logical-plan", "optimized-plan"],
+          "focus": [
+            "catalyst"
+          ],
+          "highlight": [
+            "session",
+            "logical-plan",
+            "optimized-plan"
+          ],
           "spine": true
         },
         {
           "heading": "The four Catalyst plans",
           "notebook": "notebooks/02-03-catalyst-plans.ipynb",
           "slide": "slides/02-03-catalyst-plans.slide",
+          "audio": "audio/02-03-catalyst-plans.wav",
           "scene": "spark-architecture",
-          "focus": ["catalyst"],
-          "highlight": ["logical-plan", "analyzed-plan", "optimized-plan", "physical-plan"],
+          "focus": [
+            "catalyst"
+          ],
+          "highlight": [
+            "logical-plan",
+            "analyzed-plan",
+            "optimized-plan",
+            "physical-plan"
+          ],
           "spine": true
         },
         {
           "heading": "Reading plans with .explain()",
           "notebook": "notebooks/02-04-explain-modes.ipynb",
           "slide": "slides/02-04-explain-modes.slide",
+          "audio": "audio/02-04-explain-modes.wav",
           "scene": "spark-architecture",
-          "focus": ["catalyst"],
-          "highlight": ["physical-plan"],
+          "focus": [
+            "catalyst"
+          ],
+          "highlight": [
+            "physical-plan"
+          ],
           "spine": true
         },
         {
           "heading": "Tungsten — whole-stage codegen",
           "notebook": "notebooks/02-05-tungsten.ipynb",
           "slide": "slides/02-05-tungsten.slide",
+          "audio": "audio/02-05-tungsten.wav",
           "scene": "spark-architecture",
-          "focus": ["master"],
-          "highlight": ["tungsten", "physical-plan"],
+          "focus": [
+            "master"
+          ],
+          "highlight": [
+            "tungsten",
+            "physical-plan"
+          ],
           "spine": true
         },
         {
           "heading": "Adaptive Query Execution (AQE)",
           "notebook": "notebooks/02-06-adaptive-query-execution.ipynb",
           "slide": "slides/02-06-adaptive-query-execution.slide",
+          "audio": "audio/02-06-adaptive-query-execution.wav",
           "scene": "spark-architecture",
-          "focus": ["catalyst", "dag-scheduler"],
-          "highlight": ["optimized-plan", "dag-scheduler"],
+          "focus": [
+            "catalyst",
+            "dag-scheduler"
+          ],
+          "highlight": [
+            "optimized-plan",
+            "dag-scheduler"
+          ],
           "spine": true
         },
         {
           "heading": "The DAG — stages & shuffle boundaries",
           "notebook": "notebooks/02-07-the-dag.ipynb",
           "slide": "slides/02-07-the-dag.slide",
+          "audio": "audio/02-07-the-dag.wav",
           "scene": "spark-architecture",
-          "focus": ["dag-scheduler"],
-          "highlight": ["job", "stage-1", "shuffle", "stage-2", "tasks"],
+          "focus": [
+            "dag-scheduler"
+          ],
+          "highlight": [
+            "job",
+            "stage-1",
+            "shuffle",
+            "stage-2",
+            "tasks"
+          ],
           "spine": true
         },
         {
           "heading": "Spark Connect — the split-driver architecture",
           "notebook": "notebooks/02-08-spark-connect.ipynb",
           "slide": "slides/02-08-spark-connect.slide",
+          "audio": "audio/02-08-spark-connect.wav",
           "scene": "spark-architecture",
-          "focus": ["master", "cluster-mgr"],
-          "highlight": ["driver", "session"],
+          "focus": [
+            "master",
+            "cluster-mgr"
+          ],
+          "highlight": [
+            "driver",
+            "session"
+          ],
           "spine": true
         },
         {
           "heading": "Why Spark Connect exists",
           "notebook": "notebooks/02-09-why-spark-connect.ipynb",
           "slide": "slides/02-09-why-spark-connect.slide",
+          "audio": "audio/02-09-why-spark-connect.wav",
           "scene": "spark-architecture",
-          "focus": ["master"],
-          "highlight": ["session"],
+          "focus": [
+            "master"
+          ],
+          "highlight": [
+            "session"
+          ],
           "spine": true
         },
         {
           "heading": "What works (and what doesn't) in Connect mode",
           "notebook": "notebooks/02-10-connect-compatibility.ipynb",
           "slide": "slides/02-10-connect-compatibility.slide",
+          "audio": "audio/02-10-connect-compatibility.wav",
           "scene": "spark-architecture",
-          "focus": ["master"],
-          "highlight": ["session", "logical-plan", "job"],
+          "focus": [
+            "master"
+          ],
+          "highlight": [
+            "session",
+            "logical-plan",
+            "job"
+          ],
           "spine": true
         }
       ]
@@ -199,8 +333,11 @@
           "heading": "What an RDD actually is",
           "notebook": "notebooks/03-01-what-an-rdd-is.ipynb",
           "slide": "slides/03-01-what-an-rdd-is.slide",
+          "audio": "audio/03-01-what-an-rdd-is.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd"],
+          "focus": [
+            "b-rdd"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -208,81 +345,142 @@
           "heading": "Partitions — the unit of parallelism",
           "notebook": "notebooks/03-02-partitions.ipynb",
           "slide": "slides/03-02-partitions.slide",
+          "audio": "audio/03-02-partitions.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd-create"],
-          "highlight": ["b-rdd-parallelize", "b-rdd-numslices"],
+          "focus": [
+            "b-rdd-create"
+          ],
+          "highlight": [
+            "b-rdd-parallelize",
+            "b-rdd-numslices"
+          ],
           "spine": true
         },
         {
           "heading": "Lineage — how Spark recovers from failure",
           "notebook": "notebooks/03-03-lineage.ipynb",
           "slide": "slides/03-03-lineage.slide",
+          "audio": "audio/03-03-lineage.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd-narrow", "b-rdd-wide"],
-          "highlight": ["b-rdd-narrow", "b-rdd-wide"],
+          "focus": [
+            "b-rdd-narrow",
+            "b-rdd-wide"
+          ],
+          "highlight": [
+            "b-rdd-narrow",
+            "b-rdd-wide"
+          ],
           "spine": true
         },
         {
           "heading": "Creating RDDs & SparkContext",
           "notebook": "notebooks/03-04-creating-rdds.ipynb",
           "slide": "slides/03-04-creating-rdds.slide",
+          "audio": "audio/03-04-creating-rdds.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd-create"],
-          "highlight": ["b-rdd-parallelize", "b-rdd-numslices", "b-rdd-textfile", "b-rdd-whole"],
+          "focus": [
+            "b-rdd-create"
+          ],
+          "highlight": [
+            "b-rdd-parallelize",
+            "b-rdd-numslices",
+            "b-rdd-textfile",
+            "b-rdd-whole"
+          ],
           "spine": true
         },
         {
           "heading": "Transformations and actions — RDD edition",
           "notebook": "notebooks/03-05-transformations-and-actions.ipynb",
           "slide": "slides/03-05-transformations-and-actions.slide",
+          "audio": "audio/03-05-transformations-and-actions.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd"],
-          "highlight": ["b-rdd-narrow", "b-rdd-wide", "b-rdd-actions"],
+          "focus": [
+            "b-rdd"
+          ],
+          "highlight": [
+            "b-rdd-narrow",
+            "b-rdd-wide",
+            "b-rdd-actions"
+          ],
           "spine": true
         },
         {
           "heading": "Narrow vs wide transformations",
           "notebook": "notebooks/03-06-narrow-vs-wide.ipynb",
           "slide": "slides/03-06-narrow-vs-wide.slide",
+          "audio": "audio/03-06-narrow-vs-wide.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd-narrow", "b-rdd-wide"],
-          "highlight": ["b-rdd-narrow", "b-rdd-wide"],
+          "focus": [
+            "b-rdd-narrow",
+            "b-rdd-wide"
+          ],
+          "highlight": [
+            "b-rdd-narrow",
+            "b-rdd-wide"
+          ],
           "spine": true
         },
         {
           "heading": "Pair RDDs — the (key, value) view",
           "notebook": "notebooks/03-07-pair-rdds.ipynb",
           "slide": "slides/03-07-pair-rdds.slide",
+          "audio": "audio/03-07-pair-rdds.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd-pair"],
-          "highlight": ["b-rdd-pair", "b-rdd-maptopair"],
+          "focus": [
+            "b-rdd-pair"
+          ],
+          "highlight": [
+            "b-rdd-pair",
+            "b-rdd-maptopair"
+          ],
           "spine": true
         },
         {
           "heading": "reduceByKey vs groupByKey — the exam classic",
           "notebook": "notebooks/03-08-reduce-vs-group.ipynb",
           "slide": "slides/03-08-reduce-vs-group.slide",
+          "audio": "audio/03-08-reduce-vs-group.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd-pair"],
-          "highlight": ["b-rdd-rbk", "b-rdd-gbk"],
+          "focus": [
+            "b-rdd-pair"
+          ],
+          "highlight": [
+            "b-rdd-rbk",
+            "b-rdd-gbk"
+          ],
           "spine": true
         },
         {
           "heading": "Persistence — cache(), persist(), StorageLevel",
           "notebook": "notebooks/03-09-persistence.ipynb",
           "slide": "slides/03-09-persistence.slide",
+          "audio": "audio/03-09-persistence.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-cache"],
-          "highlight": ["b-perf-cache-c", "b-perf-cache-p", "b-perf-cache-u"],
+          "focus": [
+            "b-perf-cache"
+          ],
+          "highlight": [
+            "b-perf-cache-c",
+            "b-perf-cache-p",
+            "b-perf-cache-u"
+          ],
           "spine": true
         },
         {
           "heading": "RDD vs DataFrame — when to actually reach for each",
           "notebook": "notebooks/03-10-rdd-vs-dataframe.ipynb",
           "slide": "slides/03-10-rdd-vs-dataframe.slide",
+          "audio": "audio/03-10-rdd-vs-dataframe.wav",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd", "b-df"],
-          "highlight": ["b-rdd", "b-df"],
+          "focus": [
+            "b-rdd",
+            "b-df"
+          ],
+          "highlight": [
+            "b-rdd",
+            "b-df"
+          ],
           "spine": true
         }
       ]
@@ -296,7 +494,9 @@
           "notebook": "notebooks/04-01-what-a-dataframe-is.ipynb",
           "slide": "slides/04-01-what-a-dataframe-is.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df"],
+          "focus": [
+            "b-df"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -305,8 +505,15 @@
           "notebook": "notebooks/04-02-api-hierarchy.ipynb",
           "slide": "slides/04-02-api-hierarchy.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-rdd", "b-df"],
-          "highlight": ["b-rdd", "b-df", "b-sql"],
+          "focus": [
+            "b-rdd",
+            "b-df"
+          ],
+          "highlight": [
+            "b-rdd",
+            "b-df",
+            "b-sql"
+          ],
           "spine": true
         },
         {
@@ -314,8 +521,13 @@
           "notebook": "notebooks/04-03-schemas.ipynb",
           "slide": "slides/04-03-schemas.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-create"],
-          "highlight": ["b-df-structtype", "b-df-ddl"],
+          "focus": [
+            "b-df-create"
+          ],
+          "highlight": [
+            "b-df-structtype",
+            "b-df-ddl"
+          ],
           "spine": true
         },
         {
@@ -323,8 +535,14 @@
           "notebook": "notebooks/04-04-creating-dataframes.ipynb",
           "slide": "slides/04-04-creating-dataframes.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-create"],
-          "highlight": ["b-df-createdf", "b-df-sql-create", "b-df-read"],
+          "focus": [
+            "b-df-create"
+          ],
+          "highlight": [
+            "b-df-createdf",
+            "b-df-sql-create",
+            "b-df-read"
+          ],
           "spine": true
         },
         {
@@ -332,8 +550,15 @@
           "notebook": "notebooks/04-05-exploring.ipynb",
           "slide": "slides/04-05-exploring.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-actions"],
-          "highlight": ["b-df-act-show", "b-df-act-print", "b-df-act-count", "b-df-act-desc"],
+          "focus": [
+            "b-df-actions"
+          ],
+          "highlight": [
+            "b-df-act-show",
+            "b-df-act-print",
+            "b-df-act-count",
+            "b-df-act-desc"
+          ],
           "spine": true
         },
         {
@@ -341,8 +566,16 @@
           "notebook": "notebooks/04-06-column-references.ipynb",
           "slide": "slides/04-06-column-references.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-col"],
-          "highlight": ["b-df-colstr", "b-df-colfn", "b-df-expr", "b-df-dfcol", "b-df-dfidx"],
+          "focus": [
+            "b-df-col"
+          ],
+          "highlight": [
+            "b-df-colstr",
+            "b-df-colfn",
+            "b-df-expr",
+            "b-df-dfcol",
+            "b-df-dfidx"
+          ],
           "spine": true
         },
         {
@@ -350,8 +583,15 @@
           "notebook": "notebooks/04-07-common-operations.ipynb",
           "slide": "slides/04-07-common-operations.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-trans"],
-          "highlight": ["b-df-t-select", "b-df-t-withcol", "b-df-t-filter", "b-df-t-drop"],
+          "focus": [
+            "b-df-trans"
+          ],
+          "highlight": [
+            "b-df-t-select",
+            "b-df-t-withcol",
+            "b-df-t-filter",
+            "b-df-t-drop"
+          ],
           "spine": true
         },
         {
@@ -359,8 +599,14 @@
           "notebook": "notebooks/04-08-three-dataframe-types.ipynb",
           "slide": "slides/04-08-three-dataframe-types.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df", "b-ps"],
-          "highlight": ["b-df", "b-ps"],
+          "focus": [
+            "b-df",
+            "b-ps"
+          ],
+          "highlight": [
+            "b-df",
+            "b-ps"
+          ],
           "spine": true
         },
         {
@@ -368,8 +614,14 @@
           "notebook": "notebooks/04-09-converting-types.ipynb",
           "slide": "slides/04-09-converting-types.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-ps"],
-          "highlight": ["b-ps-papi", "b-ps-fp", "b-ps-tpd"],
+          "focus": [
+            "b-ps"
+          ],
+          "highlight": [
+            "b-ps-papi",
+            "b-ps-fp",
+            "b-ps-tpd"
+          ],
           "spine": true
         },
         {
@@ -377,8 +629,14 @@
           "notebook": "notebooks/04-10-default-indexes.ipynb",
           "slide": "slides/04-10-default-indexes.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-ps-index"],
-          "highlight": ["b-ps-idx-seq", "b-ps-idx-dist", "b-ps-idx-ds"],
+          "focus": [
+            "b-ps-index"
+          ],
+          "highlight": [
+            "b-ps-idx-seq",
+            "b-ps-idx-dist",
+            "b-ps-idx-ds"
+          ],
           "spine": true
         }
       ]
@@ -392,7 +650,10 @@
           "notebook": "notebooks/05-01-unified-read-write-api.ipynb",
           "slide": "slides/05-01-unified-read-write-api.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-read", "b-write"],
+          "focus": [
+            "b-read",
+            "b-write"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -401,8 +662,15 @@
           "notebook": "notebooks/05-02-reading-four-formats.ipynb",
           "slide": "slides/05-02-reading-four-formats.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sources"],
-          "highlight": ["b-src-csv", "b-src-json", "b-src-parquet", "b-src-orc"],
+          "focus": [
+            "b-sources"
+          ],
+          "highlight": [
+            "b-src-csv",
+            "b-src-json",
+            "b-src-parquet",
+            "b-src-orc"
+          ],
           "spine": true
         },
         {
@@ -410,8 +678,14 @@
           "notebook": "notebooks/05-03-schema-inference.ipynb",
           "slide": "slides/05-03-schema-inference.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-read-fmt"],
-          "highlight": ["b-r-header", "b-r-merge", "b-r-multiline"],
+          "focus": [
+            "b-read-fmt"
+          ],
+          "highlight": [
+            "b-r-header",
+            "b-r-merge",
+            "b-r-multiline"
+          ],
           "spine": true
         },
         {
@@ -419,8 +693,14 @@
           "notebook": "notebooks/05-04-pushdown.ipynb",
           "slide": "slides/05-04-pushdown.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sources"],
-          "highlight": ["b-src-parquet", "b-src-orc", "b-src-delta"],
+          "focus": [
+            "b-sources"
+          ],
+          "highlight": [
+            "b-src-parquet",
+            "b-src-orc",
+            "b-src-delta"
+          ],
           "spine": true
         },
         {
@@ -428,8 +708,15 @@
           "notebook": "notebooks/05-05-bad-records.ipynb",
           "slide": "slides/05-05-bad-records.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-read-mode"],
-          "highlight": ["b-r-permissive", "b-r-failfast", "b-r-drop", "b-r-badpath"],
+          "focus": [
+            "b-read-mode"
+          ],
+          "highlight": [
+            "b-r-permissive",
+            "b-r-failfast",
+            "b-r-drop",
+            "b-r-badpath"
+          ],
           "spine": true
         },
         {
@@ -437,8 +724,15 @@
           "notebook": "notebooks/05-06-write-modes.ipynb",
           "slide": "slides/05-06-write-modes.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-w-mode"],
-          "highlight": ["b-w-m-over", "b-w-m-append", "b-w-m-error", "b-w-m-ignore"],
+          "focus": [
+            "b-w-mode"
+          ],
+          "highlight": [
+            "b-w-m-over",
+            "b-w-m-append",
+            "b-w-m-error",
+            "b-w-m-ignore"
+          ],
           "spine": true
         },
         {
@@ -446,8 +740,12 @@
           "notebook": "notebooks/05-07-partitionby.ipynb",
           "slide": "slides/05-07-partitionby.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-w-layout"],
-          "highlight": ["b-w-partby"],
+          "focus": [
+            "b-w-layout"
+          ],
+          "highlight": [
+            "b-w-partby"
+          ],
           "spine": true
         },
         {
@@ -455,8 +753,13 @@
           "notebook": "notebooks/05-08-bucketby.ipynb",
           "slide": "slides/05-08-bucketby.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-w-layout"],
-          "highlight": ["b-w-bucket", "b-w-sortby"],
+          "focus": [
+            "b-w-layout"
+          ],
+          "highlight": [
+            "b-w-bucket",
+            "b-w-sortby"
+          ],
           "spine": true
         },
         {
@@ -464,8 +767,14 @@
           "notebook": "notebooks/05-09-savetable-vs-save.ipynb",
           "slide": "slides/05-09-savetable-vs-save.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-w-sinks"],
-          "highlight": ["b-w-save", "b-w-saveTbl", "b-w-insert"],
+          "focus": [
+            "b-w-sinks"
+          ],
+          "highlight": [
+            "b-w-save",
+            "b-w-saveTbl",
+            "b-w-insert"
+          ],
           "spine": true
         },
         {
@@ -473,8 +782,13 @@
           "notebook": "notebooks/05-10-coalesce-vs-repartition.ipynb",
           "slide": "slides/05-10-coalesce-vs-repartition.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-part"],
-          "highlight": ["b-perf-rp", "b-perf-co"],
+          "focus": [
+            "b-perf-part"
+          ],
+          "highlight": [
+            "b-perf-rp",
+            "b-perf-co"
+          ],
           "spine": true
         }
       ]
@@ -488,7 +802,9 @@
           "notebook": "notebooks/06-01-function-library.ipynb",
           "slide": "slides/06-01-function-library.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-fns"],
+          "focus": [
+            "b-df-fns"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -497,8 +813,14 @@
           "notebook": "notebooks/06-02-column-expressions.ipynb",
           "slide": "slides/06-02-column-expressions.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-fns"],
-          "highlight": ["b-df-fn-str", "b-df-fn-date", "b-df-fn-array"],
+          "focus": [
+            "b-df-fns"
+          ],
+          "highlight": [
+            "b-df-fn-str",
+            "b-df-fn-date",
+            "b-df-fn-array"
+          ],
           "spine": true
         },
         {
@@ -506,8 +828,12 @@
           "notebook": "notebooks/06-03-conditional-columns.ipynb",
           "slide": "slides/06-03-conditional-columns.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-col"],
-          "highlight": ["b-df-when"],
+          "focus": [
+            "b-df-col"
+          ],
+          "highlight": [
+            "b-df-when"
+          ],
           "spine": true
         },
         {
@@ -515,8 +841,13 @@
           "notebook": "notebooks/06-04-combining-dataframes.ipynb",
           "slide": "slides/06-04-combining-dataframes.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-joins"],
-          "highlight": ["b-df-set-union", "b-df-set-inter"],
+          "focus": [
+            "b-df-joins"
+          ],
+          "highlight": [
+            "b-df-set-union",
+            "b-df-set-inter"
+          ],
           "spine": true
         },
         {
@@ -524,8 +855,16 @@
           "notebook": "notebooks/06-05-joins.ipynb",
           "slide": "slides/06-05-joins.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-joins"],
-          "highlight": ["b-df-j-inner", "b-df-j-left", "b-df-j-right", "b-df-j-outer", "b-df-j-semi"],
+          "focus": [
+            "b-df-joins"
+          ],
+          "highlight": [
+            "b-df-j-inner",
+            "b-df-j-left",
+            "b-df-j-right",
+            "b-df-j-outer",
+            "b-df-j-semi"
+          ],
           "spine": true
         },
         {
@@ -533,8 +872,14 @@
           "notebook": "notebooks/06-06-groupby-agg.ipynb",
           "slide": "slides/06-06-groupby-agg.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-agg"],
-          "highlight": ["b-df-a-groupby", "b-df-a-agg", "b-df-a-cntdist"],
+          "focus": [
+            "b-df-agg"
+          ],
+          "highlight": [
+            "b-df-a-groupby",
+            "b-df-a-agg",
+            "b-df-a-cntdist"
+          ],
           "spine": true
         },
         {
@@ -542,8 +887,14 @@
           "notebook": "notebooks/06-07-filtering-pivot-unpivot.ipynb",
           "slide": "slides/06-07-filtering-pivot-unpivot.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-agg"],
-          "highlight": ["b-df-a-pivot", "b-df-a-stack", "b-df-a-rollup"],
+          "focus": [
+            "b-df-agg"
+          ],
+          "highlight": [
+            "b-df-a-pivot",
+            "b-df-a-stack",
+            "b-df-a-rollup"
+          ],
           "spine": true
         },
         {
@@ -551,8 +902,12 @@
           "notebook": "notebooks/06-08-window-functions.ipynb",
           "slide": "slides/06-08-window-functions.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-agg"],
-          "highlight": ["b-df-w-over"],
+          "focus": [
+            "b-df-agg"
+          ],
+          "highlight": [
+            "b-df-w-over"
+          ],
           "spine": true
         },
         {
@@ -560,8 +915,13 @@
           "notebook": "notebooks/06-09-ranking.ipynb",
           "slide": "slides/06-09-ranking.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-agg"],
-          "highlight": ["b-df-w-rank", "b-df-w-over"],
+          "focus": [
+            "b-df-agg"
+          ],
+          "highlight": [
+            "b-df-w-rank",
+            "b-df-w-over"
+          ],
           "spine": true
         },
         {
@@ -569,8 +929,13 @@
           "notebook": "notebooks/06-10-lag-lead-running.ipynb",
           "slide": "slides/06-10-lag-lead-running.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-agg"],
-          "highlight": ["b-df-w-over", "b-df-w-rank"],
+          "focus": [
+            "b-df-agg"
+          ],
+          "highlight": [
+            "b-df-w-over",
+            "b-df-w-rank"
+          ],
           "spine": true
         }
       ]
@@ -584,7 +949,9 @@
           "notebook": "notebooks/07-01-sql-first-class.ipynb",
           "slide": "slides/07-01-sql-first-class.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql"],
+          "focus": [
+            "b-sql"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -593,8 +960,14 @@
           "notebook": "notebooks/07-02-temporary-views.ipynb",
           "slide": "slides/07-02-temporary-views.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql-views"],
-          "highlight": ["b-sql-temp", "b-sql-gtemp", "b-sql-savetbl"],
+          "focus": [
+            "b-sql-views"
+          ],
+          "highlight": [
+            "b-sql-temp",
+            "b-sql-gtemp",
+            "b-sql-savetbl"
+          ],
           "spine": true
         },
         {
@@ -602,8 +975,15 @@
           "notebook": "notebooks/07-03-basic-sql-catalog.ipynb",
           "slide": "slides/07-03-basic-sql-catalog.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql-queries", "b-sql-views"],
-          "highlight": ["b-sql-select", "b-sql-where", "b-sql-listtbl"],
+          "focus": [
+            "b-sql-queries",
+            "b-sql-views"
+          ],
+          "highlight": [
+            "b-sql-select",
+            "b-sql-where",
+            "b-sql-listtbl"
+          ],
           "spine": true
         },
         {
@@ -611,8 +991,15 @@
           "notebook": "notebooks/07-04-null-semantics.ipynb",
           "slide": "slides/07-04-null-semantics.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql-null"],
-          "highlight": ["b-sql-n-eq", "b-sql-n-neq", "b-sql-n-isn", "b-sql-n-coa"],
+          "focus": [
+            "b-sql-null"
+          ],
+          "highlight": [
+            "b-sql-n-eq",
+            "b-sql-n-neq",
+            "b-sql-n-isn",
+            "b-sql-n-coa"
+          ],
           "spine": true
         },
         {
@@ -620,8 +1007,15 @@
           "notebook": "notebooks/07-05-ctes-subqueries-joins.ipynb",
           "slide": "slides/07-05-ctes-subqueries-joins.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql-joins"],
-          "highlight": ["b-sql-cte", "b-sql-sub", "b-sql-j-inner", "b-sql-j-left"],
+          "focus": [
+            "b-sql-joins"
+          ],
+          "highlight": [
+            "b-sql-cte",
+            "b-sql-sub",
+            "b-sql-j-inner",
+            "b-sql-j-left"
+          ],
           "spine": true
         },
         {
@@ -629,8 +1023,15 @@
           "notebook": "notebooks/07-06-window-functions-sql.ipynb",
           "slide": "slides/07-06-window-functions-sql.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql-agg"],
-          "highlight": ["b-sql-rownum", "b-sql-rank", "b-sql-lag", "b-sql-cume"],
+          "focus": [
+            "b-sql-agg"
+          ],
+          "highlight": [
+            "b-sql-rownum",
+            "b-sql-rank",
+            "b-sql-lag",
+            "b-sql-cume"
+          ],
           "spine": true
         },
         {
@@ -638,8 +1039,14 @@
           "notebook": "notebooks/07-07-dataframe-vs-sql.ipynb",
           "slide": "slides/07-07-dataframe-vs-sql.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-sql", "b-df"],
-          "highlight": ["b-sql", "b-df"],
+          "focus": [
+            "b-sql",
+            "b-df"
+          ],
+          "highlight": [
+            "b-sql",
+            "b-df"
+          ],
           "spine": true
         },
         {
@@ -647,8 +1054,12 @@
           "notebook": "notebooks/07-08-python-udfs.ipynb",
           "slide": "slides/07-08-python-udfs.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-fns"],
-          "highlight": ["b-df-fn-udf"],
+          "focus": [
+            "b-df-fns"
+          ],
+          "highlight": [
+            "b-df-fn-udf"
+          ],
           "spine": true
         },
         {
@@ -656,8 +1067,12 @@
           "notebook": "notebooks/07-09-pandas-udfs.ipynb",
           "slide": "slides/07-09-pandas-udfs.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-fns"],
-          "highlight": ["b-df-fn-udf"],
+          "focus": [
+            "b-df-fns"
+          ],
+          "highlight": [
+            "b-df-fn-udf"
+          ],
           "spine": true
         },
         {
@@ -665,8 +1080,13 @@
           "notebook": "notebooks/07-10-performance-tiers.ipynb",
           "slide": "slides/07-10-performance-tiers.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-fns"],
-          "highlight": ["b-df-fn-str", "b-df-fn-udf"],
+          "focus": [
+            "b-df-fns"
+          ],
+          "highlight": [
+            "b-df-fn-str",
+            "b-df-fn-udf"
+          ],
           "spine": true
         }
       ]
@@ -680,7 +1100,10 @@
           "notebook": "notebooks/08-01-batch-vs-streaming.ipynb",
           "slide": "slides/08-01-batch-vs-streaming.slide",
           "scene": "spark-streaming",
-          "focus": ["s-read", "s-write"],
+          "focus": [
+            "s-read",
+            "s-write"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -689,8 +1112,13 @@
           "notebook": "notebooks/08-02-micro-means-time.ipynb",
           "slide": "slides/08-02-micro-means-time.slide",
           "scene": "spark-streaming",
-          "focus": ["s-trigger"],
-          "highlight": ["s-tr-ptime", "s-tr-avail"],
+          "focus": [
+            "s-trigger"
+          ],
+          "highlight": [
+            "s-tr-ptime",
+            "s-tr-avail"
+          ],
           "spine": true
         },
         {
@@ -698,8 +1126,14 @@
           "notebook": "notebooks/08-03-api-parity.ipynb",
           "slide": "slides/08-03-api-parity.slide",
           "scene": "spark-streaming",
-          "focus": ["s-df-stateless"],
-          "highlight": ["s-df-t-select", "s-df-t-filter", "s-df-t-withcol"],
+          "focus": [
+            "s-df-stateless"
+          ],
+          "highlight": [
+            "s-df-t-select",
+            "s-df-t-filter",
+            "s-df-t-withcol"
+          ],
           "spine": true
         },
         {
@@ -707,8 +1141,15 @@
           "notebook": "notebooks/08-04-first-streaming-query.ipynb",
           "slide": "slides/08-04-first-streaming-query.slide",
           "scene": "spark-streaming",
-          "focus": ["s-read", "s-write"],
-          "highlight": ["s-src-rate", "s-sink-mem", "s-out-mem"],
+          "focus": [
+            "s-read",
+            "s-write"
+          ],
+          "highlight": [
+            "s-src-rate",
+            "s-sink-mem",
+            "s-out-mem"
+          ],
           "spine": true
         },
         {
@@ -716,8 +1157,17 @@
           "notebook": "notebooks/08-05-sources-and-sinks.ipynb",
           "slide": "slides/08-05-sources-and-sinks.slide",
           "scene": "spark-streaming",
-          "focus": ["s-sources", "s-sinks"],
-          "highlight": ["s-src-rate", "s-src-file", "s-src-kafka", "s-sink-delta", "s-sink-fb"],
+          "focus": [
+            "s-sources",
+            "s-sinks"
+          ],
+          "highlight": [
+            "s-src-rate",
+            "s-src-file",
+            "s-src-kafka",
+            "s-sink-delta",
+            "s-sink-fb"
+          ],
           "spine": true
         },
         {
@@ -725,8 +1175,14 @@
           "notebook": "notebooks/08-06-output-modes.ipynb",
           "slide": "slides/08-06-output-modes.slide",
           "scene": "spark-streaming",
-          "focus": ["s-outmode"],
-          "highlight": ["s-om-append", "s-om-update", "s-om-complete"],
+          "focus": [
+            "s-outmode"
+          ],
+          "highlight": [
+            "s-om-append",
+            "s-om-update",
+            "s-om-complete"
+          ],
           "spine": true
         },
         {
@@ -734,8 +1190,16 @@
           "notebook": "notebooks/08-07-triggers.ipynb",
           "slide": "slides/08-07-triggers.slide",
           "scene": "spark-streaming",
-          "focus": ["s-trigger"],
-          "highlight": ["s-tr-default", "s-tr-ptime", "s-tr-once", "s-tr-avail", "s-tr-cont"],
+          "focus": [
+            "s-trigger"
+          ],
+          "highlight": [
+            "s-tr-default",
+            "s-tr-ptime",
+            "s-tr-once",
+            "s-tr-avail",
+            "s-tr-cont"
+          ],
           "spine": true
         },
         {
@@ -743,8 +1207,15 @@
           "notebook": "notebooks/08-08-checkpointing.ipynb",
           "slide": "slides/08-08-checkpointing.slide",
           "scene": "spark-streaming",
-          "focus": ["s-checkpoint"],
-          "highlight": ["s-ck-offsets", "s-ck-commits", "s-ck-state", "s-ck-metadata"],
+          "focus": [
+            "s-checkpoint"
+          ],
+          "highlight": [
+            "s-ck-offsets",
+            "s-ck-commits",
+            "s-ck-state",
+            "s-ck-metadata"
+          ],
           "spine": true
         },
         {
@@ -752,8 +1223,17 @@
           "notebook": "notebooks/08-09-time-windows-watermark.ipynb",
           "slide": "slides/08-09-time-windows-watermark.slide",
           "scene": "spark-streaming",
-          "focus": ["s-df-window", "s-df-water"],
-          "highlight": ["s-df-w-window", "s-df-w-tumb", "s-df-w-slide", "s-df-wm-fn", "s-df-wm-late"],
+          "focus": [
+            "s-df-window",
+            "s-df-water"
+          ],
+          "highlight": [
+            "s-df-w-window",
+            "s-df-w-tumb",
+            "s-df-w-slide",
+            "s-df-wm-fn",
+            "s-df-wm-late"
+          ],
           "spine": true
         },
         {
@@ -761,8 +1241,16 @@
           "notebook": "notebooks/08-10-stateful-ops.ipynb",
           "slide": "slides/08-10-stateful-ops.slide",
           "scene": "spark-streaming",
-          "focus": ["s-df-state", "s-df-joins"],
-          "highlight": ["s-df-st-gbk", "s-df-st-dedup", "s-df-j-ssi", "s-df-j-static"],
+          "focus": [
+            "s-df-state",
+            "s-df-joins"
+          ],
+          "highlight": [
+            "s-df-st-gbk",
+            "s-df-st-dedup",
+            "s-df-j-ssi",
+            "s-df-j-static"
+          ],
           "spine": true
         }
       ]
@@ -776,7 +1264,9 @@
           "notebook": "notebooks/09-01-partition-sizing.ipynb",
           "slide": "slides/09-01-partition-sizing.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-part"],
+          "focus": [
+            "b-perf-part"
+          ],
           "spine": true,
           "role": "hook"
         },
@@ -785,8 +1275,14 @@
           "notebook": "notebooks/09-02-repartition-coalesce.ipynb",
           "slide": "slides/09-02-repartition-coalesce.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-part"],
-          "highlight": ["b-perf-rp", "b-perf-co", "b-perf-pb"],
+          "focus": [
+            "b-perf-part"
+          ],
+          "highlight": [
+            "b-perf-rp",
+            "b-perf-co",
+            "b-perf-pb"
+          ],
           "spine": true
         },
         {
@@ -794,8 +1290,13 @@
           "notebook": "notebooks/09-03-what-triggers-shuffle.ipynb",
           "slide": "slides/09-03-what-triggers-shuffle.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-shuffle"],
-          "highlight": ["b-perf-sp", "b-perf-smj"],
+          "focus": [
+            "b-perf-shuffle"
+          ],
+          "highlight": [
+            "b-perf-sp",
+            "b-perf-smj"
+          ],
           "spine": true
         },
         {
@@ -803,8 +1304,12 @@
           "notebook": "notebooks/09-04-tuning-shuffle-partitions.ipynb",
           "slide": "slides/09-04-tuning-shuffle-partitions.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-shuffle"],
-          "highlight": ["b-perf-sp"],
+          "focus": [
+            "b-perf-shuffle"
+          ],
+          "highlight": [
+            "b-perf-sp"
+          ],
           "spine": true
         },
         {
@@ -812,8 +1317,13 @@
           "notebook": "notebooks/09-05-aqe-in-depth.ipynb",
           "slide": "slides/09-05-aqe-in-depth.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf"],
-          "highlight": ["b-perf-shuffle", "b-perf-bcast"],
+          "focus": [
+            "b-perf"
+          ],
+          "highlight": [
+            "b-perf-shuffle",
+            "b-perf-bcast"
+          ],
           "spine": true
         },
         {
@@ -821,8 +1331,14 @@
           "notebook": "notebooks/09-06-caching.ipynb",
           "slide": "slides/09-06-caching.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-cache"],
-          "highlight": ["b-perf-cache-c", "b-perf-cache-p", "b-perf-cache-u"],
+          "focus": [
+            "b-perf-cache"
+          ],
+          "highlight": [
+            "b-perf-cache-c",
+            "b-perf-cache-p",
+            "b-perf-cache-u"
+          ],
           "spine": true
         },
         {
@@ -830,8 +1346,13 @@
           "notebook": "notebooks/09-07-checkpointing.ipynb",
           "slide": "slides/09-07-checkpointing.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-cache"],
-          "highlight": ["b-perf-cache-p", "b-sl-mad"],
+          "focus": [
+            "b-perf-cache"
+          ],
+          "highlight": [
+            "b-perf-cache-p",
+            "b-sl-mad"
+          ],
           "spine": true
         },
         {
@@ -839,8 +1360,12 @@
           "notebook": "notebooks/09-08-driver-bottlenecks.ipynb",
           "slide": "slides/09-08-driver-bottlenecks.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-df-actions"],
-          "highlight": ["b-df-act-collect"],
+          "focus": [
+            "b-df-actions"
+          ],
+          "highlight": [
+            "b-df-act-collect"
+          ],
           "spine": true
         },
         {
@@ -848,8 +1373,14 @@
           "notebook": "notebooks/09-09-join-strategies.ipynb",
           "slide": "slides/09-09-join-strategies.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-bcast"],
-          "highlight": ["b-perf-bc-fn", "b-perf-bc-cfg", "b-perf-smj"],
+          "focus": [
+            "b-perf-bcast"
+          ],
+          "highlight": [
+            "b-perf-bc-fn",
+            "b-perf-bc-cfg",
+            "b-perf-smj"
+          ],
           "spine": true
         },
         {
@@ -857,8 +1388,150 @@
           "notebook": "notebooks/09-10-data-skew.ipynb",
           "slide": "slides/09-10-data-skew.slide",
           "scene": "spark-batch-api",
-          "focus": ["b-perf-shuffle"],
-          "highlight": ["b-perf-sp"],
+          "focus": [
+            "b-perf-shuffle"
+          ],
+          "highlight": [
+            "b-perf-sp"
+          ],
+          "spine": true
+        }
+      ]
+    },
+    {
+      "id": "10-pandas-api-on-spark",
+      "title": "Pandas API on Spark",
+      "sections": [
+        {
+          "heading": "Why this API exists",
+          "notebook": "notebooks/10-01-why-pandas-api.ipynb",
+          "slide": "slides/10-01-why-pandas-api.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps"
+          ],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "Setup & creating a ps.DataFrame",
+          "notebook": "notebooks/10-02-creating-ps-dataframe.ipynb",
+          "slide": "slides/10-02-creating-ps-dataframe.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps-create"
+          ],
+          "highlight": [
+            "b-ps-dfdict",
+            "b-ps-read",
+            "b-ps-papi",
+            "b-ps-fp"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "Three DataFrame types — keep them straight",
+          "notebook": "notebooks/10-03-three-dataframe-types.ipynb",
+          "slide": "slides/10-03-three-dataframe-types.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps",
+            "b-df"
+          ],
+          "highlight": [
+            "b-ps",
+            "b-df"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "Transformations — lazy, return another ps.DataFrame",
+          "notebook": "notebooks/10-04-transformations.ipynb",
+          "slide": "slides/10-04-transformations.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps-trans"
+          ],
+          "highlight": [
+            "b-ps-t-col",
+            "b-ps-t-filter",
+            "b-ps-t-group",
+            "b-ps-t-join"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "Actions — eager, trigger a Spark job",
+          "notebook": "notebooks/10-05-actions.ipynb",
+          "slide": "slides/10-05-actions.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps-actions"
+          ],
+          "highlight": [
+            "b-ps-tc",
+            "b-ps-tp",
+            "b-ps-tj",
+            "b-ps-tpd"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "The Spark bridge — to_spark() and pandas_api()",
+          "notebook": "notebooks/10-06-spark-bridge.ipynb",
+          "slide": "slides/10-06-spark-bridge.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps"
+          ],
+          "highlight": [
+            "b-ps-papi",
+            "b-ps-fp",
+            "b-ps-tpd"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "Default index types — the most-tested gotcha",
+          "notebook": "notebooks/10-07-default-index-types.ipynb",
+          "slide": "slides/10-07-default-index-types.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps-index"
+          ],
+          "highlight": [
+            "b-ps-idx-seq",
+            "b-ps-idx-dist",
+            "b-ps-idx-ds"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "Gotchas — where the pandas API ends",
+          "notebook": "notebooks/10-08-gotchas.ipynb",
+          "slide": "slides/10-08-gotchas.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps-index"
+          ],
+          "highlight": [
+            "b-ps-idx-cfg"
+          ],
+          "spine": true
+        },
+        {
+          "heading": "When to use it vs the Spark DataFrame API",
+          "notebook": "notebooks/10-09-when-to-use.ipynb",
+          "slide": "slides/10-09-when-to-use.slide",
+          "scene": "spark-batch-api",
+          "focus": [
+            "b-ps",
+            "b-df"
+          ],
+          "highlight": [
+            "b-ps",
+            "b-df"
+          ],
           "spine": true
         }
       ]

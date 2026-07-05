@@ -1,0 +1,9 @@
+Why this interface exists.
+
+Pandas is the lingua franca of single-machine data work. But it has one hard limit — it caps out at a single machine's memory. And rewriting a pandas pipeline into the Spark dataframe interface is mechanical, but tedious, and the result ends up looking nothing like the original.
+
+Pyspark dot pandas — which was formerly the Koalas project, merged into pyspark in version three point two — gives you the pandas interface, on top of a Spark backend. So the same group-by, dot mean, that ran on your laptop, now runs on a cluster — distributed, lazy, and through Catalyst.
+
+There are two facts to anchor on, before any code. First — the surface is pandas, but the engine is Spark. Every pandas-on-Spark dataframe is a thin wrapper, around a regular Spark dataframe, plus an index. The operations compile down to the same Spark plans you would have written by hand. And second — the transformation-versus-action split, from module two, still applies. Even though the code reads like eager pandas, most of the operations are lazy. A line that looks like a result — assigning a new column — does no actual work, until an action fires.
+
+The import convention is — import pyspark dot pandas as p-s. That p-s mirrors pandas' own p-d.

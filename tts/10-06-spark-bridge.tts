@@ -1,0 +1,9 @@
+The Spark bridge — to-spark, and pandas-api.
+
+Because a pandas-on-Spark dataframe is just a wrapper, flipping between it and a regular Spark dataframe is cheap. Neither direction moves any data. All they do is swap whether the index is exposed, pandas-style, or hidden, Spark-style.
+
+Going from a Spark dataframe to pandas-on-Spark is spark-dataframe dot pandas-api — that is cheap; it just wraps. And going back, from pandas-on-Spark to a Spark dataframe, is dot to-spark — also cheap; it just unwraps.
+
+The expensive directions are the ones that end up at real pandas. Spark-dataframe dot to-pandas, and pandas-on-Spark dot to-pandas — both of those do a driver collect.
+
+So the rule from module four repeats here. The methods with the lowercase, singular word pandas in the name — to-pandas — move the data to the driver. Treat them like collect. Everyday work should stay in the cheap wrap-and-unwrap zone, and only cross over to real pandas for a small, final result.

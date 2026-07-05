@@ -1,0 +1,17 @@
+# Transformations — lazy
+
+## Return a new `ps.DataFrame`, no job fires
+
+- Build up a plan, exactly like Spark DataFrame transformations
+- An **action** (next section) fires the job
+
+## Six families
+
+- **Column ops** — selection, assignment, derived columns
+- **Filtering** — boolean masks, `query()`
+- **Aggregation** — `groupby` + `agg`
+- **Joins** — `merge`
+- **Cleanup** — `fillna`, `dropna`, `astype`, `rename`, `sort_values`
+- **Per-element** — `.str` / `.dt` accessors, `apply` / `transform` (**pass a type hint**)
+
+The module-02 model holds: **nothing runs until an action.**

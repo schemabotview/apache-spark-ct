@@ -1,0 +1,11 @@
+Setup, and creating a pandas-on-Spark dataframe.
+
+You import pyspark dot pandas as p-s, and then you reach for one of three everyday entry points.
+
+The first is from a Python dictionary. It is the same constructor signature as pandas, and it is good for tiny fixtures.
+
+The second is from files — p-s dot read-c-s-v, and p-s dot read-parquet. These go through Spark's own readers, under the hood.
+
+And the third — the one you will use most — is from an existing Spark dataframe. You call spark-dataframe dot pandas-api, and it wraps that dataframe as a pandas-on-Spark dataframe. This is the cheap path — there is no data movement at all.
+
+There is also a reverse direction, from a real pandas frame — p-s dot from-pandas. But use that one only for fixtures, because it serializes the pandas frame, and re-reads it through Spark. In practice, you start from a Spark dataframe, and you call pandas-api.

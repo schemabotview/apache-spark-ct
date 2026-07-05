@@ -1,0 +1,14 @@
+# When to use it vs the Spark DataFrame API
+
+## The performance rule of thumb
+
+- **Fast** — maps to a **single** Spark op (`filter`, `groupBy`, `join`, `withColumn`) → same plan, no penalty
+- **Slow** — a **per-row Python callback** (no type hint) or a **driver materialization** → pay for it
+
+## The guidance
+
+- **pandas-on-Spark** — scale an existing pandas codebase / a pandas-fluent team
+- **native DataFrame API** — new pipelines, full feature set, avoid driver collects & per-row callbacks
+- Flip for free: **`pandas_api()` ↔ `to_spark()`** — never all-or-nothing
+
+**One engine, wearing whichever surface fits the job.**

@@ -1,0 +1,17 @@
+Gotchas — where the pandas interface ends.
+
+The surface is close to pandas, but it is not identical. And the exam loves these differences, so let's walk them.
+
+Row order — in pandas it is stable, and follows insertion. In pandas-on-Spark it is not guaranteed, unless you explicitly sort, with sort-index or sort-values.
+
+Lazy versus eager — pandas is eager, and every operation runs immediately. Pandas-on-Spark is lazy — only actions trigger execution.
+
+In-place equals true — in pandas it modifies the frame in place. In pandas-on-Spark it is often just ignored, because Spark dataframes are immutable.
+
+Iteration with iter-rows, and apply along axis one without a type hint — these pull rows to the driver, or sample rows to infer the schema. Both are slow and brittle.
+
+Location-based indexing with a missing label — in pandas it raises a key-error. In pandas-on-Spark it may silently return empty, because the index is not fully enforced.
+
+And a handful of methods simply raise a pandas-not-implemented error.
+
+There are two settings worth knowing. Compute ops-on-diff-frames is false by default — so operations that combine two pandas-on-Spark frames raise an error, because pandas' row-alignment requires a shared index that Spark cannot guarantee without a shuffle. And compute default-index-type, which we covered in the last section.

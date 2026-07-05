@@ -1,0 +1,15 @@
+# Gotchas — where the pandas API ends
+
+## Close to pandas, not identical
+
+- **Row order** — not guaranteed unless `sort_index()` / `sort_values()`
+- **Lazy, not eager** — only actions execute
+- **`inplace=True`** — often ignored (Spark DataFrames are immutable)
+- **`iterrows` / `apply(axis=1)` w/o type hint** — pull to driver / sample schema — slow
+- **`df.loc[missing]`** — may return empty, not `KeyError`
+- Some methods → **`PandasNotImplementedError`**
+
+## Two settings
+
+- **`compute.ops_on_diff_frames`** — `False` by default → combining two frames errors (alignment needs a shared index)
+- **`compute.default_index_type`** — from the last section

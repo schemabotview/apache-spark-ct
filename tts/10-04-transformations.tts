@@ -1,0 +1,9 @@
+Transformations — lazy, and they return another pandas-on-Spark dataframe.
+
+Every operation in this section returns a new pandas-on-Spark frame, without triggering a Spark job. Just like Spark dataframe transformations, they build up a plan. And an action — which is the next section — is what actually fires the job.
+
+The toolkit divides into six families.
+
+Column operations — selection, assignment, and derived columns. Filtering — boolean masks, and the query method. Aggregation — group-by, then agg. Joins — the merge method. Cleanup — fill-n-a, drop-n-a, as-type, rename, and sort-values. And per-element work — the string and date-time accessors, plus apply and transform. For those last two, pass a type hint, so that Spark can skip the schema-inference sampling.
+
+The mental model from module two holds here, completely unchanged. Nothing runs, until an action.

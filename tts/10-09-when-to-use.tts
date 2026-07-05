@@ -1,0 +1,11 @@
+When to use it, versus the native Spark dataframe interface.
+
+A simple performance rule of thumb decides this.
+
+If a pandas-on-Spark operation maps to a single Spark dataframe operation — a filter, a group-by, a join, a with-column — then it is fast. It compiles down to the very same plan you would have written by hand, with no penalty.
+
+But if it forces a per-row Python callback, without a type hint, or if it materializes the whole frame on the driver, then it is slow. And at that scale, you are better off in the native dataframe interface.
+
+So here is the honest guidance. Reach for pandas-on-Spark to scale an existing pandas codebase, or when a team already thinks in pandas — you keep the familiar syntax, and you get Spark's distribution, almost for free. Drop down to the native dataframe interface for new pipelines, for the full feature set, and whenever a step would otherwise trigger a driver collect, or a per-row callback. And because you can flip between the two for free — with pandas-api, and to-spark — it is never an all-or-nothing choice.
+
+And that closes the course. The whole map — the cluster and the execution model, R-D-Ds, dataframes, reading and writing, transformations, sequel, streaming, and tuning — is really just one engine. One engine, wearing whichever surface fits the job.

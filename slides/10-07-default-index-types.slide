@@ -1,0 +1,14 @@
+# Default index types — the most-tested gotcha
+
+## pandas has a row index; Spark doesn't → one is fabricated
+
+*(set via `compute.default_index_type`)*
+
+- **`sequence`** — one executor counts `0,1,2…` — sequential but **non-distributed** (slow)
+- **`distributed-sequence`** *(default)* — parallel from partition offsets — sequential, slight overhead — **right answer**
+- **`distributed`** — monotonic ids — cheapest, parallel — **not sequential** (`0, 1, 8589934592…`)
+
+## The trap
+
+- Under `distributed`, index-dependent code — `loc`, index joins, `.iloc` — **silently breaks**
+- The single **most-tested** fact about the pandas API

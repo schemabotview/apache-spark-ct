@@ -1,0 +1,7 @@
+Actions — eager, and they trigger a Spark job.
+
+Each operation in this section fires a job. The plan that was built up by the transformations runs all the way through Catalyst, materializes, and returns either pandas-side data, or a write side-effect. There are five families.
+
+Display and preview — head, tail, and printing the frame. Driver materialization — to-pandas, dot values, and integer-location indexing. These pull data to the driver, so treat them like collect. Frame-wide reductions — count, sum, mean, describe, and the length of the frame. Writes — to-c-s-v, to-parquet, and to-table. And iteration — iter-rows and iter-tuples, which you should avoid on large data, because they pull every row to the driver.
+
+The dangerous ones here are the driver-materialization family, and the iteration family. And that is exactly the same driver-bottleneck lesson from module nine — just wearing a pandas face this time.

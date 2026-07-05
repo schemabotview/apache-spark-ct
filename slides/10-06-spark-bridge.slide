@@ -1,0 +1,15 @@
+# The Spark bridge
+
+## Cheap — just wrap / unwrap (no data movement)
+
+- **Spark DF → Pandas-on-Spark**: `sdf.pandas_api()`
+- **Pandas-on-Spark → Spark DF**: `psdf.to_spark()`
+
+## Expensive — ends at real pandas (driver collect)
+
+- `sdf.toPandas()` · `psdf.to_pandas()`
+
+## The rule (again)
+
+- Methods with the lowercase **`pandas`** in the name **move data to the driver** — treat like `collect()`
+- Stay in the cheap wrap/unwrap zone; cross to real pandas only for a **small, final** result
