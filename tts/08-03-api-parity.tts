@@ -1,0 +1,15 @@
+API parity — what actually changes.
+
+Once you have internalized the mental model, the code surface turns out to be small. Batch and streaming use the same dataframe transformations — filter, select, group-by, join, agg, and the window functions. Only the input and output boundary is different. In fact, exactly five things change.
+
+First, you write spark dot read-stream, instead of spark dot read — and you must provide an explicit schema, because Spark cannot infer one from an unbounded source.
+
+Second, you write dataframe dot write-stream, instead of dataframe dot write.
+
+Third, you set an output-mode — which controls which rows to emit per micro-batch.
+
+Fourth, you set the option checkpoint-location — which is where Spark persists the offsets, the state, and the write-ahead log.
+
+And fifth, start returns a streaming-query handle — whereas write, in batch, simply returned none.
+
+Everything in between the read and the write is identical dataframe code. That is the API parity. And it is precisely why the same logic can power both a historical backfill and live processing, with only minimal change.

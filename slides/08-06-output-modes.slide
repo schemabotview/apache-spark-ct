@@ -1,0 +1,17 @@
+# Output modes — append, update, complete
+
+## Which rows go out — and whether state turns on
+
+- **`append`** *(default)* — **stateless**; only new rows. For filters + windowed aggs *with a watermark*
+- **`update`** — **stateful**; emit only the keys that **changed** this batch
+- **`complete`** — **stateful**; **rewrite the entire sink** every batch
+
+## Enforced at query-start
+
+- `append` on a **non-watermarked** aggregation → **rejected**
+- `complete` / `update` **require** an aggregation
+
+## Why `complete` is dangerous at scale
+
+- 10 M keys, 5 s trigger → rewriting 10 M rows every 5 s
+- Production uses **`update`** + a downstream `MERGE` / upsert

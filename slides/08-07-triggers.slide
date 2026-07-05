@@ -1,0 +1,14 @@
+# Triggers — micro-batch cadence
+
+## How often Spark runs a micro-batch
+
+- **Default** — next batch as soon as the previous finishes
+- **Fixed interval** — `trigger(processingTime="30 seconds")` (skip if still running)
+- **Once** — `trigger(once=True)` — all data in **one** batch, then stop
+- **Available now** — `trigger(availableNow=True)` — all data in **many** optimal batches, then stop
+- **Continuous** — `trigger(continuous="1 second")` — experimental ~1 ms latency
+
+## The key insight
+
+- **`once` / `availableNow` = a self-terminating batch job** with streaming semantics
+  (exactly-once, offset tracking, idempotent restart) — one codebase for backfill + live

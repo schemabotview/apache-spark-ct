@@ -1,0 +1,9 @@
+Stateful operations — joins, deduplication, and arbitrary state.
+
+Beyond a plain windowed aggregation, there are three stateful patterns worth knowing.
+
+First, joins. A stream-static join enriches each streaming row from a static dimension table. The static side is broadcast, no watermark is needed, all output modes are supported, and the static dataframe is re-read every micro-batch, so changes to it eventually propagate. A stream-stream join, by contrast, has both sides live. It requires watermarks on both sides, so that unmatched rows can be evicted from the state — and it usually also needs a time-range condition, so Spark knows when a match becomes impossible. Without those, the state grows forever. And note — a full-outer stream-stream join is not supported.
+
+Second, deduplication. Most sources are at-least-once, so duplicates happen. Drop-duplicates, on a set of columns, combined with a watermark, drops the re-delivered messages within the watermark window — without letting the state grow without bound. The watermark is exactly what makes this safe to run forever.
+
+And third, arbitrary per-key state. When you need a state machine, a custom expiry, or a counter that does not map to a built-in aggregate, reach for apply-in-pandas-with-state, available since Spark three point four. Your function receives a key, the new rows for that key in this micro-batch, and the current state — and it returns the updated state, plus zero or more output rows. Pair it with a processing-time or an event-time timeout, to evict the state for inactive keys.

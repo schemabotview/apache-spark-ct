@@ -1,0 +1,13 @@
+Output modes — append, update, and complete.
+
+The output mode controls which rows Spark writes to the sink, in each micro-batch — and it also controls whether the state store turns on.
+
+Append is the default, and it is stateless. Only new rows go out, and no state store is used. Use it for simple projections, filters, and stateless transforms — and also for windowed aggregations, as long as they have a watermark, because then each closed window emits exactly once.
+
+Update is stateful. The state store holds the running aggregates, per key, and update emits only the keys that changed in this batch.
+
+Complete is also stateful. The state store holds the entire result table, and complete rewrites the whole sink, every single batch.
+
+Spark enforces a few rules at query-start. Append, on a non-watermarked aggregation, is rejected — because Spark cannot know when a key is done, so it cannot safely emit it once. And both complete and update require an aggregation.
+
+Now, why is complete dangerous at scale? Because it rewrites the entire result table on every trigger. Picture ten million keys, on a five-second trigger. Every five seconds, you are rewriting ten million rows. So production pipelines almost always use update instead, and let the downstream system — a Delta merge, or a database upsert — handle the merge.

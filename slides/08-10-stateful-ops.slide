@@ -1,0 +1,17 @@
+# Stateful operations
+
+## Joins
+
+- **Stream-static** — enrich from a broadcast dimension; no watermark, all modes, re-read each batch
+- **Stream-stream** — needs **watermarks on both sides** + a **time-range condition**
+  - else state grows forever · **`full outer` not supported**
+
+## Deduplication
+
+- Sources are at-least-once → `dropDuplicates(["id","ts"])` **with a watermark**
+- The watermark is what makes it **safe to run forever** (bounded state)
+
+## Arbitrary per-key state
+
+- **`applyInPandasWithState`** (3.4+) — key + new rows + current state → new state + output
+- Pair with a **processing-time / event-time timeout** to evict inactive keys

@@ -1,0 +1,9 @@
+Sources and sinks.
+
+A source is the entry point of a streaming pipeline. Spark tracks each source's progress — the offsets, or the file lists — in the checkpoint, so that every micro-batch is processed exactly once, even after a restart.
+
+The rate source is for testing and benchmarking. The file source is for file-drop E-T-L — it needs an explicit schema, and it takes options like max-files-per-trigger and clean-source. The Kafka source is for production event streaming, with options like subscribe and starting-offsets. And the socket source is for demos only — it is not fault-tolerant.
+
+A sink is where each micro-batch's output goes. Sinks differ in which output modes they support, and in their durability guarantees.
+
+Memory and console are for development and debugging — neither is fault-tolerant. The file sink is append-only, but it is fault-tolerant. Delta is the production default — it supports all three output modes, it gives exactly-once through transactional commits, and it avoids the small-file problem that the plain file sink suffers from. Kafka is for forwarding events onward. And for-each-batch is the escape hatch — it hands you the micro-batch as a regular dataframe, plus a batch-id, which is perfect for writing to several tables at once, or for calling a non-Spark A-P-I per batch.

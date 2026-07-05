@@ -1,0 +1,16 @@
+# "Micro" means time, not data size
+
+## "Micro" = the trigger interval, not the row count
+
+- A micro-batch = **whatever arrived since the last checkpoint**
+- `processingTime="1 second"` → tiny batches
+- `processingTime="1 hour"` on high-velocity Kafka → **GB per batch**, hundreds of partitions
+- `availableNow` → everything in optimal batches, then stop — **batch via the streaming API**
+
+## When it earns its keep
+
+- Large per-batch volume · state too big for one node · cross-partition shuffles · unified batch+stream · stream ⋈ large static table
+
+## Wrong tool
+
+- **Sub-10 ms SLA** (→ Flink/Kafka Streams; Spark floor ~100 ms) · low-volume stateless

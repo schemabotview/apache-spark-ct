@@ -670,6 +670,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "08-structured-streaming",
+      "title": "Structured Streaming",
+      "sections": [
+        {
+          "heading": "Batch vs Structured Streaming — the mental model",
+          "notebook": "notebooks/08-01-batch-vs-streaming.ipynb",
+          "slide": "slides/08-01-batch-vs-streaming.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-read", "s-write"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "\"Micro\" means time, not data size",
+          "notebook": "notebooks/08-02-micro-means-time.ipynb",
+          "slide": "slides/08-02-micro-means-time.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-trigger"],
+          "highlight": ["s-tr-ptime", "s-tr-avail"],
+          "spine": true
+        },
+        {
+          "heading": "API parity — what actually changes",
+          "notebook": "notebooks/08-03-api-parity.ipynb",
+          "slide": "slides/08-03-api-parity.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-df-stateless"],
+          "highlight": ["s-df-t-select", "s-df-t-filter", "s-df-t-withcol"],
+          "spine": true
+        },
+        {
+          "heading": "Your first streaming query — rate source, memory sink",
+          "notebook": "notebooks/08-04-first-streaming-query.ipynb",
+          "slide": "slides/08-04-first-streaming-query.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-read", "s-write"],
+          "highlight": ["s-src-rate", "s-sink-mem", "s-out-mem"],
+          "spine": true
+        },
+        {
+          "heading": "Sources & sinks",
+          "notebook": "notebooks/08-05-sources-and-sinks.ipynb",
+          "slide": "slides/08-05-sources-and-sinks.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-sources", "s-sinks"],
+          "highlight": ["s-src-rate", "s-src-file", "s-src-kafka", "s-sink-delta", "s-sink-fb"],
+          "spine": true
+        },
+        {
+          "heading": "Output modes — append, update, complete",
+          "notebook": "notebooks/08-06-output-modes.ipynb",
+          "slide": "slides/08-06-output-modes.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-outmode"],
+          "highlight": ["s-om-append", "s-om-update", "s-om-complete"],
+          "spine": true
+        },
+        {
+          "heading": "Triggers — controlling micro-batch cadence",
+          "notebook": "notebooks/08-07-triggers.ipynb",
+          "slide": "slides/08-07-triggers.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-trigger"],
+          "highlight": ["s-tr-default", "s-tr-ptime", "s-tr-once", "s-tr-avail", "s-tr-cont"],
+          "spine": true
+        },
+        {
+          "heading": "Checkpointing and fault tolerance",
+          "notebook": "notebooks/08-08-checkpointing.ipynb",
+          "slide": "slides/08-08-checkpointing.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-checkpoint"],
+          "highlight": ["s-ck-offsets", "s-ck-commits", "s-ck-state", "s-ck-metadata"],
+          "spine": true
+        },
+        {
+          "heading": "Time, windows & watermarking",
+          "notebook": "notebooks/08-09-time-windows-watermark.ipynb",
+          "slide": "slides/08-09-time-windows-watermark.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-df-window", "s-df-water"],
+          "highlight": ["s-df-w-window", "s-df-w-tumb", "s-df-w-slide", "s-df-wm-fn", "s-df-wm-late"],
+          "spine": true
+        },
+        {
+          "heading": "Stateful operations — joins, dedup, arbitrary state",
+          "notebook": "notebooks/08-10-stateful-ops.ipynb",
+          "slide": "slides/08-10-stateful-ops.slide",
+          "scene": "spark-streaming",
+          "focus": ["s-df-state", "s-df-joins"],
+          "highlight": ["s-df-st-gbk", "s-df-st-dedup", "s-df-j-ssi", "s-df-j-static"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

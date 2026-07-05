@@ -1,0 +1,14 @@
+# Sources & sinks
+
+## Sources — the entry point (progress tracked in checkpoint)
+
+- **rate** — testing · **file** — ETL (explicit schema, `maxFilesPerTrigger`)
+- **kafka** — production (`subscribe`, `startingOffsets`) · **socket** — demos, **not** fault-tolerant
+
+## Sinks — where each micro-batch goes
+
+- **memory** / **console** — dev, not durable
+- **file** — append-only, fault-tolerant
+- **Delta** — **production default**: all modes, exactly-once, no small-file problem
+- **kafka** — event forwarding
+- **`foreachBatch`** — escape hatch: micro-batch as a DataFrame + `batch_id` (multi-table / non-Spark API)

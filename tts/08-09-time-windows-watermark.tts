@@ -1,0 +1,9 @@
+Time, windows, and watermarking.
+
+There are two clocks in any streaming pipeline. Processing time is when Spark sees the row. Event time is when the event actually happened, in the source system. Event time is the honest clock for analytics, and it is what watermarking operates on.
+
+Over event time, there are three window types. A tumbling window — window of timestamp and five minutes — gives you fixed, non-overlapping windows. A sliding window — window of timestamp, five minutes, and a one-minute slide — gives you fixed-size, overlapping windows, so each event belongs to several windows at once. And a session window — session-window of timestamp and ten minutes — is activity-driven; it opens on the first event, and it closes after a gap of silence.
+
+Now, watermarking. Late events would otherwise break windowed aggregations — a window that closed cannot quietly accept a row that drifts in late. So the watermark is defined as the maximum event time seen so far, minus a delay. Any event whose time is before the watermark is dropped. And any window whose end time is at or before the watermark is closed — its state is freed, and its result is emitted.
+
+You set it with with-watermark, of a column and a duration, and you must set it before the group-by. It is required for append mode on a windowed aggregation. And choosing that delay is a business decision — a longer delay accepts more late data, but at the cost of more memory, and later results.

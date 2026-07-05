@@ -1,0 +1,9 @@
+Batch versus structured streaming — the mental model.
+
+Here is the single most important idea in this whole module. Spark batch and Spark streaming share the exact same execution engine. The partition-to-task-to-executor model is identical. What actually changes is the lifecycle around it.
+
+Let me put the shift in one line. Batch is a bounded stream of partitions, with a known end. The directed acyclic graph plans the whole job upfront, executes once, and terminates. Streaming, by contrast, is an unbounded sequence of micro-batches — and each micro-batch is itself a bounded batch. It is the same batch execution, just run over and over.
+
+Four things diverge between them. First, the D-A-G lifecycle — one execution, versus the same logical D-A-G re-executed per micro-batch. Second, the state store — none in batch, versus a RocksDB-backed state on the executors for stateful operations. Third, the output modes — write-and-exit in batch, versus append, update, or complete, because now there is running state to emit. And fourth, fault tolerance — rerun the whole job in batch, versus checkpoint-plus-offset-tracking, so streaming resumes exactly where it stopped.
+
+Everything else — partitioning, shuffles, Catalyst optimization, executor memory — is the same code path. And that is the unifying insight. Streaming is just batch, executed on small, frequent slices of an unbounded source.

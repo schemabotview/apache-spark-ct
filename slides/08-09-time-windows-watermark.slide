@@ -1,0 +1,18 @@
+# Time, windows & watermarking
+
+## Two clocks
+
+- **Processing time** — when Spark sees the row
+- **Event time** — when it actually happened — the honest clock (watermark operates on it)
+
+## Three window types (over event time)
+
+- **Tumbling** — `window(ts, "5 min")` — fixed, non-overlapping
+- **Sliding** — `window(ts, "5 min", "1 min")` — overlapping; event in multiple windows
+- **Session** — `session_window(ts, "10 min")` — opens on activity, closes after a gap
+
+## Watermarking
+
+- `watermark = max(event_time) − delay`
+- Before it → **dropped** · window ends at/before it → **closed** (state freed)
+- `.withWatermark(col, "10 min")` **before** `groupBy` · **required** for `append` windowed aggs

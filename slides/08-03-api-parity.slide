@@ -1,0 +1,15 @@
+# API parity — what actually changes
+
+## Same DataFrame code between read and write
+
+- `filter`, `select`, `groupBy`, `join`, `agg`, windows — **unchanged**
+
+## Exactly five things change
+
+1. **`spark.readStream`** (not `spark.read`) — plus an **explicit schema** (no inference on unbounded sources)
+2. **`df.writeStream`** (not `df.write`)
+3. **`outputMode(...)`** — which rows to emit per micro-batch
+4. **`option("checkpointLocation", ...)`** — offsets + state + WAL
+5. **`start()`** returns a `StreamingQuery` handle (`write` returned `None`)
+
+The parity is why one logic powers **backfill and live** with minimal change.

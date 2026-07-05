@@ -1,0 +1,15 @@
+# Checkpointing & fault tolerance
+
+## What makes streaming exactly-once & restartable
+
+- A checkpoint is **three things**, advanced **atomically** every batch:
+  1. **Offsets** — source positions (what's been *read*)
+  2. **WAL** — what's *planned* this batch (recovers on driver crash)
+  3. **State store snapshot** — aggregates, windows, join buffers
+
+- One **atomic commit** per batch → no gap between offsets and state → **that's exactly-once**
+
+## Always set `checkpointLocation`
+
+- End-to-end needs **both** ends: Kafka → Delta = exactly-once
+- Rate → memory = at-least-once (sink not durable) · Socket → any = at-most-once (source not replayable)

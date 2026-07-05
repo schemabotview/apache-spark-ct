@@ -1,0 +1,20 @@
+# Your first streaming query
+
+## rate source → memory sink (no external system)
+
+- **rate** — rows at a fixed rate: `timestamp`, `value`
+- **memory** — an in-memory temp view you can query with SQL
+
+```python
+q = (spark.readStream.format("rate").load()
+     .writeStream
+     .format("memory")        # sink type
+     .queryName("counts")     # SQL view
+     .outputMode("append")    # new rows only
+     .start())                # → StreamingQuery handle
+q.awaitTermination(5); q.stop()
+```
+
+## The handle
+
+- `start()` returns the query handle — how you **observe and stop** it (sections ahead)

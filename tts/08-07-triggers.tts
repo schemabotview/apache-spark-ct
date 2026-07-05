@@ -1,0 +1,15 @@
+Triggers — controlling the micro-batch cadence.
+
+A trigger defines how often Spark checks for new data, and runs a micro-batch. There are five to know.
+
+The default trigger, when you specify nothing, runs the next batch as soon as the previous one finishes.
+
+The fixed-interval trigger — processing-time of thirty seconds, for example — runs every thirty seconds, and it skips a tick if the previous batch is still running.
+
+The once trigger processes all the available data in one single batch, and then stops.
+
+The available-now trigger processes all the available data too, but in multiple, optimally-sized batches, and then stops.
+
+And the continuous trigger is an experimental mode, aiming for around one-millisecond latency.
+
+Here is the key insight to carry away. Once, and available-now, turn a streaming query into a self-terminating batch job. You keep all the streaming semantics — exactly-once, offset tracking, and idempotent restart — but the job simply exits, once it has caught up. And that is how a single codebase can serve both a historical backfill, and live processing.

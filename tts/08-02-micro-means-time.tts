@@ -1,0 +1,9 @@
+Micro means time, not data size.
+
+The word micro-batch misleads a lot of people. It makes them think the data itself is tiny. It is not. Micro refers to the trigger interval — the time — not the row count. A micro-batch is simply whatever data arrived since the last checkpoint.
+
+So think it through. Processing-time of one second, on a low-volume topic, gives you tiny batches. But processing-time of one hour, on a high-velocity Kafka topic, gives you gigabytes per batch, and hundreds of partitions — which is identical to a batch job in how it executes. And the trigger available-now reads everything available, processes it in optimally-sized batches, and then stops. That is essentially batch processing, through the streaming interface.
+
+So when does Spark streaming earn its keep? When your per-batch volume is large. When your state does not fit on one node. When you need cross-partition shuffles — windows, group-bys, stream-stream joins. When you want unified batch and stream code. Or when you are joining a stream against a large static table.
+
+And when is it the wrong tool? If you have a sub-ten-millisecond latency requirement, use Flink or Kafka Streams — Spark's micro-batch model has an irreducible floor of around one hundred milliseconds. And for low-volume, simple, stateless transforms, a plain Kafka consumer is simpler and faster. The honest trade is this — you get throughput and fault tolerance, in exchange for latency.

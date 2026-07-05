@@ -1,0 +1,16 @@
+# Batch vs Structured Streaming
+
+## Same engine, different lifecycle
+
+- partition → task → executor is **identical** — only the lifecycle around it changes
+- **Batch** — a *bounded* stream, planned once, runs, terminates
+- **Streaming** — an *unbounded* sequence of **micro-batches**; each is *itself* a bounded batch
+
+## Four divergences
+
+- **DAG lifecycle** — one run vs. same DAG re-run per micro-batch
+- **State store** — none vs. RocksDB state on executors
+- **Output modes** — write-and-exit vs. `append`/`update`/`complete`
+- **Fault tolerance** — rerun vs. **checkpoint + offsets** (resume exactly)
+
+*Streaming = batch on small, frequent slices of an unbounded source.*

@@ -1,0 +1,15 @@
+Checkpointing, and fault tolerance.
+
+Checkpointing is the mechanism that makes structured streaming exactly-once, and restartable. Without it, a crashed query restarts from scratch, and it may double-process the data.
+
+Now, a checkpoint is not just the last offset read. It is three things — and they all advance atomically, every batch.
+
+The first is the offsets — the source positions, like a file index or a Kafka offset. This is what has been read.
+
+The second is the write-ahead log — what has been planned for this batch. This is what recovers the in-flight data if the driver crashes.
+
+And the third is the state store snapshot — the running aggregates, the window contents, and the join buffers.
+
+All three of these move forward in one atomic commit, per batch. And that atomicity is exactly how Spark gives you exactly-once — there is never a window where the offsets advance but the state does not, or the reverse.
+
+So always set checkpoint-location on any production query. But remember — end-to-end exactly-once requires both the source and the sink to support it. Kafka into Delta is exactly-once. Rate into memory is only at-least-once, because the sink is not durable. And a socket source into anything is at-most-once, because the source is not replayable.
