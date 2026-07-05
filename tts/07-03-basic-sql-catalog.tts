@@ -1,0 +1,9 @@
+Basic sequel, and the catalog interface.
+
+The query surface is standard ansi sequel — select, where, group-by, having, order-by, and limit. And here is a nice detail. Spark sequel does support having, even though there is no having method on dataframes. Recall that in module six, on the dataframe side, we filtered groups by chaining a filter after the agg.
+
+Alongside the queries, there is spark dot catalog, which lets you inspect the metastore programmatically — for discovery, and for cleanup.
+
+List-databases, list-tables, and list-columns let you enumerate what exists. Table-exists gives you a boolean, as a guard. And drop-temp-view and drop-global-temp-view let you clean up your views.
+
+The clean way to think about it is this. Your queries read the data. The catalog reads the metadata about the data.

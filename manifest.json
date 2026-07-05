@@ -574,6 +574,102 @@
           "spine": true
         }
       ]
+    },
+    {
+      "id": "07-spark-sql-and-udfs",
+      "title": "Spark SQL & UDFs",
+      "sections": [
+        {
+          "heading": "SQL is a first-class citizen",
+          "notebook": "notebooks/07-01-sql-first-class.ipynb",
+          "slide": "slides/07-01-sql-first-class.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql"],
+          "spine": true,
+          "role": "hook"
+        },
+        {
+          "heading": "Temporary views — session, global, and managed tables",
+          "notebook": "notebooks/07-02-temporary-views.ipynb",
+          "slide": "slides/07-02-temporary-views.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql-views"],
+          "highlight": ["b-sql-temp", "b-sql-gtemp", "b-sql-savetbl"],
+          "spine": true
+        },
+        {
+          "heading": "Basic SQL & the catalog API",
+          "notebook": "notebooks/07-03-basic-sql-catalog.ipynb",
+          "slide": "slides/07-03-basic-sql-catalog.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql-queries", "b-sql-views"],
+          "highlight": ["b-sql-select", "b-sql-where", "b-sql-listtbl"],
+          "spine": true
+        },
+        {
+          "heading": "Null semantics — col == null always returns null",
+          "notebook": "notebooks/07-04-null-semantics.ipynb",
+          "slide": "slides/07-04-null-semantics.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql-null"],
+          "highlight": ["b-sql-n-eq", "b-sql-n-neq", "b-sql-n-isn", "b-sql-n-coa"],
+          "spine": true
+        },
+        {
+          "heading": "CTEs, subqueries & SQL joins",
+          "notebook": "notebooks/07-05-ctes-subqueries-joins.ipynb",
+          "slide": "slides/07-05-ctes-subqueries-joins.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql-joins"],
+          "highlight": ["b-sql-cte", "b-sql-sub", "b-sql-j-inner", "b-sql-j-left"],
+          "spine": true
+        },
+        {
+          "heading": "Window functions in SQL",
+          "notebook": "notebooks/07-06-window-functions-sql.ipynb",
+          "slide": "slides/07-06-window-functions-sql.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql-agg"],
+          "highlight": ["b-sql-rownum", "b-sql-rank", "b-sql-lag", "b-sql-cume"],
+          "spine": true
+        },
+        {
+          "heading": "DataFrame API vs SQL — same plan",
+          "notebook": "notebooks/07-07-dataframe-vs-sql.ipynb",
+          "slide": "slides/07-07-dataframe-vs-sql.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-sql", "b-df"],
+          "highlight": ["b-sql", "b-df"],
+          "spine": true
+        },
+        {
+          "heading": "Python UDFs — @udf and spark.udf.register",
+          "notebook": "notebooks/07-08-python-udfs.ipynb",
+          "slide": "slides/07-08-python-udfs.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-fns"],
+          "highlight": ["b-df-fn-udf"],
+          "spine": true
+        },
+        {
+          "heading": "Pandas UDFs — vectorized via Apache Arrow",
+          "notebook": "notebooks/07-09-pandas-udfs.ipynb",
+          "slide": "slides/07-09-pandas-udfs.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-fns"],
+          "highlight": ["b-df-fn-udf"],
+          "spine": true
+        },
+        {
+          "heading": "Performance tiers — when to use each",
+          "notebook": "notebooks/07-10-performance-tiers.ipynb",
+          "slide": "slides/07-10-performance-tiers.slide",
+          "scene": "spark-batch-api",
+          "focus": ["b-df-fns"],
+          "highlight": ["b-df-fn-str", "b-df-fn-udf"],
+          "spine": true
+        }
+      ]
     }
   ]
 }

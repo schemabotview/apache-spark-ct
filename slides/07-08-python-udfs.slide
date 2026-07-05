@@ -1,0 +1,16 @@
+# Python UDFs
+
+## When no built-in fits — two paths
+
+- **`@udf(returnType)`** — decorator for the DataFrame API
+- **`spark.udf.register(name, func, returnType)`** — callable from `spark.sql(...)`
+
+## The cost is real
+
+- Every row crosses the **JVM ↔ Python boundary twice** → **10–100× slower** than a built-in
+
+## A Catalyst black box
+
+- **No predicate pushdown** across it (whole column read first)
+- **No column pruning** · **no null safety** (`None` may crash it) · **no plan-time type check**
+- **Exhaust built-ins, higher-order functions, and Pandas UDFs first.**

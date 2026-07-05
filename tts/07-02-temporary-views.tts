@@ -1,0 +1,11 @@
+Temporary views — session, global, and managed tables.
+
+To query a dataframe with sequel, you first have to give it a name — and that name is a view. There are three lifetimes to choose from.
+
+Create-or-replace-temp-view registers a view that lives for this SparkSession only. You address it by its plain name.
+
+Create-or-replace-global-temp-view registers a view that lives for the whole java virtual machine — across all sessions. You address it with the global-temp prefix, then the name.
+
+And write dot save-as-table, which we saw in module five, persists the table in the metastore. You address it by its plain name.
+
+This unlocks a really useful pattern — the sequel-to-dataframe round-trip. You register a dataframe as a view, you query it with spark dot sequel, you take that result back as a dataframe, and you keep chaining. And because every one of those hops goes through the same optimizer, the plans stay merged into one.

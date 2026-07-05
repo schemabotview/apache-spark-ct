@@ -1,0 +1,15 @@
+# Temporary views
+
+## Name a DataFrame → query it with SQL
+
+- **`createOrReplaceTempView(name)`** — this **SparkSession** only → `<name>`
+- **`createOrReplaceGlobalTempView(name)`** — the whole **JVM** → `global_temp.<name>`
+- **`write.saveAsTable(name)`** — **persisted** in the metastore → `<name>`
+
+## The SQL ↔ DataFrame round-trip
+
+1. Register a DataFrame as a view
+2. Query it with `spark.sql(...)`
+3. Take the result back as a DataFrame, keep chaining
+
+- Every hop goes through the **same optimizer** → plans stay merged

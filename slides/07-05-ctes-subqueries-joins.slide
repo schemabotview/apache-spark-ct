@@ -1,0 +1,13 @@
+# CTEs, subqueries & SQL joins
+
+## Three ways to compose queries
+
+- **CTEs** — `WITH ... AS (...)` names intermediate results → reads **top-to-bottom, not inside-out**
+- **Subqueries** — correlated & uncorrelated, in `WHERE` / `FROM` / `SELECT`
+  - **scalar** (one value) · **`IN`** (set membership) · **`EXISTS`** (correlated)
+- **Joins** — all six, same semantics as the DataFrame `how`
+  - `INNER` · `LEFT` / `RIGHT` / `FULL OUTER` · `LEFT SEMI` / `LEFT ANTI`
+
+## Takeaway
+
+- Everything from DataFrame joins & set logic applies — **only the syntax differs**

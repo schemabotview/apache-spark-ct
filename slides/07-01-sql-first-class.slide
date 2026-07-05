@@ -1,0 +1,14 @@
+# SQL is a first-class citizen
+
+## Same engine, different syntax
+
+- `spark.sql(...)` takes any **ANSI SQL** string → the **same Catalyst optimizer**
+- SQL and DataFrame paths produce **identical plans** — pick the readable one, mix freely
+
+## ANSI SQL mode (Spark 3.0+)
+
+- Stricter semantics: overflow **throws**, casts stricter, divide-by-zero **raises**
+- Off by default; recommended for new pipelines:
+  - `spark.conf.set("spark.sql.ansi.enabled", "true")`
+
+SQL is **not** a bolt-on — it's the DataFrame engine wearing SQL syntax.

@@ -1,0 +1,16 @@
+# Null semantics
+
+## The trap: `col == null` is always `null`
+
+- `df.filter(col("category") == None)` → **zero rows**
+- A filter passes only `true`; `category == null` is `null` for **every** row
+- Same in SQL: `WHERE col = NULL` **never** matches
+
+## The correct tools
+
+- **`col.isNull()` / `col.isNotNull()`** · SQL **`col IS NULL` / `IS NOT NULL`**
+- **`col <=> null` / `eqNullSafe(...)`** — null-safe equality (`true` when both null)
+
+## And note
+
+- `col1 == col2` is `null` if either side is null → rows drop unless `eqNullSafe`

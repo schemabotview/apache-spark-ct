@@ -1,0 +1,13 @@
+# DataFrame API vs SQL — same plan
+
+## Both compile to the identical physical plan
+
+- Same query, two ways → Catalyst rewrites both the same
+- The proof is `.explain()` — the plans **match line for line**
+
+## So the choice is readability, never performance
+
+- **SQL** — declarative, set-based logic; for people who think in SQL
+- **DataFrame API** — programmatic construction from variables, loops, functions
+
+Mix them freely in one pipeline — **the optimizer merges the plans** regardless.

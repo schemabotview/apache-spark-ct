@@ -1,0 +1,19 @@
+# Window functions in SQL
+
+## The whole spec → one `OVER (...)` clause
+
+```sql
+SELECT *, ROW_NUMBER() OVER (
+    PARTITION BY customer_id
+    ORDER BY txn_date
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+) AS rn
+FROM transactions
+```
+
+## Maps one-to-one to the DataFrame window
+
+- `PARTITION BY` = `partitionBy` · `ORDER BY` = `orderBy` · `ROWS/RANGE BETWEEN` = the frame
+- Same fns: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE`, `LAG`, `LEAD` + running aggregates
+
+Know the DataFrame window → **you already know the SQL window.**

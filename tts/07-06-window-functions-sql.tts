@@ -1,0 +1,9 @@
+Window functions, in sequel.
+
+This is the very same window interface from module six, now written in sequel syntax. The whole window spec collapses into a single over-clause. Inside those parentheses, you write partition-by, then order-by, then the frame — for example, rows between unbounded-preceding and current-row.
+
+The semantics are identical to the dataframe version. You get row-number, rank, dense-rank, n-tile, lag, and lead, plus running aggregates over a frame.
+
+And the three parts map one-to-one. Partition-by in sequel is the partition-by method on the dataframe side. Order-by is the order-by method. And rows-between, or range-between, is the frame.
+
+So the bottom line is this. If you already know the dataframe window, then you already know the sequel window. It is the same thing, in a different dress.

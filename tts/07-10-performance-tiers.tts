@@ -1,0 +1,17 @@
+Performance tiers — when to use each.
+
+Think of this as a ladder, running from fastest to slowest, that answers the question — how should I express this piece of logic?
+
+At the top, the fastest tier, are the built-in functions. For string, date, array, conditional, and numeric work, always try these first. They get Tungsten code generation, and there is no serialization.
+
+Next are the higher-order functions — transform, filter, and aggregate. For element-wise work over arrays and maps, these run the lambda directly on the java virtual machine.
+
+Then comes the pandas user-defined function, series-to-series. For NumPy, pandas, or scikit-learn vectorized work, this uses Arrow columnar batches.
+
+After that is the pandas user-defined function, iterator form. Use it for setup-once patterns — loading a model, or opening a connection — so you set up once per batch, instead of once per row.
+
+Then apply-in-pandas, for custom group-level logic that genuinely needs full pandas.
+
+And at the very bottom, the slowest tier, is the plain at-udf. It is acceptable for simple custom logic, on small data, where there is no built-in alternative. But avoid it on the hot paths.
+
+So here is the rule. Climb this ladder only as far as you actually must. And whenever you find a plain user-defined function on a hot path over billions of rows, rewrite it downward — because it is ten to one hundred times slower, and it puts pressure on the garbage collector.

@@ -1,0 +1,9 @@
+Python user-defined functions.
+
+When no built-in can express your logic, you fall back to a Python user-defined function. There are two ways to register one. The at-udf decorator, with a return type, is for the dataframe interface — you use the result as a regular column. And spark dot udf dot register, with a name, a function, and a return type, registers a name that you can then call from within spark dot sequel.
+
+But the cost is real, and you need to feel it. Every single row crosses the java-virtual-machine-to-Python boundary, twice — once to send the value out to a Python worker, and once to bring the result back. That makes a user-defined function ten to one hundred times slower than the equivalent built-in, on large data.
+
+And there is a deeper problem. A Python user-defined function is a Catalyst black box — the optimizer cannot see inside it. Which means, first, no predicate pushdown across it — the whole column has to be read before the filter can run. Second, no column pruning. Third, no null safety — a built-in returns null when given null, but a naive Python function receives none, and may crash. And fourth, no type checking at plan time — a mismatch shows up at runtime instead.
+
+So always exhaust the built-ins, the higher-order functions, and the pandas user-defined functions first.

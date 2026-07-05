@@ -1,0 +1,11 @@
+Common table expressions, subqueries, and sequel joins.
+
+There are three ways that Spark sequel lets you compose more complex queries.
+
+The first is common table expressions, written with the with-clause. A common table expression names an intermediate result, so that a complex query reads top-to-bottom, instead of inside-out. Spark supports full ansi with-chains.
+
+The second is subqueries. Spark sequel supports both correlated and uncorrelated subqueries, in the where, from, and select clauses. A scalar subquery returns a single value. An in-subquery tests set membership. And an exists-subquery is correlated — the outer row passes if the inner query returns any matching row at all.
+
+And the third is joins. All six join types are supported, with exactly the same semantics as the dataframe how-argument from earlier — just in sequel syntax. That is inner, left, right, and full-outer, plus left-semi and left-anti.
+
+The takeaway is simple. Everything you already learned about dataframe joins and set logic applies here, unchanged. Only the syntax is different.

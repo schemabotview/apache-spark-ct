@@ -1,0 +1,14 @@
+# Performance tiers — fastest to slowest
+
+## The decision ladder
+
+1. **Built-in `functions`** — string/date/array/numeric — Tungsten, no serialization — *try first*
+2. **Higher-order functions** — `transform`, `filter`, `aggregate` — lambda on the JVM
+3. **Pandas UDF · Series → Series** — NumPy/pandas vectorized — Arrow batches
+4. **Pandas UDF · Iterator** — setup-once (model, connection) per batch
+5. **`applyInPandas`** — custom group logic needing full pandas
+6. **Plain `@udf`** — small data, no alternative — **avoid on hot paths**
+
+## The rule
+
+- Climb only as far as you must; **rewrite hot `@udf`s downward** (10–100× slower, GC pressure)

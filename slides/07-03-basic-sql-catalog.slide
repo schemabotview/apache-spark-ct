@@ -1,0 +1,14 @@
+# Basic SQL & the catalog API
+
+## Standard ANSI query surface
+
+- `SELECT`, `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, `LIMIT`
+- Spark SQL **supports `HAVING`** — even though DataFrames have no `.having()` (use `.filter()` after `.agg()`)
+
+## `spark.catalog` — inspect the metastore
+
+- **`listDatabases()`** / **`listTables()`** / **`listColumns(table)`**
+- **`tableExists(name)`** — boolean guard
+- **`dropTempView`** / **`dropGlobalTempView`** — cleanup
+
+Queries read the **data**; the catalog reads the **metadata about** the data.

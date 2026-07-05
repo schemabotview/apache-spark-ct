@@ -1,0 +1,15 @@
+# Pandas UDFs — vectorized via Arrow
+
+## Columnar batches, not row-by-row
+
+- Transfers data in **Apache Arrow** batches; you operate on a `pd.Series`
+- NumPy/pandas vectorization applies; Arrow removes most serialization overhead
+- **Dramatically faster** than a plain Python UDF
+
+## Three flavors
+
+- **Series → Series** *(default)* — most row-wise transformations
+- **Iterator of Series** — **set up once** (load a model, open a DB) before the batches
+- **`groupBy().applyInPandas(f, schema)`** — a full `pd.DataFrame` per group
+
+Must leave the built-ins? Reach for a **Pandas UDF before a plain one.**

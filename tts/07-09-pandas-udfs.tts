@@ -1,0 +1,13 @@
+Pandas user-defined functions — vectorized, through Apache Arrow.
+
+A pandas user-defined function — also called a vectorized user-defined function — transfers its data in columnar Arrow batches, instead of one row at a time. Inside the function, you operate on a pandas series — or a pandas dataframe, for the grouped variants. That means all of NumPy's and pandas's vectorization applies, and Arrow removes most of the serialization overhead. The result is dramatically faster than a plain Python user-defined function.
+
+There are three flavors worth knowing.
+
+The default is series-to-series. A pandas series goes in, a pandas series comes out. This covers most row-wise transformations.
+
+The second is iterator-of-series. An iterator goes in, and an iterator comes out. The point of this one is that it lets you set up once — load a model, or open a database connection — before you start processing the batches.
+
+And the third is group-by dot apply-in-pandas. Here, a full pandas dataframe is handed to you, per group. Use it for custom aggregation that genuinely needs real pandas.
+
+So the rule is this. If you must leave the built-ins, reach for a pandas user-defined function, before you reach for a plain one.

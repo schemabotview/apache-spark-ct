@@ -1,0 +1,7 @@
+Sequel is a first-class citizen.
+
+Spark dot sequel takes any ansi-sequel string, and it routes that string through the exact same Catalyst optimizer as the dataframe interface. The two paths produce identical execution plans. So you should pick whichever form reads better, and you can mix the two freely within a single application.
+
+There is one setting worth knowing about — ansi-sequel mode. Since Spark three point zero, there is a stricter sequel semantics available. With it on, integer overflow throws an error instead of silently wrapping, casts are stricter, and divide-by-zero raises. It is off by default, for backward compatibility, but it is recommended for new pipelines. You enable it by setting spark dot sequel dot ansi dot enabled to true.
+
+The whole module leans on one idea. Sequel is not a second-class bolt-on. It is the very same engine, wearing a different syntax.

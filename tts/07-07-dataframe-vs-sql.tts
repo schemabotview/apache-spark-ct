@@ -1,0 +1,9 @@
+Dataframe interface versus sequel — the same plan.
+
+Take the same query, and write it two ways — once as a dataframe chain, and once as a spark dot sequel string. Catalyst rewrites both of them into the identical physical plan. And you can prove it, right there in explain — the two plans match, line for line.
+
+This is really the payoff of the whole module. The choice between sequel and the dataframe interface is purely about readability, and team preference. It is never about performance.
+
+Sequel shines for declarative, set-based logic, and for people who already think in sequel. The dataframe interface shines for programmatic construction — building a query up from variables, loops, and functions.
+
+So mix them freely, within a single pipeline. The optimizer merges the plans, no matter which surface you happened to use.

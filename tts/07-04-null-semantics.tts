@@ -1,0 +1,9 @@
+Null semantics — col equals null always returns null.
+
+Ansi three-valued logic applies here, with one dataframe-specific trap that catches everyone at least once.
+
+Here is the trap. Column equals none always evaluates to null — never to true. So if you write dataframe dot filter, of column category equals none, you get back zero rows. Why? Because a filter only passes the rows where the predicate is true, and category equals null evaluates to null for every single row. The exact same thing happens in sequel — where col equals null never matches anything.
+
+So what are the correct tools? On the dataframe side, use is-null and is-not-null. On the sequel side, use is null, and is not null. And when you actually want null to equal null, use the null-safe equality operator — written as less-than, equals, greater-than — or the equals-null-safe method. That returns true when both sides are null.
+
+And one more consequence to keep in mind. Column-one equals column-two returns null whenever either side is null. So those rows quietly drop out of a filter — unless you use the null-safe equality.
