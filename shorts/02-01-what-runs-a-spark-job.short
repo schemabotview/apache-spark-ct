@@ -1,0 +1,6 @@
+# What actually runs your Spark job?
+
+- Your code runs on the **driver** — the brain of the job.
+- The driver builds a **plan**, then splits it into **tasks**.
+- Tasks ship to the **executors** — your data, crunched in **parallel**.
+- **Driver plans. Executors do the work.**

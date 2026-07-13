@@ -1,0 +1,15 @@
+{
+  "concept": "Apache Spark",
+  "shorts": [
+    {
+      "id": "02-01-what-runs-a-spark-job",
+      "title": "What actually runs your Spark job?",
+      "short": "shorts/02-01-what-runs-a-spark-job.short",
+      "audio": "shorts/02-01-what-runs-a-spark-job.wav",
+      "scene": "spark-architecture",
+      "focus": "master",
+      "highlight": ["driver", "session"],
+      "sourceModule": "02-the-execution-model"
+    }
+  ]
+}
