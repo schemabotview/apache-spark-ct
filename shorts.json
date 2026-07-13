@@ -7,7 +7,7 @@
       "short": "shorts/01-01-three-roles.short",
       "audio": "shorts/01-01-three-roles.wav",
       "scene": "spark-architecture",
-      "focus": ["master", "cluster-mgr", "worker-a"],
+      "focus": ["driver", "cluster-mgr", "exec-a"],
       "highlight": ["driver", "cluster-mgr", "exec-a"],
       "sourceModule": "01-foundations-and-the-cluster"
     },
