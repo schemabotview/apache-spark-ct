@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+Your Spark job is computing everything twice
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+Your Spark job is computing everything twice
+
+By default, every action re-runs the whole lineage from source — .count() then .collect() on the same RDD computes it twice. Fix it with .cache() (materialize on first action, reuse after) or .persist(level) to pick the policy: MEMORY_ONLY, MEMORY_AND_DISK, DISK_ONLY, serialized (*_SER), replicated (*_2). Call .unpersist() when done — a cache holds executor memory until released.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

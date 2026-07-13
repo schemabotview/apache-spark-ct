@@ -1,0 +1,6 @@
+# Why 200 partitions?
+
+- A partition is Spark's **unit of parallelism** — **one partition, one task, one core**.
+- **More partitions than cores** → tasks queue, cores stay busy.
+- **Fewer than cores** → cores sit idle, work is slow.
+- After any **shuffle**, Spark defaults to **`spark.sql.shuffle.partitions = 200`** — famous, and often wrong for your data.

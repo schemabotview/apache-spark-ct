@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+reduceByKey vs groupByKey — why it matters
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+reduceByKey vs groupByKey — why it matters
+
+Both shuffle — the question is how much. reduceByKey combines values locally on each partition first (map-side combine), then shuffles only the partial results. groupByKey ships every value across the network, flooding the shuffle and risking out-of-memory. Aggregating? Always reach for reduceByKey. Same idea carries to groupBy().agg() on DataFrames.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

@@ -1,0 +1,6 @@
+# reduceByKey vs groupByKey
+
+- Both **shuffle** — the question is *how much*.
+- **`reduceByKey`** — combines values **locally on each partition first**, then shuffles only the partial results.
+- **`groupByKey`** — ships **every value** across the network → floods the shuffle, can blow up executor memory.
+- **Aggregating? Always reach for `reduceByKey`.**

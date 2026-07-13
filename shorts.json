@@ -100,6 +100,56 @@
       "focus": ["catalyst"],
       "highlight": ["logical-plan", "analyzed-plan", "optimized-plan", "physical-plan"],
       "sourceModule": "02-the-execution-model"
+    },
+    {
+      "id": "03-01-reducebykey-vs-groupbykey",
+      "title": "reduceByKey vs groupByKey — why it matters",
+      "short": "shorts/03-01-reducebykey-vs-groupbykey.short",
+      "audio": "shorts/03-01-reducebykey-vs-groupbykey.wav",
+      "scene": "spark-batch-api",
+      "focus": ["b-rdd-pair"],
+      "highlight": ["b-rdd-rbk", "b-rdd-gbk"],
+      "sourceModule": "03-rdds"
+    },
+    {
+      "id": "03-02-lineage",
+      "title": "Spark doesn't back up your data",
+      "short": "shorts/03-02-lineage.short",
+      "audio": "shorts/03-02-lineage.wav",
+      "scene": "spark-batch-api",
+      "focus": ["b-rdd-narrow", "b-rdd-wide"],
+      "highlight": ["b-rdd-narrow", "b-rdd-wide"],
+      "sourceModule": "03-rdds"
+    },
+    {
+      "id": "03-03-partitions",
+      "title": "Why does Spark always make 200 partitions?",
+      "short": "shorts/03-03-partitions.short",
+      "audio": "shorts/03-03-partitions.wav",
+      "scene": "spark-batch-api",
+      "focus": ["b-rdd-create"],
+      "highlight": ["b-rdd-parallelize", "b-rdd-numslices"],
+      "sourceModule": "03-rdds"
+    },
+    {
+      "id": "03-04-cache-vs-persist",
+      "title": "Your Spark job is computing everything twice",
+      "short": "shorts/03-04-cache-vs-persist.short",
+      "audio": "shorts/03-04-cache-vs-persist.wav",
+      "scene": "spark-batch-api",
+      "focus": ["b-perf-cache"],
+      "highlight": ["b-perf-cache-c", "b-perf-cache-p", "b-perf-cache-u"],
+      "sourceModule": "03-rdds"
+    },
+    {
+      "id": "03-05-what-is-an-rdd",
+      "title": "What is an RDD, really?",
+      "short": "shorts/03-05-what-is-an-rdd.short",
+      "audio": "shorts/03-05-what-is-an-rdd.wav",
+      "scene": "spark-batch-api",
+      "focus": ["b-rdd"],
+      "highlight": ["b-rdd"],
+      "sourceModule": "03-rdds"
     }
   ]
 }

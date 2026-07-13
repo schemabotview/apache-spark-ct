@@ -1,0 +1,7 @@
+# Your Spark job runs twice
+
+- By default, **every action re-runs the whole lineage** from source.
+- `.count()` then `.collect()` on the same RDD = computed **twice**.
+- **`.cache()`** — materialize on first action, reuse after (RAM).
+- **`.persist(level)`** — pick the policy: `MEMORY_ONLY`, `MEMORY_AND_DISK`, `DISK_ONLY`, `*_SER`, `*_2`.
+- **`.unpersist()`** when done — a cache holds executor memory until released.

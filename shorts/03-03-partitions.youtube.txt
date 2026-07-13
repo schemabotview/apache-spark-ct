@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+Why does Spark always make 200 partitions?
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+Why does Spark always make 200 partitions?
+
+A partition is Spark's unit of parallelism — one partition, one task, one core. More partitions than cores keeps cores busy; fewer than cores leaves them idle. After any shuffle, Spark defaults to spark.sql.shuffle.partitions = 200 — famous, and often wrong for your data. Right-sizing partitions is one of the biggest levers in Spark performance.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

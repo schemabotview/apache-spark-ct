@@ -1,0 +1,11 @@
+Every other big-data system survives a crash by making copies. HDFS keeps three replicas of every block. Spark does something completely different — it keeps no copies of your data at all.
+
+So how does it survive an executor dying mid-job? It remembers the recipe. For every RDD, Spark tracks the exact chain of transformations that built it — that's called the lineage graph.
+
+When an executor crashes and a partition is lost, Spark doesn't panic and it doesn't restart the whole job. It looks at the lineage, finds just the slice needed to rebuild that one partition, and replays only those steps. One partition lost, one partition recomputed.
+
+That's what the R in RDD actually means — resilient. Resilience here comes from pure functions plus lineage, not from duplicating data.
+
+There's a catch, though. If you reuse an RDD without caching it, every action re-runs the full lineage from the source — so you compute it twice. That's exactly why cache exists.
+
+RDDs and lineage are Module 3 — link's in the description.

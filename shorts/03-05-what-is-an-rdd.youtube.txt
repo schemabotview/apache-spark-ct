@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+What is an RDD, really?
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+What is an RDD, really?
+
+RDD = Resilient Distributed Dataset — the original Spark abstraction, and every DataFrame compiles down to it. Resilient: lost partitions recomputed from lineage, not a replica. Distributed: partitioned across executor memory on many machines. Dataset: a collection of any objects — no schema, no columns. Immutable, lazy, schema-free, typed at runtime — the properties that make Spark lazy, fault-tolerant, and partition-parallel.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

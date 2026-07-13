@@ -1,0 +1,11 @@
+Here's a bug that isn't a bug — and it might be doubling your Spark bill. By default, Spark recomputes an RDD from scratch every time you use it.
+
+Remember lineage: an RDD is just a recipe. So when you call count on it, Spark runs the whole recipe. Then you call collect on the same RDD — and Spark runs the entire recipe again, from the original source. Two actions, twice the work.
+
+The fix is caching. Call cache, and Spark materializes the RDD on the first action and reuses it after that — no recomputation. cache keeps it in memory.
+
+If you need more control, use persist and choose a storage level. MEMORY_ONLY is pure RAM. MEMORY_AND_DISK spills to disk when RAM runs out — that's the default for DataFrames. There's DISK_ONLY, serialized levels that trade CPU for less memory, and replicated levels ending in two.
+
+One habit: call unpersist when you're done. A cache holds onto executor memory until you release it, and that memory isn't free.
+
+Caching is Module 3 — link's in the description.

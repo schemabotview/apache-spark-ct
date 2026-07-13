@@ -1,0 +1,11 @@
+Ever notice your Spark job suddenly splits into exactly 200 tasks — no matter how much data you have? That number isn't magic, and understanding it is the start of tuning Spark.
+
+Start with the partition. A partition is Spark's unit of parallelism: one partition becomes one task, and one task runs on one core. That mapping is the whole game.
+
+If you have more partitions than cores, that's fine — tasks queue up and your cores stay busy. But if you have fewer partitions than cores, some cores just sit idle, and you're leaving speed on the table.
+
+So where does 200 come from? After any shuffle — a groupBy, a join — Spark sets the number of output partitions from a config called spark dot sql dot shuffle dot partitions, and it defaults to 200. On a tiny dataset that's 200 nearly-empty tasks; on a huge one it might be far too few. It's a default, not an answer.
+
+Right-sizing partitions to your data and your cores is one of the biggest levers in Spark performance.
+
+Partitions are Module 3 — link's in the description.

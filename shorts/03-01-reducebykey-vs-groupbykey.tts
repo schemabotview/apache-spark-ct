@@ -1,0 +1,13 @@
+Here's the Spark question that shows up in almost every interview: what's the difference between reduceByKey and groupByKey? They look interchangeable — but pick wrong on big data and your job falls over.
+
+The key fact: both of them shuffle. The real question is how much data crosses the network.
+
+reduceByKey combines values locally on each partition first — a map-side combine — and then shuffles only the small partial results. So if one key has a million values on a partition, they're reduced down before anything moves.
+
+groupByKey does the opposite. It ships every single value across the network first, and only then lets you combine them. On big data that floods the shuffle and can blow up executor memory — the classic out-of-memory failure.
+
+So the rule is simple: if you're aggregating, always prefer reduceByKey — or aggregateByKey, or combineByKey. Only use groupByKey when you genuinely need every value as a collection, not a summary.
+
+And this isn't just an RDD thing — when you write groupBy dot agg on a DataFrame, Spark does the map-side combine for you. Same idea, one more reason to use it.
+
+RDDs are Module 3 — link's in the description.

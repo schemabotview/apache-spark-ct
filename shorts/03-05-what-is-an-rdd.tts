@@ -1,0 +1,13 @@
+You'll hear that nobody writes RDDs anymore — you use DataFrames. That's true, but every DataFrame compiles down to RDD operations underneath. So understanding the RDD is understanding why Spark behaves the way it does.
+
+RDD stands for Resilient Distributed Dataset, and the three words tell you almost everything.
+
+Resilient: if a partition is lost, Spark recomputes it from its lineage — the recipe that built it — instead of keeping a replica.
+
+Distributed: the data is split into partitions spread across the memory of many executors. That's where the parallelism comes from.
+
+Dataset: it's just a collection of records — any objects you like. And crucially, an RDD has no schema and no columns. Spark can't see inside your rows, which is exactly why it can't optimize them the way it optimizes DataFrames.
+
+Put it together and an RDD is immutable, lazy, schema-free, and typed only at runtime. Those four properties are why Spark is lazy, fault-tolerant, and partition-parallel in the first place.
+
+RDDs are Module 3 — link's in the description.

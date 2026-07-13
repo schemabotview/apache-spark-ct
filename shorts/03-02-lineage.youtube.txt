@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+Spark doesn't back up your data
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+Spark doesn't back up your data
+
+Unlike HDFS, Spark never replicates your RDD data. It remembers the recipe — the transformations that built each partition (the lineage graph). When an executor crashes, Spark replays just that slice of the lineage to rebuild the lost partition. Resilience = pure functions + lineage, not copies. (And it's why cache matters — without it, every action re-runs the full lineage.)
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

@@ -1,0 +1,7 @@
+# What is an RDD, really?
+
+- **RDD** = Resilient Distributed Dataset — the original Spark abstraction. Every DataFrame compiles down to it.
+- **Resilient** — lost partitions recomputed from lineage, not a replica.
+- **Distributed** — partitioned across executor memory on many machines.
+- **Dataset** — a collection of any objects — **no schema, no columns**.
+- Immutable · lazy · schema-free · typed at runtime.
