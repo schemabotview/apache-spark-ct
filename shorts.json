@@ -2,6 +2,46 @@
   "concept": "Apache Spark",
   "shorts": [
     {
+      "id": "01-01-three-roles",
+      "title": "The 3 roles behind every Spark job",
+      "short": "shorts/01-01-three-roles.short",
+      "audio": "shorts/01-01-three-roles.wav",
+      "scene": "spark-architecture",
+      "focus": ["master", "cluster-mgr", "worker-a"],
+      "highlight": ["driver", "cluster-mgr", "exec-a"],
+      "sourceModule": "01-foundations-and-the-cluster"
+    },
+    {
+      "id": "01-02-deployment-modes",
+      "title": "Where does Spark actually run?",
+      "short": "shorts/01-02-deployment-modes.short",
+      "audio": "shorts/01-02-deployment-modes.wav",
+      "scene": "spark-architecture",
+      "focus": "cluster-mgr",
+      "highlight": ["mode-local", "mode-standalone", "mode-yarn", "mode-k8s", "mode-databricks"],
+      "sourceModule": "01-foundations-and-the-cluster"
+    },
+    {
+      "id": "01-03-code-to-distributed-work",
+      "title": "What happens when you hit run() in Spark?",
+      "short": "shorts/01-03-code-to-distributed-work.short",
+      "audio": "shorts/01-03-code-to-distributed-work.wav",
+      "scene": "spark-architecture",
+      "focus": ["catalyst", "dag-scheduler"],
+      "highlight": ["logical-plan", "optimized-plan", "physical-plan", "job", "stage-1", "shuffle", "stage-2", "tasks"],
+      "sourceModule": "01-foundations-and-the-cluster"
+    },
+    {
+      "id": "01-04-rdd-vs-dataframe-vs-dataset",
+      "title": "RDD vs DataFrame vs Dataset — which one?",
+      "short": "shorts/01-04-rdd-vs-dataframe-vs-dataset.short",
+      "audio": "shorts/01-04-rdd-vs-dataframe-vs-dataset.wav",
+      "scene": "spark-batch-api",
+      "focus": ["b-df", "b-rdd"],
+      "highlight": ["b-df", "b-rdd"],
+      "sourceModule": "01-foundations-and-the-cluster"
+    },
+    {
       "id": "02-01-what-runs-a-spark-job",
       "title": "What actually runs your Spark job?",
       "short": "shorts/02-01-what-runs-a-spark-job.short",

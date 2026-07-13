@@ -1,0 +1,6 @@
+# RDD vs DataFrame vs Dataset — which one?
+
+- **RDD** — the original low-level API: full control, no schema, no Catalyst.
+- **DataFrame** — a distributed table; Catalyst optimizes it. The default.
+- **Dataset** — typed, compile-time safe, but JVM-only (not in Python).
+- **Default to DataFrames.** Drop to RDD only when you must.

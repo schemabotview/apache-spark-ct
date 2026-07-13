@@ -1,0 +1,13 @@
+RDD, DataFrame, Dataset — three APIs, one engine. Which should you actually use?
+
+Start with the RDD — the original, low-level API. It gives you full control over distributed objects, but there's no schema and no Catalyst, so Spark can't see inside your code to optimize it.
+
+Next, the DataFrame — a distributed table of named, typed columns. Catalyst optimizes every DataFrame query, and it's the only structured API you get in PySpark.
+
+Then the Dataset — a typed view over a DataFrame, with compile-time safety. But it's JVM-only — Scala and Java. There is no Dataset in Python.
+
+So the rule is simple: default to DataFrames — they're optimized, concise, and cross-language. Only drop down to RDDs when you need low-level control, like custom partitioning.
+
+In PySpark, the real choice is almost always DataFrame.
+
+Full lesson in Module 1 — link's in the description.

@@ -1,0 +1,13 @@
+Where does your Spark code actually run? That's the deployment mode — and it's decided by the cluster manager.
+
+Option one: local mode. Everything — driver and executors — runs in a single JVM on your laptop. That's how you develop, and how this course runs.
+
+Option two: YARN — the classic choice on Hadoop clusters.
+
+Option three: Kubernetes, where the driver and executors run as pods. It's the cloud-native default today.
+
+Option four: Databricks, where it's fully managed and the cluster manager is hidden behind the platform.
+
+Here's the key part: your Spark code doesn't change. The exact same job runs in every mode — the only thing that changes is where the driver and executors land. You rarely configure any of this by hand.
+
+Full lesson in Module 1 — link's in the description.

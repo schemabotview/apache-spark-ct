@@ -1,0 +1,15 @@
+What actually happens the moment you hit run on a Spark query? It's not magic — it's a pipeline.
+
+Step one: the driver takes your DataFrame code and builds a logical plan — just a description of what you want.
+
+Step two: Catalyst, Spark's optimizer, rewrites that plan — pushing filters down, reordering joins, and dropping columns you never use.
+
+Step three: the optimized plan becomes a physical plan, which Spark splits into a DAG of stages. A new stage starts wherever a shuffle is needed.
+
+Step four: each stage breaks into tasks — one task per partition of your data.
+
+And step five: those tasks ship out to the executors and run in parallel, across every CPU core in your cluster.
+
+Logical plan, Catalyst, DAG, stages, tasks — that's your one line of code becoming distributed work.
+
+Full walkthrough in Module 1 — link's in the description.
