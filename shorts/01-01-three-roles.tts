@@ -1,0 +1,11 @@
+Every Spark job — no matter how big — comes down to three roles.
+
+First, the driver. The driver runs your code, builds the execution plan, and decides what work to send out. Think of it as the project manager — it never lifts a box itself.
+
+Second, the executors. These are the worker processes spread across the cluster. They hold your data partitions in memory and actually run the computations — the delivery drivers, each on their own route.
+
+Third, the cluster manager. Its only job is to hand out machines to your app. It allocates resources, but it doesn't understand your job at all.
+
+That's it: the driver plans, the executors do the work, and the cluster manager allocates the machines. Get those three straight and the rest of Spark clicks into place.
+
+Full breakdown in Module 1 — link's in the description.
