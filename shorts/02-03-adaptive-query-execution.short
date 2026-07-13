@@ -1,0 +1,6 @@
+# Spark fixes its own query plan — at runtime
+
+- Old Catalyst optimized **upfront**, from *estimated* stats — often wrong.
+- **AQE** re-optimizes after each shuffle, using the **real** numbers it just measured.
+- Coalesce tiny partitions · switch to a **broadcast join** · split **skewed** partitions.
+- Same optimizer, a second chance with **facts, not guesses**. On by default since **Spark 3.2**.

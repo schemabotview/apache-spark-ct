@@ -1,15 +1,15 @@
 ════════════════════════════════════════════════════════════
 TITLE
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+What's the most expensive line in Spark?
 
 
 ════════════════════════════════════════════════════════════
 DESCRIPTION
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+What's the most expensive line in Spark?
 
-The driver runs your code and builds the plan — the boss. Executors hold the data and do the actual work. The cluster manager hands out machines — it doesn't know your job. Driver plans. Executors work. Manager allocates.
+Narrow ops (map, filter, select) use only their own partition — no data moves. Wide ops (groupBy, join, distinct) need other partitions, forcing a shuffle. Every shuffle is a new stage — data crossing the network. Removing a shuffle is the #1 tuning win in Spark.
 
 📚 Full Apache Spark course (playlist):
 https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX

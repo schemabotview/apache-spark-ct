@@ -1,0 +1,13 @@
+Before Spark runs a single row of your query, Catalyst turns it into four different plans. Knowing them is how you actually read what Spark is doing.
+
+Plan one: the parsed logical plan. Your code becomes a tree, but it's unresolved — column names are just strings and types are unknown. Spark hasn't checked anything yet.
+
+Plan two: the analyzed logical plan. Now Spark resolves those names against the real schema, checks types, and binds functions. This is where an AnalysisException comes from — a wrong column name fails here, before any work runs.
+
+Plan three: the optimized logical plan. Catalyst applies rule-based rewrites — predicate pushdown, projection pruning, constant folding, reordering — to do the same query with less work.
+
+Plan four: the physical plan. Spark picks the actual operators and strategy — a broadcast hash join versus a sort-merge join. This is the plan that runs on the executors.
+
+The clean way to remember it: parsed and analyzed are about correctness, optimized and physical are about speed. And you can see all four at once with explain, extended equals true.
+
+The Catalyst optimizer is Module 2 — link's in the description.

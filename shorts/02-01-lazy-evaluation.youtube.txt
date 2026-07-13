@@ -1,15 +1,15 @@
 ════════════════════════════════════════════════════════════
 TITLE
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+Why doesn't your Spark code run?
 
 
 ════════════════════════════════════════════════════════════
 DESCRIPTION
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+Why doesn't your Spark code run?
 
-The driver runs your code and builds the plan — the boss. Executors hold the data and do the actual work. The cluster manager hands out machines — it doesn't know your job. Driver plans. Executors work. Manager allocates.
+Transformations — filter, select, groupBy, join — build the recipe; nothing runs. Actions — count, show, write — trigger the whole chain at once. Waiting lets Spark see the entire plan: push filters early, drop unused columns, fuse steps. Transformation builds. Action triggers.
 
 📚 Full Apache Spark course (playlist):
 https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX

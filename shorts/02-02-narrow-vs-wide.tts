@@ -1,0 +1,11 @@
+Some lines in your Spark job are nearly free. Others quietly cost you minutes. The difference is the shuffle.
+
+Spark splits work into two kinds of transformations. Narrow ones — map, filter, select — only need the data already sitting on each partition. No data moves, so Spark chains them together inside a single stage.
+
+Wide ones are different. groupBy, join, distinct — they need to bring together rows from across every partition. To do that, Spark shuffles: it writes data out, moves it across the network, and reads it back. And every shuffle forces a brand-new stage.
+
+That's why the shuffle is the single most expensive thing in a Spark job. When you run explain and count the exchanges, you're counting your shuffles — and each one is data crossing the network.
+
+So the biggest tuning win in all of Spark is simple to state: remove a shuffle. Filter before you join, avoid needless groupBys, and watch those stage boundaries drop.
+
+Stages and shuffles are Module 2 — link's in the description.

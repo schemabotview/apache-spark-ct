@@ -1,0 +1,11 @@
+Ever written a Spark transformation and noticed... nothing happened? That's not a bug — it's the whole design.
+
+Spark splits every operation into two kinds. Transformations — filter, select, groupBy, join — don't run anything. Each one just appends a step to a plan and hands you back a new DataFrame. It's building a recipe, not cooking.
+
+Nothing actually executes until you call an action — count, show, collect, or write. That's the moment Spark takes the entire chain you've built and runs it.
+
+And that waiting is the whole point. Because Spark sees the complete plan before running, it can optimize: push your filters down next to the data so less of it moves, drop columns you never use, and fuse narrow steps into a single pass. If it ran each line eagerly, every step would commit before the next — nothing left to optimize.
+
+So remember: a transformation builds the plan, an action triggers it. That one idea is the foundation of how Spark runs everything.
+
+Lazy evaluation is Module 2 — link's in the description.

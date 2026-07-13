@@ -1,15 +1,15 @@
 ════════════════════════════════════════════════════════════
 TITLE
 ════════════════════════════════════════════════════════════
-What actually runs your Spark job?
+How does Spark fix its own query plan?
 
 
 ════════════════════════════════════════════════════════════
 DESCRIPTION
 ════════════════════════════════════════════════════════════
-What actually runs your Spark job?
+How does Spark fix its own query plan?
 
-Your code runs on the driver — the brain of the job. The driver builds a plan, then splits it into tasks. Tasks ship to the executors — your data, crunched in parallel. Driver plans. Executors do the work.
+Old Catalyst optimized upfront, from estimated stats — often wrong. Adaptive Query Execution (AQE) re-optimizes after each shuffle, using the real numbers it just measured: coalesce tiny partitions, switch to a broadcast join, split skewed partitions. Same optimizer, a second chance with facts, not guesses. On by default since Spark 3.2.
 
 📚 Full Apache Spark course (playlist):
 https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX

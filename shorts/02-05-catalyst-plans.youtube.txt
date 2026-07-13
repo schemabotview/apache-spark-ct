@@ -1,15 +1,15 @@
 ════════════════════════════════════════════════════════════
 TITLE
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+What does Spark do to your query before it runs?
 
 
 ════════════════════════════════════════════════════════════
 DESCRIPTION
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+What does Spark do to your query before it runs?
 
-The driver runs your code and builds the plan — the boss. Executors hold the data and do the actual work. The cluster manager hands out machines — it doesn't know your job. Driver plans. Executors work. Manager allocates.
+Before Spark runs your query, Catalyst builds four plans. Parsed — code as a tree, names unresolved. Analyzed — resolve names against the schema and check types (AnalysisException lives here). Optimized — rule rewrites like predicate pushdown and projection pruning. Physical — pick real operators (broadcast vs sort-merge join); this runs on executors. Parsed + analyzed = correctness; optimized + physical = speed. See all four with .explain(extended=True).
 
 📚 Full Apache Spark course (playlist):
 https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX

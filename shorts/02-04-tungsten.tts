@@ -1,0 +1,13 @@
+Everyone says DataFrames are faster than RDDs in Spark. But why? The answer is a component called Tungsten.
+
+Catalyst decides what your query should do. Tungsten is what makes it run fast — and it has two big tricks.
+
+First, off-heap memory. Instead of storing your rows as Java objects on the JVM heap, Tungsten packs them into structured binary buffers outside the heap. That means it sidesteps the garbage collector and uses a cache-friendly layout the CPU loves.
+
+Second, whole-stage code generation. Normally each operator — filter, then project, then aggregate — is a separate function call for every single row. Tungsten instead generates one fused method per stage that pushes each row through all of them in a single loop. One loop, not one call per operator per row.
+
+But here's the catch: it can only do this if it knows your schema. An RDD has no schema, so Tungsten can't lay out its memory or generate stage code — you're left with plain JVM objects. A DataFrame's schema is a contract Tungsten compiles against. You can even see it in the plan: operators wrapped in WholeStageCodegen.
+
+That's the real reason DataFrames win.
+
+Tungsten and the execution model are Module 2 — link's in the description.

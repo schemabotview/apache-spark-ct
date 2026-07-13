@@ -1,0 +1,6 @@
+# Why your Spark code didn't run
+
+- **Transformations** — `filter`, `select`, `groupBy`, `join` — build the recipe. **Nothing runs.**
+- **Actions** — `count`, `show`, `write` — trigger the whole chain at once.
+- Waiting lets Spark see the **entire** plan: push filters early, drop unused columns, fuse steps.
+- **Transformation builds. Action triggers.**

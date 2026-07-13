@@ -1,9 +1,0 @@
-Ever wonder what actually runs your Spark job? You write a few lines of code — but where does the work really happen?
-
-It starts on the driver. The driver is the brain: it takes your code and builds a plan for how to execute it. But here's the key — the driver doesn't crunch your data itself. It optimizes that plan, then splits the work into stages, and each stage into tasks.
-
-Those tasks get shipped out to the executors — the workers running across your cluster. That's where your data actually gets read, filtered, and aggregated — in parallel, on many machines at once.
-
-So the mental model is simple: the driver plans the work, the executors do the work. Once that clicks, the rest of Spark — stages, shuffles, partitions — starts to make sense.
-
-Want the full breakdown? The execution model is Module 2 — link's in the description.

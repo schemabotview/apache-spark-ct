@@ -1,0 +1,6 @@
+# Why DataFrames beat RDDs
+
+- **Tungsten** runs your plan fast — but only DataFrames let it.
+- **Off-heap memory** — binary buffers outside the JVM heap → skip the garbage collector.
+- **Whole-stage codegen** — one fused loop per stage, not one call per operator per row.
+- An RDD has **no schema** — Tungsten can't lay it out. A DataFrame's schema is a **contract it compiles against**.

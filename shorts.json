@@ -13,7 +13,7 @@
     },
     {
       "id": "01-01-three-roles",
-      "title": "The 3 roles behind every Spark job",
+      "title": "Who actually runs your Spark job?",
       "short": "shorts/01-01-three-roles.short",
       "audio": "shorts/01-01-three-roles.wav",
       "scene": "spark-architecture",
@@ -52,13 +52,53 @@
       "sourceModule": "01-foundations-and-the-cluster"
     },
     {
-      "id": "02-01-what-runs-a-spark-job",
-      "title": "What actually runs your Spark job?",
-      "short": "shorts/02-01-what-runs-a-spark-job.short",
-      "audio": "shorts/02-01-what-runs-a-spark-job.wav",
+      "id": "02-01-lazy-evaluation",
+      "title": "Why doesn't your Spark code run?",
+      "short": "shorts/02-01-lazy-evaluation.short",
+      "audio": "shorts/02-01-lazy-evaluation.wav",
       "scene": "spark-architecture",
-      "focus": "master",
-      "highlight": ["driver", "session"],
+      "focus": ["catalyst"],
+      "highlight": ["session", "logical-plan", "optimized-plan"],
+      "sourceModule": "02-the-execution-model"
+    },
+    {
+      "id": "02-02-narrow-vs-wide",
+      "title": "What's the most expensive line in Spark?",
+      "short": "shorts/02-02-narrow-vs-wide.short",
+      "audio": "shorts/02-02-narrow-vs-wide.wav",
+      "scene": "spark-architecture",
+      "focus": ["dag-scheduler"],
+      "highlight": ["job", "stage-1", "shuffle", "stage-2", "tasks"],
+      "sourceModule": "02-the-execution-model"
+    },
+    {
+      "id": "02-03-adaptive-query-execution",
+      "title": "How does Spark fix its own query plan?",
+      "short": "shorts/02-03-adaptive-query-execution.short",
+      "audio": "shorts/02-03-adaptive-query-execution.wav",
+      "scene": "spark-architecture",
+      "focus": ["catalyst", "dag-scheduler"],
+      "highlight": ["optimized-plan", "dag-scheduler"],
+      "sourceModule": "02-the-execution-model"
+    },
+    {
+      "id": "02-04-tungsten",
+      "title": "Why are DataFrames faster than RDDs?",
+      "short": "shorts/02-04-tungsten.short",
+      "audio": "shorts/02-04-tungsten.wav",
+      "scene": "spark-architecture",
+      "focus": ["master"],
+      "highlight": ["tungsten", "physical-plan"],
+      "sourceModule": "02-the-execution-model"
+    },
+    {
+      "id": "02-05-catalyst-plans",
+      "title": "What does Spark do to your query before it runs?",
+      "short": "shorts/02-05-catalyst-plans.short",
+      "audio": "shorts/02-05-catalyst-plans.wav",
+      "scene": "spark-architecture",
+      "focus": ["catalyst"],
+      "highlight": ["logical-plan", "analyzed-plan", "optimized-plan", "physical-plan"],
       "sourceModule": "02-the-execution-model"
     }
   ]

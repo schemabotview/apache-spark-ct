@@ -1,15 +1,15 @@
 ════════════════════════════════════════════════════════════
 TITLE
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+Why are DataFrames faster than RDDs?
 
 
 ════════════════════════════════════════════════════════════
 DESCRIPTION
 ════════════════════════════════════════════════════════════
-Who actually runs your Spark job?
+Why are DataFrames faster than RDDs?
 
-The driver runs your code and builds the plan — the boss. Executors hold the data and do the actual work. The cluster manager hands out machines — it doesn't know your job. Driver plans. Executors work. Manager allocates.
+Tungsten runs your plan fast — but only DataFrames let it. Off-heap memory stores rows in binary buffers outside the JVM heap, skipping the garbage collector. Whole-stage codegen fuses a whole stage into one loop instead of one call per operator per row. An RDD has no schema, so Tungsten can't lay it out; a DataFrame's schema is a contract it compiles against.
 
 📚 Full Apache Spark course (playlist):
 https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX

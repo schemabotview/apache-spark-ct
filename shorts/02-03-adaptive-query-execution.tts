@@ -1,0 +1,9 @@
+Spark's optimizer used to make a big bet. It planned your entire query upfront, based on estimates of how much data each step would produce. And estimates are often wrong — which meant slow joins and skewed partitions you couldn't do anything about.
+
+Adaptive Query Execution changes that. AQE lets Spark re-optimize while the query is running. After each shuffle, it looks at the real partition statistics it just measured — not guesses — and adjusts the plan.
+
+It does three big things. It coalesces tiny partitions, merging them so you're not paying task-startup cost on thousands of near-empty ones. It switches join strategies — if one side turns out small enough, it promotes a slow sort-merge join into a fast broadcast join. And it handles skew, splitting an oversized partition so a single straggler task doesn't stall the whole stage.
+
+The mental model is simple: it's the same optimizer, given a second chance at every stage boundary — this time with facts instead of estimates. And it's been on by default since Spark 3.2, so you're probably already using it.
+
+Adaptive Query Execution is Module 2 — link's in the description.

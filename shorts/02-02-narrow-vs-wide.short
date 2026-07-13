@@ -1,0 +1,6 @@
+# The most expensive line in Spark
+
+- **Narrow** ops (`map`, `filter`, `select`) — use only their own partition. **No data moves.**
+- **Wide** ops (`groupBy`, `join`, `distinct`) — need other partitions → a **shuffle**.
+- Every shuffle = a **new stage** = data crossing the network.
+- **Removing a shuffle is the #1 tuning win in Spark.**

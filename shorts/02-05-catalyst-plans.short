@@ -1,0 +1,7 @@
+# What Spark does before it runs your query
+
+- **1 · Parsed** — your code as a tree; names are just strings, types unknown.
+- **2 · Analyzed** — resolve names against the schema, check types → `AnalysisException` lives here.
+- **3 · Optimized** — rule rewrites: predicate pushdown, projection pruning, reordering.
+- **4 · Physical** — pick real operators (broadcast vs sort-merge join) — *this* runs on executors.
+- **Parsed + analyzed = correctness · optimized + physical = speed.**
