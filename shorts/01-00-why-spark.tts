@@ -1,0 +1,9 @@
+Why does Spark even exist? Picture two hundred gigabytes of data and a laptop with sixteen gigs of RAM. Load it in pandas and it crashes on the very first line.
+
+So you get clever — you split the file into chunks and loop over them. But now you own a distributed system: you're tracking which chunks finished, which ones failed, and how to group-by across all of them at once. That's a second job, and it's a hard one.
+
+That's the problem Spark solves. Spark is a distributed compute engine. You write your code as if you have one giant table — no chunking, no bookkeeping. Under the hood, Spark slices that table into partitions, hands each one to a machine, runs your code on all of them in parallel, and gathers the results back.
+
+And the shift from pandas is the whole point. pandas is one process, running immediately, on memory it owns. Spark is a plan you describe, scheduled across many machines, with the data moved for you. Every idea later in the course builds on that one distinction.
+
+Full breakdown in Module 1 — link's in the description.

@@ -2,6 +2,16 @@
   "concept": "Apache Spark",
   "shorts": [
     {
+      "id": "01-00-why-spark",
+      "title": "Why pandas breaks — and Spark doesn't",
+      "short": "shorts/01-00-why-spark.short",
+      "audio": "shorts/01-00-why-spark.wav",
+      "scene": "spark-architecture",
+      "focus": ["master", "exec-a", "exec-b"],
+      "highlight": ["data-sources", "exec-a", "exec-b"],
+      "sourceModule": "01-foundations-and-the-cluster"
+    },
+    {
       "id": "01-01-three-roles",
       "title": "The 3 roles behind every Spark job",
       "short": "shorts/01-01-three-roles.short",

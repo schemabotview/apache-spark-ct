@@ -1,0 +1,7 @@
+# Why pandas breaks — and Spark doesn't
+
+- **200 GB of data, 16 GB of RAM** — pandas crashes on load.
+- Do it yourself and you've built a **distributed system**: which chunks ran, which failed, how to recombine them.
+- Spark is a **distributed compute engine** — write code as if it's **one giant table**.
+- It slices the table into **partitions**, runs them **in parallel** across machines, gathers the answer.
+- **You describe the work. Spark spreads it.**
