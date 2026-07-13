@@ -1,0 +1,24 @@
+{
+  "concept": "Apache Spark",
+  "playlist": "https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX",
+  "hashtags": [
+    "#ApacheSpark",
+    "#Spark",
+    "#PySpark",
+    "#DataEngineering",
+    "#BigData",
+    "#Shorts"
+  ],
+  "modules": {
+    "01-foundations-and-the-cluster": "",
+    "02-the-execution-model": "",
+    "03-rdds": "",
+    "04-dataframes": "",
+    "05-reading-and-writing": "",
+    "06-transformations-and-aggregations": "",
+    "07-spark-sql-and-udfs": "",
+    "08-structured-streaming": "",
+    "09-performance-tuning": "",
+    "10-pandas-api-on-spark": ""
+  }
+}
