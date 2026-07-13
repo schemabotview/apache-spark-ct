@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+What happens when you hit run() in Spark?
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+What happens when you hit run() in Spark?
+
+Your DataFrame code becomes a logical plan. Catalyst rewrites it — filter pushdown, join reorder. The physical plan becomes a DAG of stages. Each stage splits into tasks — one per partition. Tasks run on the executors, in parallel.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

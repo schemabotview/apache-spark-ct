@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+The 3 roles behind every Spark job
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+The 3 roles behind every Spark job
+
+The driver runs your code and builds the plan — the boss. Executors hold the data and do the actual work. The cluster manager hands out machines — it doesn't know your job. Driver plans. Executors work. Manager allocates.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts

@@ -1,0 +1,19 @@
+════════════════════════════════════════════════════════════
+TITLE
+════════════════════════════════════════════════════════════
+Where does Spark actually run?
+
+
+════════════════════════════════════════════════════════════
+DESCRIPTION
+════════════════════════════════════════════════════════════
+Where does Spark actually run?
+
+local — driver + executors in one JVM on your laptop. YARN — on Hadoop clusters. Kubernetes — driver and executors as pods. Databricks — managed; the manager is hidden. Same code — only where it runs changes.
+
+📚 Full Apache Spark course (playlist):
+https://youtube.com/playlist?list=PL9QrzCNaf-NVTrLypKkQeJ4R5PkXlWpDX
+
+Built with GraphL.
+
+#ApacheSpark #Spark #PySpark #DataEngineering #BigData #Shorts
