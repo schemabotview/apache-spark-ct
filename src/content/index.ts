@@ -12,6 +12,7 @@ import { formats } from './formats'
 import { memory } from './memory'
 import { aqe } from './aqe'
 import { streaming } from './streaming'
+import { lakehouse } from './lakehouse'
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────
 // The spine. FROZEN — see COURSE-PLAN.md §"Course order and build order are allowed to differ".
@@ -52,7 +53,8 @@ export type CourseId = (typeof SPINE)[number]
 //
 // Authored so far: 1 `origins`, 2 `topology`, 3 `rdd`, 4 `execution`, 5 `shuffle`,
 // 6 `catalyst`, 7 `tungsten`, 8 `pyspark-boundary`, 9 `joins`,
-// 10 `formats`, 11 `memory`, 12 `aqe`, 13 `streaming`. Insertion order must match SPINE order, not build order
+// 10 `formats`, 11 `memory`, 12 `aqe`, 13 `streaming`, 14 `lakehouse`.
+// ALL FOURTEEN AUTHORED. Insertion order must match SPINE order, not build order
 // — this record is what the catalog renders.
 export const COURSES: Record<string, Course> = {
   [origins.id]: origins,
@@ -68,6 +70,7 @@ export const COURSES: Record<string, Course> = {
   [memory.id]: memory,
   [aqe.id]: aqe,
   [streaming.id]: streaming,
+  [lakehouse.id]: lakehouse,
 }
 
 export type { Course, Section }

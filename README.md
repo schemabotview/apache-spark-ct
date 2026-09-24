@@ -18,9 +18,24 @@ screenshots reproducible.
 
 ## Status
 
-**Scaffolded, nothing authored.** The catalog is empty until the first course lands. The full plan —
-14 courses, 149 sections, sources and research debt per course — is in
-**[`COURSE-PLAN.md`](./COURSE-PLAN.md)**. Course 5 `shuffle` is first.
+**All 14 courses authored — 149 sections.** Every one has a scene, a slide and a narration script,
+and every frame has been rendered and reviewed.
+
+**No narration wavs yet.** `.tts` → `.wav` runs through Colab + Chatterbox, and that's the remaining
+step before anything can be recorded.
+
+The plan — the spine, the sources behind each course, and the copyright line — is in
+**[`COURSE-PLAN.md`](./COURSE-PLAN.md)**.
+
+| # | Course | | # | Course |
+|---|---|---|---|---|
+| 1 | Why Spark exists | | 8 | Why your PySpark UDF is slow |
+| 2 | What runs where when you submit a job | | 9 | How Spark decides to join |
+| 3 | What an RDD actually is | | 10 | Why Parquet is fast |
+| 4 | How a job becomes stages and tasks | | 11 | Where Spark's memory actually goes |
+| 5 | How the Spark shuffle works | | 12 | How Spark re-plans while it runs |
+| 6 | How Spark turns your query into a plan | | 13 | How Structured Streaming works |
+| 7 | Why DataFrames beat RDDs | | 14 | Why a folder of Parquet is not a table |
 
 ## Run it
 
@@ -28,7 +43,8 @@ screenshots reproducible.
 npm install
 npm run dev      # http://localhost:5173
 npm run build    # production build, base = /apache-spark-ct/
-npm run check    # tsc --noEmit
+npm run check    # tsc --noEmit + the scene linter
+npm run frames   # render every section and check it (needs `npm run dev`)
 ```
 
 The render engine (`@graphlearning/flow`) and app shell (`@graphlearning/shell`) are consumed as

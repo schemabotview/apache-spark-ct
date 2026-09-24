@@ -11,15 +11,23 @@ use it). Derived from the four PDFs in `~/Books/apache-spark/`, which supply the
 never their names. Every course publishes as one long-form search-first video, its sections the
 chapters.
 
-**Status (2026-09-24): 2 of 14 courses authored — 21 of 149 sections.**
+**Status (2026-09-24): all 14 courses authored — 149 of 149 sections.**
 
-| # | Course | Sections | State |
-|---|---|---|---|
-| 5 | `shuffle` | 10 | authored · guards green · all 10 frames reviewed |
-| 9 | `joins` | 11 | authored · guards green · all 11 frames reviewed |
+| # | Course | § | # | Course | § |
+|---|---|---|---|---|---|
+| 1 | `origins` | 8 | 8 | `pyspark-boundary` | 11 |
+| 2 | `topology` | 10 | 9 | `joins` | 11 |
+| 3 | `rdd` | 10 | 10 | `formats` | 11 |
+| 4 | `execution` | 11 | 11 | `memory` | 11 |
+| 5 | `shuffle` | 10 | 12 | `aqe` | 10 |
+| 6 | `catalyst` | 12 | 13 | `streaming` | 12 |
+| 7 | `tungsten` | 10 | 14 | `lakehouse` | 12 |
 
-No narration wavs yet — the `.tts` → `.wav` step is Colab + Chatterbox and is the owner's to run.
-Next in build order: **8 `pyspark-boundary`**, then 12 `aqe`, then 10 `formats`.
+Every section has a scene, a slide and a narration script, and **every frame has been rendered and
+looked at**. Guards green throughout.
+
+**No narration wavs.** `.tts` → `.wav` is Colab + Chatterbox and is the owner's to run — it is the
+one remaining step before anything can be recorded.
 
 ## The route contract (do not re-decide it per repo)
 
@@ -36,13 +44,25 @@ Next in build order: **8 `pyspark-boundary`**, then 12 `aqe`, then 10 `formats`.
 
 ## Scene inventory
 
-`src/scenes/<course>/` — 21 scenes, all registered in `src/scenes/index.ts`. Ids are globally
-unique across courses, and a scene is content-agnostic by design, so one may be shared across
-sections and courses.
+`src/scenes/<course>/` — 149 scenes, one per section, registered in `src/scenes/index.ts`. Ids are
+globally unique, and a scene is content-agnostic by design, so one may be shared across sections.
 
-- **`shuffle/`** — 10. Seven node/edge diagrams, one code card (§6), one table (§10).
-- **`joins/`** — 11, in two files: `strategies.ts` (§§1–6, which share the build-side / probe-side
-  vocabulary) and `decisions.ts` (§§7–11). One code card (§11), one table (§8).
+Most are node/edge diagrams. The exceptions worth knowing: **code cards** (`kind: 'code'`) carry
+§6 of `shuffle`, §11 of `joins`, §11 of `execution`, §12 of `catalyst`, §8 of `tungsten`, §9 of
+`pyspark-boundary` and §10 of `aqe`; **tables** (`kind: 'table'`) carry comparisons in `shuffle`,
+`joins`, `memory`, `streaming` and `lakehouse`.
+
+### Both diagram classes COURSE-PLAN.md flagged as unproven are now settled
+
+The engine renders a parent with `children` as a **box containing them**, so a tree comes out as
+nesting rather than edges. Verified on rendered frames:
+
+- **Expression tree** (`catalyst` §2) — works, and arguably better than edges: the containment *is*
+  the precedence. But each operator becomes a group **header**, so a bare `-` is unreadable at
+  capture size and needs its name beside it.
+- **Paired-process nesting** (`pyspark-boundary` §§1, 4) — works well. An executor box holding a JVM
+  child and a Python child reads immediately as *"these two are on the same machine"*. Colour does
+  the rest: the JVM `network`, the Python worker `warn`.
 
 ### Layout rules — measured off rendered frames, not guessed
 

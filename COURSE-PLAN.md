@@ -5,8 +5,9 @@
 > these fourteen courses and not others. The Appendix at the foot carries the parts an author needs
 > without leaving the repo.
 >
-> **Authored so far: 2 of 14 — course 5 `shuffle` (10 sections) and course 9 `joins` (11), both
-> verified on every rendered frame. No narration wavs yet.** The fourteen **course ids are frozen**
+> **ALL FOURTEEN COURSES AUTHORED — 149 of 149 sections**, each verified on its rendered frame.
+> No narration wavs yet: `.tts` → `.wav` is the Colab + Chatterbox step and is the owner's to run.
+> The fourteen **course ids are frozen**
 > in `src/content/index.ts` —
 > the published slug is `<courseId>-<sectionId>` and that is the route contract every recorder
 > drives, so an id cannot move once its course exists. **Section ids are not frozen**: they can
@@ -21,7 +22,7 @@
 
 ---
 
-## 1 · `origins` — "Why Spark exists (and what MapReduce got wrong)"
+## 1 · `origins` ✅ — "Why Spark exists (and what MapReduce got wrong)"
 *8 sections · sources: 2E 1, SDG 1, EX ch.2*
 
 | | section | the beat |
@@ -35,7 +36,7 @@
 | 07 | `compute-not-storage` | Spark deliberately owns no storage; what that buys and costs |
 | 08 | `the-timeline` | 2009 AMPLab → 2013 ASF → 2.0 structured → 3.0 adaptive |
 
-## 2 · `topology` — "What actually runs where when you submit a Spark job"
+## 2 · `topology` ✅ — "What actually runs where when you submit a Spark job"
 *10 sections · sources: SDG 15, LS1 7, 2E 1–2, **EX p.5 / p.7** (best-drawn in the excerpt)*
 
 | | section | the beat |
@@ -51,7 +52,7 @@
 | 09 | `spark-submit` | what the command actually does, in order |
 | 10 | `failure-modes` | executor dies vs driver dies — what survives each |
 
-## 3 · `rdd` — "What an RDD actually is"
+## 3 · `rdd` ✅ — "What an RDD actually is"
 *10 sections · sources: **LS1 3–4** (earns its place here), SDG 12–13*
 
 | | section | the beat |
@@ -67,7 +68,7 @@
 | 09 | `pair-rdds` | the key/value shape everything distributed rests on |
 | 10 | `when-rdds-still-win` | the 5% the structured API cannot reach |
 
-## 4 · `execution` — "How a Spark job becomes stages and tasks"
+## 4 · `execution` ✅ — "How a Spark job becomes stages and tasks"
 *11 sections · sources: SDG 15, LS1 7–8, 2E 2, **EX p.13–15 / p.19***
 
 | | section | the beat |
@@ -84,7 +85,7 @@
 | 10 | `a-real-lineage` | the 7-step `groupBy → sum → sort → limit → collect` chain |
 | 11 | `reading-explain` | parsed / analyzed / optimized / physical in the output |
 
-## 5 · `shuffle` — "How the Spark shuffle works" ✅ AUTHORED
+## 5 · `shuffle` ✅ — "How the Spark shuffle works"
 *10 sections · sources: **synthesised** — LS1 3–4, SDG 15/19, 2E 2/7, **DOC***
 
 | | section | the beat |
@@ -103,7 +104,7 @@
 **07** and **09** are the Shorts; **01** is the thumbnail. Sections 01–02 re-define narrow/wide
 in-course, so this stands alone without courses 3 and 4.
 
-## 6 · `catalyst` — "How Spark turns your query into a plan" ★ runner-up
+## 6 · `catalyst` ✅ — "How Spark turns your query into a plan" ★ runner-up
 *12 sections · sources: SDG 4, 2E 3, **EX p.51–53 / p.60 / p.118***
 
 | | section | the beat |
@@ -125,7 +126,7 @@ in-course, so this stands alone without courses 3 and 4.
 plan node as an *empty box* — they show the pipeline but never what changed. These sections carry
 the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 
-## 7 · `tungsten` — "Why DataFrames beat RDDs"
+## 7 · `tungsten` ✅ — "Why DataFrames beat RDDs"
 *10 sections · sources: 2E 6, SDG 4, **DOC** (thin — the excerpt never mentions Tungsten)*
 
 | | section | the beat |
@@ -141,7 +142,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 09 | `where-it-stops` | UDFs and everything codegen cannot fuse |
 | 10 | `the-memory-eras` | Spark 1 static split → 2 unified → 3; what changed and why |
 
-## 8 · `pyspark-boundary` — "Why your PySpark UDF is slow"
+## 8 · `pyspark-boundary` ✅ — "Why your PySpark UDF is slow"
 *11 sections · sources: **EX p.7 / p.123** (best figure in the excerpt), SDG 5/32, 2E 12, **DOC** (Arrow)*
 
 | | section | the beat |
@@ -158,7 +159,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 10 | `iterator-and-map` | load the model once — `mapInPandas`, cogrouped map |
 | 11 | `the-decision` | built-in > SQL expression > pandas UDF > Python UDF |
 
-## 9 · `joins` — "How Spark decides to join" ✅ AUTHORED
+## 9 · `joins` ✅ — "How Spark decides to join"
 *11 sections · sources: SDG 8, 2E 7*
 
 | | section | the beat |
@@ -175,7 +176,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 10 | `skewed-joins` | the hot key, and salting — what people did before AQE |
 | 11 | `hints` | `BROADCAST` / `MERGE` / `SHUFFLE_HASH`, and when overriding is right |
 
-## 10 · `formats` — "Why Parquet is fast"
+## 10 · `formats` ✅ — "Why Parquet is fast"
 *11 sections · sources: SDG 9, 2E 4*
 
 | | section | the beat |
@@ -192,7 +193,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 10 | `schema-evolution` | what Parquet lets you change, and what it does not |
 | 11 | `csv-and-json` | why inference costs a pass; when to declare a schema |
 
-## 11 · `memory` — "Where Spark's memory actually goes"
+## 11 · `memory` ✅ — "Where Spark's memory actually goes"
 *11 sections · sources: 2E 7, SDG 19, **EX p.24***
 
 | | section | the beat |
@@ -209,7 +210,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 10 | `off-heap` | and why it is not a free win |
 | 11 | `reading-the-storage-tab` | fraction cached, and the number that lies |
 
-## 12 · `aqe` — "How Spark re-plans your query while it runs"
+## 12 · `aqe` ✅ — "How Spark re-plans your query while it runs"
 *10 sections · sources: 2E 12 **only** + **DOC** — highest-risk course, must be re-grounded*
 
 | | section | the beat |
@@ -225,7 +226,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 09 | `what-it-does-not-fix` | where you still tune by hand |
 | 10 | `seeing-it` | initial plan vs final plan in the UI |
 
-## 13 · `streaming` — "How Structured Streaming actually works"
+## 13 · `streaming` ✅ — "How Structured Streaming actually works"
 *12 sections · sources: SDG 20–22, 2E 8 · **ignore LS1 entirely — it is DStreams***
 
 | | section | the beat |
@@ -243,7 +244,7 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 | 11 | `the-state-store` | where aggregation state lives, and what checkpoints it |
 | 12 | `stream-stream-joins` | why both sides need a watermark |
 
-## 14 · `lakehouse` — "Why a folder of Parquet is not a table"
+## 14 · `lakehouse` ✅ — "Why a folder of Parquet is not a table"
 *12 sections · sources: 2E 9 **only** + **DOC** (Delta / Iceberg specs)*
 
 | | section | the beat |

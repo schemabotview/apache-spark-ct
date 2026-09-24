@@ -12,6 +12,7 @@ import { formatsScenes } from './formats'
 import { memoryScenes } from './memory'
 import { aqeScenes } from './aqe'
 import { streamingScenes } from './streaming'
+import { lakehouseScenes } from './lakehouse'
 
 // Scene registry. Sections reference scenes by id; scenes are grouped by course (one folder each,
 // mirroring src/content). Ids are globally unique across courses, so the flat lookup below is
@@ -20,7 +21,7 @@ import { streamingScenes } from './streaming'
 //
 // Courses are added here as each is authored, in build order (shuffle first — see
 // src/content/index.ts).
-const ALL: Scene[] = [...originsScenes, ...topologyScenes, ...rddScenes, ...executionScenes, ...shuffleScenes, ...catalystScenes, ...tungstenScenes, ...pysparkBoundaryScenes, ...joinsScenes, ...formatsScenes, ...memoryScenes, ...aqeScenes, ...streamingScenes]
+const ALL: Scene[] = [...originsScenes, ...topologyScenes, ...rddScenes, ...executionScenes, ...shuffleScenes, ...catalystScenes, ...tungstenScenes, ...pysparkBoundaryScenes, ...joinsScenes, ...formatsScenes, ...memoryScenes, ...aqeScenes, ...streamingScenes, ...lakehouseScenes]
 
 export const SCENES: Record<string, Scene> = Object.fromEntries(ALL.map((s) => [s.id, s]))
 
