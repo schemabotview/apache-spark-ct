@@ -21,7 +21,7 @@ They're written by an executor — but they **outlive** it. That one fact explai
 
 ### The fan-out nobody mentions
 \`\`\`
-400 map tasks × 200 reduce tasks = 80,000 fetch requests
+400 map tasks × 200 reducers = 80,000 fetches
 \`\`\`
 The shuffle's cost isn't only bytes — it's **connections**.`,
   narration:

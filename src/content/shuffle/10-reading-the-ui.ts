@@ -11,7 +11,7 @@ Nine sections of mechanism, now as six numbers you can look at on port **4040**.
 
 ### Start with the plan, not the UI
 \`\`\`
-df.explain()   →   no "Exchange"?  no shuffle.  stop here.
+df.explain()  →  no "Exchange"?  no shuffle.
 \`\`\`
 
 ### Then the Stages tab

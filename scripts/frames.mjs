@@ -53,29 +53,54 @@ await page.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 })
 
 const errors = []
 const overflows = []
+let missingAudio = 0
 for (const slug of slugs) {
   const local = []
   const onErr = (e) => local.push('pageerror: ' + e.message)
   const onCon = (m) => {
-    if (m.type() === 'error' && !/unique "key" prop/.test(m.text())) local.push('console: ' + m.text().slice(0, 140))
+    // The engine's own table renderer emits React's list-key warning; not a content defect.
+    // A missing wav also surfaces here as a bare "Failed to load resource" with no URL — the
+    // response listener below is what classifies it, so drop the duplicate.
+    const t = m.text()
+    if (m.type() === 'error' && !/unique "key" prop/.test(t) && !/Failed to load resource/.test(t))
+      local.push('console: ' + t.slice(0, 140))
+  }
+  // A missing narration wav 404s on every section until the Colab step has run. That is an expected
+  // state of an authored-but-unvoiced course, so it is counted rather than reported as an error.
+  const onResp = (r) => {
+    if (r.status() === 404) {
+      if (/\.wav($|\?)/.test(r.url())) missingAudio++
+      else local.push('404: ' + r.url().slice(-80))
+    }
   }
   page.on('pageerror', onErr)
   page.on('console', onCon)
+  page.on('response', onResp)
   await page.goto(`${BASE}/#/${slug}`, { waitUntil: 'networkidle0' })
   await new Promise((r) => setTimeout(r, 900))
   await page.screenshot({ path: `${OUT}/${slug}.png` })
   const m = await page.evaluate(() => {
     const el = document.querySelector('.slide-panel')
-    return el ? { scroll: el.scrollHeight, client: el.clientHeight } : null
+    if (!el) return null
+    // Vertical: content taller than the panel is text clipped off the bottom.
+    // Horizontal: a `pre` (a code fence) or a table wider than the panel is text clipped at the
+    // right edge — invisible in the markdown, obvious only on the frame.
+    const wide = [...el.querySelectorAll('pre, table')]
+      .filter((n) => n.scrollWidth > n.clientWidth + 2)
+      .map((n) => `${n.tagName.toLowerCase()} +${n.scrollWidth - n.clientWidth}px`)
+    return { scroll: el.scrollHeight, client: el.clientHeight, wide }
   })
   if (m && m.scroll > m.client + 2) overflows.push(`${slug} — slide clipped by ${m.scroll - m.client}px`)
+  if (m && m.wide.length) overflows.push(`${slug} — too wide: ${m.wide.join(', ')}`)
   page.off('pageerror', onErr)
   page.off('console', onCon)
+  page.off('response', onResp)
   if (local.length) errors.push(`${slug} — ${local.join(' | ')}`)
 }
 await browser.close()
 
 console.log(`rendered ${slugs.length} frames → ${OUT}/`)
+if (missingAudio) console.log(`  (${missingAudio} narration wav(s) missing — expected until the Colab step has run)`)
 if (errors.length) {
   console.error(`\n✗ ${errors.length} section(s) with runtime errors:`)
   for (const e of errors) console.error('  ' + e)
