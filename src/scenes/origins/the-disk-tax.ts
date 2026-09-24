@@ -8,21 +8,17 @@ export const theDiskTax: Scene = {
   nodes: [
     {
       id: 'chain',
-      label: 'MapReduce, three steps of one algorithm',
+      label: 'One boundary, between two steps of one algorithm',
       pattern: 'group',
-      sub: 'every step ends by writing its whole output to HDFS, and the next begins by reading it back — with replication',
+      sub: 'and a three-step job pays this twice · a hundred-step job pays it ninety-nine times',
       children: [
-        { id: 'm1', label: 'step 1 · map + reduce', pattern: 'service', sub: 'compute in memory' },
+        { id: 'm1', label: 'step 1 · map + reduce', pattern: 'service', sub: 'computes in memory — fast' },
         { id: 'd1', label: 'write to HDFS', pattern: 'warn', sub: 'to disk, then replicated ×3 over the network' },
-        { id: 'm2', label: 'step 2 · map + reduce', pattern: 'service', sub: 'read it all back first' },
-        { id: 'd2', label: 'write to HDFS', pattern: 'warn', sub: 'to disk, then replicated ×3, again' },
-        { id: 'm3', label: 'step 3 · map + reduce', pattern: 'service', sub: 'read it all back again' },
+        { id: 'm2', label: 'step 2 · map + reduce', pattern: 'service', sub: 'and it starts by reading all of that back' },
       ],
       edges: [
         { source: 'm1', target: 'd1' },
         { source: 'd1', target: 'm2' },
-        { source: 'm2', target: 'd2' },
-        { source: 'd2', target: 'm3' },
       ],
     },
     {

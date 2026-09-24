@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const materializationPoints: Scene = {
   id: 'aqe-materialization',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'stage',

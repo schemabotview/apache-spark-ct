@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const localMode: Scene = {
   id: 'topology-local-mode',
   padding: 0.14,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'local',

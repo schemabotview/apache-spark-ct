@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const encoders: Scene = {
   id: 'tun-encoders',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'object',

@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const theOffsetLog: Scene = {
   id: 'str-offset-log',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'dir',

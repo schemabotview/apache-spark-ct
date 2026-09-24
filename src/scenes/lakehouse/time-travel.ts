@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const timeTravel: Scene = {
   id: 'lake-time-travel',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'how',

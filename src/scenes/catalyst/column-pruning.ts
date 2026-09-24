@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const columnPruning: Scene = {
   id: 'cat-pruning',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'query',

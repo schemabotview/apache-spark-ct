@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const rulesToFixpoint: Scene = {
   id: 'cat-rules',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'rule',

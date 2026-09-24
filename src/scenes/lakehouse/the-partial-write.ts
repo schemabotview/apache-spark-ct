@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const thePartialWrite: Scene = {
   id: 'lake-partial-write',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'job',

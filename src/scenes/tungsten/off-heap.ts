@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const offHeap: Scene = {
   id: 'tun-off-heap',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'onheap',

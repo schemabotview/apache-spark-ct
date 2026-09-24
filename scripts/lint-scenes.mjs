@@ -71,7 +71,46 @@ function walkNode(scene, n) {
     }
   }
   for (const e of n.edges ?? []) checkEdge(scene, e)
+  checkCycles(scene, n.id, n.edges)
   for (const c of n.children ?? []) walkNode(scene, c)
+}
+
+// A scene's edges are laid out as a DAG. A CYCLE cannot be drawn, so the engine breaks one edge
+// arbitrarily: the nodes linearise in an order nobody chose, and the back-edge renders as a stub
+// pointing at nothing. Both guards pass and it looks plausible until you read the arrows.
+// Found the hard way in topology §1 on 2026-09-24 — three processes talking in a loop.
+function findCycle(edges) {
+  const adj = new Map()
+  for (const e of edges) {
+    if (!adj.has(e.source)) adj.set(e.source, [])
+    adj.get(e.source).push(e.target)
+  }
+  const state = new Map() // 1 = on the current path, 2 = done
+  const path = []
+  const walk = (n) => {
+    if (state.get(n) === 1) return path.slice(path.indexOf(n)).concat(n)
+    if (state.get(n) === 2) return null
+    state.set(n, 1)
+    path.push(n)
+    for (const next of adj.get(n) ?? []) {
+      const found = walk(next)
+      if (found) return found
+    }
+    path.pop()
+    state.set(n, 2)
+    return null
+  }
+  for (const n of adj.keys()) {
+    const found = walk(n)
+    if (found) return found
+  }
+  return null
+}
+
+function checkCycles(scene, id, edges) {
+  const cycle = findCycle(edges ?? [])
+  if (cycle)
+    problems.push(`${scene} · ${id} · CYCLE in the edges — the layout cannot draw it\n      ${cycle.join(' → ')}`)
 }
 
 function checkEdge(scene, e) {
@@ -82,6 +121,7 @@ function checkEdge(scene, e) {
 for (const [id, scene] of Object.entries(SCENES)) {
   for (const n of scene.nodes) walkNode(id, n)
   for (const e of scene.edges) checkEdge(id, e)
+  checkCycles(id, '(top level)', scene.edges)
 }
 
 // Slide markdown length is a cheap proxy for the panel overflow that scripts/frames.mjs measures

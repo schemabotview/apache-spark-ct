@@ -3,7 +3,7 @@ import type { Scene } from '@graphlearning/flow'
 export const immutability: Scene = {
   id: 'rdd-immutability',
   padding: 0.14,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'chain',

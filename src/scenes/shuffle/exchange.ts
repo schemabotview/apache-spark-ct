@@ -9,7 +9,7 @@ import type { Scene } from '@graphlearning/flow'
 export const exchange: Scene = {
   id: 'shuffle-exchange',
   padding: 0.13,
-  flow: 'LR',
+  flow: 'TB',
   nodes: [
     {
       id: 'writers',
