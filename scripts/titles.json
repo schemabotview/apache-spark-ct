@@ -1,0 +1,17 @@
+{
+  "_comment": "Curated publish titles (YouTube title + thumbnail header) per course id. Search-first by standing decision (NEXT-PLAN.md): the title names the mechanism, never 'Section 3'. One course = one long-form video, its sections the chapters. Keyed by the ids frozen in src/content/index.ts SPINE.",
+  "origins": "Why Spark Exists (And What MapReduce Got Wrong)",
+  "topology": "What Actually Runs Where When You Submit a Spark Job",
+  "rdd": "What an RDD Actually Is",
+  "execution": "How a Spark Job Becomes Stages and Tasks",
+  "shuffle": "How the Spark Shuffle Works",
+  "catalyst": "How Spark Turns Your Query Into a Plan",
+  "tungsten": "Why DataFrames Beat RDDs",
+  "pyspark-boundary": "Why Your PySpark UDF Is Slow",
+  "joins": "How Spark Decides to Join",
+  "formats": "Why Parquet Is Fast",
+  "memory": "Where Spark's Memory Actually Goes",
+  "aqe": "How Spark Re-Plans Your Query While It Runs",
+  "streaming": "How Structured Streaming Actually Works",
+  "lakehouse": "Why a Folder of Parquet Is Not a Table"
+}

@@ -1,0 +1,12 @@
+/* apache-spark-ct's design surface — the three tokens @graphlearning/shell leaves to the repo.
+   Imported AFTER the shell's stylesheet in main.tsx, so these win the cascade.
+
+   Apache Spark's own logo pairing: its orange with the gold it gradients into. Deliberately NOT the
+   teal-and-orange of the Databricks excerpt PDF in ~/Books/apache-spark/ — those figures are the
+   source material this repo re-draws from, and borrowing their palette on top of re-drawing their
+   subjects is exactly the line COURSE-PLAN.md §8 draws. See that section before changing these. */
+:root {
+  --brand: #e25a1c; /* Spark orange */
+  --brand-hover: #ff7a45; /* lighter orange — the eyebrow's hover state */
+  --accent-2: #f5b33c; /* Spark gold — the slide's `###` subheading */
+}
