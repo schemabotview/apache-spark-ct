@@ -17,7 +17,9 @@ import { join } from 'node:path'
 
 const LIMITS = {
   leafLabel: 28, // wraps past the card's top border beyond this
-  leafSub: 66, // spills out of the bottom border beyond this
+  leafSub: 66, // spills out of the bottom border beyond this — but this assumes a 1–2 line LABEL.
+  //              A leaf whose label wraps to 3 lines has less room, and can clip at ~55. The frame
+  //              render is the authority; this limit catches the common case cheaply.
   leafToken: 22, // an UNBREAKABLE token (a config key, an identifier) cannot wrap at all
   groupLabel: 70, // the group header is full-width, so it is far more forgiving
   groupSub: 120,

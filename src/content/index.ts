@@ -4,6 +4,7 @@ import { topology } from './topology'
 import { rdd } from './rdd'
 import { execution } from './execution'
 import { shuffle } from './shuffle'
+import { catalyst } from './catalyst'
 import { joins } from './joins'
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────
@@ -43,7 +44,8 @@ export type CourseId = (typeof SPINE)[number]
 // The live catalog, in spine order. A course joins this registry only when it is authored — an id in
 // SPINE with no entry here is planned, not shipped, and the catalog shows exactly what exists.
 //
-// Authored so far: 1 `origins`, 2 `topology`, 3 `rdd`, 4 `execution`, 5 `shuffle`, 9 `joins`. Insertion order must match SPINE order, not build order
+// Authored so far: 1 `origins`, 2 `topology`, 3 `rdd`, 4 `execution`, 5 `shuffle`,
+// 6 `catalyst`, 9 `joins`. Insertion order must match SPINE order, not build order
 // — this record is what the catalog renders.
 export const COURSES: Record<string, Course> = {
   [origins.id]: origins,
@@ -51,6 +53,7 @@ export const COURSES: Record<string, Course> = {
   [rdd.id]: rdd,
   [execution.id]: execution,
   [shuffle.id]: shuffle,
+  [catalyst.id]: catalyst,
   [joins.id]: joins,
 }
 
