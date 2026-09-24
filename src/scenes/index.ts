@@ -6,6 +6,7 @@ import { executionScenes } from './execution'
 import { shuffleScenes } from './shuffle'
 import { catalystScenes } from './catalyst'
 import { tungstenScenes } from './tungsten'
+import { pysparkBoundaryScenes } from './pyspark-boundary'
 import { joinsScenes } from './joins'
 
 // Scene registry. Sections reference scenes by id; scenes are grouped by course (one folder each,
@@ -15,7 +16,7 @@ import { joinsScenes } from './joins'
 //
 // Courses are added here as each is authored, in build order (shuffle first — see
 // src/content/index.ts).
-const ALL: Scene[] = [...originsScenes, ...topologyScenes, ...rddScenes, ...executionScenes, ...shuffleScenes, ...catalystScenes, ...tungstenScenes, ...joinsScenes]
+const ALL: Scene[] = [...originsScenes, ...topologyScenes, ...rddScenes, ...executionScenes, ...shuffleScenes, ...catalystScenes, ...tungstenScenes, ...pysparkBoundaryScenes, ...joinsScenes]
 
 export const SCENES: Record<string, Scene> = Object.fromEntries(ALL.map((s) => [s.id, s]))
 
