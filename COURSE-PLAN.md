@@ -5,9 +5,13 @@
 > these fourteen courses and not others. The Appendix at the foot carries the parts an author needs
 > without leaving the repo.
 >
-> **ALL FOURTEEN COURSES AUTHORED — 149 of 149 sections**, each verified on its rendered frame.
-> No narration wavs yet: `.tts` → `.wav` is the Colab + Chatterbox step and is the owner's to run.
-> The fourteen **course ids are frozen**
+> **ALL FIFTEEN COURSES AUTHORED — 162 of 162 sections**, each verified on its rendered frame.
+> Courses 1–14 were authored to this plan; course 15 `capstone` was ported in from the `apache-spark`
+> repo on 2026-09-24 — see §"The capstone port" below.
+> 45 narration wavs of 162 — `origins`, `topology`, `rdd` and `execution` fully voiced, `shuffle`
+> started, and 5 of `capstone`'s carried over with the port. `.tts` → `.wav` via Colab + Chatterbox
+> is the owner's step and is under way.
+> The fifteen **course ids are frozen**
 > in `src/content/index.ts` —
 > the published slug is `<courseId>-<sectionId>` and that is the route contract every recorder
 > drives, so an id cannot move once its course exists. **Section ids are not frozen**: they can
@@ -16,7 +20,7 @@
 > Each line is one **section** = one scene + one slide + ~40s of narration. Each course publishes as
 > **one long-form video**, its sections as chapters from the wav manifest.
 
-**149 sections across 14 courses.** Per-course source keys: `LS1` = Learning Spark 1E ·
+**162 sections across 15 courses.** Per-course source keys: `LS1` = Learning Spark 1E ·
 `SDG` = Spark: The Definitive Guide (full) · `EX` = the Databricks excerpt, figures only ·
 `2E` = the Learning Spark 2E study notes · `DOC` = Spark docs / specs, i.e. research required.
 
@@ -264,17 +268,69 @@ the real nodes (`Filter`, `Project`, `Relation`) and name the rule that fired.
 
 ---
 
+## 15 · `capstone` ✅ — "Everything, end to end"
+*13 sections · **ported**, not authored to this plan · sources: the `apache-spark` repo + **DOC***
+
+| | section | the beat |
+|---|---|---|
+| 01 | `the-plan` | the Lambda pipeline, whole, before any of it is built |
+| 02 | `read-lake` | the reader's surface, and the three prunings it triggers |
+| 03 | `clean` | dedup and typing — and why none of it has run yet |
+| 04 | `batch-aggregate` | both sides large → sort-merge → a shuffle cuts a stage |
+| 05 | `partitioned-write` | layout, file count, format — and the staleness that remains |
+| 06 | `ingest` | Kafka as an unbounded input table, with replayable offsets |
+| 07 | `enrich` | the same table, the same join API, a broadcast plan |
+| 08 | `window` | event-time buckets, and the watermark that bounds state |
+| 09 | `real-time-view` | update mode, and the checkpoint that buys exactly-once |
+| 10 | `serving` | union the accurate history to the fresh present |
+| 11 | `deploy` | where the driver lives, and what the executor flags buy |
+| 12 | `tune` | read the Spark UI first; know what AQE already does |
+| 13 | `closer` | the whole pipeline, and every part it had to touch |
+
+### The capstone port
+
+**This course did not come from the four books.** It was ported from the `apache-spark` repo on
+2026-09-24, where it closed a five-course applied arc, and it is the one **category-B** course here —
+it BUILDS rather than explains. It is last in the spine for that reason, and its presence is not a
+precedent: courses 1–14 remain the plan.
+
+Three things were fixed in the port, and they are the reason this is not a straight copy:
+
+1. **Cross-course references had to go.** The source repo's narration pointed at its siblings by name
+   — "a direct callback to the API course", "remember from the architecture course", "every concept
+   from the four courses" — in **eight of the thirteen** sections, plus several slide tags of the form
+   `` (`spark-api` §3) ``. Those courses do not exist here under those names, so the pointers were
+   broken as well as non-compliant. Each one is replaced by a two-sentence inline explanation of the
+   prerequisite, which is what `src/content/index.ts` prescribes.
+2. **§12's AQE framing was stale.** It taught AQE as a Spark 3 flag you switch on.
+   `spark.sql.adaptive.enabled`, `…coalescePartitions.enabled` and `…skewJoin.enabled` have all
+   defaulted to **true since Spark 3.2**, so the section now teaches what AQE is already doing to your
+   plan. Same correction as course 12 — Appendix rule 2, re-ground every tuning claim.
+3. **The master map was over-full.** It carried a fourth row ("Run it: spark-submit · on a cluster ·
+   observe + tune") and rendered at **12.9pt**, under this repo's 13pt floor; dropping that row gives
+   13.7pt. `scripts/frames.mjs` caught it — the source repo has no such check, so it shipped there
+   unseen. Worth recording: trimming the `sub` strings first moved the type size by **exactly zero**,
+   because leaf cards are fixed-size. Only node count moves it.
+
+**Audio.** Course and section ids are verbatim from the source repo, because the slug
+(`capstone-<sectionId>`) keys the wav path. That was deliberate: the five sections whose narration
+survived the port byte-for-byte — `read-lake`, `partitioned-write`, `enrich`, `real-time-view`,
+`serving` — reuse their existing wavs unchanged, verified byte-identical. The other eight were
+rewritten and **must be regenerated** before this course can be recorded.
+
+---
+
 ## Totals and what they imply
 
 | | |
 |---|---|
-| Courses | **14** |
-| Sections | **149** |
-| Scenes | 149 hand-authored (some shared — a scene is content-agnostic) |
-| Markdown sources | 149 `.md`, each deriving a `.slide` and a `.tts` |
-| Narration wavs | 149, via Colab + Chatterbox |
-| Long-form videos | 14, chapters generated from the wav manifest |
-| Shorts | ~149 available; ~8 per course is the useful cut |
+| Courses | **15** (14 authored here + `capstone`, ported) |
+| Sections | **162** |
+| Scenes | 161 hand-authored (`capstone`'s two bookends share one) |
+| Markdown sources | 162 `.md`, each deriving a `.slide` and a `.tts` |
+| Narration wavs | 162, via Colab + Chatterbox — **45 done**, 117 outstanding |
+| Long-form videos | 15, chapters generated from the wav manifest |
+| Shorts | ~162 available; ~8 per course is the useful cut |
 
 For scale: the largest repo in this workspace today is 47 sections. **This is three times that.**
 

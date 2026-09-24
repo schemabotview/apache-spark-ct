@@ -4,6 +4,10 @@ Apache Spark **internals**, as deterministic diagrams with narration. Not a tuto
 unit answers *how does this actually work*: how the shuffle works, how Spark decides to join, why
 your PySpark UDF is slow, how the query gets re-planned while it runs.
 
+The exception is the last course, a **capstone** that builds one end-to-end pipeline instead of
+explaining one mechanism. It was ported in from the `apache-spark` repo rather than authored to this
+plan, which is why it sits outside the pattern and at the end.
+
 Part of [GraphL](https://graphl.in). Deploys to `graphl.in/apache-spark-ct/`.
 
 ## The model
@@ -18,11 +22,12 @@ screenshots reproducible.
 
 ## Status
 
-**All 14 courses authored — 149 sections.** Every one has a scene, a slide and a narration script,
+**All 15 courses authored — 162 sections.** Every one has a scene, a slide and a narration script,
 and every frame has been rendered and reviewed.
 
-**No narration wavs yet.** `.tts` → `.wav` runs through Colab + Chatterbox, and that's the remaining
-step before anything can be recorded.
+**45 narration wavs, of 162.** The Colab + Chatterbox step is under way: `origins`, `topology`,
+`rdd` and `execution` are fully voiced, `shuffle` has started. Five of the capstone's came over with
+the port rather than being generated, because that narration survived it unchanged.
 
 The plan — the spine, the sources behind each course, and the copyright line — is in
 **[`COURSE-PLAN.md`](./COURSE-PLAN.md)**.
@@ -36,6 +41,7 @@ The plan — the spine, the sources behind each course, and the copyright line �
 | 5 | How the Spark shuffle works | | 12 | How Spark re-plans while it runs |
 | 6 | How Spark turns your query into a plan | | 13 | How Structured Streaming works |
 | 7 | Why DataFrames beat RDDs | | 14 | Why a folder of Parquet is not a table |
+|   |  | | 15 | Capstone: an end-to-end pipeline |
 
 ## Run it
 

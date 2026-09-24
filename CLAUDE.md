@@ -1,8 +1,8 @@
 # CLAUDE.md — apache-spark-ct
 
 > Auto-loaded in this repo, so it stays short. The workspace file (`../CLAUDE.md`) carries the
-> content model and the invariants — read that first. **The syllabus is `COURSE-PLAN.md`**: 14
-> courses, 149 sections, the sources behind each, and the copyright line. Read it before authoring.
+> content model and the invariants — read that first. **The syllabus is `COURSE-PLAN.md`**: 15
+> courses, 162 sections, the sources behind each, and the copyright line. Read it before authoring.
 
 ## What this is
 
@@ -11,7 +11,13 @@ use it). Derived from the four PDFs in `~/Books/apache-spark/`, which supply the
 never their names. Every course publishes as one long-form search-first video, its sections the
 chapters.
 
-**Status (2026-09-24): all 14 courses authored — 149 of 149 sections.**
+Courses 1–14 are category A without exception. **Course 15 `capstone` is the one deliberate
+category-B course** — it BUILDS a pipeline instead of explaining a mechanism — and it is here because
+it was ported in from the `apache-spark` repo on 2026-09-24 rather than authored to this plan. It sits
+last for that reason. Do not read it as licence to add "how to use it" courses: see
+`COURSE-PLAN.md` §"The capstone port" before touching it.
+
+**Status (2026-09-24): all 15 courses authored — 162 of 162 sections.**
 
 | # | Course | § | # | Course | § |
 |---|---|---|---|---|---|
@@ -22,19 +28,27 @@ chapters.
 | 5 | `shuffle` | 10 | 12 | `aqe` | 10 |
 | 6 | `catalyst` | 12 | 13 | `streaming` | 12 |
 | 7 | `tungsten` | 10 | 14 | `lakehouse` | 12 |
+|   |  |  | 15 | `capstone` | 13 |
 
 Every section has a scene, a slide and a narration script, and **every frame has been rendered and
 looked at**. Guards green throughout.
 
-**No narration wavs.** `.tts` → `.wav` is Colab + Chatterbox and is the owner's to run — it is the
-one remaining step before anything can be recorded.
+**45 narration wavs, of 162** — the Colab + Chatterbox step is under way and is the owner's to run.
+Courses fully voiced: `origins` 8/8, `topology` 10/10, `rdd` 10/10, `execution` 11/11. In progress:
+`shuffle` 1/10. And `capstone` 5/13 — those five (`read-lake`, `partitioned-write`, `enrich`,
+`real-time-view`, `serving`) were carried over with the port rather than generated, because their
+narration survived it byte-for-byte; the other eight were rewritten and need generating like the rest.
+`public/audio/<course>/<section>.wav` is the contract, and `scripts/audio-manifest.json` (regenerate
+with `npm run gen:audio`) is what the notebook reads.
 
 ## The route contract (do not re-decide it per repo)
 
 - Slug is `<courseId>-<sectionId>`, from the shell's `slugOf`. Routes are `#/<slug>`, capture is
   `?capture=1`, the recorder drives `window.__scene.plan()`.
-- `src/content/index.ts` exports `SPINE` — **the fourteen course ids, frozen.** An id may never be
-  renamed or reordered once its course is authored, because the slug is the contract.
+- `src/content/index.ts` exports `SPINE` — **the fifteen course ids, frozen.** An id may never be
+  renamed or reordered once its course is authored, because the slug is the contract. Fourteen were
+  declared at the outset; `capstone` was APPENDED on 2026-09-24, which is safe only because nothing
+  ahead of it moved. Appending is the only permitted change to this list.
 - `SPINE` is the **catalog** ordering, not a dependency chain. Every course is a standalone video, so
   **no course may assume another has been watched**, and narration must never cross-reference a
   module by number ("recall module four") — `data-warehousing` froze its course order by doing that.
@@ -44,13 +58,15 @@ one remaining step before anything can be recorded.
 
 ## Scene inventory
 
-`src/scenes/<course>/` — 149 scenes, one per section, registered in `src/scenes/index.ts`. Ids are
-globally unique, and a scene is content-agnostic by design, so one may be shared across sections.
+`src/scenes/<course>/` — 161 scenes for 162 sections, registered in `src/scenes/index.ts`. Ids are
+globally unique, and a scene is content-agnostic by design, so one may be shared across sections:
+`capstone` is the only course that does, its two bookends (§1, §13) both riding `cap-lambda-arch`.
 
 Most are node/edge diagrams. The exceptions worth knowing: **code cards** (`kind: 'code'`) carry
 §6 of `shuffle`, §11 of `joins`, §11 of `execution`, §12 of `catalyst`, §8 of `tungsten`, §9 of
-`pyspark-boundary` and §10 of `aqe`; **tables** (`kind: 'table'`) carry comparisons in `shuffle`,
-`joins`, `memory`, `streaming` and `lakehouse`.
+`pyspark-boundary`, §10 of `aqe` — and **eleven of `capstone`'s thirteen**, which makes that course
+the repo's densest concentration of them by far; **tables** (`kind: 'table'`) carry comparisons in
+`shuffle`, `joins`, `memory`, `streaming` and `lakehouse`.
 
 ### Both diagram classes COURSE-PLAN.md flagged as unproven are now settled
 

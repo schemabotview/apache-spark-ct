@@ -13,14 +13,20 @@ import { memory } from './memory'
 import { aqe } from './aqe'
 import { streaming } from './streaming'
 import { lakehouse } from './lakehouse'
+import { capstone } from './capstone'
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────
 // The spine. FROZEN — see COURSE-PLAN.md §"Course order and build order are allowed to differ".
 //
 // A course id may never be renamed or reordered once its course is authored, because the published
-// slug (`<courseId>-<sectionId>`) is the route contract every recorder drives. Fixing all fourteen
-// ids up front costs nothing and cannot be undone later, so they are declared here in spine order
-// before any of them exists.
+// slug (`<courseId>-<sectionId>`) is the route contract every recorder drives. Fixing the ids up
+// front costs nothing and cannot be undone later, so they are declared here in spine order before
+// any of them exists.
+//
+// Fourteen were declared at the outset. `capstone` is the fifteenth, APPENDED on 2026-09-24 when it
+// was ported in from the `apache-spark` repo. Appending is safe precisely because this list is a
+// catalog ordering and not a dependency chain, and because no existing id moved. It sits last rather
+// than among the internals because it is the one course here that BUILDS rather than explains.
 //
 // This list is the CATALOG ordering, not a dependency chain: every course publishes as a standalone
 // search-first video, so no course may assume another has been watched, and narration must never
@@ -44,6 +50,7 @@ export const SPINE = [
   'aqe', //              12 · How Spark re-plans your query while it runs
   'streaming', //        13 · How Structured Streaming actually works
   'lakehouse', //        14 · Why a folder of Parquet is not a table
+  'capstone', //         15 · Everything, end to end — the one course that BUILDS
 ] as const
 
 export type CourseId = (typeof SPINE)[number]
@@ -53,8 +60,8 @@ export type CourseId = (typeof SPINE)[number]
 //
 // Authored so far: 1 `origins`, 2 `topology`, 3 `rdd`, 4 `execution`, 5 `shuffle`,
 // 6 `catalyst`, 7 `tungsten`, 8 `pyspark-boundary`, 9 `joins`,
-// 10 `formats`, 11 `memory`, 12 `aqe`, 13 `streaming`, 14 `lakehouse`.
-// ALL FOURTEEN AUTHORED. Insertion order must match SPINE order, not build order
+// 10 `formats`, 11 `memory`, 12 `aqe`, 13 `streaming`, 14 `lakehouse`, 15 `capstone` (ported).
+// ALL FIFTEEN AUTHORED. Insertion order must match SPINE order, not build order
 // — this record is what the catalog renders.
 export const COURSES: Record<string, Course> = {
   [origins.id]: origins,
@@ -71,6 +78,7 @@ export const COURSES: Record<string, Course> = {
   [aqe.id]: aqe,
   [streaming.id]: streaming,
   [lakehouse.id]: lakehouse,
+  [capstone.id]: capstone,
 }
 
 export type { Course, Section }
