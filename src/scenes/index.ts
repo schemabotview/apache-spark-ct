@@ -2,6 +2,7 @@ import type { Scene } from '@graphlearning/flow'
 import { originsScenes } from './origins'
 import { topologyScenes } from './topology'
 import { rddScenes } from './rdd'
+import { executionScenes } from './execution'
 import { shuffleScenes } from './shuffle'
 import { joinsScenes } from './joins'
 
@@ -12,7 +13,7 @@ import { joinsScenes } from './joins'
 //
 // Courses are added here as each is authored, in build order (shuffle first — see
 // src/content/index.ts).
-const ALL: Scene[] = [...originsScenes, ...topologyScenes, ...rddScenes, ...shuffleScenes, ...joinsScenes]
+const ALL: Scene[] = [...originsScenes, ...topologyScenes, ...rddScenes, ...executionScenes, ...shuffleScenes, ...joinsScenes]
 
 export const SCENES: Record<string, Scene> = Object.fromEntries(ALL.map((s) => [s.id, s]))
 
