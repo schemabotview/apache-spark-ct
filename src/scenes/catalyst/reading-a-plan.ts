@@ -1,0 +1,41 @@
+import type { Scene } from '@graphlearning/flow'
+
+export const readingAPlan: Scene = {
+  id: 'cat-reading-plan',
+  padding: 0.16,
+  nodes: [
+    {
+      id: 'code',
+      kind: 'code',
+      filename: 'plan.txt',
+      minCols: 76,
+      label: [
+        '== Parsed Logical Plan ==          # unresolved: names only',
+        "'Project ['dest, 'total]",
+        "+- 'Filter ('country = IN)",
+        "   +- 'UnresolvedRelation [flights]",
+        '',
+        '== Analyzed Logical Plan ==        # names bound, types known',
+        'Project [dest#7, total#42L]',
+        '+- Filter (country#9 = IN)',
+        '   +- Relation flights[dest#7,country#9,cnt#11L] parquet',
+        '',
+        '== Optimized Logical Plan ==       # rules have fired',
+        'Aggregate [dest#7], [dest#7, sum(cnt#11L) AS total#42L]',
+        '+- Project [dest#7, cnt#11L]              <-- pruned',
+        '   +- Filter (isnotnull(country#9) AND (country#9 = IN))',
+        '      +- Relation flights[...] parquet',
+        '',
+        '== Physical Plan ==                # HOW, not what',
+        '*(2) HashAggregate(keys=[dest#7], ...)    <-- * = codegen',
+        '+- Exchange hashpartitioning(dest#7, 200) <-- the shuffle',
+        '   +- *(1) HashAggregate(keys=[dest#7], ...)  <-- partial',
+        '      +- *(1) Filter (country#9 = IN)',
+        '         +- FileScan parquet [dest#7,country#9,cnt#11L]',
+        '              PushedFilters: [EqualTo(country,IN)]',
+        '              ReadSchema: struct<dest,country,cnt>',
+      ].join('\n'),
+    },
+  ],
+  edges: [],
+}

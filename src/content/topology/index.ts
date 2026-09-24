@@ -1,16 +1,14 @@
 import type { Course } from '../types'
-import {
-  threeProcesses,
-  theDriver,
-  sparkSessionSection,
-  executorsSection,
-  clusterManagerSection,
-  localModeSection,
-  clientVsCluster,
-  onKubernetes,
-  sparkSubmitSection,
-  failureModes,
-} from './sections'
+import { threeProcesses } from './01-three-processes'
+import { theDriver } from './02-the-driver'
+import { sparkSessionSection } from './03-sparksession'
+import { executorsSection } from './04-executors'
+import { clusterManagerSection } from './05-the-cluster-manager'
+import { localModeSection } from './06-local-mode'
+import { clientVsCluster } from './07-client-vs-cluster'
+import { onKubernetes } from './08-on-kubernetes'
+import { sparkSubmitSection } from './09-spark-submit'
+import { failureModes } from './10-failure-modes'
 
 // Course 2 of the spine — "what is actually running, and where". The arc names the three processes
 // and their strict division of labour (§1), then takes each in turn: the driver and the two ways

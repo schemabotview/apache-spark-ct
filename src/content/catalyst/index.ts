@@ -1,18 +1,16 @@
 import type { Course } from '../types'
-import {
-  oneFrontDoor,
-  expressionTree,
-  unresolvedPlan,
-  theCatalog,
-  theAnalyzer,
-  rulesToFixpoint,
-  predicatePushdown,
-  columnPruning,
-  physicalCandidates,
-  theCostModel,
-  downToRdds,
-  readingAPlan,
-} from './sections'
+import { oneFrontDoor } from './01-one-front-door'
+import { expressionTree } from './02-the-expression-tree'
+import { unresolvedPlan } from './03-unresolved-plan'
+import { theCatalog } from './04-the-catalog'
+import { theAnalyzer } from './05-the-analyzer'
+import { rulesToFixpoint } from './06-rules-to-fixpoint'
+import { predicatePushdown } from './07-predicate-pushdown'
+import { columnPruning } from './08-column-pruning'
+import { physicalCandidates } from './09-physical-candidates'
+import { theCostModel } from './10-the-cost-model'
+import { downToRdds } from './11-down-to-rdds'
+import { readingAPlan } from './12-reading-a-plan'
 
 // Course 6 of the spine — and the course this repo exists to make its case with. See COURSE-PLAN.md
 // §2: the canonical Databricks figures of this exact pipeline draw every plan node as an EMPTY BOX,

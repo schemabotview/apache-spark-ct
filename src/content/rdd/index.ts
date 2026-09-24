@@ -1,16 +1,14 @@
 import type { Course } from '../types'
-import {
-  fiveProperties,
-  thePartition,
-  immutability,
-  lineage,
-  narrowDependency,
-  wideDependency,
-  recomputeNotReplicate,
-  preferredLocations,
-  pairRdds,
-  whenRddsWin,
-} from './sections'
+import { fiveProperties } from './01-five-properties'
+import { thePartition } from './02-the-partition'
+import { immutability } from './03-immutability'
+import { lineage } from './04-lineage'
+import { narrowDependency } from './05-narrow-dependency'
+import { wideDependency } from './06-wide-dependency'
+import { recomputeNotReplicate } from './07-recompute-not-replicate'
+import { preferredLocations } from './08-preferred-locations'
+import { pairRdds } from './09-pair-rdds'
+import { whenRddsWin } from './10-when-rdds-still-win'
 
 // Course 3 of the spine — the abstraction everything else is built on, argued as a much smaller idea
 // than its reputation: five properties (§1), and every famous Spark behaviour falls out of one of

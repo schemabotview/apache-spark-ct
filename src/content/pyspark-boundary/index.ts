@@ -1,17 +1,15 @@
 import type { Course } from '../types'
-import {
-  twoProcesses,
-  py4j,
-  dataframeIllusion,
-  theUdfCrossing,
-  theRoundTrip,
-  theMemoryProblem,
-  codegenLost,
-  arrow,
-  pandasUdfs,
-  iteratorAndMap,
-  theDecision,
-} from './sections'
+import { twoProcesses } from './01-two-processes'
+import { py4j } from './02-py4j'
+import { dataframeIllusion } from './03-the-dataframe-illusion'
+import { theUdfCrossing } from './04-the-udf-crossing'
+import { theRoundTrip } from './05-the-round-trip'
+import { theMemoryProblem } from './06-the-memory-problem'
+import { codegenLost } from './07-codegen-lost'
+import { arrow } from './08-arrow'
+import { pandasUdfs } from './09-pandas-udfs'
+import { iteratorAndMap } from './10-iterator-and-map'
+import { theDecision } from './11-the-decision'
 
 // Course 8 of the spine — the course that exists because of one figure. COURSE-PLAN.md §2 rates the
 // Databricks excerpt's p.123 diagram (driver, three executors, each JVM paired with a worker Python

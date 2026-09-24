@@ -1,0 +1,43 @@
+import type { Scene } from '@graphlearning/flow'
+
+export const readingExplain: Scene = {
+  id: 'exec-reading-explain',
+  padding: 0.16,
+  nodes: [
+    {
+      id: 'code',
+      kind: 'code',
+      filename: 'explain.txt',
+      minCols: 76,
+      label: [
+        '>>> df.groupBy("dest").count().orderBy("count").explain()',
+        '',
+        '== Physical Plan ==',
+        'AdaptiveSparkPlan isFinalPlan=false',
+        '+- Sort [count#42 ASC NULLS FIRST], true, 0',
+        '   +- Exchange rangepartitioning(count#42 ASC, 200)   <-- 2',
+        '      +- HashAggregate(keys=[dest#7], functions=[count(1)])',
+        '         +- Exchange hashpartitioning(dest#7, 200)    <-- 1',
+        '            +- HashAggregate(keys=[dest#7], ...)',
+        '               +- FileScan parquet [dest#7]',
+        '                    PushedFilters: [IsNotNull(dest)]',
+        '                    ReadSchema: struct<dest:string>',
+        '',
+        '# Read it BOTTOM-UP: the scan is the leaf, the sort is last.',
+        '#',
+        '# Two Exchanges -> two shuffles -> THREE stages.',
+        '# That count is the cost of the query, and it is visible',
+        '# here without running anything.',
+        '#',
+        '# Two HashAggregates is not a bug: the lower one is the',
+        '# partial aggregate BEFORE the shuffle (the map-side combine),',
+        '# the upper one finishes the job after it.',
+        '#',
+        '# ReadSchema names one column out of two hundred -- column',
+        '# pruning worked. PushedFilters means the filter reached',
+        '# the file reader instead of running after the scan.',
+      ].join('\n'),
+    },
+  ],
+  edges: [],
+}

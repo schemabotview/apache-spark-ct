@@ -1,0 +1,42 @@
+import type { Scene } from '@graphlearning/flow'
+
+export const seeingIt: Scene = {
+  id: 'tun-seeing-it',
+  padding: 0.16,
+  nodes: [
+    {
+      id: 'code',
+      kind: 'code',
+      filename: 'codegen.txt',
+      minCols: 76,
+      label: [
+        '>>> df.filter("country = \'IN\'").select("dest").explain()',
+        '',
+        '== Physical Plan ==',
+        '*(1) Project [dest#7]                 <-- the * is the point',
+        '+- *(1) Filter (country#9 = IN)',
+        '   +- FileScan parquet [dest#7,country#9]',
+        '',
+        '# *(1) means "whole-stage codegen stage 1". Project and',
+        '# Filter carry the SAME number, so they were fused into one',
+        '# generated method. No * means that operator is running the',
+        '# old iterator-at-a-time way.',
+        '',
+        '# The generated source itself:',
+        '>>> df.filter(...).select(...).explain("codegen")',
+        '',
+        'Found 1 WholeStageCodegen subtrees.',
+        'Generated code:',
+        '/* 026 */   while (scan_hasNext()) {',
+        '/* 027 */     UTF8String country = scan_row.getUTF8String(1);',
+        '/* 028 */     if (!country.equals(IN)) continue;   // the Filter',
+        '/* 029 */     UTF8String dest = scan_row.getUTF8String(0);',
+        '/* 030 */     append(dest);                        // the Project',
+        '/* 031 */   }',
+        '',
+        '# One loop. The operator tree is gone.',
+      ].join('\n'),
+    },
+  ],
+  edges: [],
+}

@@ -1,6 +1,15 @@
 import type { Course } from '../types'
-import { theProblem, broadcastHashJoin, theThreshold, sortMergeJoin, shuffleHashJoin, nestedLoopJoin } from './01-06'
-import { howSparkChooses, joinTypesCost, bucketingSection, skewedJoinsSection, hintsSection } from './07-11'
+import { theProblem } from './01-the-problem'
+import { broadcastHashJoin } from './02-broadcast-hash-join'
+import { theThreshold } from './03-the-threshold'
+import { sortMergeJoin } from './04-sort-merge-join'
+import { shuffleHashJoin } from './05-shuffle-hash-join'
+import { nestedLoopJoin } from './06-nested-loop'
+import { howSparkChooses } from './07-how-spark-chooses'
+import { joinTypesCost } from './08-join-types-cost'
+import { bucketingSection } from './09-bucketing'
+import { skewedJoinsSection } from './10-skewed-joins'
+import { hintsSection } from './11-hints'
 
 // Course 9 of the spine — second authored, after `shuffle`. The arc is a single question asked five
 // ways: matching rows live on different machines, so either one side moves whole (§2–3) or both move

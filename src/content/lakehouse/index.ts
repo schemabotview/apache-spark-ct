@@ -1,18 +1,16 @@
 import type { Course } from '../types'
-import {
-  folderIsNotATable,
-  thePartialWrite,
-  theListingProblem,
-  theTransactionLog,
-  aCommit,
-  snapshotIsolation,
-  timeTravel,
-  schemaEnforcement,
-  updatesAndDeletes,
-  compaction,
-  vacuum,
-  theThree,
-} from './sections'
+import { folderIsNotATable } from './01-a-folder-is-not-a-table'
+import { thePartialWrite } from './02-the-partial-write'
+import { theListingProblem } from './03-the-listing-problem'
+import { theTransactionLog } from './04-the-transaction-log'
+import { aCommit } from './05-a-commit'
+import { snapshotIsolation } from './06-snapshot-isolation'
+import { timeTravel } from './07-time-travel'
+import { schemaEnforcement } from './08-schema-enforcement'
+import { updatesAndDeletes } from './09-updates-and-deletes'
+import { compaction } from './10-compaction'
+import { vacuum } from './11-vacuum'
+import { theThree } from './12-the-three'
 
 // Course 14 of the spine — the closer, and the one that answers the gap course 1 §7 opened: Spark
 // deliberately owns no storage, and no owner means no guarantees. §§1–3 are the three problems that

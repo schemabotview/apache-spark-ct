@@ -1,16 +1,14 @@
 import type { Course } from '../types'
-import {
-  staticPlanProblem,
-  materializationPoints,
-  theLoop,
-  coalescePartitions,
-  strategySwitch,
-  skewSplit,
-  dynamicPartitionPruning,
-  dppVsStatic,
-  whatItDoesNotFix,
-  seeingIt,
-} from './sections'
+import { staticPlanProblem } from './01-the-static-plan-problem'
+import { materializationPoints } from './02-materialization-points'
+import { theLoop } from './03-the-loop'
+import { coalescePartitions } from './04-coalesce-partitions'
+import { strategySwitch } from './05-strategy-switch'
+import { skewSplit } from './06-skew-split'
+import { dynamicPartitionPruning } from './07-dynamic-partition-pruning'
+import { dppVsStatic } from './08-dpp-vs-static-pruning'
+import { whatItDoesNotFix } from './09-what-it-does-not-fix'
+import { seeingIt } from './10-seeing-it'
 
 // Course 12 of the spine — and the one COURSE-PLAN.md §5 rates the sharpest risk in it. The only
 // source in the four books is the 2E study notes, which describe Spark 3.0.0-preview2, and

@@ -1,0 +1,43 @@
+import type { Scene } from '@graphlearning/flow'
+
+export const pandasUdfs: Scene = {
+  id: 'pyb-pandas-udfs',
+  padding: 0.16,
+  nodes: [
+    {
+      id: 'code',
+      kind: 'code',
+      filename: 'udfs.py',
+      minCols: 76,
+      label: [
+        'from pyspark.sql.functions import udf, pandas_udf',
+        'import pandas as pd',
+        '',
+        '# 1. The slow one: called once PER ROW.',
+        '@udf("double")',
+        'def plus_one(v: float) -> float:',
+        '    return v + 1.0',
+        '',
+        '# 2. The vectorised one: called once per ARROW BATCH,',
+        '#    with ~10,000 rows in a pandas Series.',
+        '@pandas_udf("double")',
+        'def plus_one_fast(s: pd.Series) -> pd.Series:',
+        '    return s + 1.0          # NumPy, on the whole column',
+        '',
+        '# The type hints are not documentation -- they are how',
+        '# Spark decides which kind of UDF this is. Series -> Series',
+        '# is a scalar UDF; Series -> scalar is an aggregate.',
+        '',
+        '@pandas_udf("double")',
+        'def mean_udf(s: pd.Series) -> float:   # aggregate',
+        '    return s.mean()',
+        '',
+        'df.groupBy("dest").agg(mean_udf("delay"))',
+        '',
+        '# Same answer as #1, same Python, one line different --',
+        '# and typically an order of magnitude apart.',
+      ].join('\n'),
+    },
+  ],
+  edges: [],
+}
