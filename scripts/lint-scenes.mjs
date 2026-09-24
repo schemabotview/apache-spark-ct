@@ -82,6 +82,32 @@ for (const [id, scene] of Object.entries(SCENES)) {
   for (const e of scene.edges) checkEdge(id, e)
 }
 
+// Slide markdown length is a cheap proxy for the panel overflow that scripts/frames.mjs measures
+// exactly. Calibrated on 2026-09-24 against rendered 1920x1080 frames: at or below ~950 characters
+// a slide fits; at ~1050 and above it is clipped. Tables cost more height per character than
+// bullets, so this is a warning rather than a failure — frames.mjs is the authority.
+const contentBundle = join(dir, 'lint-content.mjs')
+await build({
+  entryPoints: ['src/content/index.ts'],
+  bundle: true,
+  format: 'esm',
+  outfile: contentBundle,
+  platform: 'node',
+  external: ['@graphlearning/*', 'react', 'react-dom'],
+  logLevel: 'silent',
+})
+const { COURSES } = await import(pathToFileURL(contentBundle).href)
+rmSync(contentBundle, { force: true })
+const longSlides = []
+for (const c of Object.values(COURSES))
+  for (const sec of c.sections)
+    if (sec.slide.length > 1000) longSlides.push(`${c.id}-${sec.id} — ${sec.slide.length} chars`)
+if (longSlides.length) {
+  console.warn(`\n⚠ ${longSlides.length} slide(s) over the ~950-char budget — likely to clip; confirm with npm run frames:`)
+  for (const l of longSlides) console.warn('  ' + l)
+  console.warn('')
+}
+
 if (problems.length) {
   console.error(`\n✗ ${problems.length} scene text overflow(s) — these render OUTSIDE the card border:\n`)
   for (const p of problems) console.error('  ' + p)
