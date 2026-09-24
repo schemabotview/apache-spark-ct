@@ -9,6 +9,7 @@ import { tungsten } from './tungsten'
 import { pysparkBoundary } from './pyspark-boundary'
 import { joins } from './joins'
 import { formats } from './formats'
+import { memory } from './memory'
 
 // ─────────────────────────────────────────────────────────────────────────────────────────────────
 // The spine. FROZEN — see COURSE-PLAN.md §"Course order and build order are allowed to differ".
@@ -49,7 +50,7 @@ export type CourseId = (typeof SPINE)[number]
 //
 // Authored so far: 1 `origins`, 2 `topology`, 3 `rdd`, 4 `execution`, 5 `shuffle`,
 // 6 `catalyst`, 7 `tungsten`, 8 `pyspark-boundary`, 9 `joins`,
-// 10 `formats`. Insertion order must match SPINE order, not build order
+// 10 `formats`, 11 `memory`. Insertion order must match SPINE order, not build order
 // — this record is what the catalog renders.
 export const COURSES: Record<string, Course> = {
   [origins.id]: origins,
@@ -62,6 +63,7 @@ export const COURSES: Record<string, Course> = {
   [pysparkBoundary.id]: pysparkBoundary,
   [joins.id]: joins,
   [formats.id]: formats,
+  [memory.id]: memory,
 }
 
 export type { Course, Section }
