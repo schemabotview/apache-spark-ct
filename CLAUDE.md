@@ -73,6 +73,18 @@ Each course adds its rows here as it is authored.
 | `partitions-locality` | dataset → three machine containers of partition chips → combine | `foundations-partitioning-and-locality` |
 | `mapreduce-vs-spark` | MapReduce job column beside a PySpark code card | `foundations-mapreduce-to-spark` |
 | `retail-pipeline` | **shared.** Sources → `spark-application` (ingest, clean, enrich, summarise) → outputs. Later courses reuse it with `focus:` on a stage id, so keep the ids stable | `foundations-retail-pipeline` |
+| `rdd-lineage` | RDD code card → its `toDebugString()` | `abstractions-rdds-and-lineage` |
+| `pair-rdd-aggregation` | reduceByKey / groupByKey code → shuffle lineage | `abstractions-pair-rdds` |
+| `closures-shared-variables` | closure / broadcast / accumulator code above three cards | `abstractions-closures-and-shared-variables` |
+| `dataframe-schema` | read code above printSchema and the six-row `orders` table | `abstractions-dataframes-and-schemas` |
+| `column-expressions` | expression code → `enriched.show()` table | `abstractions-columns-and-expressions` |
+| `filter-group-aggregate` | daily summary code above result table and result schema | `abstractions-filter-group-aggregate` |
+| `sql-and-catalog` | SQL / saveAsTable code above temp view, global view, table | `abstractions-spark-sql-and-catalog` |
+| `abstraction-choice` | four `list` cards: RDD, DataFrame, SQL, typed Dataset | `abstractions-choosing-an-abstraction` |
+| `reading-sources` | CSV/JSON/Parquet dtypes card above a JDBC read card | `abstractions-reading-sources` |
+| `write-output` | partitioned write code → the output directory tree | `abstractions-writing-datasets` |
+| `driver-collection` | take/collect/foreachPartition code above a rules list | `abstractions-collection-and-side-effects` |
+| `batch-pipeline-case` | sales-by-city code above `stores` and result tables | `abstractions-worked-batch-pipeline` |
 | `local-app-lifecycle` | the full `daily_sales.py` code card above a 2×2 lifecycle (badged) | `architecture-local-application` |
 | `driver-executors` | driver container → cluster manager and executors side by side | `architecture-driver-and-executors` |
 | `classic-vs-connect` | Classic and Connect containers (Py4J / gRPC) above a Connect code card | `architecture-classic-vs-connect` |
@@ -98,6 +110,19 @@ the pane.
 The execution example is fixed too: 200 GB a day ÷ 128 MB (`spark.sql.files.maxPartitionBytes`)
 ≈ **1,600 input partitions**; **50 executors × 4 cores = 200 slots**, so **8 waves**; shuffles land in
 **200** partitions (`spark.sql.shuffle.partitions`) before AQE coalesces them.
+
+From Chapter 3 on, worked results come from the **six-order sample** — o1 7 40.00 COMPLETED,
+o2 7 25.00 COMPLETED, o3 9 60.00 CANCELLED, o4 9 15.00 COMPLETED, o5 12 80.00 COMPLETED,
+o6 7 10.00 PENDING; stores 7 Leeds, 9 York, 12 Hull — and every output shown on screen was produced
+by **PySpark 4.0.1** run locally (`pip install pyspark==4.0.1`, Java 17/21), not predicted. Re-run
+the example before changing a result.
+
+**Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
+scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
+scenes. Put comments on their own line and wrap calls. Likewise a row of side-by-side result nodes
+(table beside code) sets the width; stack them with `cols: 1` instead. A `table` node whose row
+repeats a value (`15.00 | 15.00`) logs a React duplicate-key warning from the engine; it renders
+correctly.
 
 ## Invariants — do not break
 

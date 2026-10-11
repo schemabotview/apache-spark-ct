@@ -13,15 +13,15 @@ The syllabus, audience, scope and teaching method are in
 | # | Course id | Title | Sections | Status |
 | --- | --- | --- | --- | --- |
 | 1 | `foundations` | Foundations of Distributed Data Processing | 5 | merged — narration audio pending |
-| 2 | `architecture` | Spark Architecture and Execution Model | 8 | authored — narration audio pending |
-| 3 | `abstractions` | Spark Programming Abstractions: RDDs, DataFrames, and SQL | 12 | planned |
+| 2 | `architecture` | Spark Architecture and Execution Model | 8 | merged — narration audio pending |
+| 3 | `abstractions` | Spark Programming Abstractions: RDDs, DataFrames, and SQL | 12 | authored — narration audio pending |
 | 4 | `correctness` | Reasoning About Pipeline Correctness | 9 | planned |
 | 5 | `query-plans` | Query Plans and Execution Internals | 6 | planned |
 | 6 | `performance` | Performance Diagnosis and Optimisation | 12 | planned |
 | 7 | `streaming` | Structured Streaming and Stateful Processing | 13 | planned |
 | 8 | `production` | Production Engineering and Integrated Reasoning | 11 | planned |
 
-Courses are authored one at a time, one pull request each, in this order.
+Courses are authored one at a time, in this order, committed directly to `main`.
 
 ## Running it
 

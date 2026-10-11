@@ -1,5 +1,6 @@
 import { foundations } from './foundations'
 import { architecture } from './architecture'
+import { abstractions } from './abstractions'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order (docs/APACHE-SPARK-COURSE-PLAN.md). Courses are added here as
@@ -12,6 +13,7 @@ import type { Course, Section } from './types'
 export const COURSES: Record<string, Course> = {
   [foundations.id]: foundations,
   [architecture.id]: architecture,
+  [abstractions.id]: abstractions,
 }
 
 export type { Course, Section }
