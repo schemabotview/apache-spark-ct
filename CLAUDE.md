@@ -51,6 +51,12 @@ Each numbered item in a plan chapter is exactly one section, in the plan's order
 - **The teaching method spans a course, not a slide:** objective → mental model → worked code with
   results → misconception/failure contrast → summary → bridge. The bridge to the next course is the
   closing line of the last section's narration.
+- **Slides carry what the viewer should be able to re-read, not a transcript of the narration.**
+  Each slide states its objective or model, then the section's **worked numbers or example** and
+  its **misconception/contrast** as visible blocks — those were narration-only in the first pilot
+  draft and left 30–45% of the slide empty. Aim for **850–950** modelled px (rendered ~780–910 of
+  1080), never filler: every line must be something the narration says or the plan calls for, and
+  every fact added to a slide gets its sentence in the narration.
 - **Long identifiers go in code cards, not leaf cards.** `spark.sql.shuffle.partitions` and similar
   cannot wrap (see layout rules below).
 - **Out of scope** (per the plan): MLlib, GraphX, SparkR, DStreams, pandas API on Spark, connector
@@ -73,7 +79,10 @@ The retail workload's numbers are fixed across the course: **~200 GB of order ev
 
 Layout lessons from the pilot: the scene pane is roughly square, so a long left-to-right chain of
 four or more cards renders too small to read. Stack it in a `TB` container instead. An edge between
-two adjacent nodes has no room for a label.
+two adjacent nodes has no room for a label. `cols` on a container is ignored once that container
+has internal `edges`, so a chain cannot be wrapped into a grid. Markdown **tables are unstyled** by
+the shell (cells run together, and `check` does not model them), so write worked numbers as a
+sentence or a bullet instead.
 
 ## Invariants — do not break
 

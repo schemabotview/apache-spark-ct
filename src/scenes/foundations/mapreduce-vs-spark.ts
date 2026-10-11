@@ -31,11 +31,12 @@ export const mapreduceVsSpark: Scene = {
       filename: 'daily_summary.py',
       label: `from pyspark.sql import functions as F
 
+# One plan, no storage hop between steps
 daily = (spark.read.json("orders/")
          .where("status = 'COMPLETED'")
          .groupBy("store_id")
          .agg(F.sum("amount").alias("sales"))
-         .join(stores, "store_id"))   # no storage hop
+         .join(stores, "store_id"))
 
 daily.write.parquet("sales_daily/")`,
     },
