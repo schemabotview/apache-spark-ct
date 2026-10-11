@@ -58,7 +58,22 @@ Each numbered item in a plan chapter is exactly one section, in the plan's order
 
 ## Scene inventory
 
-None yet — each course adds a row here as it is authored (scene id, kind, sections that use it).
+Each course adds its rows here as it is authored.
+
+| Scene id | Shape | Used by |
+| --- | --- | --- |
+| `local-daily-summary` | pandas code card → container of four limits | `foundations-workload-limits` |
+| `scale-up-vs-out` | storage node → two containers, arithmetic on the edges | `foundations-scale-up-vs-scale-out` |
+| `partitions-locality` | dataset → three machine containers of partition chips → combine | `foundations-partitioning-and-locality` |
+| `mapreduce-vs-spark` | MapReduce job column beside a PySpark code card | `foundations-mapreduce-to-spark` |
+| `retail-pipeline` | **shared.** Sources → `spark-application` (ingest, clean, enrich, summarise) → outputs. Later courses reuse it with `focus:` on a stage id, so keep the ids stable | `foundations-retail-pipeline` |
+
+The retail workload's numbers are fixed across the course: **~200 GB of order events a day,
+~70 TB for a year**, scans at an assumed **2 GB/s per machine** (70 TB ≈ 10 h on one, ≈ 12 min on 50).
+
+Layout lessons from the pilot: the scene pane is roughly square, so a long left-to-right chain of
+four or more cards renders too small to read. Stack it in a `TB` container instead. An edge between
+two adjacent nodes has no room for a label.
 
 ## Invariants — do not break
 

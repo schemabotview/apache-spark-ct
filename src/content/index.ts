@@ -1,3 +1,4 @@
+import { foundations } from './foundations'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order (docs/APACHE-SPARK-COURSE-PLAN.md). Courses are added here as
@@ -7,7 +8,9 @@ import type { Course, Section } from './types'
 //
 // ConceptApp needs at least one course: with an empty registry it falls back to
 // `Object.values(courses)[0]` and throws reading `.sections`. The app renders from the first course on.
-export const COURSES: Record<string, Course> = {}
+export const COURSES: Record<string, Course> = {
+  [foundations.id]: foundations,
+}
 
 export type { Course, Section }
 
