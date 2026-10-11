@@ -1,0 +1,11 @@
+/* This repo's whole design surface — the three tokens @graphlearning/shell leaves to the repo.
+   Imported AFTER the shell's stylesheet in main.tsx, so these win the cascade.
+
+   --brand is Apache Spark's own orange (the logo's star), so the catalog card and the thumbnail
+   gradient share the subject's identity. --accent-2 is a teal counter tone: it sits opposite the
+   orange on the wheel and stays legible on the shell's dark canvas. */
+:root {
+  --brand: #e25a1c; /* Spark orange */
+  --brand-hover: #eb8c60; /* a lighter tint — the eyebrow's hover state */
+  --accent-2: #2dd4bf; /* the counter tone — the slide's `###` subheading */
+}
