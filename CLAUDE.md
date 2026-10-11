@@ -73,6 +73,14 @@ Each course adds its rows here as it is authored.
 | `partitions-locality` | dataset → three machine containers of partition chips → combine | `foundations-partitioning-and-locality` |
 | `mapreduce-vs-spark` | MapReduce job column beside a PySpark code card | `foundations-mapreduce-to-spark` |
 | `retail-pipeline` | **shared.** Sources → `spark-application` (ingest, clean, enrich, summarise) → outputs. Later courses reuse it with `focus:` on a stage id, so keep the ids stable | `foundations-retail-pipeline` |
+| `local-app-lifecycle` | the full `daily_sales.py` code card above a 2×2 lifecycle (badged) | `architecture-local-application` |
+| `driver-executors` | driver container → cluster manager and executors side by side | `architecture-driver-and-executors` |
+| `classic-vs-connect` | Classic and Connect containers (Py4J / gRPC) above a Connect code card | `architecture-classic-vs-connect` |
+| `lazy-plan` | lazy code card above transformation and action `list` cards | `architecture-lazy-evaluation` |
+| `partitions-to-tasks` | 200 GB → ≈1,600 partition chips → 200 slot chips | `architecture-partitions-and-tasks` |
+| `narrow-vs-wide` | narrow lanes stacked over a wide all-to-all, both as chip graphs | `architecture-narrow-and-wide` |
+| `job-stage-task` | write() → Job 0: Stage 0 (scan, filter, partial sum) → shuffle → Stage 1 | `architecture-jobs-stages-tasks` |
+| `task-recovery` | five badged recovery steps beside a "what lineage does not cover" list | `architecture-trace-and-recompute` |
 
 The retail workload's numbers are fixed across the course: **~200 GB of order events a day,
 ~70 TB for a year**, scans at an assumed **2 GB/s per machine** (70 TB ≈ 10 h on one, ≈ 12 min on 50).
@@ -82,7 +90,14 @@ four or more cards renders too small to read. Stack it in a `TB` container inste
 two adjacent nodes has no room for a label. `cols` on a container is ignored once that container
 has internal `edges`, so a chain cannot be wrapped into a grid. Markdown **tables are unstyled** by
 the shell (cells run together, and `check` does not model them), so write worked numbers as a
-sentence or a bullet instead.
+sentence or a bullet instead. An edge that skips a layer (A → C past B) is routed straight through
+B; give the skipped node no edge of its own into C so the engine puts it beside C instead. When a
+scene renders as a thin strip, set `cols: 1` on its containers: a narrower shape scales up to fill
+the pane.
+
+The execution example is fixed too: 200 GB a day ÷ 128 MB (`spark.sql.files.maxPartitionBytes`)
+≈ **1,600 input partitions**; **50 executors × 4 cores = 200 slots**, so **8 waves**; shuffles land in
+**200** partitions (`spark.sql.shuffle.partitions`) before AQE coalesces them.
 
 ## Invariants — do not break
 
