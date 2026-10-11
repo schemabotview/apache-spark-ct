@@ -12,7 +12,7 @@ The syllabus, audience, scope and teaching method are in
 
 | # | Course id | Title | Sections | Status |
 | --- | --- | --- | --- | --- |
-| 1 | `foundations` | Foundations of Distributed Data Processing | 5 | planned (pilot) |
+| 1 | `foundations` | Foundations of Distributed Data Processing | 5 | authored — narration audio pending |
 | 2 | `architecture` | Spark Architecture and Execution Model | 8 | planned |
 | 3 | `abstractions` | Spark Programming Abstractions: RDDs, DataFrames, and SQL | 12 | planned |
 | 4 | `correctness` | Reasoning About Pipeline Correctness | 9 | planned |
