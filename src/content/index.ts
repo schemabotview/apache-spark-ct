@@ -4,6 +4,7 @@ import { abstractions } from './abstractions'
 import { correctness } from './correctness'
 import { queryPlans } from './query-plans'
 import { performance } from './performance'
+import { streaming } from './streaming'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order (docs/APACHE-SPARK-COURSE-PLAN.md). Courses are added here as
@@ -20,6 +21,7 @@ export const COURSES: Record<string, Course> = {
   [correctness.id]: correctness,
   [queryPlans.id]: queryPlans,
   [performance.id]: performance,
+  [streaming.id]: streaming,
 }
 
 export type { Course, Section }

@@ -120,6 +120,19 @@ Each course adds its rows here as it is authored.
 | `narrow-vs-wide` | narrow lanes stacked over a wide all-to-all, both as chip graphs | `architecture-narrow-and-wide` |
 | `job-stage-task` | write() → Job 0: Stage 0 (scan, filter, partial sum) → shuffle → Stage 1 | `architecture-jobs-stages-tasks` |
 | `task-recovery` | five badged recovery steps beside a "what lineage does not cover" list | `architecture-trace-and-recompute` |
+| `incremental-query` | streaming aggregation code → rows-read vs cumulative-result table | `streaming-bounded-vs-unbounded` |
+| `streaming-engine` | six-step micro-batch container above an abridged `lastProgress` | `streaming-streaming-architecture` |
+| `sources-sinks` | sources table (replay offset) above sinks table (guarantee) | `streaming-sources-and-sinks` |
+| `trigger-modes` | four trigger calls → execution-modes table | `streaming-triggers` |
+| `event-vs-arrival` | late-events table above windows by event vs arrival time | `streaming-event-vs-processing-time` |
+| `window-timeline` | windowed query → the 09:00 window across four batches | `streaming-windows-and-late-data` |
+| `watermark-append` | watermark progression card above append-mode emits | `streaming-watermarks` |
+| `state-growth` | dedup code → state rows with and without a watermark | `streaming-state-growth` |
+| `output-modes` | append/update/complete per file above a mode-rules `list` | `streaming-output-modes` |
+| `streaming-joins` | stream-static and stream-stream join code → payment matches | `streaming-streaming-joins` |
+| `checkpoint-restart` | checkpoint directory card above allowed-changes table | `streaming-checkpointing` |
+| `delivery-guarantees` | two foreachBatch writers → crash-and-replay row counts | `streaming-delivery-guarantees` |
+| `recovery-timeline` | every event's fate → the final sink windows | `streaming-worked-timelines` |
 
 The retail workload's numbers are fixed across the course: **~200 GB of order events a day,
 ~70 TB for a year**, scans at an assumed **2 GB/s per machine** (70 TB ≈ 10 h on one, ≈ 12 min on 50).
@@ -165,6 +178,13 @@ Chapter 6's timings are measured, never estimated: **10,000,000 generated orders
 fewer columns than the one explained, so Spark broadcast it and the sort-merge numbers were wrong.
 In tables, keep cells short — one long cell sets the table width and shrinks the whole scene; put
 descriptions in a neighbouring code card instead.
+
+Chapter 7 uses **ten order events in four JSON files** (2026-10-01): file 1 o1 7 40 @09:01, o2 7 25
+@09:04, o3 9 15 @09:08; file 2 o4 9 60 @09:14, o5 12 80 @09:17, o2 resent; file 3 o6 7 10 @09:23,
+o7 7 30 @09:06 (late); file 4 o8 12 20 @09:31, o9 9 5 @09:02 (late). File source, `availableNow`,
+10-minute windows and a 10-minute watermark: the watermark goes 08:58 → 09:07 → 09:13 → 09:21, o7 is
+kept by the window aggregation and o9 dropped. Keep these events and numbers consistent across
+sections; the worked timeline (§13) is dedupe-within-watermark → windows → append.
 
 **Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
 scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
