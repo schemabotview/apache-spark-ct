@@ -19,7 +19,7 @@ The syllabus, audience, scope and teaching method are in
 | 5 | `query-plans` | Query Plans and Execution Internals | 6 | authored — narration audio pending |
 | 6 | `performance` | Performance Diagnosis and Optimisation | 12 | authored — narration audio pending |
 | 7 | `streaming` | Structured Streaming and Stateful Processing | 13 | authored — narration audio pending |
-| 8 | `production` | Production Engineering and Integrated Reasoning | 11 | planned |
+| 8 | `production` | Production Engineering and Integrated Reasoning | 11 | authored — narration audio pending |
 
 Courses are authored one at a time, in this order, committed directly to `main`.
 

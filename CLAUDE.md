@@ -133,6 +133,17 @@ Each course adds its rows here as it is authored.
 | `checkpoint-restart` | checkpoint directory card above allowed-changes table | `streaming-checkpointing` |
 | `delivery-guarantees` | two foreachBatch writers → crash-and-replay row counts | `streaming-delivery-guarantees` |
 | `recovery-timeline` | every event's fate → the final sink windows | `streaming-worked-timelines` |
+| `submit-config` | spark-submit with packed venv → config-precedence table | `production-packaging-and-configuration` |
+| `deploy-modes` | client-mode and cluster-mode containers above a placement table | `production-deployment-and-driver-placement` |
+| `cluster-managers` | master URLs card → standalone/YARN/K8s responsibility table | `production-cluster-managers` |
+| `capacity-plan` | executor sizing card above the year-backfill machine-hours table | `production-capacity-and-cost` |
+| `quality-checks` | pytest code above checks tied to Chapter 4 failures | `production-testing-and-quality` |
+| `observability-path` | event-log config → four-step diagnosis container | `production-observability` |
+| `retry-side-effects` | retry/speculation defaults above task-attempt outcomes | `production-failure-and-recovery` |
+| `table-format-boundary` | MERGE code above Parquet-vs-table-format guarantees | `production-table-formats` |
+| `backfill-overwrite` | overwrite code → static/dynamic table → safe-release `list` | `production-backfills-and-releases` |
+| `security-surface` | security settings above exposed-interfaces table | `production-security-boundaries` |
+| `production-review` | responsibility matrix above an open-risks `list` | `production-integrated-case` |
 
 The retail workload's numbers are fixed across the course: **~200 GB of order events a day,
 ~70 TB for a year**, scans at an assumed **2 GB/s per machine** (70 TB ≈ 10 h on one, ≈ 12 min on 50).
@@ -185,6 +196,11 @@ o7 7 30 @09:06 (late); file 4 o8 12 20 @09:31, o9 9 5 @09:02 (late). File source
 10-minute windows and a 10-minute watermark: the watermark goes 08:58 → 09:07 → 09:13 → 09:21, o7 is
 kept by the window aggregation and o9 dropped. Keep these events and numbers consistent across
 sections; the worked timeline (§13) is dedupe-within-watermark → windows → append.
+
+Chapter 8 has no new experiment: defaults and behaviour come from the 4.0.1 configuration,
+submission, monitoring and security guides (speculation multiplier 3 / quantile 0.9, memory overhead
+max(384 MB, 10%), static `partitionOverwriteMode`, Connect on 15002 without built-in auth), and the
+worked numbers reuse the course's fixed workload and the Chapter 4/6 failures.
 
 **Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
 scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
