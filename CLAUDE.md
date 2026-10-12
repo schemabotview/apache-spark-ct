@@ -100,6 +100,18 @@ Each course adds its rows here as it is authored.
 | `codegen-and-memory` | `*(n)` codegen plan above the unified-memory heap diagram | `query-plans-codegen-and-memory` |
 | `exchange-stages` | broadcast side → map side → reduce side, exchanges on the edges | `query-plans-exchanges-and-stages` |
 | `plan-and-trace` | final AQE plan → REST-API job/stage/task table | `query-plans-worked-plan-and-trace` |
+| `baseline-measure` | measuring harness code above the cold/warm/checksum table | `performance-baseline` |
+| `stage-metrics` | REST endpoints above the per-stage metrics table | `performance-ui-and-metrics` |
+| `resource-symptoms` | symptom → metric → measured table above the spill code | `performance-resource-symptoms` |
+| `partition-sizing` | sweep code above the shuffle-partition timings | `performance-partition-sizing` |
+| `shuffle-control` | repartition/coalesce plan-and-files table above the one-file trade | `performance-shuffles-and-repartitioning` |
+| `join-choice` | size-estimate card above the four join strategies | `performance-join-strategies` |
+| `skew-detect` | skew code above the five mitigations with task quantiles | `performance-data-skew` |
+| `cache-tradeoff` | cache code above recompute vs cached timings | `performance-caching` |
+| `layout-pruning` | layout code above rows/MB read per layout | `performance-data-layout` |
+| `aqe-runtime` | runtime join-switch code above the three AQE changes | `performance-aqe` |
+| `executor-resources` | cores scaling table above resource defaults | `performance-executor-resources` |
+| `before-after` | one-change-at-a-time table above starting point and checksum | `performance-worked-comparison` |
 | `local-app-lifecycle` | the full `daily_sales.py` code card above a 2×2 lifecycle (badged) | `architecture-local-application` |
 | `driver-executors` | driver container → cluster manager and executors side by side | `architecture-driver-and-executors` |
 | `classic-vs-connect` | Classic and Connect containers (Py4J / gRPC) above a Connect code card | `architecture-classic-vs-connect` |
@@ -144,6 +156,15 @@ plan ids, file locations and output lists removed, operator names and order verb
 filename says so. Re-explain a **fresh** DataFrame after changing a config: an existing DataFrame
 keeps its already-planned physical plan. `badge` does not render on leaf cards in `flow@1.2`, so
 never rely on it for order — lay steps out in reading order instead.
+
+Chapter 6's timings are measured, never estimated: **10,000,000 generated orders** in several layouts
+(32 files, partitioned by date, sorted by status, 2,000 small files, a skewed copy with store 7 at
+51%) plus 1,000,000 customers, on `local[4]` (4 cores, 15 GB). One warm-up run is discarded, the
+**median of 3** (5 where stated) is reported, and every comparison carries an unchanged checksum.
+**Time and explain the exact same DataFrame**: an early join "measurement" timed a query that read
+fewer columns than the one explained, so Spark broadcast it and the sort-merge numbers were wrong.
+In tables, keep cells short — one long cell sets the table width and shrinks the whole scene; put
+descriptions in a neighbouring code card instead.
 
 **Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
 scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
