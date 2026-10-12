@@ -94,6 +94,12 @@ Each course adds its rows here as it is authored.
 | `nested-data` | nested access / explode code → line-item table and join-trap card | `correctness-nested-data` |
 | `udf-boundary` | UDF code → the plan node each one produced | `correctness-builtins-vs-udfs` |
 | `edge-case-pipeline` | safe pipeline code above daily table and invariants list | `correctness-worked-edge-cases` |
+| `plan-phases` | query code above the four explain phases as a 2×2 grid | `query-plans-code-to-plans` |
+| `analysis-phase` | parsed vs analyzed plan text above analysis-case code | `query-plans-analysis` |
+| `optimise-and-choose` | optimized plan above broadcast-hash vs sort-merge join plans | `query-plans-optimisation-and-strategy` |
+| `codegen-and-memory` | `*(n)` codegen plan above the unified-memory heap diagram | `query-plans-codegen-and-memory` |
+| `exchange-stages` | broadcast side → map side → reduce side, exchanges on the edges | `query-plans-exchanges-and-stages` |
+| `plan-and-trace` | final AQE plan → REST-API job/stage/task table | `query-plans-worked-plan-and-trace` |
 | `local-app-lifecycle` | the full `daily_sales.py` code card above a 2×2 lifecycle (badged) | `architecture-local-application` |
 | `driver-executors` | driver container → cluster manager and executors side by side | `architecture-driver-and-executors` |
 | `classic-vs-connect` | Classic and Connect containers (Py4J / gRPC) above a Connect code card | `architecture-classic-vs-connect` |
@@ -130,6 +136,14 @@ without a status, o10's `"12,50"`, o7 at unknown store 15, a resent o4, an o2 up
 23:30 UTC). When running pandas or Python UDFs, set `PYSPARK_PYTHON` to the same interpreter as the
 driver — the workers otherwise start the system `python3`, which may lack pyarrow, and pin
 `pandas<3` for PySpark 4.0.1.
+
+Chapter 5's plans and trace come from **1,000,000 generated orders** (50 stores, 80% COMPLETED, 8
+Parquet files) on `local[4]`; the trace was read from the monitoring REST API
+(`/api/v1/applications/<id>/stages`). Plan text in code cards is **trimmed** — expression ids,
+plan ids, file locations and output lists removed, operator names and order verbatim — and the card
+filename says so. Re-explain a **fresh** DataFrame after changing a config: an existing DataFrame
+keeps its already-planned physical plan. `badge` does not render on leaf cards in `flow@1.2`, so
+never rely on it for order — lay steps out in reading order instead.
 
 **Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
 scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
