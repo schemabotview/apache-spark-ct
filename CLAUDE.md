@@ -85,6 +85,15 @@ Each course adds its rows here as it is authored.
 | `write-output` | partitioned write code → the output directory tree | `abstractions-writing-datasets` |
 | `driver-collection` | take/collect/foreachPartition code above a rules list | `abstractions-collection-and-side-effects` |
 | `batch-pipeline-case` | sales-by-city code above `stores` and result tables | `abstractions-worked-batch-pipeline` |
+| `schema-enforcement` | declared-type table (DECIMAL vs DOUBLE) above a schema-evolution code card | `correctness-schema-enforcement` |
+| `malformed-and-nulls` | parse-mode / NULL-comparison code → aggregates table | `correctness-nulls-and-malformed` |
+| `ansi-casts` | ANSI on/off table above a `try_*` / decimal code card | `correctness-casts-and-ansi` |
+| `join-amplification` | orders and duplicated-stores tables → join result counts | `correctness-join-cardinality` |
+| `window-functions` | window code → ranking table and default-frame table | `correctness-window-functions` |
+| `timestamps-time-zones` | one instant under three session zones, above LTZ/NTZ + DST code | `correctness-dates-and-time-zones` |
+| `nested-data` | nested access / explode code → line-item table and join-trap card | `correctness-nested-data` |
+| `udf-boundary` | UDF code → the plan node each one produced | `correctness-builtins-vs-udfs` |
+| `edge-case-pipeline` | safe pipeline code above daily table and invariants list | `correctness-worked-edge-cases` |
 | `local-app-lifecycle` | the full `daily_sales.py` code card above a 2×2 lifecycle (badged) | `architecture-local-application` |
 | `driver-executors` | driver container → cluster manager and executors side by side | `architecture-driver-and-executors` |
 | `classic-vs-connect` | Classic and Connect containers (Py4J / gRPC) above a Connect code card | `architecture-classic-vs-connect` |
@@ -116,6 +125,11 @@ o2 7 25.00 COMPLETED, o3 9 60.00 CANCELLED, o4 9 15.00 COMPLETED, o5 12 80.00 CO
 o6 7 10.00 PENDING; stores 7 Leeds, 9 York, 12 Hull — and every output shown on screen was produced
 by **PySpark 4.0.1** run locally (`pip install pyspark==4.0.1`, Java 17/21), not predicted. Re-run
 the example before changing a result.
+Chapter 4 extends it with deliberately messy events (a truncated line, o8 without an amount, o9
+without a status, o10's `"12,50"`, o7 at unknown store 15, a resent o4, an o2 update, o4 at
+23:30 UTC). When running pandas or Python UDFs, set `PYSPARK_PYTHON` to the same interpreter as the
+driver — the workers otherwise start the system `python3`, which may lack pyarrow, and pin
+`pandas<3` for PySpark 4.0.1.
 
 **Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
 scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
