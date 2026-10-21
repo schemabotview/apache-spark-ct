@@ -2,7 +2,8 @@
 
 **Status: reset on 2026-10-21 and re-planned around one PySpark project, built step by step.**
 Courses are authored one at a time, each reviewed by the owner on its rendered routes before the next
-begins. Courses 1–3 are authored; the rest is an approved outline.
+begins. All 12 courses (91 sections) are authored and await the owner's review; no narration audio
+exists yet.
 
 ## The idea
 

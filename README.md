@@ -17,7 +17,15 @@ was produced by PySpark 4.0.1.
 | 1 | `why-spark` | Why Spark | 5 | authored — awaiting review, no audio |
 | 2 | `how-spark-runs` | How Spark runs your code | 8 | authored — awaiting review, no audio |
 | 3 | `start` | Start the project | 6 | authored — awaiting review, no audio |
-| 4–12 | | read · transform · write · underneath · correct · plans · fast · stream · ship | 72 | planned |
+| 4 | `read` | Read the data | 5 | authored — awaiting review, no audio |
+| 5 | `transform` | Transform it | 7 | authored — awaiting review, no audio |
+| 6 | `write` | Write the results | 5 | authored — awaiting review, no audio |
+| 7 | `underneath` | Look underneath: RDDs | 4 | authored — awaiting review, no audio |
+| 8 | `correct` | Make it correct | 9 | authored — awaiting review, no audio |
+| 9 | `plans` | Read the plan | 6 | authored — awaiting review, no audio |
+| 10 | `fast` | Make it fast | 12 | authored — awaiting review, no audio |
+| 11 | `stream` | Make it continuous | 13 | authored — awaiting review, no audio |
+| 12 | `ship` | Ship it | 11 | authored — awaiting review, no audio |
 
 ## Run it
 

@@ -8,7 +8,7 @@ export const productionReview: Scene = ideFrame(
   'production-review',
   'retail-pipeline',
   shipTree(11),
-  { file: 'deploy/release.sh', code: code, highlight: [4, 6, 7], terminal: fold(session, [1, 4], [6, 13]) },
+  { file: 'deploy/release.sh', code: code, highlight: [4, 6, 7], terminal: fold(session, [1, 13]) },
   {
     id: 'production-review-pane',
     label: 'side',

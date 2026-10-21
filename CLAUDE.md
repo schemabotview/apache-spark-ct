@@ -38,7 +38,15 @@ maps every old chapter to its new course, so no topic was dropped.
 | 1 | `why-spark` | Why Spark | 5 | authored, awaiting owner review (no narration audio yet) |
 | 2 | `how-spark-runs` | How Spark runs your code | 8 | authored, awaiting owner review (no narration audio yet) |
 | 3 | `start` | Start the project | 6 | authored, awaiting owner review (no narration audio yet) |
-| 4–12 | | see the plan | 72 | not started |
+| 4 | `read` | Read the data | 5 | authored, awaiting owner review (no narration audio yet) |
+| 5 | `transform` | Transform it | 7 | authored, awaiting owner review (no narration audio yet) |
+| 6 | `write` | Write the results | 5 | authored, awaiting owner review (no narration audio yet) |
+| 7 | `underneath` | Look underneath: RDDs | 4 | authored, awaiting owner review (no narration audio yet) |
+| 8 | `correct` | Make it correct | 9 | authored, awaiting owner review (no narration audio yet) |
+| 9 | `plans` | Read the plan | 6 | authored, awaiting owner review (no narration audio yet) |
+| 10 | `fast` | Make it fast | 12 | authored, awaiting owner review (no narration audio yet) |
+| 11 | `stream` | Make it continuous | 13 | authored, awaiting owner review (no narration audio yet) |
+| 12 | `ship` | Ship it | 11 | authored, awaiting owner review (no narration audio yet) |
 
 Every output on screen was produced here by **PySpark 4.0.1** on **Python 3.13** and **OpenJDK 21**,
 in local mode. Course 1's one runnable frame and Course 2's scripts are not the spine: they live in
@@ -61,8 +69,8 @@ difference; `--write` regenerates the transcripts after an edit, and a path pref
 What is Spark-specific in the replay, and why (all of it is about the machine, never the code):
 
 - **PySpark is installed once per requirements set** (`spine/requirements.txt`, `pandas.txt`,
-  `connect.txt`) into `.spine-cache/` and borrowed by each step's fresh `.venv` through a `.pth`
-  file, so a step does not reinstall 400 MB. A session that types `pip install` still runs it for real
+  `connect.txt`, `udf.txt`, `ship.txt`) into `.spine-cache/` and borrowed by each step's fresh
+  `.venv` through a `.pth` file, so a step does not reinstall 400 MB. A session that types `pip install` still runs it for real
   (`start/02` does). A traceback frame inside PySpark is shown at its path inside `.venv`.
 - **`JAVA_TOOL_OPTIONS` is removed** (this container's proxy settings would print a `Picked up`
   line), **`SPARK_LOCAL_IP=127.0.0.1`** (no hostname warning) and **`TZ=UTC`**.
@@ -75,6 +83,10 @@ What is Spark-specific in the replay, and why (all of it is about the machine, n
   by the JVM on Java 17+; it is on screen in every run, and Course 2 §1 explains it.
 - **Run one replay at a time.** A second Spark on the machine takes port 4040, and the step that
   prints its web UI address (and every step, through a `could not bind` warning) changes.
+- **Course 12 starts real servers.** `ship/03` runs a standalone master and worker (ports 7077,
+  8081, 8082) and `ship/06` a history server (18080), each stopped by the same session; both need
+  those ports free, and `zip` and `curl` on PATH. A Course 12 step that prints a run id, a timing
+  or a pytest duration is `volatile`; a UUID (Course 11's crashed queries) is masked in every step.
 
 **Run it with Python 3.13 as `python` and Java 17 or 21 as `java` on PATH.** A different
 interpreter changes `pyvenv.cfg`, traceback paths and some error text; a different JDK changes
