@@ -1,0 +1,9 @@
+$ python -m perf.repartition
+WARNING: Using incubator modules: jdk.incubator.vector
+as read            4 files   4.4 s  shuffle: False
+repartition(16)   16 files  10.7 s  shuffle: True
+coalesce(2)        2 files   6.0 s  shuffle: False
+coalesce(1)        1 files  10.6 s  shuffle: False
+$ ls data/tmp/coalesce
+_SUCCESS
+part-00000-6e6d6ffc-ab54-4d23-b970-2dab69af6244-c000.snappy.parquet

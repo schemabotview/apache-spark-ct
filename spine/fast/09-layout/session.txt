@@ -1,0 +1,5 @@
+$ python -m perf.layout
+WARNING: Using incubator modules: jdk.incubator.vector
+one folder   day = '2026-10-07'     read  91.6 MB in    4 tasks
+by day       day = '2026-10-07'     read   3.3 MB in    1 tasks
+2,000 files  amount > 99            read 347.8 MB in   63 tasks

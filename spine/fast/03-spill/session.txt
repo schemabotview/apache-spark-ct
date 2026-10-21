@@ -1,0 +1,4 @@
+$ python -m perf.spill
+WARNING: Using incubator modules: jdk.incubator.vector
+  1 partitions:   1 tasks, spilled  150.3 MB to disk, 22710 ms
+200 partitions: 200 tasks, spilled    0.0 MB to disk, 16432 ms

@@ -1,0 +1,5 @@
+$ python -m perf.cores
+WARNING: Using incubator modules: jdk.incubator.vector
+local[1]:  5.1 s
+local[2]:  2.9 s
+local[4]:  1.8 s

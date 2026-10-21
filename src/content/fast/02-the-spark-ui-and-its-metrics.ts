@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const sparkUiMetrics: Section = {
+  id: 'the-spark-ui-and-its-metrics',
+  title: 'The Spark UI and its metrics',
+  scene: 'stage-metrics',
+  narration:
+    'The web interface on port four thousand and forty is the usual way to see where a job spends its time, and everything it shows comes from the monitoring API this script reads directly. Line twelve runs the daily summary once. Lines fifteen to twenty then fetch every stage of the application and print them sorted by run time, slowest first, with the number of tasks, the run time, the megabytes read from input files, and the kilobytes written to the shuffle. The terminal makes the answer obvious. Stage two takes almost all of the time: four tasks, about sixteen and a half thousand milliseconds of run time, reading forty-five megabytes, and writing seventeen kilobytes to the shuffle. Every other stage is a fraction of a second or nothing: the footer read, the broadcast of the stores, the final aggregation, and a stage that was planned and skipped. Two details help read these numbers correctly. Run time is summed over all of a stage\'s tasks, so sixteen seconds of task time spread over four cores in parallel is about four seconds of wall time, and some of that overlaps other work; it is not the elapsed time of the stage. And the input of forty-five megabytes is less than the ninety megabytes of files, because Parquet read only the four columns the query needs. The table on the right says what each metric tells you. The lesson is the order of work. Find the expensive stage before changing anything. Here it is the scan, filter, broadcast join and partial aggregation, fused into stage two, so that is where any improvement must come from. Tuning the shuffle, with only seventeen kilobytes crossing it, would be work spent on the one part of the job that costs nothing. Next, symptoms that show a stage is struggling, starting with spill.',
+}

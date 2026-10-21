@@ -1,0 +1,6 @@
+$ python -m perf.partitions
+WARNING: Using incubator modules: jdk.incubator.vector
+    4 partitions:   7.9 s
+   16 partitions:   6.5 s
+  200 partitions:   7.5 s
+ 2000 partitions:  12.2 s

@@ -1,0 +1,5 @@
+$ python -m perf.cache
+WARNING: Using incubator modules: jdk.incubator.vector
+second action, recomputed: 1.04 s
+second action, cached:     0.93 s
+cached: 4 partitions, 69 MB of memory

@@ -1,0 +1,7 @@
+$ python -m perf.joins
+WARNING: Using incubator modules: jdk.incubator.vector
+estimated size of orders: 90.9 MiB
+estimated size of stores: 505.0 B
+broadcast     BroadcastHashJoin       1.8 s
+shuffle_hash  ShuffledHashJoin        4.0 s
+merge         SortMergeJoin           5.1 s

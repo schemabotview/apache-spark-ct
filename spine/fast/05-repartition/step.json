@@ -1,0 +1,1 @@
+{"venv": true, "requirements": "udf", "setup": ["python -m tools.make_orders 10000000"], "volatile": true}

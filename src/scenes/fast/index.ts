@@ -1,0 +1,15 @@
+import type { Scene } from '@graphlearning/flow'
+import { perfBaseline } from './baseline'
+import { stageMetrics } from './metrics'
+import { spillSymptom } from './spill'
+import { partitionSweep } from './partitions'
+import { repartitionCoalesce } from './repartition'
+import { joinStrategies } from './joins'
+import { dataSkew } from './skew'
+import { cacheTradeoff } from './cache'
+import { dataLayout } from './layout'
+import { aqeRuntime } from './aqe'
+import { executorResources } from './cores'
+import { beforeAfter } from './compare'
+
+export const fastScenes: Scene[] = [perfBaseline, stageMetrics, spillSymptom, partitionSweep, repartitionCoalesce, joinStrategies, dataSkew, cacheTradeoff, dataLayout, aqeRuntime, executorResources, beforeAfter]

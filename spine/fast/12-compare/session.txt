@@ -1,0 +1,6 @@
+$ python -m perf.compare
+WARNING: Using incubator modules: jdk.incubator.vector
+baseline (defaults)     2.9 s   150 rows, 420018198.57 sales
+AQE off                 2.5 s   150 rows, 420018198.57 sales
+16 shuffle partitions   2.3 s   150 rows, 420018198.57 sales
+2000, AQE off           6.5 s   150 rows, 420018198.57 sales

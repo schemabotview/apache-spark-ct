@@ -1,0 +1,5 @@
+$ python -m perf.aqe
+WARNING: Using incubator modules: jdk.incubator.vector
+planned: ['SortMergeJoin']
+ran:     ['BroadcastHashJoin', 'SortMergeJoin'] (final, then initial)
+9,905 rows on the small side; Spark had to guess

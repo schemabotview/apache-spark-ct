@@ -1,0 +1,8 @@
+$ python -m perf.stage_metrics
+WARNING: Using incubator modules: jdk.incubator.vector
+stage tasks   run ms   input MB  shuffle KB
+    2     4    16501       45.0        16.8
+    0     1      473        0.0         0.0
+    1     1      171        0.0         0.0
+    4     1      111        0.0         0.0
+    3     4        0        0.0         0.0

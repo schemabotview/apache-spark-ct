@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const cpuMemorySpill: Section = {
+  id: 'cpu-memory-spill-io-scheduling',
+  title: 'CPU, memory, spill, I/O and scheduling',
+  scene: 'spill-symptom',
+  narration:
+    'When a stage is slow, the metrics usually say why, and each kind of trouble has its own signature. This script produces the clearest one on purpose. Lines fourteen to seventeen sort all ten million orders by amount, twice: first with the shuffle forced into a single partition, then into two hundred. With adaptive execution off, so the settings are honoured as written. After each run, line nineteen reads the last stage\'s disk bytes spilled. With one partition, a single task had to sort every row, and the terminal shows that it spilled a hundred and fifty megabytes to disk: its share of memory ran out, so it sorted in pieces, wrote them to disk, and merged them back. That task ran for over twenty seconds. With two hundred partitions, each task sorted a two-hundredth of the rows, everything fitted in memory, nothing spilled, and the total task time dropped by several seconds even though there was much more task overhead. Spill is the memory symptom. The table on the right lists the others and where to look for each. A CPU-bound stage shows run time close to the task time, and if garbage collection time is a large share of it, objects are churning. An I/O-bound stage shows large input or shuffle read bytes relative to its run time. A scheduling problem shows a stage with fewer tasks than slots, so cores sit idle, or thousands of tiny tasks whose run time is mostly start-up. And one slow task among many fast ones, which the task-time quantiles reveal, is skew, the subject of section seven. The remedy for spill is rarely more memory. It is giving each task less data, with more partitions, or making the data smaller before the wide operation. Next, choosing the number of partitions.',
+}
