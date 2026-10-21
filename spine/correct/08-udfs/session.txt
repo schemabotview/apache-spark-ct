@@ -1,0 +1,5 @@
+$ python -m explore.udfs
+WARNING: Using incubator modules: jdk.incubator.vector
+built-in    [Decimal('40.00'), Decimal('12.50')] ['Project', 'Scan']
+udf         [40.0, 12.5] ['Project', 'BatchEvalPython', 'Scan']
+pandas_udf  [40.0, 12.5] ['Project', 'ArrowEvalPython', 'Scan']

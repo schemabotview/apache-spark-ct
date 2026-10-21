@@ -1,0 +1,3 @@
+{"order_id": "o1", "customer": {"id": "c7", "city": "Leeds"}, "items": [{"sku": "TEA", "qty": 2, "price": 15.00}, {"sku": "MUG", "qty": 1, "price": 10.00}], "amount": 40.00}
+{"order_id": "o4", "customer": {"id": "c3", "city": "York"}, "items": [{"sku": "TEA", "qty": 1, "price": 15.00}], "amount": 15.00}
+{"order_id": "o9", "customer": {"id": "c5", "city": "York"}, "items": [], "amount": 0.00}

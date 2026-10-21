@@ -5,6 +5,7 @@ import { read } from './read'
 import { transform } from './transform'
 import { write } from './write'
 import { underneath } from './underneath'
+import { correct } from './correct'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order, one entry per course of docs/APACHE-SPARK-COURSE-PLAN.md. A
@@ -17,6 +18,7 @@ export const COURSES: Record<string, Course> = {
   [transform.id]: transform,
   [write.id]: write,
   [underneath.id]: underneath,
+  [correct.id]: correct,
 }
 
 export type { Course, Section }

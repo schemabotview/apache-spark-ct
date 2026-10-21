@@ -1,0 +1,12 @@
+$ python -m jobs.daily_sales
+WARNING: Using incubator modules: jdk.incubator.vector
++--------------+-----+
+|       problem|count|
++--------------+-----+
+|          NULL|   18|
+|     no amount|    1|
+|     no status|    1|
+|not valid JSON|    1|
++--------------+-----+
+
+Row(order_id='o10', amount=Decimal('1250.00'), problem=None)

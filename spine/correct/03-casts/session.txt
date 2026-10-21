@@ -1,0 +1,7 @@
+$ python -m explore.casts
+WARNING: Using incubator modules: jdk.incubator.vector
+expression                           ANSI on                     ANSI off
+CAST('12,50' AS DECIMAL(10,2))       CAST_INVALID_INPUT          None
+TRY_CAST('12,50' AS DECIMAL(10,2))   None                        None
+CAST(123456789.5 AS DECIMAL(10,2))   NUMERIC_VALUE_OUT_OF_RANGE  None
+2147483647 + 1                       ARITHMETIC_OVERFLOW         -2147483648

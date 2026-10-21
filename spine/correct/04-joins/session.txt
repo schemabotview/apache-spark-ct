@@ -1,0 +1,19 @@
+$ python -m jobs.daily_sales
+WARNING: Using incubator modules: jdk.incubator.vector
+13 completed orders; 16 after the join
++-----+------+
+| city| sales|
++-----+------+
+| Hull|189.00|
+|Leeds|150.00|
+| York|125.00|
++-----+------+
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/ana/retail-pipeline/jobs/daily_sales.py", line 19, in <module>
+    enriched = enrich.with_city(orders, stores)  # refuses a doubled store
+  File "/home/ana/retail-pipeline/pipeline/enrich.py", line 11, in with_city
+    raise ValueError(f"stores.csv lists store_id {repeated} more than once")
+ValueError: stores.csv lists store_id [9] more than once

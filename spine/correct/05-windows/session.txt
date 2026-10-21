@@ -1,0 +1,11 @@
+$ python -m jobs.daily_sales
+WARNING: Using incubator modules: jdk.incubator.vector
+every event
+  o2 COMPLETED 09:04:00
+  o2 REFUNDED 09:40:00
+  o4 COMPLETED 09:14:00
+  o4 COMPLETED 09:14:00
+latest per order
+  o2 REFUNDED 09:40:00
+  o4 COMPLETED 09:14:00
+21 events, 19 orders

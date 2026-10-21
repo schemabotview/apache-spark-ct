@@ -1,0 +1,4 @@
+{"order_id": "o11", "store_id": 7, "amount": 30.00, "status": "COMPLETED", "event_time": "2026-10-02T10:02:00Z"}
+{"order_id": "o12", "store_id": 12, "amount": 45.00, "status": "COMPLETED", "event_time": "2026-10-02T11:15:00Z"}
+{"order_id": "o13", "store_id": 9, "amount": 20.00, "status": "COMPLETED", "event_time": "2026-10-02T12:40:00Z"}
+{"order_id": "o14", "store_id": 7, "amount": 50.00, "status": "CANCELLED", "event_time": "2026-10-02T14:05:00Z"}

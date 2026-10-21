@@ -1,0 +1,12 @@
+$ python -m jobs.daily_sales
+WARNING: Using incubator modules: jdk.incubator.vector
+fields in the files: ['amount', 'channel', 'event_time', 'order_id', 'status', 'stor
+e_id']
++----------+-------+-----+
+|       day|channel|count|
++----------+-------+-----+
+|2026-10-01|   NULL|    6|
+|2026-10-02|   NULL|    4|
+|2026-10-03|   shop|    1|
+|2026-10-03|    web|    2|
++----------+-------+-----+

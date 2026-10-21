@@ -1,0 +1,13 @@
+$ python -m explore.nested
+WARNING: Using incubator modules: jdk.incubator.vector
++--------+-----+---+
+|order_id| city|  n|
++--------+-----+---+
+|      o1|Leeds|  2|
+|      o4| York|  1|
+|      o9| York|  0|
++--------+-----+---+
+
+explode: 3 rows from 2 orders
+explode_outer: 4 rows
+sum(amount) after explode: 95.00
