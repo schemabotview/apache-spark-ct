@@ -1,0 +1,10 @@
+$ python -m stream.delivery
+WARNING: Using incubator modules: jdk.incubator.vector
+ERROR MicroBatchExecution: Query [id = 3e835e30-3552-42df-95eb-4d0f070b73f2, runId =
+ f2726537-3550-4b1f-8d42-f0dc6ddc7cdb] terminated with error
+append: crashed in batch 2; restarting
+ERROR MicroBatchExecution: Query [id = 75dbba4a-209f-49d1-846c-e64936a64700, runId =
+ 0a655c53-8a8c-49d4-af94-629713643a8f] terminated with error
+by_batch: crashed in batch 2; restarting
+append: 12 rows for 10 events
+by_batch: 10 rows for 10 events

@@ -1,0 +1,3 @@
+{"order_id": "o21", "store_id": 7, "amount": 35.00, "status": "COMPLETED", "event_time": "2026-10-03T10:00:00Z", "channel": "web"}
+{"order_id": "o22", "store_id": 9, "amount": 12.50, "status": "COMPLETED", "event_time": "2026-10-03T11:30:00Z", "channel": "shop"}
+{"order_id": "o23", "store_id": 12, "amount": 64.00, "status": "COMPLETED", "event_time": "2026-10-03T15:45:00Z", "channel": "web"}

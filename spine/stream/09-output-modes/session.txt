@@ -1,0 +1,6 @@
+$ python -m stream.output_modes
+WARNING: Using incubator modules: jdk.incubator.vector
+1.json: rows written so far {'append': 0, 'update': 1, 'complete': 1}
+2.json: rows written so far {'append': 0, 'update': 3, 'complete': 3}
+3.json: rows written so far {'append': 1, 'update': 5, 'complete': 6}
+4.json: rows written so far {'append': 2, 'update': 6, 'complete': 10}

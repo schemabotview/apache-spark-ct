@@ -1,0 +1,8 @@
+$ python -m stream.joins
+WARNING: Using incubator modules: jdk.incubator.vector
+1.json
+  batch 0: o1 Leeds 09:01, paid 09:05
+2.json
+  batch 2: o4 York 09:14, paid 09:20
+3.json
+4.json

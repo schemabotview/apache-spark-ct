@@ -1,0 +1,4 @@
+$ python -m stream.triggers
+WARNING: Using incubator modules: jdk.incubator.vector
+availableNow           1 batch(es), rows per batch [10]
+availableNow, 1 file   4 batch(es), rows per batch [2, 2, 3, 3]

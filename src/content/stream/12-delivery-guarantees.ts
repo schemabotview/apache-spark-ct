@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const deliveryGuarantees: Section = {
+  id: 'delivery-guarantees',
+  title: 'Delivery guarantees',
+  scene: 'delivery-guarantees',
+  narration:
+    'This section stages the failure that every streaming guarantee is about: a crash after the output is written, but before the batch is committed. Two foreach batch writers receive the same events. The first, on line twenty-seven, appends the batch\'s rows to a folder. The second, on line thirty-three, writes each batch into its own folder, named by batch id, in overwrite mode. Both call crash once, which raises an error the first time batch two has been written, before Spark can record the batch as committed. The loop at the bottom catches the crash and starts the query again, on line forty-five, with the same checkpoint. The terminal shows both queries terminating with an error, the restart, and then the count of rows each one left on disk. Spark did its part identically for both. The checkpoint said batch two was planned but never committed, so on restart the file source replayed it, with exactly the same files and exactly the same rows. What differed was the sink. The append writer had already written batch two\'s rows, and wrote them again: twelve rows on disk for ten events, with o six and o seven twice. The by batch writer replaced batch two\'s folder with the same contents: ten rows for ten events, as if the crash had never happened. That is the meaning of an idempotent sink. The list states the rule. A replayable source and a checkpoint give you every batch at least once; only the sink can turn at least once into exactly once, by making a second write of the same batch harmless. foreach batch gives you the batch id for exactly this purpose, and it is as safe as the code written in it. Spark\'s own file sink does this for you, by recording which batches it has committed. Next, everything in this course in a single run.',
+}

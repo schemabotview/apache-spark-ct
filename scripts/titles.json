@@ -8,5 +8,6 @@
   "underneath": "Spark RDDs Explained: Lineage, reduceByKey vs groupByKey, Closures, Broadcast and Accumulators",
   "correct": "PySpark Data Quality: Malformed JSON, ANSI Casts, Join Duplicates, Window Functions, Time Zones and UDFs",
   "plans": "How to Read Spark Query Plans: explain(), Catalyst Phases, Join Strategies, Codegen, Stages and AQE",
-  "fast": "Spark Performance Tuning, Measured: Spill, Partitions, Joins, Skew, Caching, Data Layout and AQE"
+  "fast": "Spark Performance Tuning, Measured: Spill, Partitions, Joins, Skew, Caching, Data Layout and AQE",
+  "stream": "Spark Structured Streaming: Micro-Batches, Triggers, Event Time, Windows, Watermarks, State and Exactly-Once"
 }

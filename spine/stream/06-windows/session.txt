@@ -1,0 +1,6 @@
+$ python -m stream.windows
+WARNING: Using incubator modules: jdk.incubator.vector
+batch 0: 09:00 80.00
+batch 1: 09:00 105.00  09:10 140.00
+batch 2: 09:00 135.00  09:10 140.00  09:20 10.00
+batch 3: 09:00 140.00  09:10 140.00  09:20 10.00  09:30 20.00

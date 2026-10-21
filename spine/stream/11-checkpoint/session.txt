@@ -1,0 +1,14 @@
+$ python -m stream.checkpoint first
+WARNING: Using incubator modules: jdk.incubator.vector
+  batch 0: 7: 65.00, 9: 15.00
+  batch 1: 7: 90.00, 9: 75.00, 12: 80.00
+$ ls data/stream/checkpoints/restart
+commits
+metadata
+offsets
+sources
+state
+$ python -m stream.checkpoint then
+WARNING: Using incubator modules: jdk.incubator.vector
+  batch 2: 7: 130.00, 9: 75.00, 12: 80.00
+  batch 3: 7: 130.00, 9: 80.00, 12: 100.00

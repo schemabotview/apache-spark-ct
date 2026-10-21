@@ -1,0 +1,16 @@
+import type { Scene } from '@graphlearning/flow'
+import { incrementalQuery } from './incremental'
+import { streamingEngine } from './progress'
+import { sourcesSinks } from './sources'
+import { triggerModes } from './triggers'
+import { eventVsArrival } from './event_time'
+import { windowTimeline } from './windows'
+import { watermarkAppend } from './watermark'
+import { stateGrowth } from './state'
+import { outputModes } from './output_modes'
+import { streamingJoins } from './joins'
+import { checkpointRestart } from './checkpoint'
+import { deliveryGuarantees } from './delivery'
+import { liveSales } from './live_sales'
+
+export const streamScenes: Scene[] = [incrementalQuery, streamingEngine, sourcesSinks, triggerModes, eventVsArrival, windowTimeline, watermarkAppend, stateGrowth, outputModes, streamingJoins, checkpointRestart, deliveryGuarantees, liveSales]

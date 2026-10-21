@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const stateAndItsGrowth: Section = {
+  id: 'state-and-its-growth',
+  title: 'State and its growth',
+  scene: 'state-growth',
+  narration:
+    'Section one counted o two twice. The fix is to drop duplicates, and in a stream that means remembering every order id the query has seen. This script measures what that memory costs, two ways. Line thirteen is drop duplicates on order id, with no watermark: the stream equivalent of the batch job\'s fix. Lines fourteen and fifteen add a ten-minute watermark and use drop duplicates within watermark, which keeps an order id only for as long as a duplicate of it could still arrive. Both run to the noop sink, and line twenty-two reads the number of rows each holds as state. The terminal and the table show the result. After the first two files, both hold the same: three ids, then five, because the watermark has not yet moved far enough to release anything. After the third file they part. Without a watermark the state is seven rows, one for every distinct order so far. With one it is five: the earliest orders are now older than the watermark, so their ids are dropped from memory. After the last file, nine rows against four. On ten orders that is nothing. But the two curves have different shapes. Without a watermark, state grows with every order ever seen, and the retail chain sends two hundred gigabytes of events a day. With one, state holds only the last stretch of time, however long the query runs. The list says where that state lives: on the executors, in memory, and copied into the checkpoint on every batch, so that a restart can reload it. A stream with unbounded state is a job that slowly runs out of memory and gets slower to checkpoint every day. So every stateful operation in a long-running query needs a bound, and the watermark is how you give it one. Next, the output modes, and which queries each allows.',
+}

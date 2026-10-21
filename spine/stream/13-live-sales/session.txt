@@ -1,0 +1,14 @@
+$ python -m tools.feed
+WARNING: Using incubator modules: jdk.incubator.vector
+1.json delivered; live_sales runs
+2.json delivered; live_sales runs
+3.json delivered; live_sales runs
+4.json delivered; live_sales runs
++-------------------+-----+-----+------+
+|              start| city|sales|orders|
++-------------------+-----+-----+------+
+|2026-10-01 09:00:00|Leeds|65.00|     2|
+|2026-10-01 09:00:00| York|15.00|     1|
+|2026-10-01 09:10:00| Hull|80.00|     1|
+|2026-10-01 09:10:00| York|60.00|     1|
++-------------------+-----+-----+------+

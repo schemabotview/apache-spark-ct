@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const eventTimeAndProcessingTime: Section = {
+  id: 'event-time-and-processing-time',
+  title: 'Event time and processing time',
+  scene: 'event-vs-arrival',
+  narration:
+    'Every order has two times. Event time is when it happened, recorded by the shop in the event itself. Processing time is when Spark saw it, which depends on networks, on retries and on when the job ran. In a batch job over a finished day the difference hardly matters. In a stream it is the whole problem. This script shows the gap directly. There is no aggregation: each micro-batch hands its new rows to the show function on line sixteen, which sorts them by event time and prints each order with the time it happened. The terminal shows the four batches. The first holds o one, o two and o three, from nine oh one to nine oh eight. The second holds o four and o five, and o two again, resent. Then the third batch brings o six, at nine twenty-three, and o seven, at nine oh six: an order that happened seventeen minutes before the one that arrived ahead of it. And the last batch brings o eight, at nine thirty-one, and o nine, at nine oh two, nearly half an hour late. The table on the right lines them up. Every late order is a real event that a shop sent late, perhaps because its network was down. The list states the consequence. When the business asks for sales at nine o\'clock, it means orders that happened at nine o\'clock, not orders that happened to arrive then. So the query has to group by event time, and it has to decide what to do with an order that arrives after its time has been reported. Grouping by processing time would be simpler, and wrong: o seven would be counted in the wrong ten minutes. Next, windows of event time, and what a late order does to them.',
+}

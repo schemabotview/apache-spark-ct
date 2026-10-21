@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const outputModes: Section = {
+  id: 'output-modes',
+  title: 'Output modes',
+  scene: 'output-modes',
+  narration:
+    'An output mode decides which rows of the result a micro-batch hands to the sink. This script runs the same windowed query, with its ten-minute watermark, three times, once in each mode. The counter function on line twenty-one adds up how many rows each mode writes, and lines twenty-nine to thirty-one run all three after each file. The terminal shows the running totals. Append writes nothing for the first two files, because no window is final yet, then one row after the third file and one more after the fourth: two rows in all, each a finished window, written exactly once. Update writes every window that changed in a batch: one, then three, then five, then six. And complete writes the whole result table every time: one, three, six and ten, growing with every batch. The second table on the right says when to use each one. Append is the mode for files, and for any sink that can only add: each row is written once and never revised. That is why it needs a watermark when there is an aggregation, because without one no window would ever be final and append would write nothing at all. Update writes the rows that changed, so the sink has to be able to replace a row by its key: a database table, or a merge into a table format. Complete rewrites the whole result each time, which only makes sense when the result is small, such as one row per store. Not every query can use every mode. An aggregation without a watermark cannot run in append mode, and Spark refuses to start it with an analysis error rather than write nothing silently. A query with no aggregation at all cannot use complete mode, because there is no finite result to rewrite. The live sales job will use append, because its sink is a folder of Parquet files. Next, joining a stream to other data.',
+}

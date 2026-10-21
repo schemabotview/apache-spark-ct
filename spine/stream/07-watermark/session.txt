@@ -1,0 +1,10 @@
+$ python -m stream.watermark
+WARNING: Using incubator modules: jdk.incubator.vector
+1.json batch 0: watermark 00:00, emitted []
+1.json batch 1: watermark 08:58, emitted []
+2.json batch 2: watermark 08:58, emitted []
+2.json batch 3: watermark 09:07, emitted []
+3.json batch 4: watermark 09:07, emitted []
+3.json batch 5: watermark 09:13, emitted ['09:00 135.00']
+4.json batch 6: watermark 09:13, emitted []
+4.json batch 7: watermark 09:21, emitted ['09:10 140.00']
