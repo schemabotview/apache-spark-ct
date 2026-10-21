@@ -33,7 +33,7 @@ export function projectTree(paths: string[], active: string, fresh: string[] = [
       .map((e) => {
         const here = at ? `${at}/${e.name}` : e.name
         if (e.children && collapse.includes(here) && !active.startsWith(`${here}/`) && e.state !== 'new')
-          return { name: e.name, folder: true, note: `${count(e)} files` }
+          return { name: e.name, folder: true, note: `${count(e)} file${count(e) === 1 ? '' : 's'}` }
         return e.children ? { ...e, children: sort(e.children, here) } : e
       })
       .sort((a, b) => Number(!(a.folder || a.children)) - Number(!(b.folder || b.children)) || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))

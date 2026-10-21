@@ -1,0 +1,6 @@
+$ python -m explore.joins
+WARNING: Using incubator modules: jdk.incubator.vector
+pushed: [IsNotNull(status), EqualTo(status,COMPLETED), IsNotNull(store_id)]
+read:   struct<store_id:int,amount:decimal(10,2),status:string,event_time:timestamp>
+threshold 10MB: ['Exchange', 'BroadcastHashJoin', 'BroadcastExchange']
+threshold -1  : ['Exchange', 'SortMergeJoin', 'Exchange', 'Exchange']

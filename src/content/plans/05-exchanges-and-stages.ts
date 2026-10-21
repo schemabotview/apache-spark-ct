@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const exchangesAndStages: Section = {
+  id: 'exchanges-and-stages',
+  title: 'Exchanges and stages',
+  scene: 'exchanges-stages',
+  narration:
+    'The physical plan now gets matched to what actually ran. This script, again with adaptive execution off so the plan is the one written, prints the plan\'s shape, runs the summary with collect on line fourteen, and then asks the monitoring API for every stage the application ran, with its tasks and the bytes it wrote to and read from the shuffle. The top of the terminal is the plan, and its one hash Exchange is the cut. Below the cut, asterisk two: scan, filter, broadcast join and partial aggregate. Above it, asterisk three: the final aggregate. The broadcast exchange, folded here, feeds the join from the side. Then the stages that ran. Stage zero, one task, and stage one, one task: small jobs Spark ran for itself, the first reading the Parquet files\' footers to learn their schema, the second collecting the stores so they could be broadcast. Stage two is the cut\'s lower half, drawn on the right: four tasks, one per input split of the eight files, each scanning its share, joining every order to its city through the broadcast copy, computing partial sums per day and city, and writing them to the shuffle: seventeen thousand four hundred and sixty-four bytes in all. Stage three is the upper half: two hundred tasks, one per shuffle partition, reading exactly those seventeen thousand bytes back and finishing the sums. A million orders went in; seventeen kilobytes crossed the shuffle, because the partial aggregation shrank them to one row per day, city and task before anything moved. That is the shape of a healthy plan. And there is the familiar waste: two hundred tasks to finish a result that is a hundred and fifty rows. Next, the same query with adaptive execution switched back on, and the plan it ends up with.',
+}

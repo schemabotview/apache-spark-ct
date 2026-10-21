@@ -1,0 +1,13 @@
+$ python -m explore.analysis
+WARNING: Using incubator modules: jdk.incubator.vector
+== Parsed Logical Plan ==
+'Project ['order_id, ('amount * 2) AS doubled#7]
++- 'Filter ('amount > 90)
+   +- 'UnresolvedRelation [orders], [], false
+== Analyzed Logical Plan ==
+order_id: string, doubled: decimal(12,2)
+Project [order_id#0, (amount#2 * cast(2 as decimal(1,0))) AS doubled#7]
++- Filter (cast(amount#2 as double) > cast(90 as double))
+   +- SubqueryAlias orders
+      +- View (`orders`, [order_id#0, store_id#1, amount#2, status#3, event_time#4])
+         +- Relation [order_id#0,store_id#1,amount#2,status#3,event_time#4] parquet

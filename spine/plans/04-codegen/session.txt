@@ -1,0 +1,16 @@
+$ python -m explore.codegen
+WARNING: Using incubator modules: jdk.incubator.vector
+Found 3 WholeStageCodegen subtrees.
+*(3) HashAggregate
++- Exchange
+   +- *(2) HashAggregate
+      +- *(2) Project
+         +- *(2) BroadcastHashJoin
+            :- *(2) Project
+            :  +- *(2) Filter
+            :     +- *(2) ColumnarToRow
+            :        +- FileScan parquet
+            +- BroadcastExchange
+               +- *(1) Filter
+                  +- FileScan csv
+unified memory: 434 MiB of the driver's 1 GiB heap

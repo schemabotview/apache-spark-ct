@@ -32,6 +32,7 @@ step.json (all keys optional):
   {"venv": true}                create .venv before replaying and start with it activated
   {"capture": ["path", ...]}    files the session creates that a scene shows; saved to captured/
   {"project": "name"}           the folder's name (default retail-pipeline): Course 1-2 demos are not the spine
+  {"setup": ["cmd", ...]}       run first, silently, in the project (data a frame needs but does not show being made)
   {"requirements": "name"}      the base environment: spine/<name>.txt (default requirements, PySpark alone)
   {"volatile": true}            output carries ids or timings that change every run: compared with every
                                 digit masked, so the text and shape are checked but not the numbers
@@ -172,6 +173,8 @@ def replay(step: Path) -> tuple[str, dict[str, str]]:
             env['PATH'] = f"{project / '.venv' / 'bin'}:{env['PATH']}"
             env['VIRTUAL_ENV'] = str(project / '.venv')
         cwd = home if config.get('start') == 'home' else project
+        for cmd in config.get('setup', []):
+            subprocess.run(['bash', '-c', cmd], cwd=project, env=env, check=True, capture_output=True)
         blocks: list[str] = []
         for cmd, inputs in commands(session):
             if inputs:

@@ -1,0 +1,14 @@
+$ python -m explore.trace
+WARNING: Using incubator modules: jdk.incubator.vector
+150 rows
+AdaptiveSparkPlan
+   ResultQueryStage
+   +- *(3) HashAggregate
+      +- AQEShuffleRead
+         +- ShuffleQueryStage
+            +- Exchange
+stage 0: COMPLETE   1 tasks wrote      0 B  read      0 B
+stage 1: COMPLETE   1 tasks wrote      0 B  read      0 B
+stage 2: COMPLETE   4 tasks wrote 17,464 B  read      0 B
+stage 3: SKIPPED    4 tasks wrote      0 B  read      0 B
+stage 4: COMPLETE   1 tasks wrote      0 B  read 17,464 B

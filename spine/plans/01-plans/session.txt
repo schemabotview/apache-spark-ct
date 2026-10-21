@@ -1,0 +1,12 @@
+$ python -m tools.make_orders
+WARNING: Using incubator modules: jdk.incubator.vector
+1,000,000 orders in 8 files
+$ python -m explore.plans
+WARNING: Using incubator modules: jdk.incubator.vector
+parsed    'Aggregate > Filter > Project > Join > Relation parquet > Relation csv
+analyzed  Aggregate > Filter > Project > Join > Relation parquet > Relation csv
+optimized Aggregate > Project > Join > Project > Filter > Relation parquet > Filter 
+> Relation csv
+physical  AdaptiveSparkPlan > HashAggregate > Exchange > HashAggregate > Project > B
+roadcastHashJoin > Project > Filter > FileScan parquet > BroadcastExchange > Filter 
+> FileScan csv
