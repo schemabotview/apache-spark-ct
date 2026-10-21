@@ -1,0 +1,7 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+3 rows read back: [('day', 'date'), ('city', 'string'), ('sales', 'decimal(20,2)'), 
+('orders', 'bigint')]
+$ ls data/out/daily_sales
+_SUCCESS
+part-00000-30ca532f-e2ea-40e1-bdd3-e8add2e9bc1e-c000.snappy.parquet

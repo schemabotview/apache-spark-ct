@@ -1,0 +1,6 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+6 rows; the first: Row(day=datetime.date(2026, 10, 1), city='Hull', sales=Decimal('8
+0.00'), orders=1)
+take(2): ['York', 'York']
+Leeds days: 2

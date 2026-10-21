@@ -1,0 +1,14 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
++-----+-----+------+----------+
+| city|sales|orders|       day|
++-----+-----+------+----------+
+| Hull|45.00|     1|2026-10-02|
+|Leeds|30.00|     1|2026-10-02|
+| York|20.00|     1|2026-10-02|
++-----+-----+------+----------+
+$ find data/out -name "*.parquet" | sort
+data/out/daily_sales/day=2026-10-01/part-00000-bb43059f-a651-43b1-bde7-a85aab51300b.
+c000.snappy.parquet
+data/out/daily_sales/day=2026-10-02/part-00000-bb43059f-a651-43b1-bde7-a85aab51300b.
+c000.snappy.parquet

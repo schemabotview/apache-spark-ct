@@ -1,0 +1,15 @@
+$ mkdir -p data/out
+$ python jobs/notify.py
+WARNING: Using incubator modules: jdk.incubator.vector
+ERROR Executor: Exception in task 0.0 in stage 2.0 (TID 2)
+WARN TaskSetManager: Lost task 0.0 in stage 2.0 (TID 2) (localhost executor driver):
+ org.apache.spark.api.python.PythonException: Traceback (most recent call last):
+$ sort data/out/sent.log
+receipt o1 40.00
+receipt o11 30.00
+receipt o11 30.00
+receipt o12 45.00
+receipt o13 20.00
+receipt o2 25.00
+receipt o4 15.00
+receipt o5 80.00

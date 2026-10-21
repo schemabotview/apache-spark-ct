@@ -3,6 +3,7 @@ import { howSparkRuns } from './how-spark-runs'
 import { start } from './start'
 import { read } from './read'
 import { transform } from './transform'
+import { write } from './write'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order, one entry per course of docs/APACHE-SPARK-COURSE-PLAN.md. A
@@ -13,6 +14,7 @@ export const COURSES: Record<string, Course> = {
   [start.id]: start,
   [read.id]: read,
   [transform.id]: transform,
+  [write.id]: write,
 }
 
 export type { Course, Section }
