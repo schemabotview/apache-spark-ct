@@ -1,0 +1,7 @@
+$ python day_summary.py
+store_id
+7     65.0
+9     15.0
+12    80.0
+114 bytes per event on disk, 155 in memory
+a 200 GB day needs about 272 GB of RAM

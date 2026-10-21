@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "Template for a GraphL content repo — authors scenes (react-flow diagrams + code cards) and slides per section, renders them full-frame, and captures screenshots + coords for the compose pipeline. The render engine is @graphlearning/flow; the app shell is @graphlearning/shell.",
+  "description": "GraphL concept app for Apache Spark: one PySpark pipeline built from an empty folder, one full-screen frame and one narration per section. The render engine is @graphlearning/flow; the app shell is @graphlearning/shell.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "check": "node scripts/check-content.mjs",
+    "check": "node scripts/check-content.mjs && node scripts/check-render.mjs",
     "preview": "vite preview",
     "build:snapshot": "vite build --outDir dist-snapshot",
     "capture": "vite preview --outDir dist-snapshot --port 5181",
@@ -17,12 +17,12 @@
     "shots:4k": "graphl-shots-4k",
     "gen:audio": "graphl-gen-audio",
     "gen:desc": "graphl-gen-desc",
-    "thumb": "graphl-thumb"
+    "thumb": "graphl-thumb",
+    "check:spine": "python3 scripts/spine.py"
   },
   "dependencies": {
-    "@graphlearning/flow": "^1.2.0",
-    "@graphlearning/shell": "^0.8.0",
-    "@xyflow/react": "^12.11.2",
+    "@graphlearning/flow": "^2.2.0",
+    "@graphlearning/shell": "^0.13.1",
     "lucide-react": "^1.28.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

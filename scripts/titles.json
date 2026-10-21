@@ -1,11 +1,4 @@
 {
   "_comment": "Curated publish titles (YouTube title + thumbnail header) per course, keyed by course id. Search-first: what someone would actually type, never 'Course 4'. One entry per course in src/content/index.ts.",
-  "foundations": "Why Apache Spark? Distributed Data Processing Explained",
-  "architecture": "Spark Architecture: Driver, Executors, Jobs, Stages & Tasks",
-  "abstractions": "PySpark RDDs vs DataFrames vs Spark SQL Explained",
-  "correctness": "PySpark Data Correctness: NULLs, Joins, Timestamps & UDFs",
-  "query-plans": "Spark Query Plans: How to Read explain() Output",
-  "performance": "Spark Performance Tuning: Shuffles, Skew, Joins & AQE",
-  "streaming": "Spark Structured Streaming: Watermarks, State & Recovery",
-  "production": "Running Apache Spark in Production: Deploy, Monitor, Recover"
+  "why-spark": "Why Apache Spark? When One Machine Is Not Enough, Partitions, and MapReduce to Spark"
 }

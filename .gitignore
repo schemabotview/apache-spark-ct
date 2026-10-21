@@ -8,3 +8,4 @@ images
 *.local
 .claude
 .DS_Store
+.spine-cache

@@ -1,29 +1,10 @@
-import { foundations } from './foundations'
-import { architecture } from './architecture'
-import { abstractions } from './abstractions'
-import { correctness } from './correctness'
-import { queryPlans } from './query-plans'
-import { performance } from './performance'
-import { streaming } from './streaming'
-import { production } from './production'
+import { whySpark } from './why-spark'
 import type { Course, Section } from './types'
 
-// Course registry, in syllabus order (docs/APACHE-SPARK-COURSE-PLAN.md). Courses are added here as
-// each is authored:
-//   foundations · architecture · abstractions · correctness · query-plans · performance ·
-//   streaming · production
-//
-// ConceptApp needs at least one course: with an empty registry it falls back to
-// `Object.values(courses)[0]` and throws reading `.sections`. The app renders from the first course on.
+// Course registry, in syllabus order, one entry per course of docs/APACHE-SPARK-COURSE-PLAN.md. A
+// course is registered here only once it is authored.
 export const COURSES: Record<string, Course> = {
-  [foundations.id]: foundations,
-  [architecture.id]: architecture,
-  [abstractions.id]: abstractions,
-  [correctness.id]: correctness,
-  [queryPlans.id]: queryPlans,
-  [performance.id]: performance,
-  [streaming.id]: streaming,
-  [production.id]: production,
+  [whySpark.id]: whySpark,
 }
 
 export type { Course, Section }
