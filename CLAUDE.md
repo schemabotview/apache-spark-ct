@@ -16,7 +16,8 @@ the spine. Author from it; do not drift from its section lists. The method is py
 `PYTHON-COURSE-PLAN.md`), applied to Spark.
 
 The render engine is `@graphlearning/flow`; the app shell is `@graphlearning/shell`. Both are
-**published packages pinned by version** (flow ^2.2.0, shell ^0.13.1). This repo's own surface is
+**published packages pinned by version** (flow ^2.2.0, shell ^0.14.0 — the first release that leaves
+a section frame headerless and exports `SCENE_ASPECT`). This repo's own surface is
 `src/content/`, `src/scenes/`, `src/main.tsx`, `src/theme.css` and `spine/` — nothing else.
 
 ## Route contract
@@ -93,12 +94,17 @@ interpreter changes `pyvenv.cfg`, traceback paths and some error text; a differe
 `java -version`; the check reports exactly that.
 
 IDE frames are built with `ideFrame()` in `src/scenes/ide.ts`: python-ct's ONE fixed template with a
-taller terminal — explorer (300) | editor (80 columns × 18 rows, 467) over terminal (14 lines, 379) |
+taller terminal — explorer (300) | editor (80 columns × 18 rows, 467) over terminal (17 lines, 441) |
 side pane (520) — so every panel sits at the same pixels in every section. A file longer than the
 editor is folded with `show`, never allowed to grow the pane; a run longer than the terminal is
 folded with `fold(session, head, tail)`, which keeps the first and last lines around a
-`··· N lines` mark, the way a real terminal shows the END of a long error. The template is 1632 × 856,
-1.91:1, fitted edge to edge, and every side card is stretched to 520 — a side card whose content is
+`··· N lines` mark, the way a real terminal shows the END of a long error. The template is 1632 × 918,
+16:9 exactly — the shape of the WHOLE scene area, because a section frame carries no header (the shell
+stopped drawing one in 0.14.0, `sectionHeader` defaulting to false). TERMINAL_H is DERIVED, not typed:
+`TOTAL_H = width / SCENE_ASPECT` with `SCENE_ASPECT` imported from the shell, so the editor stays
+pinned at 18 rows and every spare pixel goes to the terminal. It was a hardcoded 856 (1.91:1) while a
+section carried a header; when the header went that number silently left 111px of slack above and
+below. It is fitted edge to edge, and every side card is stretched to 520 — a side card whose content is
 wider than 520 widens the column and re-scales the whole frame. `check-render.mjs` fails any IDE
 frame whose explorer, editor, terminal or side pane moves.
 

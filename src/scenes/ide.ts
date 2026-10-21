@@ -1,4 +1,5 @@
 import type { Scene, SceneNode, TreeEntry } from '@graphlearning/flow'
+import { SCENE_ASPECT } from '@graphlearning/shell'
 
 // The IDE frame every course from 3 on is built from — ONE fixed template, so every panel sits at the
 // same pixels in every section and a viewer always knows where to look:
@@ -12,10 +13,12 @@ import type { Scene, SceneNode, TreeEntry } from '@graphlearning/flow'
 //
 // This is python-ct's template with ONE deliberate difference: the split between editor and terminal.
 // A Spark job's evidence is in what it prints — a show() table, an explain() plan, a stage count — so
-// the terminal gets 14 lines and the editor 18 rows (python-ct: 10 and 21). Each is 61px of chrome
-// plus 22px a line, with 10px to spare. The total is unchanged: explorer + editor + side is 1632 wide
-// and editor + terminal is 856 tall, 1.91:1 — the shape of the scene area under the section header at
-// 16:9 (3840×2020 at 4K), so the frame is fitted edge to edge. The terminal is 84 characters wide at
+// the editor is pinned at 18 rows and every pixel the frame has spare goes to the terminal, which
+// holds 17 lines (python-ct pins 23 rows and takes 11). Each is 61px of chrome plus 22px a line.
+// The total is NOT typed: explorer + editor + side is 1632 wide, and the height is derived from
+// SCENE_ASPECT (@graphlearning/shell >=0.14.0) so the frame stays fitted edge to edge if the shell
+// ever changes what it reserves above a section. It was a hardcoded 856 (1.91:1) while a section
+// carried a header; when the shell stopped drawing one that number silently left 111px of slack. The terminal is 84 characters wide at
 // the editor's width, and scripts/spine.py wraps output there, as a real terminal that wide does: a
 // longer line would widen the centre column and move the side pane. Every side card is stretched to
 // SIDE_W. Code and terminal text come from spine/ via `?raw`, so a frame can only show what
@@ -25,9 +28,10 @@ export const EXPLORER_W = 300
 export const EDITOR_COLS = 80
 export const EDITOR_W = 792
 export const EDITOR_H = 467
-export const TERMINAL_H = 379
 export const SIDE_W = 520
 const GAP = 10
+const TOTAL_H = Math.round((EXPLORER_W + EDITOR_W + SIDE_W + 2 * GAP) / SCENE_ASPECT)
+export const TERMINAL_H = TOTAL_H - GAP - EDITOR_H
 
 export interface Pane {
   file: string

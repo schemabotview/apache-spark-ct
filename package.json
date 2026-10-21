@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@graphlearning/flow": "^2.2.0",
-    "@graphlearning/shell": "^0.13.1",
+    "@graphlearning/shell": "^0.14.0",
     "lucide-react": "^1.28.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
