@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const aNewProject: Section = {
+  id: 'a-new-project',
+  title: 'A new project',
+  scene: 'new-project',
+  narration:
+    "A PySpark project starts like any Python project, with one difference you will meet in a moment. The terminal shows every command. We make the folder and move into it. We create a virtual environment called dot venv, a private copy of Python for this project, and activate it, so that every package we install from now on goes into it rather than into the system. Then one install: pip install pyspark, pinned to four point zero point one, the version this whole course is checked against. That single package is all of Spark. Besides the Python API, it carries Spark's Java libraries and its scripts, such as spark submit, so there is nothing else to download. Pip also pulled in one dependency, Py4J, the bridge between Python and Java that you met in the last course. The next command writes the exact versions into requirements dot txt, which is the file open in the editor: py4j zero point ten point nine point nine, and pyspark four point zero point one. Anyone who installs from that file gets exactly what we ran. Now the difference. Spark runs on the Java virtual machine, so the machine needs Java, and pip cannot install that for you. The last command checks it: OpenJDK version twenty-one. Spark four supports Java seventeen and twenty-one; if java dash version says command not found, install a JDK before going further. The table on the right lists everything a PySpark project needs and what we have here: Python three point thirteen, PySpark four point zero point one, Py4J, and Java twenty-one. The last row is a cluster, and the answer is not yet. Everything until the last course runs in local mode, with Spark's driver and executors inside one process on this machine, which is enough to see every idea in this course really happen. Next, the first lines of the job itself.",
+}

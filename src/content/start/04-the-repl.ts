@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const theRepl: Section = {
+  id: 'the-repl',
+  title: 'The REPL beside the editor',
+  scene: 'repl-beside',
+  narration:
+    "Writing a line into the job and running the whole file to see what it does costs several seconds every time, mostly to start Spark. The interactive Python prompt, the REPL, starts Spark once and lets you try as many lines as you like. Look at the command. SPARK underscore CONF underscore DIR equals conf, before the word python, sets that variable for this one command only, so the REPL gets the same quiet logs as the job. Python dash q starts the prompt without its banner. At the prompt we import the session class and build a session, and the familiar Java warning appears: getOrCreate has started the driver. Now we try a line. Create a DataFrame with one order, o1, with an amount of forty. Then type its name, df, and press enter. You might expect to see the row. Instead you see its schema: DataFrame, order ID string, amount double. That is the lesson of the last course, made visible: a DataFrame is a plan for computing rows, and printing it shows what the rows will look like, not the rows themselves. To get rows, you need an action. Collect is one, and it returns a Python list of Row objects, here a single row with order ID o1 and amount forty point zero. Notice too that Spark inferred double for the amount, a floating-point number, because we gave it forty point zero. For money that is the wrong type, and Course four declares a decimal instead. The editor still shows the job, unchanged. That is the habit worth forming: try a line in the REPL, look at what it gives you, then write it into the file. PySpark also ships its own REPL, the pyspark command, which is the same Python prompt with a session already created and named spark. Exit leaves the prompt and stops Spark with it. Next, what happens when a line in the job is wrong.",
+}

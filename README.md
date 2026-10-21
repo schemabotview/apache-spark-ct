@@ -1,70 +1,49 @@
-# Apache Spark — From Foundations to Advanced Reasoning
+# Apache Spark — from one machine to production
 
-A **GraphL concept app** for Apache Spark: 8 courses, 76 sections, built on
-`schemabotview/content-repo-template`. Each section is one segment of a course video: a scene on the
-left (a diagram or a PySpark code card), a slide on the right, and a narration clip.
+A **GraphL concept app** for Apache Spark, built on `schemabotview/content-repo-template`. One course
+path builds **one PySpark application — `retail-pipeline`, a retail chain's order-event pipeline —
+from an empty folder to a tested, monitored job that also runs as a stream**. Each section is a
+`(scene, narration)` pair: one full-screen frame that is one segment of the course video.
 
-The syllabus, audience, scope and teaching method are in
-[`docs/APACHE-SPARK-COURSE-PLAN.md`](docs/APACHE-SPARK-COURSE-PLAN.md). The reference version is
-**Apache Spark 4.0.1**, and every technical claim is checked against its documentation.
+The content was reset on 2026-10-21. Scope, audience, the spine and every section title are in
+[`docs/APACHE-SPARK-COURSE-PLAN.md`](docs/APACHE-SPARK-COURSE-PLAN.md); authoring status is tracked in
+[`CLAUDE.md`](CLAUDE.md). The reference version is **Apache Spark 4.0.1**, and every output on screen
+was produced by PySpark 4.0.1.
 
 ## Courses
 
-| # | Course id | Title | Sections | Status |
+| # | Course id | Course | Sections | Status |
 | --- | --- | --- | --- | --- |
-| 1 | `foundations` | Foundations of Distributed Data Processing | 5 | merged — narration audio pending |
-| 2 | `architecture` | Spark Architecture and Execution Model | 8 | merged — narration audio pending |
-| 3 | `abstractions` | Spark Programming Abstractions: RDDs, DataFrames, and SQL | 12 | authored — narration audio pending |
-| 4 | `correctness` | Reasoning About Pipeline Correctness | 9 | authored — narration audio pending |
-| 5 | `query-plans` | Query Plans and Execution Internals | 6 | authored — narration audio pending |
-| 6 | `performance` | Performance Diagnosis and Optimisation | 12 | authored — narration audio pending |
-| 7 | `streaming` | Structured Streaming and Stateful Processing | 13 | authored — narration audio pending |
-| 8 | `production` | Production Engineering and Integrated Reasoning | 11 | authored — narration audio pending |
+| 1 | `why-spark` | Why Spark | 5 | authored — awaiting review, no audio |
+| 2 | `how-spark-runs` | How Spark runs your code | 8 | authored — awaiting review, no audio |
+| 3 | `start` | Start the project | 6 | authored — awaiting review, no audio |
+| 4–12 | | read · transform · write · underneath · correct · plans · fast · stream · ship | 72 | planned |
 
-Courses are authored one at a time, in this order, committed directly to `main`.
-
-## Running it
+## Run it
 
 ```sh
 npm install
-npm run dev          # http://localhost:5173
+npm run dev          # http://localhost:5173  ·  routes are #/<course>-<section>
 ```
 
-Routes are `#/<course>-<section>`, e.g. `#/streaming-watermarks`. `#/` is the catalog.
-
-## Verifying a change
-
-There is no test runner. The bar is all four:
+## Verify a change
 
 ```sh
-npm run build        # must be clean
-npx tsc --noEmit     # must be clean
-npm run check        # content budgets: card overflow, slide clipping, dead focus, missing wavs
+npm run build && npx tsc --noEmit && npm run check && npm run check:spine
 ```
 
-…and **the section looked at in the browser**. The three commands pass on frames that are visually
-wrong; the rendered route is the real bar.
+`check:spine` replays every terminal pane against PySpark 4.0.1 (Python 3.13 and Java 17/21 on PATH)
+and fails on any difference. These are a floor, not proof — open the section's route in the browser.
 
-## What is in here
+## Layout
 
 ```
-docs/           the course plan
-src/content/    courses → sections (one file per section) + registry
-src/scenes/     hand-authored scenes + registry
-src/main.tsx    mounts <ConceptApp> from @graphlearning/shell
-src/theme.css   --brand / --brand-hover / --accent-2 — Spark orange + teal
-scripts/        check-content.mjs · colab notebook · concept.json · titles.json
-public/audio/<course>/    narration wavs (Colab + Chatterbox, never by hand)
-.github/workflows/deploy.yml    Pages deploy on push to main
+docs/                    the course plan
+spine/<course>/<step>/   the project at each step: project/, session.txt, step.json
+src/content/<course>/    one file per section + the course index
+src/scenes/<course>/     declarative scenes (nodes, edges, nesting — never x/y)
+src/scenes/ide.ts        the one IDE frame template
+src/theme.css            --brand / --brand-hover / --accent-2 — Spark orange + teal
+public/audio/<course>/   narration wavs (Colab + Chatterbox only)
+scripts/                 spine.py · check-content · check-render · concept.json · titles.json
 ```
-
-The render engine (`@graphlearning/flow`) and the app shell (`@graphlearning/shell`) are published
-packages pinned by version. `file:../ui-flow` / `file:../ui-shell` must never be committed.
-
-## Deployment
-
-The slug is **`apache-spark`**: vite `base` is `/apache-spark/` and the site's path is
-`graphl.in/apache-spark`. GitHub Pages serves a project site at the **repo name**, so the GitHub repo
-must be renamed from `apache-spark-ct` to `apache-spark` before Pages is enabled (Settings → Pages →
-Source = GitHub Actions). Until Pages is enabled, the deploy job fails at `configure-pages`, after
-`npm ci` and `npm run build` have already passed.

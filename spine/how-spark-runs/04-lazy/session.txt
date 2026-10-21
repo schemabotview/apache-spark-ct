@@ -1,0 +1,5 @@
+$ python lazy.py
+WARNING: Using incubator modules: jdk.incubator.vector
+after three transformations, jobs run: []
+['o1', 'o2', 'o4', 'o5'] - jobs run: [0]
+['o1', 'o2', 'o4', 'o5'] - jobs run: [0, 1]

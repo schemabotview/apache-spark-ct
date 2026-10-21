@@ -1,0 +1,10 @@
+$ SPARK_CONF_DIR=conf python -q
+>>> from pyspark.sql import SparkSession
+>>> spark = SparkSession.builder.master("local[4]").getOrCreate()
+WARNING: Using incubator modules: jdk.incubator.vector
+>>> df = spark.createDataFrame([("o1", 40.0)], ["order_id", "amount"])
+>>> df
+DataFrame[order_id: string, amount: double]
+>>> df.collect()
+[Row(order_id='o1', amount=40.0)]
+>>> exit()

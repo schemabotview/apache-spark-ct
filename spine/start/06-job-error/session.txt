@@ -1,0 +1,117 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+plan built
+ERROR Executor: Exception in task 2.0 in stage 1.0 (TID 3)
+WARN TaskSetManager: Lost task 2.0 in stage 1.0 (TID 3) (localhost executor driver):
+ org.apache.spark.SparkNumberFormatException: [CAST_INVALID_INPUT] The value '12,50'
+ of the type "STRING" cannot be cast to "DECIMAL(10,2)" because it is malformed. Cor
+rect the value as per the syntax, or change its target type. Use `try_cast` to toler
+ate malformed input and return NULL instead. SQLSTATE: 22018
+ERROR TaskSetManager: Task 2 in stage 1.0 failed 1 times; aborting job
+{"ts": "2026-10-21 17:23:38.990", "level": "ERROR", "logger": "DataFrameQueryContext
+Logger", "msg": "[CAST_INVALID_INPUT] The value '12,50' of the type \"STRING\" canno
+t be cast to \"DECIMAL(10,2)\" because it is malformed. Correct the value as per the
+ syntax, or change its target type. Use `try_cast` to tolerate malformed input and r
+eturn NULL instead. SQLSTATE: 22018", "context": {"file": "/home/ana/retail-pipeline
+/jobs/daily_sales.py", "line": "18", "fragment": "cast", "errorClass": "CAST_INVALID
+_INPUT"}, "exception": {"class": "Py4JJavaError", "msg": "An error occurred while ca
+lling o58.showString.\n: org.apache.spark.SparkNumberFormatException: [CAST_INVALID_
+INPUT] The value '12,50' of the type \"STRING\" cannot be cast to \"DECIMAL(10,2)\" 
+because it is malformed. Correct the value as per the syntax, or change its target t
+ype. Use `try_cast` to tolerate malformed input and return NULL instead. SQLSTATE: 2
+2018\n== DataFrame ==\n\"cast\" was called from\n/home/ana/retail-pipeline/jobs/dail
+y_sales.py:18\n\n\tat org.apache.spark.sql.errors.DataTypeErrors$.invalidInputInCast
+ToNumberError(DataTypeErrors.scala:213)\n\tat org.apache.spark.sql.types.Decimal$.fr
+omStringANSI(Decimal.scala:668)\n\tat org.apache.spark.sql.types.Decimal.fromStringA
+NSI(Decimal.scala)\n\tat org.apache.spark.sql.catalyst.expressions.GeneratedClass$Ge
+neratedIteratorForCodegenStage1.processNext(Unknown Source)\n\tat org.apache.spark.s
+ql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n\tat org.apac
+he.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionE
+valuator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:50)\n\tat org.apach
+e.spark.sql.execution.SparkPlan.$anonfun$getByteArrayRdd$1(SparkPlan.scala:402)\n\ta
+t org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:901)\n\tat org
+.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:901)\n\tat 
+org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n\tat org.a
+pache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:374)\n\tat org.apache.spark.rd
+d.RDD.iterator(RDD.scala:338)\n\tat org.apache.spark.scheduler.ResultTask.runTask(Re
+sultTask.scala:93)\n\tat org.apache.spark.TaskContext.runTaskWithListeners(TaskConte
+xt.scala:171)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:147)\n\tat org.ap
+ache.spark.executor.Executor$TaskRunner.$anonfun$run$5(Executor.scala:647)\n\tat org
+.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:80)\n\ta
+t org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:77
+)\n\tat org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:99)\n\tat org.ap
+ache.spark.executor.Executor$TaskRunner.run(Executor.scala:650)\n\tat java.base/java
+.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat ja
+va.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:6
+42)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n\tat org.apache.spark.sc
+heduler.DAGScheduler.runJob(DAGScheduler.scala:1009)\n\tat org.apache.spark.SparkCon
+text.runJob(SparkContext.scala:2484)\n\tat org.apache.spark.SparkContext.runJob(Spar
+kContext.scala:2505)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:2
+524)\n\tat org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:544)
+\n\tat org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:497)\n\t
+at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:58)\n\
+tat org.apache.spark.sql.classic.Dataset.collectFromPlan(Dataset.scala:2244)\n\tat o
+rg.apache.spark.sql.classic.Dataset.$anonfun$head$1(Dataset.scala:1379)\n\tat org.ap
+ache.spark.sql.classic.Dataset.$anonfun$withAction$2(Dataset.scala:2234)\n\tat org.a
+pache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:654
+)\n\tat org.apache.spark.sql.classic.Dataset.$anonfun$withAction$1(Dataset.scala:223
+2)\n\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$8
+(SQLExecution.scala:163)\n\tat org.apache.spark.sql.execution.SQLExecution$.withSess
+ionTagsApplied(SQLExecution.scala:272)\n\tat org.apache.spark.sql.execution.SQLExecu
+tion$.$anonfun$withNewExecutionId0$7(SQLExecution.scala:125)\n\tat org.apache.spark.
+JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)\n\tat org.apache
+.spark.sql.artifact.ArtifactManager.$anonfun$withResources$1(ArtifactManager.scala:1
+12)\n\tat org.apache.spark.sql.artifact.ArtifactManager.withClassLoaderIfNeeded(Arti
+factManager.scala:106)\n\tat org.apache.spark.sql.artifact.ArtifactManager.withResou
+rces(ArtifactManager.scala:111)\n\tat org.apache.spark.sql.execution.SQLExecution$.$
+anonfun$withNewExecutionId0$6(SQLExecution.scala:125)\n\tat org.apache.spark.sql.exe
+cution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:295)\n\tat org.apache.
+spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$1(SQLExecution.scala:
+124)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\ta
+t org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId0(SQLExecution.scal
+a:78)\n\tat org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecu
+tion.scala:237)\n\tat org.apache.spark.sql.classic.Dataset.withAction(Dataset.scala:
+2232)\n\tat org.apache.spark.sql.classic.Dataset.head(Dataset.scala:1379)\n\tat org.
+apache.spark.sql.Dataset.take(Dataset.scala:2810)\n\tat org.apache.spark.sql.classic
+.Dataset.getRows(Dataset.scala:339)\n\tat org.apache.spark.sql.classic.Dataset.showS
+tring(Dataset.scala:375)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorIm
+pl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorI
+mpl.invoke(NativeMethodAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.De
+legatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:52)\n\tat java.b
+ase/java.lang.reflect.Method.invoke(Method.java:580)\n\tat py4j.reflection.MethodInv
+oker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(Re
+flectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.comm
+ands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.Call
+Command.execute(CallCommand.java:79)\n\tat py4j.ClientServerConnection.waitForComman
+ds(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServ
+erConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n", "s
+tacktrace": [{"class": null, "method": "deco", "file": "/home/ana/retail-pipeline/.v
+env/lib/python3.13/site-packages/pyspark/errors/exceptions/captured.py", "line": "28
+2"}, {"class": null, "method": "get_return_value", "file": "/home/ana/retail-pipelin
+e/.venv/lib/python3.13/site-packages/py4j/protocol.py", "line": "327"}]}}
+Traceback (most recent call last):
+  File "/home/ana/retail-pipeline/jobs/daily_sales.py", line 20, in <module>
+    priced.show()
+    ~~~~~~~~~~~^^
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/pyspark/sql/cla
+ssic/dataframe.py", line 285, in show
+    print(self._show_string(n, truncate, vertical))
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/pyspark/sql/cla
+ssic/dataframe.py", line 303, in _show_string
+    return self._jdf.showString(n, 20, vertical)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/py4j/java_gatew
+ay.py", line 1362, in __call__
+    return_value = get_return_value(
+        answer, self.gateway_client, self.target_id, self.name)
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/pyspark/errors/
+exceptions/captured.py", line 288, in deco
+    raise converted from None
+pyspark.errors.exceptions.captured.NumberFormatException: [CAST_INVALID_INPUT] The v
+alue '12,50' of the type "STRING" cannot be cast to "DECIMAL(10,2)" because it is ma
+lformed. Correct the value as per the syntax, or change its target type. Use `try_ca
+st` to tolerate malformed input and return NULL instead. SQLSTATE: 22018
+== DataFrame ==
+"cast" was called from
+/home/ana/retail-pipeline/jobs/daily_sales.py:18

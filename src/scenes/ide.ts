@@ -41,6 +41,33 @@ export interface Pane {
 
 export const trim = (text: string) => text.replace(/\n+$/, '')
 
+/**
+ * A long run as a real terminal shows it: only the `keep` ranges of lines (1-based, inclusive; a
+ * negative number counts from the end, -1 being the last line), each gap folded to `··· N lines` —
+ * the same mark the editor uses. An error's last lines are what is on screen when the command
+ * returns, so a frame keeps those and the command, and folds the rest.
+ */
+export function fold(session: string, ...keep: [number, number][]): string {
+  const lines = trim(session).split('\n')
+  const at = (n: number) => (n < 0 ? lines.length + n + 1 : n)
+  const kept = new Set<number>()
+  for (const [from, to] of keep) for (let n = at(from); n <= at(to); n++) kept.add(n)
+  const out: string[] = []
+  let hidden = 0
+  lines.forEach((line, i) => {
+    if (kept.has(i + 1)) {
+      if (hidden) out.push(`··· ${hidden} line${hidden === 1 ? '' : 's'}`)
+      hidden = 0
+      out.push(line)
+    } else hidden++
+  })
+  if (hidden) out.push(`··· ${hidden} line${hidden === 1 ? '' : 's'}`)
+  return out.join('\n')
+}
+
+/** The 1-based number of the first line of `session` that starts with `prefix`. */
+export const lineOf = (session: string, prefix: string) => trim(session).split('\n').findIndex((l) => l.startsWith(prefix)) + 1
+
 // A bare side group is a column of cards: each one is stretched to the column, not the group.
 const fill = (side: SceneNode): SceneNode =>
   side.bare && side.children ? { ...side, minW: SIDE_W, children: side.children.map((c) => ({ ...c, minW: SIDE_W })) } : { ...side, minW: SIDE_W }

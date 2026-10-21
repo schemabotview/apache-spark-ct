@@ -1,0 +1,10 @@
+$ mkdir retail-pipeline
+$ cd retail-pipeline
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install -q pyspark==4.0.1
+$ pip freeze > requirements.txt
+$ java -version
+openjdk version "21.0.12.1" 2026-08-18
+OpenJDK Runtime Environment (build 21.0.12.1+1-1-24.04.4-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-24.04.4-Ubuntu, mixed mode, sharing)

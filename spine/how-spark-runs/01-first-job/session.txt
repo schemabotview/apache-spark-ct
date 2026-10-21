@@ -1,0 +1,10 @@
+$ python first_job.py
+WARNING: Using incubator modules: jdk.incubator.vector
+Spark 4.0.1
++--------+-----+
+|store_id|sales|
++--------+-----+
+|       7|65.00|
+|       9|15.00|
+|      12|80.00|
++--------+-----+

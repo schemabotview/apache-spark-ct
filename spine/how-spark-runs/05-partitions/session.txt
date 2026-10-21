@@ -1,0 +1,6 @@
+$ python partitions.py
+WARNING: Using incubator modules: jdk.incubator.vector
+a million ids: 4 partitions
+  tasks per stage: [4]
+repartitioned: 8 partitions
+  tasks per stage: [4, 8]

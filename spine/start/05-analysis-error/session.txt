@@ -1,0 +1,165 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+{"ts": "2026-10-21 17:23:20.650", "level": "ERROR", "logger": "DataFrameQueryContext
+Logger", "msg": "[UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function
+ parameter with name `amout` cannot be resolved. Did you mean one of the following? 
+[`amount`, `store_id`, `order_id`]. SQLSTATE: 42703", "context": {"file": "/home/ana
+/retail-pipeline/jobs/daily_sales.py", "line": "18", "fragment": "col", "errorClass"
+: "UNRESOLVED_COLUMN.WITH_SUGGESTION"}, "exception": {"class": "Py4JJavaError", "msg
+": "An error occurred while calling o48.select.\n: org.apache.spark.sql.AnalysisExce
+ption: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter
+ with name `amout` cannot be resolved. Did you mean one of the following? [`amount`,
+ `store_id`, `order_id`]. SQLSTATE: 42703;\n'Project [order_id#0, unresolvedalias(ca
+st('amout as decimal(10,2)))]\n+- LogicalRDD [order_id#0, store_id#1L, amount#2], fa
+lse\n\n\tat org.apache.spark.sql.errors.QueryCompilationErrors$.unresolvedAttributeE
+rror(QueryCompilationErrors.scala:401)\n\tat org.apache.spark.sql.catalyst.analysis.
+CheckAnalysis.org$apache$spark$sql$catalyst$analysis$CheckAnalysis$$failUnresolvedAt
+tribute(CheckAnalysis.scala:169)\n\tat org.apache.spark.sql.catalyst.analysis.CheckA
+nalysis.$anonfun$checkAnalysis0$7(CheckAnalysis.scala:404)\n\tat org.apache.spark.sq
+l.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$7$adapted(CheckAnalysis.sc
+ala:402)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala
+:252)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1(TreeNo
+de.scala:251)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$
+1$adapted(TreeNode.scala:251)\n\tat scala.collection.immutable.Vector.foreach(Vector
+.scala:2125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.s
+cala:251)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1(Tr
+eeNode.scala:251)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreac
+hUp$1$adapted(TreeNode.scala:251)\n\tat scala.collection.immutable.Vector.foreach(Ve
+ctor.scala:2125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNo
+de.scala:251)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$ch
+eckAnalysis0$6(CheckAnalysis.scala:402)\n\tat org.apache.spark.sql.catalyst.analysis
+.CheckAnalysis.$anonfun$checkAnalysis0$6$adapted(CheckAnalysis.scala:402)\n\tat scal
+a.collection.immutable.List.foreach(List.scala:334)\n\tat org.apache.spark.sql.catal
+yst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2(CheckAnalysis.scala:402)\n\tat 
+org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2$adapt
+ed(CheckAnalysis.scala:284)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.forea
+chUp(TreeNode.scala:252)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.
+checkAnalysis0(CheckAnalysis.scala:284)\n\tat org.apache.spark.sql.catalyst.analysis
+.CheckAnalysis.checkAnalysis0$(CheckAnalysis.scala:255)\n\tat org.apache.spark.sql.c
+atalyst.analysis.Analyzer.checkAnalysis0(Analyzer.scala:299)\n\tat org.apache.spark.
+sql.catalyst.analysis.CheckAnalysis.checkAnalysis(CheckAnalysis.scala:244)\n\tat org
+.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis$(CheckAnalysis.scala
+:231)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis(Analyzer.s
+cala:299)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anon
+fun$resolveInFixedPoint$1(HybridAnalyzer.scala:192)\n\tat scala.runtime.java8.JFunct
+ion0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)\n\tat org.apache.spark.sql.catalyst.Qu
+eryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\tat org.apache.spar
+k.sql.catalyst.analysis.resolver.HybridAnalyzer.resolveInFixedPoint(HybridAnalyzer.s
+cala:192)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anon
+fun$apply$1(HybridAnalyzer.scala:76)\n\tat org.apache.spark.sql.catalyst.analysis.re
+solver.HybridAnalyzer.withTrackedAnalyzerBridgeState(HybridAnalyzer.scala:111)\n\tat
+ org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.apply(HybridAnalyzer
+.scala:71)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$executeAnd
+Check$1(Analyzer.scala:330)\n\tat org.apache.spark.sql.catalyst.plans.logical.Analys
+isHelper$.markInAnalyzer(AnalysisHelper.scala:423)\n\tat org.apache.spark.sql.cataly
+st.analysis.Analyzer.executeAndCheck(Analyzer.scala:330)\n\tat org.apache.spark.sql.
+execution.QueryExecution.$anonfun$lazyAnalyzed$2(QueryExecution.scala:110)\n\tat org
+.apache.spark.sql.catalyst.QueryPlanningTracker.measurePhase(QueryPlanningTracker.sc
+ala:148)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$2
+(QueryExecution.scala:278)\n\tat org.apache.spark.sql.execution.QueryExecution$.with
+InternalError(QueryExecution.scala:654)\n\tat org.apache.spark.sql.execution.QueryEx
+ecution.$anonfun$executePhase$1(QueryExecution.scala:278)\n\tat org.apache.spark.sql
+.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.executio
+n.QueryExecution.executePhase(QueryExecution.scala:277)\n\tat org.apache.spark.sql.e
+xecution.QueryExecution.$anonfun$lazyAnalyzed$1(QueryExecution.scala:110)\n\tat scal
+a.util.Try$.apply(Try.scala:217)\n\tat org.apache.spark.util.Utils$.doTryWithCallerS
+tacktrace(Utils.scala:1378)\n\tat org.apache.spark.util.Utils$.getTryWithCallerStack
+trace(Utils.scala:1439)\n\tat org.apache.spark.util.LazyTry.get(LazyTry.scala:58)\n\
+tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:121)
+\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.s
+cala:80)\n\tat org.apache.spark.sql.classic.Dataset$.$anonfun$ofRows$1(Dataset.scala
+:115)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\t
+at org.apache.spark.sql.classic.Dataset$.ofRows(Dataset.scala:113)\n\tat org.apache.
+spark.sql.classic.Dataset.withPlan(Dataset.scala:2263)\n\tat org.apache.spark.sql.cl
+assic.Dataset.select(Dataset.scala:894)\n\tat org.apache.spark.sql.classic.Dataset.s
+elect(Dataset.scala:232)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorIm
+pl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorI
+mpl.invoke(NativeMethodAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.De
+legatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:52)\n\tat java.b
+ase/java.lang.reflect.Method.invoke(Method.java:580)\n\tat py4j.reflection.MethodInv
+oker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(Re
+flectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.comm
+ands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.Call
+Command.execute(CallCommand.java:79)\n\tat py4j.ClientServerConnection.waitForComman
+ds(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServ
+erConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n\tSup
+pressed: org.apache.spark.util.Utils$OriginalTryStackTraceException: Full stacktrace
+ of original doTryWithCallerStacktrace caller\n\t\tat org.apache.spark.sql.errors.Qu
+eryCompilationErrors$.unresolvedAttributeError(QueryCompilationErrors.scala:401)\n\t
+\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.org$apache$spark$sql$catal
+yst$analysis$CheckAnalysis$$failUnresolvedAttribute(CheckAnalysis.scala:169)\n\t\tat
+ org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$7(Chec
+kAnalysis.scala:404)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$a
+nonfun$checkAnalysis0$7$adapted(CheckAnalysis.scala:402)\n\t\tat org.apache.spark.sq
+l.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:252)\n\t\tat org.apache.spark.sql
+.catalyst.trees.TreeNode.$anonfun$foreachUp$1(TreeNode.scala:251)\n\t\tat org.apache
+.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1$adapted(TreeNode.scala:251)\
+n\t\tat scala.collection.immutable.Vector.foreach(Vector.scala:2125)\n\t\tat org.apa
+che.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:251)\n\t\tat org.apac
+he.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1(TreeNode.scala:251)\n\t\ta
+t org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1$adapted(TreeNode
+.scala:251)\n\t\tat scala.collection.immutable.Vector.foreach(Vector.scala:2125)\n\t
+\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:251)\n\t\
+tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$6(C
+heckAnalysis.scala:402)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis
+.$anonfun$checkAnalysis0$6$adapted(CheckAnalysis.scala:402)\n\t\tat scala.collection
+.immutable.List.foreach(List.scala:334)\n\t\tat org.apache.spark.sql.catalyst.analys
+is.CheckAnalysis.$anonfun$checkAnalysis0$2(CheckAnalysis.scala:402)\n\t\tat org.apac
+he.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2$adapted(Check
+Analysis.scala:284)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(T
+reeNode.scala:252)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.chec
+kAnalysis0(CheckAnalysis.scala:284)\n\t\tat org.apache.spark.sql.catalyst.analysis.C
+heckAnalysis.checkAnalysis0$(CheckAnalysis.scala:255)\n\t\tat org.apache.spark.sql.c
+atalyst.analysis.Analyzer.checkAnalysis0(Analyzer.scala:299)\n\t\tat org.apache.spar
+k.sql.catalyst.analysis.CheckAnalysis.checkAnalysis(CheckAnalysis.scala:244)\n\t\tat
+ org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis$(CheckAnalysis.s
+cala:231)\n\t\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis(Anal
+yzer.scala:299)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyz
+er.$anonfun$resolveInFixedPoint$1(HybridAnalyzer.scala:192)\n\t\tat scala.runtime.ja
+va8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)\n\t\tat org.apache.spark.sql
+.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\t\tat o
+rg.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.resolveInFixedPoint(Hy
+bridAnalyzer.scala:192)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.Hybr
+idAnalyzer.$anonfun$apply$1(HybridAnalyzer.scala:76)\n\t\tat org.apache.spark.sql.ca
+talyst.analysis.resolver.HybridAnalyzer.withTrackedAnalyzerBridgeState(HybridAnalyze
+r.scala:111)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.
+apply(HybridAnalyzer.scala:71)\n\t\tat org.apache.spark.sql.catalyst.analysis.Analyz
+er.$anonfun$executeAndCheck$1(Analyzer.scala:330)\n\t\tat org.apache.spark.sql.catal
+yst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:423)\n\t\tat o
+rg.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:330)\n
+\t\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$2(QueryEx
+ecution.scala:110)\n\t\tat org.apache.spark.sql.catalyst.QueryPlanningTracker.measur
+ePhase(QueryPlanningTracker.scala:148)\n\t\tat org.apache.spark.sql.execution.QueryE
+xecution.$anonfun$executePhase$2(QueryExecution.scala:278)\n\t\tat org.apache.spark.
+sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:654)\n\t\tat or
+g.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$1(QueryExecution.s
+cala:278)\n\t\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:80
+4)\n\t\tat org.apache.spark.sql.execution.QueryExecution.executePhase(QueryExecution
+.scala:277)\n\t\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnaly
+zed$1(QueryExecution.scala:110)\n\t\tat scala.util.Try$.apply(Try.scala:217)\n\t\tat
+ org.apache.spark.util.Utils$.doTryWithCallerStacktrace(Utils.scala:1378)\n\t\tat or
+g.apache.spark.util.LazyTry.tryT$lzycompute(LazyTry.scala:46)\n\t\tat org.apache.spa
+rk.util.LazyTry.tryT(LazyTry.scala:46)\n\t\t... 21 more\n", "stacktrace": [{"class":
+ null, "method": "deco", "file": "/home/ana/retail-pipeline/.venv/lib/python3.13/sit
+e-packages/pyspark/errors/exceptions/captured.py", "line": "282"}, {"class": null, "
+method": "get_return_value", "file": "/home/ana/retail-pipeline/.venv/lib/python3.13
+/site-packages/py4j/protocol.py", "line": "327"}]}}
+Traceback (most recent call last):
+  File "/home/ana/retail-pipeline/jobs/daily_sales.py", line 18, in <module>
+    priced = orders.select("order_id", F.col("amout").cast("decimal(10,2)"))
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/pyspark/sql/cla
+ssic/dataframe.py", line 991, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/py4j/java_gatew
+ay.py", line 1362, in __call__
+    return_value = get_return_value(
+        answer, self.gateway_client, self.target_id, self.name)
+  File "/home/ana/retail-pipeline/.venv/lib/python3.13/site-packages/pyspark/errors/
+exceptions/captured.py", line 288, in deco
+    raise converted from None
+pyspark.errors.exceptions.captured.AnalysisException: [UNRESOLVED_COLUMN.WITH_SUGGES
+TION] A column, variable, or function parameter with name `amout` cannot be resolved
+. Did you mean one of the following? [`amount`, `store_id`, `order_id`]. SQLSTATE: 4
+2703;
+'Project [order_id#0, unresolvedalias(cast('amout as decimal(10,2)))]
++- LogicalRDD [order_id#0, store_id#1L, amount#2], false

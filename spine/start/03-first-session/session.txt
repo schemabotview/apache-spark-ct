@@ -1,0 +1,4 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+Spark 4.0.1, master local[4], app 'daily-sales'
+web UI http://localhost:4040

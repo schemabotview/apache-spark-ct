@@ -1,0 +1,10 @@
+$ python narrow_wide.py
+WARNING: Using incubator modules: jdk.incubator.vector
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- HashAggregate(keys=[store_id#1], functions=[sum(amount#2)])
+   +- Exchange hashpartitioning(store_id#1, 200), ENSURE_REQUIREMENTS, [plan_id=19]
+      +- HashAggregate(keys=[store_id#1], functions=[partial_sum(amount#2)])
+         +- Project [store_id#1, amount#2]
+            +- Filter (isnotnull(status#3) AND (status#3 = COMPLETED))
+               +- Scan ExistingRDD[order_id#0,store_id#1,amount#2,status#3]

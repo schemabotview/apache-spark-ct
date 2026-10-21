@@ -1,4 +1,6 @@
 {
   "_comment": "Curated publish titles (YouTube title + thumbnail header) per course, keyed by course id. Search-first: what someone would actually type, never 'Course 4'. One entry per course in src/content/index.ts.",
-  "why-spark": "Why Apache Spark? When One Machine Is Not Enough, Partitions, and MapReduce to Spark"
+  "why-spark": "Why Apache Spark? When One Machine Is Not Enough, Partitions, and MapReduce to Spark",
+  "how-spark-runs": "How Apache Spark Runs Your Code: Driver, Executors, Lazy Evaluation, Stages and Tasks",
+  "start": "Start a PySpark Project: Install PySpark, Your First SparkSession, and Reading Spark Errors"
 }

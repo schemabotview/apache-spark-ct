@@ -12,10 +12,11 @@ so a frame can only show what this script has verified.
 
 Each step is replayed in a fresh temp copy named retail-pipeline, inside a temp "home" directory, by
 ONE bash process, so `cd` and `source .venv/bin/activate` carry from command to command as they do
-in a real terminal. A `$ python` or `$ pyspark` command followed by `>>> ` lines is a REPL session:
-it is run in a pseudo-terminal and fed those lines. Temp paths are rewritten to
-/home/ana/retail-pipeline, the path the frames show. Run it with the course's pinned interpreter first
-on PATH as `python`, and Java 17 or 21 as `java` (see CLAUDE.md).
+in a real terminal. A `$ python` or `$ pyspark` command (with any variables or flags) followed by
+`>>> ` lines is a REPL session: it is run in a pseudo-terminal and fed those lines. Temp paths are
+rewritten to /home/ana/retail-pipeline, the path the frames show. Run it with the course's pinned
+interpreter first on PATH as `python`, and Java 17 or 21 as `java` (see CLAUDE.md). Run one replay
+at a time: a second Spark on the machine takes port 4040 and every frame that prints it changes.
 
 Spark-specific, and all of it about the MACHINE, never the code:
   - PySpark 4.0.1 is installed ONCE into a cached base environment (.spine-cache/<name>/, from
@@ -64,7 +65,7 @@ def commands(session: str) -> list[tuple[str, list[str]]]:
     for line in session.splitlines():
         if line.startswith('$ '):
             out.append((line[2:], []))
-        elif out and out[-1][0].split()[0] in ('python', 'pyspark') and (line.startswith('>>> ') or line == '>>>' or line.startswith('... ')):
+        elif out and {'python', 'pyspark'} & set(out[-1][0].split()) and (line.startswith('>>> ') or line == '>>>' or line.startswith('... ')):
             out[-1][1].append(line[4:])
     return out
 
@@ -74,12 +75,13 @@ def repl(cwd: Path, env: dict, command: str, inputs: list[str]) -> str:
     pid, fd = pty.fork()
     if pid == 0:
         os.chdir(cwd)
-        argv = command.split()
-        os.execvpe(argv[0], argv, {**env, 'TERM': 'xterm-256color'})
+        # through bash, so a command may set a variable for itself: `SPARK_CONF_DIR=conf python -q`
+        os.execvpe('bash', ['bash', '-c', f'exec env {command}'], {**env, 'TERM': 'xterm-256color'})
     screen = b''
+    closed = False
 
     def drain(timeout: float) -> None:
-        nonlocal screen
+        nonlocal screen, closed
         end = time.time() + timeout
         while time.time() < end:
             ready, _, _ = select.select([fd], [], [], 0.05)
@@ -87,8 +89,10 @@ def repl(cwd: Path, env: dict, command: str, inputs: list[str]) -> str:
                 try:
                     chunk = os.read(fd, 4096)
                 except OSError:
+                    closed = True
                     return
                 if not chunk:
+                    closed = True
                     return
                 screen += chunk
                 end = time.time() + 0.3
@@ -97,7 +101,7 @@ def repl(cwd: Path, env: dict, command: str, inputs: list[str]) -> str:
         # pyspark starts a JVM before its first prompt, and an action can run for seconds: wait for
         # the next `>>> ` / `... ` rather than a fixed time, then let the screen settle.
         end = time.time() + timeout
-        while time.time() < end:
+        while time.time() < end and not closed:
             drain(0.5)
             tail = ANSI.sub('', screen.decode(errors='replace')).rstrip(' ')
             if tail.endswith('>>>') or tail.endswith('...'):
@@ -158,11 +162,12 @@ def replay(step: Path) -> tuple[str, dict[str, str]]:
             site = next((project / '.venv' / 'lib').glob('python3*/site-packages'))
             base = base_env(config.get('requirements', 'requirements'))
             (site / '_spine_base.pth').write_text(str(base) + '\n')
-            # the scripts a real install puts on PATH (pyspark, spark-submit): they are shell scripts
+            # the scripts a real install puts in .venv/bin (pyspark, spark-submit, …): shell scripts
             # that find Spark through `python3`, which is now this venv's
             for script in (base / 'bin').glob('*') if (base / 'bin').exists() else []:
-                if script.read_bytes()[:11] == b'#!/usr/bin/' and b'python' not in script.read_bytes()[:40]:
-                    shutil.copy(script, project / '.venv' / 'bin' / script.name)
+                target = project / '.venv' / 'bin' / script.name
+                if script.is_file() and not target.exists():
+                    shutil.copy(script, target)
             env['PATH'] = f"{project / '.venv' / 'bin'}:{env['PATH']}"
             env['VIRTUAL_ENV'] = str(project / '.venv')
         cwd = home if config.get('start') == 'home' else project

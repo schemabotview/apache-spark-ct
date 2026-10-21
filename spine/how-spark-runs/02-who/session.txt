@@ -1,0 +1,6 @@
+$ python who_does_what.py
+WARNING: Using incubator modules: jdk.incubator.vector
+master: local[4]
+task slots: 4
+web UI: http://localhost:4040
+executor 'driver' on localhost: 4 cores

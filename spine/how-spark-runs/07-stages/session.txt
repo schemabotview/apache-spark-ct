@@ -1,0 +1,5 @@
+$ python stages.py
+WARNING: Using incubator modules: jdk.incubator.vector
+job 0: 3 rows back to the driver
+  stage 0: 4 tasks, collect at /home/ana/how-spark-runs/stages.py:18
+  stage 1: 200 tasks, collect at /home/ana/how-spark-runs/stages.py:18

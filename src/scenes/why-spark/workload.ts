@@ -24,12 +24,12 @@ export const workload: Scene = ideFrame(
         id: 'scale',
         kind: 'table',
         label: 'The real workload, on one machine',
-        headers: ['', 'size', 'one scan at 2 GB/s'],
+        headers: ['', 'size', 'scan at 2 GB/s'],
         values: [
           ['the sample', '683 bytes', 'instant'],
           ['one day', '~200 GB', '~100 s'],
           ['one year', '~70 TB', '~10 hours'],
-          ['one year, 50 machines', '~1.4 TB each', '~12 minutes'],
+          ['a year, 50 machines', '1.4 TB each', '~12 min'],
         ],
       },
       {

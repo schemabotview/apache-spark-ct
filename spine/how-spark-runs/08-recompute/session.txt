@@ -1,0 +1,10 @@
+$ python recompute.py
+WARNING: Using incubator modules: jdk.incubator.vector
+ERROR Executor: Exception in task 2.0 in stage 0.0 (TID 2)
+WARN TaskSetManager: Lost task 2.0 in stage 0.0 (TID 2) (localhost executor driver):
+ org.apache.spark.api.python.PythonException: Traceback (most recent call last):
+partition 0: attempt 0, subtotal 325
+partition 1: attempt 0, subtotal 950
+partition 2: attempt 1, subtotal 1575
+partition 3: attempt 0, subtotal 2200
+stage 0 failed tasks: 1

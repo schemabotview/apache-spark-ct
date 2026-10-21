@@ -5,225 +5,138 @@
 
 ## What this repo is
 
-The GraphL concept app for **Apache Spark**: one concept, 8 courses, 76 sections. A **section** is
-`(scene, slide, narration)` and is one segment of the course video. One section = one slide.
+The GraphL concept app for **Apache Spark — from one machine to production**: one course path built
+around one spine application (`retail-pipeline`, a retail chain's order-event pipeline in PySpark)
+shown in real code. A **section** is `(scene, narration)` — one full-screen frame and one segment of
+the course video. Sections are **scene-only** (no `slide`): the frame carries the code, its real
+output and the mental model side by side.
+
+`docs/APACHE-SPARK-COURSE-PLAN.md` is the source of truth for scope, audience, courses, sections and
+the spine. Author from it; do not drift from its section lists. The method is python-ct's (its
+`PYTHON-COURSE-PLAN.md`), applied to Spark.
 
 The render engine is `@graphlearning/flow`; the app shell is `@graphlearning/shell`. Both are
-**published packages pinned by version** (`flow@^1.2.0`, `shell@^0.8.0`). This repo's own surface is
-`src/content/`, `src/scenes/`, `src/main.tsx` and `src/theme.css` — nothing else.
+**published packages pinned by version** (flow ^2.2.0, shell ^0.13.1). This repo's own surface is
+`src/content/`, `src/scenes/`, `src/main.tsx`, `src/theme.css` and `spine/` — nothing else.
 
 ## Route contract
 
 - Slug **`apache-spark`** — the vite `base` (`/apache-spark/`), the path under `graphl.in`, and the
   GitHub repo name once it is renamed from `apache-spark-ct`. All three must be the same string.
-- Routes: `#/` is the catalog; a section is `#/<courseId>-<sectionId>`, e.g. `#/streaming-watermarks`.
-- Audio: `public/audio/<courseId>/<sectionId>.wav`.
+- `#/` is the catalog. A section is `#/<courseId>-<sectionId>`, e.g. `#/how-spark-runs-jobs-stages-and-tasks`.
+- `?capture=1` and `window.__scene.plan()` are the recorders' hooks and come from the shell.
 - Section ids are unique within a course; scene ids are unique across the whole repo.
 
-## Course arc
+## Course arc and status
 
-The source of truth is `docs/APACHE-SPARK-COURSE-PLAN.md`. Course ids, in syllabus order:
+**Reset on 2026-10-21**: every course, scene and wav of the previous 8-chapter, slide-based course
+was deleted, and the subject re-planned as 12 courses, 91 sections, named by what we build. The plan
+maps every old chapter to its new course, so no topic was dropped.
 
-| Course id | Chapter | Sections |
-| --- | --- | --- |
-| `foundations` | 1 — Foundations of Distributed Data Processing | 5 |
-| `architecture` | 2 — Spark Architecture and Execution Model | 8 |
-| `abstractions` | 3 — RDDs, DataFrames, and SQL | 12 |
-| `correctness` | 4 — Reasoning About Pipeline Correctness | 9 |
-| `query-plans` | 5 — Query Plans and Execution Internals | 6 |
-| `performance` | 6 — Performance Diagnosis and Optimisation | 12 |
-| `streaming` | 7 — Structured Streaming and Stateful Processing | 13 |
-| `production` | 8 — Production Engineering and Integrated Reasoning | 11 |
+| # | Course id | Course | Sections | Status |
+| --- | --- | --- | --- | --- |
+| 1 | `why-spark` | Why Spark | 5 | authored, awaiting owner review (no narration audio yet) |
+| 2 | `how-spark-runs` | How Spark runs your code | 8 | authored, awaiting owner review (no narration audio yet) |
+| 3 | `start` | Start the project | 6 | authored, awaiting owner review (no narration audio yet) |
+| 4–12 | | see the plan | 72 | not started |
 
-Each numbered item in a plan chapter is exactly one section, in the plan's order.
+Every output on screen was produced here by **PySpark 4.0.1** on **Python 3.13** and **OpenJDK 21**,
+in local mode. Course 1's one runnable frame and Course 2's scripts are not the spine: they live in
+`spine/why-spark/` and `spine/how-spark-runs/` (the `project` key in `step.json`), shown in the same
+IDE template. Dates and version history are from the Spark release notes and papers, not measured.
+The production workload (200 GB a day, 70 TB a year, 2 GB/s per machine) is the course's fixed
+assumption, stated as such on screen.
 
-## Authoring conventions for this subject
+## The spine: code is executed, not pasted
+
+From Course 3 on, every code and terminal pane comes from `spine/<course>/<step>/`: `project/` is a
+snapshot of `retail-pipeline/` at that step, `session.txt` is the terminal transcript, `step.json`
+says where it starts, whether a venv exists, which requirements set it borrows, and which generated
+files to `capture`. Scenes import these files with Vite's `?raw`, so a frame can only show what was
+replayed. `npm run check:spine` (`scripts/spine.py`) replays every step in a fresh copy — one bash
+per step so `cd` and `activate` carry over, REPL lines typed into a real pty — and fails on any
+difference; `--write` regenerates the transcripts after an edit, and a path prefix
+(`python3 scripts/spine.py start/05`) limits it. Paths are normalised to `/home/ana/retail-pipeline`.
+
+What is Spark-specific in the replay, and why (all of it is about the machine, never the code):
+
+- **PySpark is installed once per requirements set** (`spine/requirements.txt`, `pandas.txt`,
+  `connect.txt`) into `.spine-cache/` and borrowed by each step's fresh `.venv` through a `.pth`
+  file, so a step does not reinstall 400 MB. A session that types `pip install` still runs it for real
+  (`start/02` does). A traceback frame inside PySpark is shown at its path inside `.venv`.
+- **`JAVA_TOOL_OPTIONS` is removed** (this container's proxy settings would print a `Picked up`
+  line), **`SPARK_LOCAL_IP=127.0.0.1`** (no hostname warning) and **`TZ=UTC`**.
+- **Output is wrapped at 84 columns** — the terminal pane's width at the editor's width — as a real
+  terminal that wide wraps it. A longer line would widen the centre column and move the side pane.
+- **The quiet logs are the PROJECT's**: `conf/log4j2.properties` (WARN and above, one line per event
+  — a lost task would otherwise print a 40-line stack trace) and `conf/spark-defaults.conf` (no
+  progress bar), found through `SPARK_CONF_DIR`, which every job sets on its own first lines. The
+  one line Spark cannot silence is `WARNING: Using incubator modules: jdk.incubator.vector`, printed
+  by the JVM on Java 17+; it is on screen in every run, and Course 2 §1 explains it.
+- **Run one replay at a time.** A second Spark on the machine takes port 4040, and the step that
+  prints its web UI address (and every step, through a `could not bind` warning) changes.
+
+**Run it with Python 3.13 as `python` and Java 17 or 21 as `java` on PATH.** A different
+interpreter changes `pyvenv.cfg`, traceback paths and some error text; a different JDK changes
+`java -version`; the check reports exactly that.
+
+IDE frames are built with `ideFrame()` in `src/scenes/ide.ts`: python-ct's ONE fixed template with a
+taller terminal — explorer (300) | editor (80 columns × 18 rows, 467) over terminal (14 lines, 379) |
+side pane (520) — so every panel sits at the same pixels in every section. A file longer than the
+editor is folded with `show`, never allowed to grow the pane; a run longer than the terminal is
+folded with `fold(session, head, tail)`, which keeps the first and last lines around a
+`··· N lines` mark, the way a real terminal shows the END of a long error. The template is 1632 × 856,
+1.91:1, fitted edge to edge, and every side card is stretched to 520 — a side card whose content is
+wider than 520 widens the column and re-scales the whole frame. `check-render.mjs` fails any IDE
+frame whose explorer, editor, terminal or side pane moves.
+
+Source layout per course: `src/content/<course>/NN-<section-id>.ts` plus `index.ts`;
+`src/scenes/<course>/` plus `index.ts` exporting `<course>Scenes`; `public/audio/<course>/`.
+
+## Verification notes (read before trusting a number)
+
+- **Every code snippet and printed output is run before it is written down**, on the pinned stack.
+  Never present an unrun output.
+- **PySpark 4 prints a JSON log entry before every DataFrame error** (`DataFrameQueryContextLogger`),
+  then the traceback. It is real and it is long — fold it, never edit it.
+- **Show results in order**: `show()` of an unordered DataFrame is not guaranteed to come back in the
+  same order on every run. `orderBy` anything a frame prints.
+- **Spark's ids are deterministic for a fixed script** (expression ids `#1`, `plan_id`) but change
+  when lines before them change. Re-run the step after any edit.
+- **AQE changes job and stage counts.** `count()` and `show()` may run more than one job; a frame
+  that counts jobs uses `collect()`, or turns AQE off and says so.
+- **Timings are not deterministic.** Round them, tie them to the machine, mark the step `volatile`,
+  and make no universal speed-up claim.
+- **No narration audio exists.** `.wav` files come only from the Colab + Chatterbox pass.
+
+## Authoring conventions
 
 - **Spark 4.0.1 is the fixed baseline.** Check every API name, config key, default and behaviour
-  claim against <https://spark.apache.org/docs/4.0.1/> while writing — not against the 2018/2020
-  books the plan compares with. (For example, ANSI mode is on by default in 4.0.)
-- **PySpark is the example language.** Classic PySpark for RDD and execution concepts; Spark Connect
-  is contrasted explicitly where its client boundary changes behaviour. Typed Datasets appear only as
-  Scala/Java comparisons.
-- **The retail order-event pipeline is the recurring example.** Its shared scenes are reused across
-  courses with a different `focus:` rather than redrawn. Small contrasting examples are fine when
-  they expose a wrong assumption.
-- **The teaching method spans a course, not a slide:** objective → mental model → worked code with
-  results → misconception/failure contrast → summary → bridge. The bridge to the next course is the
-  closing line of the last section's narration.
-- **Slides carry what the viewer should be able to re-read, not a transcript of the narration.**
-  Each slide states its objective or model, then the section's **worked numbers or example** and
-  its **misconception/contrast** as visible blocks — those were narration-only in the first pilot
-  draft and left 30–45% of the slide empty. Aim for **850–950** modelled px (rendered ~780–910 of
-  1080), never filler: every line must be something the narration says or the plan calls for, and
-  every fact added to a slide gets its sentence in the narration.
-- **Long identifiers go in code cards, not leaf cards.** `spark.sql.shuffle.partitions` and similar
-  cannot wrap (see layout rules below).
+  claim against <https://spark.apache.org/docs/4.0.1/>. ANSI mode is on by default.
+- **PySpark, classic.** Spark Connect is contrasted where its client boundary changes behaviour.
+- Teaching method per section: objective → mental model → annotated code and its real result →
+  failure/alternative contrast → bridge. Explain a term before relying on it.
+- **Author wide, not tall.** A scene is fitted to the 16:9 frame; lay concept frames out left to
+  right, and give a tall chain `cols` or a row.
+- **Fill the frame with content, not spacing**: real code, real output, worked numbers.
+- **One idea per frame.** Narration is flowing prose and never reads code aloud line by line; when it
+  names a line number, that number is the file's.
+- **Code lines stay within 80 columns** — the editor is 80 wide, and a longer line widens it.
 - **Out of scope** (per the plan): MLlib, GraphX, SparkR, DStreams, pandas API on Spark, connector
   internals, custom stateful APIs, table-format internals, cloud administration.
-
-## Scene inventory
-
-Each course adds its rows here as it is authored.
-
-| Scene id | Shape | Used by |
-| --- | --- | --- |
-| `local-daily-summary` | pandas code card → container of four limits | `foundations-workload-limits` |
-| `scale-up-vs-out` | storage node → two containers, arithmetic on the edges | `foundations-scale-up-vs-scale-out` |
-| `partitions-locality` | dataset → three machine containers of partition chips → combine | `foundations-partitioning-and-locality` |
-| `mapreduce-vs-spark` | MapReduce job column beside a PySpark code card | `foundations-mapreduce-to-spark` |
-| `retail-pipeline` | **shared.** Sources → `spark-application` (ingest, clean, enrich, summarise) → outputs. Later courses reuse it with `focus:` on a stage id, so keep the ids stable | `foundations-retail-pipeline` |
-| `rdd-lineage` | RDD code card → its `toDebugString()` | `abstractions-rdds-and-lineage` |
-| `pair-rdd-aggregation` | reduceByKey / groupByKey code → shuffle lineage | `abstractions-pair-rdds` |
-| `closures-shared-variables` | closure / broadcast / accumulator code above three cards | `abstractions-closures-and-shared-variables` |
-| `dataframe-schema` | read code above printSchema and the six-row `orders` table | `abstractions-dataframes-and-schemas` |
-| `column-expressions` | expression code → `enriched.show()` table | `abstractions-columns-and-expressions` |
-| `filter-group-aggregate` | daily summary code above result table and result schema | `abstractions-filter-group-aggregate` |
-| `sql-and-catalog` | SQL / saveAsTable code above temp view, global view, table | `abstractions-spark-sql-and-catalog` |
-| `abstraction-choice` | four `list` cards: RDD, DataFrame, SQL, typed Dataset | `abstractions-choosing-an-abstraction` |
-| `reading-sources` | CSV/JSON/Parquet dtypes card above a JDBC read card | `abstractions-reading-sources` |
-| `write-output` | partitioned write code → the output directory tree | `abstractions-writing-datasets` |
-| `driver-collection` | take/collect/foreachPartition code above a rules list | `abstractions-collection-and-side-effects` |
-| `batch-pipeline-case` | sales-by-city code above `stores` and result tables | `abstractions-worked-batch-pipeline` |
-| `schema-enforcement` | declared-type table (DECIMAL vs DOUBLE) above a schema-evolution code card | `correctness-schema-enforcement` |
-| `malformed-and-nulls` | parse-mode / NULL-comparison code → aggregates table | `correctness-nulls-and-malformed` |
-| `ansi-casts` | ANSI on/off table above a `try_*` / decimal code card | `correctness-casts-and-ansi` |
-| `join-amplification` | orders and duplicated-stores tables → join result counts | `correctness-join-cardinality` |
-| `window-functions` | window code → ranking table and default-frame table | `correctness-window-functions` |
-| `timestamps-time-zones` | one instant under three session zones, above LTZ/NTZ + DST code | `correctness-dates-and-time-zones` |
-| `nested-data` | nested access / explode code → line-item table and join-trap card | `correctness-nested-data` |
-| `udf-boundary` | UDF code → the plan node each one produced | `correctness-builtins-vs-udfs` |
-| `edge-case-pipeline` | safe pipeline code above daily table and invariants list | `correctness-worked-edge-cases` |
-| `plan-phases` | query code above the four explain phases as a 2×2 grid | `query-plans-code-to-plans` |
-| `analysis-phase` | parsed vs analyzed plan text above analysis-case code | `query-plans-analysis` |
-| `optimise-and-choose` | optimized plan above broadcast-hash vs sort-merge join plans | `query-plans-optimisation-and-strategy` |
-| `codegen-and-memory` | `*(n)` codegen plan above the unified-memory heap diagram | `query-plans-codegen-and-memory` |
-| `exchange-stages` | broadcast side → map side → reduce side, exchanges on the edges | `query-plans-exchanges-and-stages` |
-| `plan-and-trace` | final AQE plan → REST-API job/stage/task table | `query-plans-worked-plan-and-trace` |
-| `baseline-measure` | measuring harness code above the cold/warm/checksum table | `performance-baseline` |
-| `stage-metrics` | REST endpoints above the per-stage metrics table | `performance-ui-and-metrics` |
-| `resource-symptoms` | symptom → metric → measured table above the spill code | `performance-resource-symptoms` |
-| `partition-sizing` | sweep code above the shuffle-partition timings | `performance-partition-sizing` |
-| `shuffle-control` | repartition/coalesce plan-and-files table above the one-file trade | `performance-shuffles-and-repartitioning` |
-| `join-choice` | size-estimate card above the four join strategies | `performance-join-strategies` |
-| `skew-detect` | skew code above the five mitigations with task quantiles | `performance-data-skew` |
-| `cache-tradeoff` | cache code above recompute vs cached timings | `performance-caching` |
-| `layout-pruning` | layout code above rows/MB read per layout | `performance-data-layout` |
-| `aqe-runtime` | runtime join-switch code above the three AQE changes | `performance-aqe` |
-| `executor-resources` | cores scaling table above resource defaults | `performance-executor-resources` |
-| `before-after` | one-change-at-a-time table above starting point and checksum | `performance-worked-comparison` |
-| `local-app-lifecycle` | the full `daily_sales.py` code card above a 2×2 lifecycle (badged) | `architecture-local-application` |
-| `driver-executors` | driver container → cluster manager and executors side by side | `architecture-driver-and-executors` |
-| `classic-vs-connect` | Classic and Connect containers (Py4J / gRPC) above a Connect code card | `architecture-classic-vs-connect` |
-| `lazy-plan` | lazy code card above transformation and action `list` cards | `architecture-lazy-evaluation` |
-| `partitions-to-tasks` | 200 GB → ≈1,600 partition chips → 200 slot chips | `architecture-partitions-and-tasks` |
-| `narrow-vs-wide` | narrow lanes stacked over a wide all-to-all, both as chip graphs | `architecture-narrow-and-wide` |
-| `job-stage-task` | write() → Job 0: Stage 0 (scan, filter, partial sum) → shuffle → Stage 1 | `architecture-jobs-stages-tasks` |
-| `task-recovery` | five badged recovery steps beside a "what lineage does not cover" list | `architecture-trace-and-recompute` |
-| `incremental-query` | streaming aggregation code → rows-read vs cumulative-result table | `streaming-bounded-vs-unbounded` |
-| `streaming-engine` | six-step micro-batch container above an abridged `lastProgress` | `streaming-streaming-architecture` |
-| `sources-sinks` | sources table (replay offset) above sinks table (guarantee) | `streaming-sources-and-sinks` |
-| `trigger-modes` | four trigger calls → execution-modes table | `streaming-triggers` |
-| `event-vs-arrival` | late-events table above windows by event vs arrival time | `streaming-event-vs-processing-time` |
-| `window-timeline` | windowed query → the 09:00 window across four batches | `streaming-windows-and-late-data` |
-| `watermark-append` | watermark progression card above append-mode emits | `streaming-watermarks` |
-| `state-growth` | dedup code → state rows with and without a watermark | `streaming-state-growth` |
-| `output-modes` | append/update/complete per file above a mode-rules `list` | `streaming-output-modes` |
-| `streaming-joins` | stream-static and stream-stream join code → payment matches | `streaming-streaming-joins` |
-| `checkpoint-restart` | checkpoint directory card above allowed-changes table | `streaming-checkpointing` |
-| `delivery-guarantees` | two foreachBatch writers → crash-and-replay row counts | `streaming-delivery-guarantees` |
-| `recovery-timeline` | every event's fate → the final sink windows | `streaming-worked-timelines` |
-| `submit-config` | spark-submit with packed venv → config-precedence table | `production-packaging-and-configuration` |
-| `deploy-modes` | client-mode and cluster-mode containers above a placement table | `production-deployment-and-driver-placement` |
-| `cluster-managers` | master URLs card → standalone/YARN/K8s responsibility table | `production-cluster-managers` |
-| `capacity-plan` | executor sizing card above the year-backfill machine-hours table | `production-capacity-and-cost` |
-| `quality-checks` | pytest code above checks tied to Chapter 4 failures | `production-testing-and-quality` |
-| `observability-path` | event-log config → four-step diagnosis container | `production-observability` |
-| `retry-side-effects` | retry/speculation defaults above task-attempt outcomes | `production-failure-and-recovery` |
-| `table-format-boundary` | MERGE code above Parquet-vs-table-format guarantees | `production-table-formats` |
-| `backfill-overwrite` | overwrite code → static/dynamic table → safe-release `list` | `production-backfills-and-releases` |
-| `security-surface` | security settings above exposed-interfaces table | `production-security-boundaries` |
-| `production-review` | responsibility matrix above an open-risks `list` | `production-integrated-case` |
-
-The retail workload's numbers are fixed across the course: **~200 GB of order events a day,
-~70 TB for a year**, scans at an assumed **2 GB/s per machine** (70 TB ≈ 10 h on one, ≈ 12 min on 50).
-
-Layout lessons from the pilot: the scene pane is roughly square, so a long left-to-right chain of
-four or more cards renders too small to read. Stack it in a `TB` container instead. An edge between
-two adjacent nodes has no room for a label. `cols` on a container is ignored once that container
-has internal `edges`, so a chain cannot be wrapped into a grid. Markdown **tables are unstyled** by
-the shell (cells run together, and `check` does not model them), so write worked numbers as a
-sentence or a bullet instead. An edge that skips a layer (A → C past B) is routed straight through
-B; give the skipped node no edge of its own into C so the engine puts it beside C instead. When a
-scene renders as a thin strip, set `cols: 1` on its containers: a narrower shape scales up to fill
-the pane.
-
-The execution example is fixed too: 200 GB a day ÷ 128 MB (`spark.sql.files.maxPartitionBytes`)
-≈ **1,600 input partitions**; **50 executors × 4 cores = 200 slots**, so **8 waves**; shuffles land in
-**200** partitions (`spark.sql.shuffle.partitions`) before AQE coalesces them.
-
-From Chapter 3 on, worked results come from the **six-order sample** — o1 7 40.00 COMPLETED,
-o2 7 25.00 COMPLETED, o3 9 60.00 CANCELLED, o4 9 15.00 COMPLETED, o5 12 80.00 COMPLETED,
-o6 7 10.00 PENDING; stores 7 Leeds, 9 York, 12 Hull — and every output shown on screen was produced
-by **PySpark 4.0.1** run locally (`pip install pyspark==4.0.1`, Java 17/21), not predicted. Re-run
-the example before changing a result.
-Chapter 4 extends it with deliberately messy events (a truncated line, o8 without an amount, o9
-without a status, o10's `"12,50"`, o7 at unknown store 15, a resent o4, an o2 update, o4 at
-23:30 UTC). When running pandas or Python UDFs, set `PYSPARK_PYTHON` to the same interpreter as the
-driver — the workers otherwise start the system `python3`, which may lack pyarrow, and pin
-`pandas<3` for PySpark 4.0.1.
-
-Chapter 5's plans and trace come from **1,000,000 generated orders** (50 stores, 80% COMPLETED, 8
-Parquet files) on `local[4]`; the trace was read from the monitoring REST API
-(`/api/v1/applications/<id>/stages`). Plan text in code cards is **trimmed** — expression ids,
-plan ids, file locations and output lists removed, operator names and order verbatim — and the card
-filename says so. Re-explain a **fresh** DataFrame after changing a config: an existing DataFrame
-keeps its already-planned physical plan. `badge` does not render on leaf cards in `flow@1.2`, so
-never rely on it for order — lay steps out in reading order instead.
-
-Chapter 6's timings are measured, never estimated: **10,000,000 generated orders** in several layouts
-(32 files, partitioned by date, sorted by status, 2,000 small files, a skewed copy with store 7 at
-51%) plus 1,000,000 customers, on `local[4]` (4 cores, 15 GB). One warm-up run is discarded, the
-**median of 3** (5 where stated) is reported, and every comparison carries an unchanged checksum.
-**Time and explain the exact same DataFrame**: an early join "measurement" timed a query that read
-fewer columns than the one explained, so Spark broadcast it and the sort-merge numbers were wrong.
-In tables, keep cells short — one long cell sets the table width and shrinks the whole scene; put
-descriptions in a neighbouring code card instead.
-
-Chapter 7 uses **ten order events in four JSON files** (2026-10-01): file 1 o1 7 40 @09:01, o2 7 25
-@09:04, o3 9 15 @09:08; file 2 o4 9 60 @09:14, o5 12 80 @09:17, o2 resent; file 3 o6 7 10 @09:23,
-o7 7 30 @09:06 (late); file 4 o8 12 20 @09:31, o9 9 5 @09:02 (late). File source, `availableNow`,
-10-minute windows and a 10-minute watermark: the watermark goes 08:58 → 09:07 → 09:13 → 09:21, o7 is
-kept by the window aggregation and o9 dropped. Keep these events and numbers consistent across
-sections; the worked timeline (§13) is dedupe-within-watermark → windows → append.
-
-Chapter 8 has no new experiment: defaults and behaviour come from the 4.0.1 configuration,
-submission, monitoring and security guides (speculation multiplier 3 / quantile 0.9, memory overhead
-max(384 MB, 10%), static `partitionOverwriteMode`, Connect on 15002 without built-in auth), and the
-worked numbers reuse the course's fixed workload and the Chapter 4/6 failures.
-
-**Code cards: keep lines to ~52 characters.** A card's longest line sets its width, and the scene
-scales down to fit the widest node — one 70-character line with a trailing comment shrank whole
-scenes. Put comments on their own line and wrap calls. Likewise a row of side-by-side result nodes
-(table beside code) sets the width; stack them with `cols: 1` instead. A `table` node whose row
-repeats a value (`15.00 | 15.00`) logs a React duplicate-key warning from the engine; it renders
-correctly.
 
 ## Invariants — do not break
 
 - **Never write `x` or `y`.** Scenes are declarative: nodes, edges, nesting. `computeLayout` is not
   exported, so there is no way around this, and that is the point — reproducible frames.
 - **Do not reimplement the shell.** `SectionView`, `CourseIndex`, `SlidePanel` and the hooks are
-  withheld on purpose. The route contract (`#/<courseId>-<sectionId>`, `?capture=1`,
-  `window.__scene.plan()`) is what every recorder drives, and it holds only if every repo composes
-  the pieces identically.
+  withheld on purpose. The route contract is what every recorder drives, and it holds only if every
+  repo composes the pieces identically.
 - **`SiteHeader` goes on the catalog page only** — never on a section. A section is a video frame.
 - **Three stylesheets, in cascade order**, imported in `main.tsx`. The order is load-bearing:
-  1. `@graphlearning/flow/styles.css` — react-flow plus the IBM Plex faces the engine is
-     *calibrated* to. `codeMetrics` sizes code nodes from a measured 9.02px glyph advance, so a
-     different monospace face mis-sizes every code card. Carries the `.tok-*` colours.
-  2. `@graphlearning/shell/styles.css` — the shell paints the canvas (`--bg: #1a1d23`; SceneView
-     draws its dots at `#2a2f38` assuming a dark surface).
+  1. `@graphlearning/flow/styles.css` — the node styles plus the IBM Plex faces the engine is
+     *calibrated* to (`codeMetrics` sizes code from a measured 9.02px glyph advance). Carries `.tok-*`.
+  2. `@graphlearning/shell/styles.css` — the shell paints the canvas.
   3. `./theme.css` — this repo's three brand tokens. **Last, or the brand loses to the defaults.**
 - **`file:../ui-flow` / `file:../ui-shell` must never be committed.** Local engine work only; CI has
   no sibling checkout.
@@ -231,21 +144,19 @@ correctly.
 
 ## Layout rules the frames actually care about
 
-`npm run check` (`scripts/check-content.mjs`) models four silent failures — each builds green and
-breaks only on screen. Its comments carry the measured constants; the short version:
+`npm run check` (`check-content.mjs` + `check-render.mjs`) catches silent failures — each builds
+green and breaks only on screen:
 
-- **Leaf cards are a fixed 210×96** with a ~134px text column. Only containers grow to fit. Keep the
-  `label` to 2 wrapped lines; 2 label lines + 2 sub lines fits. Watch unbreakable tokens — `_`, `.`
-  and `/` are **not** break opportunities in CSS, so `snake_case` and paths overflow sideways in a
-  way the height model cannot see.
-- **Slides do not scale to fit.** Type size is fixed by the frame (`zoom = paneWidth / 806`,
-  width-proportional only), so an over-long slide **clips at the bottom** with no error. Budget
-  ~1000 design px of modelled height. Bullets cost far more than prose of the same length.
+- **Text that leaves its node is caught by rendering, not modelling.** Under flow 2.x cards grow to
+  fit their text; `check-render.mjs` measures the real frame at 3840×2160. Unbreakable tokens are
+  still the thing to watch — `_`, `.` and `/` are **not** break opportunities in CSS.
 - **A `focus:` that names no node in its scene is a silent no-op** — nothing lights up.
-- **`icon:` names are NOT guarded.** The engine's lucide registry is `Record<string, LucideIcon>`
-  and does not enumerate its keys, so a wrong name type-checks, passes `check`, builds, and renders
-  a card with no glyph. There are ~75 valid keys; copy one off an existing scene rather than
-  guessing a lucide name (`volume`, `move`, `maximize` and `git` are all absent, for instance).
+- **A list is a framed card with bullets.** `framed` is inherited, so set it on the list's PARENT
+  (`ideFrame` frames every side pane). Only prose cards and lists read `framed`.
+- **`icon:` names are NOT guarded.** A wrong name type-checks, passes `check`, builds, and renders
+  the pattern's default glyph. The engine's `icon-gallery` fixture lists every valid key (brand marks
+  include `spark`, `hadoop`, `java`, `python`, `pandas`, `parquet`, `kafka`, `kubernetes`). Avoid
+  `monitor` and `users`: Azure tiles shadow those lucide names.
 - **A section with no wav narrates silence** and records a silent segment. Audio resolves purely by
   convention: `public/audio/<course>/<section-id>.wav`.
 
@@ -254,15 +165,17 @@ What `check` does *not* model: an edge label landing on top of a card. Look at t
 ## Guards before handing over
 
 ```sh
-npm run build && npx tsc --noEmit && npm run check
+npm run build && npx tsc --noEmit && npm run check && npm run check:spine
 ```
 
-All three are a **floor, not proof** — they pass on frames that are visually wrong. The rendered
-route is the real bar, and the owner reviews it.
+`check-render.mjs` launches Chrome; as root (a container) it passes `--no-sandbox`, and
+`PUPPETEER_EXECUTABLE_PATH` picks the browser if puppeteer has none of its own. All four are a
+**floor, not proof** — they pass on frames that are visually wrong. The rendered route is the real
+bar, and the owner reviews it.
 
 ## Working agreement
 
-- **Author the whole unit, then hand over the route.** Scenes, slides and narration together.
+- **Author the whole unit, then hand over the route.** Scenes, spine steps and narration together.
 - **No ASCII sketches of scenes.** A sketch cannot show what the layout engine will do, which is the
   only thing worth looking at.
 - **No silent scaffolding**, no work outside the ask. Say plainly what was built, what was verified,
