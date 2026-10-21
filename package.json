@@ -13,6 +13,7 @@
     "capture": "vite preview --outDir dist-snapshot --port 5181",
     "capture:shots": "graphl-capture-shots",
     "record": "graphl-record",
+    "record:all": "graphl-record-all",
     "record:reels": "graphl-record-reels",
     "shots:4k": "graphl-shots-4k",
     "gen:audio": "graphl-gen-audio",
