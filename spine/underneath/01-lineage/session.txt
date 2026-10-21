@@ -1,0 +1,15 @@
+$ python explore/rdd_lineage.py
+WARNING: Using incubator modules: jdk.incubator.vector
+[(7, Decimal('95.00')), (9, Decimal('35.00')), (12, Decimal('125.00'))]
+(3) PythonRDD[6] at collect at /home/ana/retail-pipeline/explore/rdd_lineage.py:18 [
+]
+ |  MapPartitionsRDD[5] at mapPartitions at PythonRDD.scala:168 []
+ |  ShuffledRDD[4] at partitionBy at NativeMethodAccessorImpl.java:0 []
+ +-(3) PairwiseRDD[3] at reduceByKey at /home/ana/retail-pipeline/explore/rdd_lineag
+e.py:16 []
+    |  PythonRDD[2] at reduceByKey at /home/ana/retail-pipeline/explore/rdd_lineage.
+py:16 []
+    |  data/raw/orders MapPartitionsRDD[1] at textFile at NativeMethodAccessorImpl.j
+ava:0 []
+    |  data/raw/orders HadoopRDD[0] at textFile at NativeMethodAccessorImpl.java:0 [
+]

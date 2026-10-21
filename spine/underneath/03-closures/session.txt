@@ -1,0 +1,6 @@
+$ python explore/closures.py
+WARNING: Using incubator modules: jdk.incubator.vector
+plain variable on the driver: 0
+accumulator on the driver: 7
+[('Hull', 'o12'), ('Hull', 'o5'), ('Leeds', 'o1'), ('Leeds', 'o11'), ('Leeds', 'o2')
+, ('York', 'o13'), ('York', 'o4')]

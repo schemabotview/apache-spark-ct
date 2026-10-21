@@ -4,5 +4,6 @@
   "how-spark-runs": "How Apache Spark Runs Your Code: Driver, Executors, Lazy Evaluation, Stages and Tasks",
   "start": "Start a PySpark Project: Install PySpark, Your First SparkSession, and Reading Spark Errors",
   "read": "Reading Data in PySpark: DataFrames, JSON, Explicit Schemas, CSV, Parquet and JDBC",
-  "transform": "PySpark Transformations: Columns, Built-in Functions, Filters, Aggregations, Joins and Spark SQL"
+  "transform": "PySpark Transformations: Columns, Built-in Functions, Filters, Aggregations, Joins and Spark SQL",
+  "underneath": "Spark RDDs Explained: Lineage, reduceByKey vs groupByKey, Closures, Broadcast and Accumulators"
 }

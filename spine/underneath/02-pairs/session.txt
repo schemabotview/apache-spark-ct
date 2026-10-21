@@ -1,0 +1,5 @@
+$ python explore/pair_rdds.py
+WARNING: Using incubator modules: jdk.incubator.vector
+[(0, 1666683333), (1, 1666616667), (2, 1666650000)] True
+stage 0: 12 records, 868 bytes
+stage 2: 12 records, 335,705 bytes
