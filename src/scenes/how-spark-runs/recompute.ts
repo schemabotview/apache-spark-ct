@@ -10,7 +10,7 @@ export const recompute: Scene = ideFrame(
   'task-recompute',
   'how-spark-runs',
   runsTree('recompute.py', 'recompute.py'),
-  { file: 'recompute.py', code, show: [[8, 8], [11, 24]], highlight: [8, 13, 15, 20], pattern: 'network', terminal: session },
+  { file: 'recompute.py', code, show: [[8, 8], [11, 24]], highlight: [8, 13, 15, 20], terminal: session },
   {
     id: 'task-recompute-pane',
     label: 'side',

@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const dataframesAndRows: Section = {
+  id: 'dataframes-and-rows',
+  title: 'DataFrames and rows',
+  scene: 'dataframe-rows',
+  narration:
+    "Before reading real files, it is worth looking closely at the thing every read produces: a DataFrame. Lines thirteen to twenty-three build one from the six orders of our sample, written as Python tuples, with four column names. The table at the top right lists what a DataFrame has. Rows, here six of them, each one a Row object with a value for every column. Columns, with names. A schema, which is a type for every column. And partitions: the rows are spread across them, four here, one for each task slot, because every DataFrame is distributed even when it is tiny. Line twenty-four prints dtypes, the schema as a list of name and type pairs, and line twenty-five shows the first three rows. Show is an action, so it runs a job, and only three rows come back, with a note saying only the top three are shown. Now the second table, because it holds the first lesson about types. We never told Spark any types; it chose them from the Python values. Strings became string. The store number, a Python int, became bigint, a sixty-four-bit integer, which is generous for a store number but harmless. And the amount, a Python float, became double: a binary floating-point number. A double is fast, and fine for measurements, but it cannot represent most decimal fractions exactly, so ten pence plus twenty pence is not quite thirty pence, and a sum over millions of orders drifts. For money we want a decimal type with exactly two places, and the moment the data comes from a file, we will declare one. Building rows in Python, as here, is for tests and tiny examples. Real data arrives in files, and Spark reads them in parallel, partition by partition, without the rows ever passing through Python. Next, the first real file: a day of order events in JSON.",
+}

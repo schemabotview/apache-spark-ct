@@ -1,0 +1,11 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
++--------+-----+
+|store_id| city|
++--------+-----+
+|       7|Leeds|
+|       9| York|
+|      12| Hull|
++--------+-----+
+
+[('_c0', 'string'), ('_c1', 'string')]

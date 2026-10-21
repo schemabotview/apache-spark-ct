@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const readingCsv: Section = {
+  id: 'reading-csv',
+  title: 'Reading CSV',
+  scene: 'read-csv',
+  narration:
+    "The second source is data slash raw slash stores dot csv, new in the explorer: a header line, store ID comma city, then one line per store. Seven is Leeds, nine is York, twelve is Hull. Lines eighteen to twenty-two read it with two pieces of information. The header option says the first line holds column names, not data. And the schema gives each column its type: store ID an int, city a string. The terminal shows the three stores, each in its place. Then, for contrast, line twenty-five reads the same file with neither. Look at the result: two columns, called underscore c zero and underscore c one, both strings. Without the header option, Spark treated the header line as an ordinary row, so the words store ID and city became data. And without a schema, a CSV column is always a string, because a CSV file is only text separated by commas; it has no idea that seven is a number. The table on the right lists the options that matter most. Header defaults to false. Infer schema also defaults to false; switch it on and Spark makes an extra pass to guess types, with the same costs as JSON inference. The separator is a comma by default, and is often a semicolon or a tab in files from other systems. Mode says what to do with a malformed line, and defaults to permissive, which keeps the row and puts nulls in the columns that would not parse. And null value says which text counts as missing. The lesson is the same as for JSON, only stronger. The header gives you names; only a schema gives you types. Now we can read both of the pipeline's inputs, with the types we mean. Next, how these text formats compare with Parquet, and with reading straight from a database.",
+}

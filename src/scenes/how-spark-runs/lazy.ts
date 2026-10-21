@@ -10,7 +10,7 @@ export const lazy: Scene = ideFrame(
   'lazy-evaluation',
   'how-spark-runs',
   runsTree('lazy.py', 'lazy.py'),
-  { file: 'lazy.py', code, show: [[6, 21]], highlight: [12, 13, 14, 17, 19], pattern: 'network', terminal: session },
+  { file: 'lazy.py', code, show: [[6, 21]], highlight: [12, 13, 14, 17, 19], terminal: session },
   {
     id: 'lazy-evaluation-pane',
     label: 'side',

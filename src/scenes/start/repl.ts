@@ -8,7 +8,7 @@ export const replBeside: Scene = ideFrame(
   'repl-beside',
   'retail-pipeline',
   startTree('daily_sales.py'),
-  { file: 'jobs/daily_sales.py', code, pattern: 'service', terminal: session },
+  { file: 'jobs/daily_sales.py', code, terminal: session },
   {
     id: 'repl-beside-pane',
     label: 'side',

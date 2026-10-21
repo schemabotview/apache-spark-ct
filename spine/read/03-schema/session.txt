@@ -1,0 +1,12 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+root
+ |-- order_id: string (nullable = true)
+ |-- store_id: integer (nullable = true)
+ |-- amount: decimal(10,2) (nullable = true)
+ |-- status: string (nullable = true)
+ |-- event_time: timestamp (nullable = true)
+
+jobs run: []
+Row(order_id='o1', store_id=7, amount=Decimal('40.00'), status='COMPLETED', event_ti
+me=datetime.datetime(2026, 10, 1, 9, 1))

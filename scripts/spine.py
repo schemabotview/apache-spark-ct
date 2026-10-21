@@ -54,6 +54,7 @@ PROJECT = 'retail-pipeline'
 CACHE = Path(__file__).resolve().parent.parent / '.spine-cache'
 ANSI = re.compile(r'\x1b\[[0-9;?]*[@-~]|\x1b[=>]|\r')
 MARK = '__SPINE_MARK__'
+UUID = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 # The terminal pane's width in characters (src/scenes/ide.ts): output is wrapped there, as a real
 # terminal of that width wraps it, and COLUMNS tells the tools that do their own layout.
 COLUMNS = 84
@@ -217,6 +218,9 @@ def wrap(text: str) -> str:
 def masked(text: str, step: Path) -> str:
     """For a volatile step, hide the numbers that legitimately change from run to run."""
     config = json.loads((step / 'step.json').read_text()) if (step / 'step.json').exists() else {}
+    # Spark names every file it writes part-NNNNN-<random uuid>: the name changes on every run, the
+    # rest of the line does not, so a UUID is compared as a UUID, in every step
+    text = UUID.sub('<uuid>', text)
     return re.sub(r'\d+', '#', text) if config.get('volatile') else text
 
 
@@ -244,7 +248,7 @@ def main() -> int:
             import difflib
             sys.stdout.writelines(difflib.unified_diff(expected.splitlines(True), transcript.splitlines(True), 'session.txt', 'real run'))
         for file, text in captured.items():
-            if (step / 'captured' / file).read_text() != text:
+            if masked((step / 'captured' / file).read_text(), step) != masked(text, step):
                 problems += 1
                 print(f'✗ {name}: captured/{file} differs from a real run')
     if not write:

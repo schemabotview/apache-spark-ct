@@ -1,6 +1,7 @@
 import { whySpark } from './why-spark'
 import { howSparkRuns } from './how-spark-runs'
 import { start } from './start'
+import { read } from './read'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order, one entry per course of docs/APACHE-SPARK-COURSE-PLAN.md. A
@@ -9,6 +10,7 @@ export const COURSES: Record<string, Course> = {
   [whySpark.id]: whySpark,
   [howSparkRuns.id]: howSparkRuns,
   [start.id]: start,
+  [read.id]: read,
 }
 
 export type { Course, Section }

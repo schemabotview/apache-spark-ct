@@ -1,0 +1,12 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+[('order_id', 'string'), ('store_id', 'bigint'), ('amount', 'double'), ('status', 's
+tring')]
++--------+--------+------+---------+
+|order_id|store_id|amount|   status|
++--------+--------+------+---------+
+|      o1|       7|  40.0|COMPLETED|
+|      o2|       7|  25.0|COMPLETED|
+|      o3|       9|  60.0|CANCELLED|
++--------+--------+------+---------+
+only showing top 3 rows

@@ -1,0 +1,13 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+[('order_id', 'string'), ('store_id', 'int'), ('amount', 'decimal(10,2)'), ('status'
+, 'string'), ('event_time', 'timestamp')]
+== Physical Plan ==
+*(1) Project [amount#14]
++- *(1) Filter (isnotnull(status#15) AND (status#15 = COMPLETED))
+   +- *(1) ColumnarToRow
+      +- FileScan parquet [amount#14,status#15] Batched: true, DataFilters: [isnotnu
+ll(status#15), (status#15 = COMPLETED)], Format: Parquet, Location: InMemoryFileInde
+x(1 paths)[file:/home/ana/retail-pipeline/data/tmp/orders], PartitionFilters: [], Pu
+shedFilters: [IsNotNull(status), EqualTo(status,COMPLETED)], ReadSchema: struct<amou
+nt:decimal(10,2),status:string>

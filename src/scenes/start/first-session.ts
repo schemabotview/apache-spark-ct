@@ -8,7 +8,7 @@ export const firstSession: Scene = ideFrame(
   'first-session',
   'retail-pipeline',
   startTree('daily_sales.py', ['conf', 'daily_sales.py']),
-  { file: 'jobs/daily_sales.py', code, highlight: [6, 8, 9, 10, 16], pattern: 'service', terminal: session },
+  { file: 'jobs/daily_sales.py', code, highlight: [6, 8, 9, 10, 16], terminal: session },
   {
     id: 'first-session-pane',
     label: 'side',

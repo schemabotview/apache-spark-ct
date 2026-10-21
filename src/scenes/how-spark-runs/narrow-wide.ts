@@ -11,7 +11,7 @@ export const narrowWide: Scene = ideFrame(
   'narrow-wide',
   'how-spark-runs',
   runsTree('narrow_wide.py', 'narrow_wide.py'),
-  { file: 'narrow_wide.py', code, show: [[6, 19]], highlight: [13, 14, 17, 18], pattern: 'network', terminal: session },
+  { file: 'narrow_wide.py', code, show: [[6, 19]], highlight: [13, 14, 17, 18], terminal: session },
   {
     id: 'narrow-wide-pane',
     label: 'side',

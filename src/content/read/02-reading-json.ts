@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const readingJson: Section = {
+  id: 'reading-json',
+  title: 'Reading JSON',
+  scene: 'read-json',
+  narration:
+    "The project now has data. In the explorer, a folder data slash raw slash orders holds the first day's file, and each line of it is one JSON object: one order event, with an order ID, store, amount, status and event time. This line-per-record layout is called JSON Lines, and it is what Spark's JSON reader expects by default. Line thirteen reads it. Notice the path is the folder, not the file: Spark reads every file in a folder, which is how one job will handle many days. Line fourteen prints the schema, and the terminal shows what Spark worked out on its own. It found five columns, but look at the types. The amount is a double, because the JSON number forty point zero zero looks like a float. The event time is a string, because to JSON a timestamp is just text. The store ID is a long. And the columns are in alphabetical order, amount first, not the order they appear in the file. The table on the right compares each guess with what we actually mean. There is a cost hidden in the last line of output. Lines sixteen and seventeen ask the driver which jobs have run, and the answer is job zero, even though there is no action anywhere in this script. To infer a schema, Spark had to read the data: every line of every file, by default. On our six lines that is nothing. On two hundred gigabytes a day, it is an entire extra pass over the input before the real work begins. And the result can change from day to day: a day where every amount happens to be a whole number would be read as a long instead of a double, and code that worked yesterday would behave differently today. Inference is convenient in the REPL, when you are exploring a file you have never seen. In a job, it is a liability. Next, we tell Spark the schema instead.",
+}

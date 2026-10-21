@@ -14,7 +14,7 @@ export const workload: Scene = ideFrame(
     { name: 'day_summary.py', state: 'active' },
     { name: 'orders.json', note: 'six events' },
   ],
-  { file: 'day_summary.py', code, highlight: [6, 13, 14, 18], pattern: 'network', terminal: session },
+  { file: 'day_summary.py', code, highlight: [6, 13, 14, 18], terminal: session },
   {
     id: 'workload-limits-pane',
     label: 'side',

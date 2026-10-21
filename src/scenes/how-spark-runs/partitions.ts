@@ -10,7 +10,7 @@ export const partitions: Scene = ideFrame(
   'partitions-tasks',
   'how-spark-runs',
   runsTree('partitions.py', 'partitions.py'),
-  { file: 'partitions.py', code, show: [[10, 25]], highlight: [16, 17, 18, 21, 23], pattern: 'network', terminal: session },
+  { file: 'partitions.py', code, show: [[10, 25]], highlight: [16, 17, 18, 21, 23], terminal: session },
   {
     id: 'partitions-tasks-pane',
     label: 'side',

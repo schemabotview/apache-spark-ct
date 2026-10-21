@@ -12,7 +12,7 @@ export const newProject: Scene = ideFrame(
     { name: '.venv', folder: true, state: 'new', note: 'activated' },
     { name: 'requirements.txt', state: 'active' },
   ],
-  { file: 'requirements.txt', code: requirements, pattern: 'network', terminal: session },
+  { file: 'requirements.txt', code: requirements, terminal: session },
   {
     id: 'new-project-pane',
     label: 'side',

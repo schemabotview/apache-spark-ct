@@ -12,7 +12,7 @@ export const stages: Scene = ideFrame(
   'jobs-stages-tasks',
   'how-spark-runs',
   runsTree('stages.py', 'stages.py'),
-  { file: 'stages.py', code, show: [[9, 25]], highlight: [11, 18, 22, 24], pattern: 'network', terminal: session },
+  { file: 'stages.py', code, show: [[9, 25]], highlight: [11, 18, 22, 24], terminal: session },
   {
     id: 'jobs-stages-tasks-pane',
     label: 'side',

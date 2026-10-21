@@ -10,7 +10,7 @@ export const connect: Scene = ideFrame(
   'classic-connect',
   'how-spark-runs',
   runsTree('connect.py', 'connect.py'),
-  { file: 'connect.py', code, show: [[7, 22]], highlight: [10, 12, 14, 19], pattern: 'network', terminal: session },
+  { file: 'connect.py', code, show: [[7, 22]], highlight: [10, 12, 14, 19], terminal: session },
   {
     id: 'classic-connect-pane',
     label: 'side',

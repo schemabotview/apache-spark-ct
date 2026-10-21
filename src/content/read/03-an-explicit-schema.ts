@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const anExplicitSchema: Section = {
+  id: 'an-explicit-schema',
+  title: 'An explicit schema',
+  scene: 'explicit-schema',
+  narration:
+    "Lines thirteen to sixteen declare the schema ourselves, as a string in the same syntax as a SQL table definition, and line seventeen passes it to the reader with schema, before json. The table on the right gives each choice and its reason. The order ID is a string, because it is an identifier, not something to do arithmetic on. The store ID is an int, which is plenty, and is the type the stores file will use, so the two will join cleanly. The status is a string. The event time is a timestamp: an instant, which Spark parses from the ISO text in the file. And the amount is a decimal with ten digits, two of them after the point, so forty pounds is stored as exactly four thousand pence, and sums are exact to the penny. The terminal shows the result. The schema is exactly what we declared, in the order we declared it. Then the line that matters: jobs run, an empty list. With a schema supplied, Spark had nothing to learn from the data, so it read nothing; the plan was built from our declaration alone. Line twenty-two takes the first row, which is an action, and the row it returns shows the types arriving in Python: the amount as a Python Decimal of forty point zero zero, and the event time as a datetime, nine-oh-one on the first of October, in UTC. A declared schema is a contract. It is checked against the data as it is read, it does not change when the data changes, and it costs nothing to apply. What happens when a value does not fit, an amount that is not a number, or a missing field, is the subject of Course eight. For now, every order in our file fits. Next, the second source: the stores, in CSV.",
+}

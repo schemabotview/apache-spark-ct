@@ -8,7 +8,7 @@ export const firstJob: Scene = ideFrame(
   'first-job',
   'how-spark-runs',
   runsTree('first_job.py', 'first_job.py'),
-  { file: 'first_job.py', code, highlight: [6, 7, 10, 13, 14, 15], pattern: 'network', terminal: session },
+  { file: 'first_job.py', code, highlight: [6, 7, 10, 13, 14, 15], terminal: session },
   {
     id: 'first-job-pane',
     label: 'side',
