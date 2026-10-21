@@ -8,7 +8,7 @@ export const taskSideEffects: Scene = ideFrame(
   'task-side-effects',
   'retail-pipeline',
   writeTree(4, 'jobs/notify.py'),
-  { file: 'jobs/notify.py', code: code, show: [[9, 25]], highlight: [14, 16, 17, 18, 24], terminal: fold(session, [1, 2], [4, -1]) },
+  { file: 'jobs/notify.py', code: code, show: [[9, 25]], highlight: [14, 16, 17, 18, 24], terminal: fold(session, [1, 2], [5, -1]) },
   {
     id: 'task-side-effects-pane',
     label: 'side',
