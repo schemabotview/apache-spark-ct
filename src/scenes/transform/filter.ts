@@ -19,7 +19,7 @@ export const filterSelect: Scene = ideFrame(
         kind: 'table',
         label: 'Three ways to keep rows',
         headers: ['call', 'note'],
-        values: [['filter(F.col(...) == ...)', 'a Column condition'], ['where(...)', 'the same method, by another name'], ['where("status = \'COMPLETED\'")', 'SQL text, parsed the same']],
+        values: [['filter(cond)', 'a Column condition'], ['where(cond)', 'the same method'], ['where("...")', 'SQL text, same plan']],
       },
       {
         id: 'filter-select-facts',
