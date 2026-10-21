@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const tableFormats: Section = {
+  id: 'table-formats',
+  title: 'Table formats',
+  scene: 'table-format-boundary',
+  narration:
+    'Every job in this course has written its output as a folder of Parquet files, and a folder makes no promises about a write that goes wrong. This script shows the worst case. Lines ten and eleven write a summary, six rows, and line twelve reads it back: six rows. Then a new version of the job has a bug: line fifteen divides by a column that is zero on one row, and with ANSI mode on, Spark stops the job there. Line seventeen overwrites the summary with it. The terminal shows the task failing, the write aborting, and Python catching the error. Then the script looks at the folder. It holds nothing. And reading it fails with unable to infer schema, because there is no longer any Parquet in it at all. Yesterday\'s summary is gone, and today\'s was never written. This is how overwrite works on a plain folder: Spark deletes the old files, then writes the new ones. If the write fails in between, there is nothing left. And while a write is in progress, a reader can see a half-written folder. The table on the right sets that against a table format such as Delta Lake, Apache Iceberg or Apache Hudi. A table format keeps a log of commits next to the data files, and a write becomes visible only when its commit is written, in one atomic step. A failed write never commits, so readers keep seeing the last good version; readers always see a whole version, old or new; earlier versions can be read again; rows can be updated or merged without rewriting everything; and concurrent writers are coordinated. How each format does this is outside this course, as the plan says. What matters is knowing which guarantees a plain folder lacks, and choosing a table format whenever someone else reads what you write. Next, re-running one day without losing the others.',
+}

@@ -1,0 +1,1 @@
+{"venv": true, "requirements": "udf", "setup": ["deploy/package.sh > /dev/null"]}

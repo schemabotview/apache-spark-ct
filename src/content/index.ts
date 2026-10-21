@@ -9,6 +9,7 @@ import { correct } from './correct'
 import { plans } from './plans'
 import { fast } from './fast'
 import { stream } from './stream'
+import { ship } from './ship'
 import type { Course, Section } from './types'
 
 // Course registry, in syllabus order, one entry per course of docs/APACHE-SPARK-COURSE-PLAN.md. A
@@ -25,6 +26,7 @@ export const COURSES: Record<string, Course> = {
   [plans.id]: plans,
   [fast.id]: fast,
   [stream.id]: stream,
+  [ship.id]: ship,
 }
 
 export type { Course, Section }

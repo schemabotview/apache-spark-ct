@@ -1,0 +1,13 @@
+$ deploy/submit.sh jobs/daily_sales.py > /dev/null 2>&1
+$ ls data/events
+eventlog_v2_local-1792612255416
+$ deploy/history.sh start
+history server on http://localhost:18080
+$ python -m ops.history
+daily-sales local-1792612255416: completed True, 27.4 s
+  jobs   22, failed 0
+  stages 22 run, 28 skipped
+  tasks  1014, failed 0
+  input  180 rows, shuffle 32.9 KiB written
+$ deploy/history.sh stop
+stopped

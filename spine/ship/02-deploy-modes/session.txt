@@ -1,0 +1,22 @@
+$ deploy/submit.sh ops/where.py
+WARNING: Using incubator modules: jdk.incubator.vector
+master       local[4]
+deploy mode  client
+driver host  localhost
+sum 0..999999 499999500000
+JVMs         1
+$ deploy/submit.sh --deploy-mode cluster ops/where.py
+WARNING: Using incubator modules: jdk.incubator.vector
+Exception in thread "main" org.apache.spark.SparkException: Cluster deploy mode is n
+ot compatible with master "local"
+	at org.apache.spark.deploy.SparkSubmit.error(SparkSubmit.scala:1045)
+	at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:3
+07)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain
+(SparkSubmit.scala:961)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:204)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:227)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:96)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1132)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1141)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)

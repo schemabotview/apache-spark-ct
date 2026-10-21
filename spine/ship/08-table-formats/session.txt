@@ -1,0 +1,217 @@
+$ python -m ops.overwrite
+WARNING: Using incubator modules: jdk.incubator.vector
+before: 6 rows
+ERROR Utils: Aborting task
+ERROR FileFormatWriter: Job: job_202610211952077501203033520634733_0005, Task: task_
+202610211952077501203033520634733_0005_m_000002, Task attempt attempt_20261021195207
+7501203033520634733_0005_m_000002_12 aborted.
+ERROR Executor: Exception in task 2.0 in stage 5.0 (TID 12)
+WARN TaskSetManager: Lost task 2.0 in stage 5.0 (TID 12) (localhost executor driver)
+: org.apache.spark.SparkArithmeticException: [DIVIDE_BY_ZERO] Division by zero. Use 
+`try_divide` to tolerate divisor being 0 and return NULL instead. If necessary set "
+spark.sql.ansi.enabled" to "false" to bypass this error. SQLSTATE: 22012
+ERROR TaskSetManager: Task 2 in stage 5.0 failed 1 times; aborting job
+ERROR FileFormatWriter: Aborting job 04985d68-989f-4122-9b74-97014ac06a4f.
+{"ts": "2026-10-21 19:52:07.885", "level": "ERROR", "logger": "DataFrameQueryContext
+Logger", "msg": "[DIVIDE_BY_ZERO] Division by zero. Use `try_divide` to tolerate div
+isor being 0 and return NULL instead. If necessary set \"spark.sql.ansi.enabled\" to
+ \"false\" to bypass this error. SQLSTATE: 22012", "context": {"file": "/home/ana/re
+tail-pipeline/ops/overwrite.py", "line": "15", "fragment": "__truediv__", "errorClas
+s": "DIVIDE_BY_ZERO"}, "exception": {"class": "Py4JJavaError", "msg": "An error occu
+rred while calling o57.parquet.\n: org.apache.spark.SparkArithmeticException: [DIVID
+E_BY_ZERO] Division by zero. Use `try_divide` to tolerate divisor being 0 and return
+ NULL instead. If necessary set \"spark.sql.ansi.enabled\" to \"false\" to bypass th
+is error. SQLSTATE: 22012\n== DataFrame ==\n\"__truediv__\" was called from\n/home/a
+na/retail-pipeline/ops/overwrite.py:15\n\n\tat org.apache.spark.sql.errors.QueryExec
+utionErrors$.divideByZeroError(QueryExecutionErrors.scala:203)\n\tat org.apache.spar
+k.sql.errors.QueryExecutionErrors.divideByZeroError(QueryExecutionErrors.scala)\n\ta
+t org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodeg
+enStage1.project_doConsume_0$(Unknown Source)\n\tat org.apache.spark.sql.catalyst.ex
+pressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Sourc
+e)\n\tat org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowItera
+tor.java:43)\n\tat org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$
+WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactor
+y.scala:50)\n\tat org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anon
+fun$executeTask$1(FileFormatWriter.scala:390)\n\tat org.apache.spark.util.Utils$.try
+WithSafeFinallyAndFailureCallbacks(Utils.scala:1323)\n\tat org.apache.spark.sql.exec
+ution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:418)\n\tat or
+g.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(Wr
+iteFiles.scala:107)\n\tat org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(
+RDD.scala:901)\n\tat org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapt
+ed(RDD.scala:901)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsR
+DD.scala:52)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:374)\n
+\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:338)\n\tat org.apache.spark.schedul
+er.ResultTask.runTask(ResultTask.scala:93)\n\tat org.apache.spark.TaskContext.runTas
+kWithListeners(TaskContext.scala:171)\n\tat org.apache.spark.scheduler.Task.run(Task
+.scala:147)\n\tat org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$5(Execu
+tor.scala:647)\n\tat org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkE
+rrorUtils.scala:80)\n\tat org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(
+SparkErrorUtils.scala:77)\n\tat org.apache.spark.util.Utils$.tryWithSafeFinally(Util
+s.scala:99)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:6
+50)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExec
+utor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(T
+hreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n
+\tat org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:1009)\n\tat o
+rg.apache.spark.SparkContext.runJob(SparkContext.scala:2484)\n\tat org.apache.spark.
+sql.execution.datasources.FileFormatWriter$.$anonfun$executeWrite$4(FileFormatWriter
+.scala:309)\n\tat org.apache.spark.sql.execution.datasources.FileFormatWriter$.write
+AndCommit(FileFormatWriter.scala:270)\n\tat org.apache.spark.sql.execution.datasourc
+es.FileFormatWriter$.executeWrite(FileFormatWriter.scala:306)\n\tat org.apache.spark
+.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:189)\n\tat
+ org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(In
+sertIntoHadoopFsRelationCommand.scala:195)\n\tat org.apache.spark.sql.execution.comm
+and.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:117)\n\tat org
+.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands
+.scala:115)\n\tat org.apache.spark.sql.execution.command.DataWritingCommandExec.exec
+uteCollect(commands.scala:129)\n\tat org.apache.spark.sql.execution.QueryExecution.$
+anonfun$eagerlyExecuteCommands$2(QueryExecution.scala:155)\n\tat org.apache.spark.sq
+l.execution.SQLExecution$.$anonfun$withNewExecutionId0$8(SQLExecution.scala:163)\n\t
+at org.apache.spark.sql.execution.SQLExecution$.withSessionTagsApplied(SQLExecution.
+scala:272)\n\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecut
+ionId0$7(SQLExecution.scala:125)\n\tat org.apache.spark.JobArtifactSet$.withActiveJo
+bArtifactState(JobArtifactSet.scala:94)\n\tat org.apache.spark.sql.artifact.Artifact
+Manager.$anonfun$withResources$1(ArtifactManager.scala:112)\n\tat org.apache.spark.s
+ql.artifact.ArtifactManager.withClassLoaderIfNeeded(ArtifactManager.scala:106)\n\tat
+ org.apache.spark.sql.artifact.ArtifactManager.withResources(ArtifactManager.scala:1
+11)\n\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$
+6(SQLExecution.scala:125)\n\tat org.apache.spark.sql.execution.SQLExecution$.withSQL
+ConfPropagated(SQLExecution.scala:295)\n\tat org.apache.spark.sql.execution.SQLExecu
+tion$.$anonfun$withNewExecutionId0$1(SQLExecution.scala:124)\n\tat org.apache.spark.
+sql.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.execu
+tion.SQLExecution$.withNewExecutionId0(SQLExecution.scala:78)\n\tat org.apache.spark
+.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:237)\n\tat org.ap
+ache.spark.sql.execution.QueryExecution.$anonfun$eagerlyExecuteCommands$1(QueryExecu
+tion.scala:155)\n\tat org.apache.spark.sql.execution.QueryExecution$.withInternalErr
+or(QueryExecution.scala:654)\n\tat org.apache.spark.sql.execution.QueryExecution.org
+$apache$spark$sql$execution$QueryExecution$$eagerlyExecute$1(QueryExecution.scala:15
+4)\n\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteComman
+ds$3.applyOrElse(QueryExecution.scala:169)\n\tat org.apache.spark.sql.execution.Quer
+yExecution$$anonfun$eagerlyExecuteCommands$3.applyOrElse(QueryExecution.scala:164)\n
+\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$
+1(TreeNode.scala:470)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withO
+rigin(origin.scala:86)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformD
+ownWithPruning(TreeNode.scala:470)\n\tat org.apache.spark.sql.catalyst.plans.logical
+.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$trans
+formDownWithPruning(LogicalPlan.scala:37)\n\tat org.apache.spark.sql.catalyst.plans.
+logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:360)\n\tat org.
+apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(Ana
+lysisHelper.scala:356)\n\tat org.apache.spark.sql.catalyst.plans.logical.LogicalPlan
+.transformDownWithPruning(LogicalPlan.scala:37)\n\tat org.apache.spark.sql.catalyst.
+plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:37)\n\tat org.a
+pache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:446)\n\tat org.
+apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scal
+a:164)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyCommandExecu
+ted$1(QueryExecution.scala:126)\n\tat scala.util.Try$.apply(Try.scala:217)\n\tat org
+.apache.spark.util.Utils$.doTryWithCallerStacktrace(Utils.scala:1378)\n\tat org.apac
+he.spark.util.Utils$.getTryWithCallerStacktrace(Utils.scala:1439)\n\tat org.apache.s
+park.util.LazyTry.get(LazyTry.scala:58)\n\tat org.apache.spark.sql.execution.QueryEx
+ecution.commandExecuted(QueryExecution.scala:131)\n\tat org.apache.spark.sql.executi
+on.QueryExecution.assertCommandExecuted(QueryExecution.scala:192)\n\tat org.apache.s
+park.sql.classic.DataFrameWriter.runCommand(DataFrameWriter.scala:622)\n\tat org.apa
+che.spark.sql.classic.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:273)\n\ta
+t org.apache.spark.sql.classic.DataFrameWriter.saveInternal(DataFrameWriter.scala:24
+1)\n\tat org.apache.spark.sql.classic.DataFrameWriter.save(DataFrameWriter.scala:118
+)\n\tat org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:369)\n\ta
+t java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\t
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccess
+orImpl.java:75)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.in
+voke(DelegatingMethodAccessorImpl.java:52)\n\tat java.base/java.lang.reflect.Method.
+invoke(Method.java:580)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.jav
+a:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\ta
+t py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMe
+thod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.j
+ava:79)\n\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.jav
+a:184)\n\tat py4j.ClientServerConnection.run(ClientServerConnection.java:108)\n\tat 
+java.base/java.lang.Thread.run(Thread.java:1583)\n\tSuppressed: org.apache.spark.uti
+l.Utils$OriginalTryStackTraceException: Full stacktrace of original doTryWithCallerS
+tacktrace caller\n\t\tat org.apache.spark.sql.errors.QueryExecutionErrors$.divideByZ
+eroError(QueryExecutionErrors.scala:203)\n\t\tat org.apache.spark.sql.errors.QueryEx
+ecutionErrors.divideByZeroError(QueryExecutionErrors.scala)\n\t\tat org.apache.spark
+.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.project_d
+oConsume_0$(Unknown Source)\n\t\tat org.apache.spark.sql.catalyst.expressions.Genera
+tedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)\n\t\tat org.a
+pache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n
+\t\tat org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCo
+degenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:50)\
+n\t\tat org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$execut
+eTask$1(FileFormatWriter.scala:390)\n\t\tat org.apache.spark.util.Utils$.tryWithSafe
+FinallyAndFailureCallbacks(Utils.scala:1323)\n\t\tat org.apache.spark.sql.execution.
+datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:418)\n\t\tat org.ap
+ache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteF
+iles.scala:107)\n\t\tat org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RD
+D.scala:901)\n\t\tat org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapt
+ed(RDD.scala:901)\n\t\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartition
+sRDD.scala:52)\n\t\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:37
+4)\n\t\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:338)\n\t\tat org.apache.spark
+.scheduler.ResultTask.runTask(ResultTask.scala:93)\n\t\tat org.apache.spark.TaskCont
+ext.runTaskWithListeners(TaskContext.scala:171)\n\t\tat org.apache.spark.scheduler.T
+ask.run(Task.scala:147)\n\t\tat org.apache.spark.executor.Executor$TaskRunner.$anonf
+un$run$5(Executor.scala:647)\n\t\tat org.apache.spark.util.SparkErrorUtils.tryWithSa
+feFinally(SparkErrorUtils.scala:80)\n\t\tat org.apache.spark.util.SparkErrorUtils.tr
+yWithSafeFinally$(SparkErrorUtils.scala:77)\n\t\tat org.apache.spark.util.Utils$.try
+WithSafeFinally(Utils.scala:99)\n\t\tat org.apache.spark.executor.Executor$TaskRunne
+r.run(Executor.scala:650)\n\t\tat java.base/java.util.concurrent.ThreadPoolExecutor.
+runWorker(ThreadPoolExecutor.java:1144)\n\t\tat java.base/java.util.concurrent.Threa
+dPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\t\tat java.base/java.lang.Th
+read.run(Thread.java:1583)\n\t\tat org.apache.spark.scheduler.DAGScheduler.runJob(DA
+GScheduler.scala:1009)\n\t\tat org.apache.spark.SparkContext.runJob(SparkContext.sca
+la:2484)\n\t\tat org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonf
+un$executeWrite$4(FileFormatWriter.scala:309)\n\t\tat org.apache.spark.sql.execution
+.datasources.FileFormatWriter$.writeAndCommit(FileFormatWriter.scala:270)\n\t\tat or
+g.apache.spark.sql.execution.datasources.FileFormatWriter$.executeWrite(FileFormatWr
+iter.scala:306)\n\t\tat org.apache.spark.sql.execution.datasources.FileFormatWriter$
+.write(FileFormatWriter.scala:189)\n\t\tat org.apache.spark.sql.execution.datasource
+s.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:195)
+\n\t\tat org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectRes
+ult$lzycompute(commands.scala:117)\n\t\tat org.apache.spark.sql.execution.command.Da
+taWritingCommandExec.sideEffectResult(commands.scala:115)\n\t\tat org.apache.spark.s
+ql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:129)\n\t\t
+at org.apache.spark.sql.execution.QueryExecution.$anonfun$eagerlyExecuteCommands$2(Q
+ueryExecution.scala:155)\n\t\tat org.apache.spark.sql.execution.SQLExecution$.$anonf
+un$withNewExecutionId0$8(SQLExecution.scala:163)\n\t\tat org.apache.spark.sql.execut
+ion.SQLExecution$.withSessionTagsApplied(SQLExecution.scala:272)\n\t\tat org.apache.
+spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$7(SQLExecution.scala:
+125)\n\t\tat org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifact
+Set.scala:94)\n\t\tat org.apache.spark.sql.artifact.ArtifactManager.$anonfun$withRes
+ources$1(ArtifactManager.scala:112)\n\t\tat org.apache.spark.sql.artifact.ArtifactMa
+nager.withClassLoaderIfNeeded(ArtifactManager.scala:106)\n\t\tat org.apache.spark.sq
+l.artifact.ArtifactManager.withResources(ArtifactManager.scala:111)\n\t\tat org.apac
+he.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId0$6(SQLExecution.sca
+la:125)\n\t\tat org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(S
+QLExecution.scala:295)\n\t\tat org.apache.spark.sql.execution.SQLExecution$.$anonfun
+$withNewExecutionId0$1(SQLExecution.scala:124)\n\t\tat org.apache.spark.sql.SparkSes
+sion.withActive(SparkSession.scala:804)\n\t\tat org.apache.spark.sql.execution.SQLEx
+ecution$.withNewExecutionId0(SQLExecution.scala:78)\n\t\tat org.apache.spark.sql.exe
+cution.SQLExecution$.withNewExecutionId(SQLExecution.scala:237)\n\t\tat org.apache.s
+park.sql.execution.QueryExecution.$anonfun$eagerlyExecuteCommands$1(QueryExecution.s
+cala:155)\n\t\tat org.apache.spark.sql.execution.QueryExecution$.withInternalError(Q
+ueryExecution.scala:654)\n\t\tat org.apache.spark.sql.execution.QueryExecution.org$a
+pache$spark$sql$execution$QueryExecution$$eagerlyExecute$1(QueryExecution.scala:154)
+\n\t\tat org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteComman
+ds$3.applyOrElse(QueryExecution.scala:169)\n\t\tat org.apache.spark.sql.execution.Qu
+eryExecution$$anonfun$eagerlyExecuteCommands$3.applyOrElse(QueryExecution.scala:164)
+\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPrun
+ing$1(TreeNode.scala:470)\n\t\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$
+.withOrigin(origin.scala:86)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.tr
+ansformDownWithPruning(TreeNode.scala:470)\n\t\tat org.apache.spark.sql.catalyst.pla
+ns.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$s
+uper$transformDownWithPruning(LogicalPlan.scala:37)\n\t\tat org.apache.spark.sql.cat
+alyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:360
+)\n\t\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWi
+thPruning$(AnalysisHelper.scala:356)\n\t\tat org.apache.spark.sql.catalyst.plans.log
+ical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:37)\n\t\tat org.apache.s
+park.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.sca
+la:37)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.s
+cala:446)\n\t\tat org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteComman
+ds(QueryExecution.scala:164)\n\t\tat org.apache.spark.sql.execution.QueryExecution.$
+anonfun$lazyCommandExecuted$1(QueryExecution.scala:126)\n\t\tat scala.util.Try$.appl
+y(Try.scala:217)\n\t\tat org.apache.spark.util.Utils$.doTryWithCallerStacktrace(Util
+s.scala:1378)\n\t\tat org.apache.spark.util.LazyTry.tryT$lzycompute(LazyTry.scala:46
+)\n\t\tat org.apache.spark.util.LazyTry.tryT(LazyTry.scala:46)\n\t\t... 20 more\n", 
+"stacktrace": [{"class": null, "method": "deco", "file": "/home/ana/retail-pipeline/
+.venv/lib/python3.13/site-packages/pyspark/errors/exceptions/captured.py", "line": "
+282"}, {"class": null, "method": "get_return_value", "file": "/home/ana/retail-pipel
+ine/.venv/lib/python3.13/site-packages/py4j/protocol.py", "line": "327"}]}}
+overwrite failed: ArithmeticException
+after:  the folder holds []
+reading it: [UNABLE_TO_INFER_SCHEMA]

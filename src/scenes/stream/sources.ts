@@ -25,7 +25,7 @@ export const sourcesSinks: Scene = {
         {
           id: 'replay-rule',
           kind: 'list',
-          icon: 'refresh-cw',
+          icon: 'repeat',
           label: 'End-to-end exactly once needs both ends',
           pattern: 'service',
           items: [

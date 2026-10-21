@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const deployModesAndTheDriver: Section = {
+  id: 'deploy-modes-and-the-driver',
+  title: 'Deploy modes and the driver',
+  scene: 'deploy-modes',
+  narration:
+    'Every Spark application has one driver, the process that plans jobs, schedules tasks and receives whatever collect brings back. The deploy mode decides where that driver runs. This script reports where it is running: line six prints the master, line seven the deploy mode, line eight the host the driver is on, and after one job, line twelve counts the Java processes holding blocks, which are the executors plus the driver itself. The first run uses submit dot sh as it is. The master is local with four cores, the deploy mode is client, and the driver is on localhost, the machine that ran spark-submit. Only one Java process exists, because in local mode the driver also runs the tasks. Client mode means exactly that: the driver runs where you typed the command. If that is your laptop and you close it, the application dies; and every row that collect brings back crosses the network to you. The second run asks for cluster mode, and spark-submit refuses: cluster deploy mode is not compatible with master local. That error is the definition. In cluster mode, spark-submit does not start the driver itself; it asks a cluster manager to start the driver on one of its machines, and then it can exit. There is no cluster manager in local mode to ask. The table on the right puts the two side by side. Client mode is for interactive work and short jobs, where you want to see the output. Cluster mode is for scheduled production jobs: the driver runs next to the executors, survives the submitting machine going away, and on YARN and Kubernetes can be restarted by the cluster manager. Next, a real cluster manager, on this one machine.',
+}

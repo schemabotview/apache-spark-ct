@@ -1,0 +1,12 @@
+$ python -m ops.retries
+WARNING: Using incubator modules: jdk.incubator.vector
+ERROR Executor: Exception in task 1.0 in stage 0.0 (TID 1)
+WARN TaskSetManager: Lost task 1.0 in stage 0.0 (TID 1) (localhost executor driver):
+ org.apache.spark.api.python.PythonException: Traceback (most recent call last):
+sum: 4950 — the job succeeded
+emails sent:
+  partition 0, attempt 0
+  partition 1, attempt 0
+  partition 1, attempt 1
+  partition 2, attempt 0
+  partition 3, attempt 0

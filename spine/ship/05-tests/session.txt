@@ -1,0 +1,16 @@
+$ python -m pytest -v
+=============================== test session starts ================================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- /home/ana/retail-pip
+eline/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/ana/retail-pipeline
+configfile: pytest.ini
+collecting ... collected 5 items
+
+tests/test_pipeline.py::test_a_comma_amount_is_a_problem_not_1250 PASSED     [ 20%]
+tests/test_pipeline.py::test_a_good_amount_is_exact PASSED                   [ 40%]
+tests/test_pipeline.py::test_a_resend_counts_once PASSED                     [ 60%]
+tests/test_pipeline.py::test_an_unknown_store_is_set_aside PASSED            [ 80%]
+tests/test_pipeline.py::test_a_repeated_store_is_refused PASSED              [100%]
+
+================================ 5 passed in 18.59s ================================

@@ -1,0 +1,17 @@
+$ deploy/release.sh
+packaged dist/pipeline.zip
+.....                                                                        [100%]
+5 passed in 19.94s
+WARNING: Using incubator modules: jdk.incubator.vector
+✓ 10 completed orders, each counted once
+✓ every amount positive; 361.50 in = 361.50 out
+✓ 5 rows set aside with a reason
++--------+----------------------+
+|order_id|problem               |
++--------+----------------------+
+|NULL    |not valid JSON        |
+|o10     |amount is not a number|
+|o7      |unknown store         |
+|o8      |no amount             |
+|o9      |no status             |
++--------+----------------------+

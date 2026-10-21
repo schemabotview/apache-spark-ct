@@ -1,0 +1,6 @@
+$ python -m ops.backfill
+WARNING: Using incubator modules: jdk.incubator.vector
+static   folders ['day=2026-10-02']
+         rows    ['10-02 125.0']
+dynamic  folders ['day=2026-10-01', 'day=2026-10-02', 'day=2026-10-03']
+         rows    ['10-01 100.0', '10-02 125.0', '10-03 100.0']

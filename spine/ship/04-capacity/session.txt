@@ -1,0 +1,7 @@
+$ python -m tools.capacity
+executor: 5 cores, 18g heap + 2g overhead
+  3 per node, using 15 of 16 cores
+year backfill,  1 machines:   583 min, 9.7 machine-hours
+year backfill, 10 machines:    58 min, 9.7 machine-hours
+year backfill, 50 machines:    12 min, 9.7 machine-hours
+one day, 1 machine:          1.7 min

@@ -1,0 +1,8 @@
+$ python -m ops.secrets
+WARNING: Using incubator modules: jdk.incubator.vector
+web UI and REST API: http://localhost:4040 — no login needed
+  spark.retail.jdbc.user         etl
+  spark.retail.jdbc.password     *********(redacted)
+  spark.authenticate             (not set: off)
+  spark.ui.acls.enable           (not set: off)
+  spark.io.encryption.enabled    (not set: off)
