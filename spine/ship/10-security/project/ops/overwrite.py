@@ -11,8 +11,8 @@ spark.range(6).withColumn("day", F.lit("2026-10-01")).write.mode(
     "overwrite").parquet(OUT)
 print("before:", spark.read.parquet(OUT).count(), "rows")
 
-# the new version divides by zero on one row: ANSI mode stops the job there
-broken = spark.range(6).withColumn("x", F.lit(1) / (F.col("id") - 3))
+broken = spark.range(6, numPartitions=1)  # one task, so one failure to report
+broken = broken.withColumn("x", F.lit(1) / (F.col("id") - 3))  # 1/0 at id 3
 try:
     broken.write.mode("overwrite").parquet(OUT)
 except Exception as error:
