@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const filterAndSelect: Section = {
+  id: 'filter-and-select',
+  title: 'Filter and select',
+  scene: 'filter-select',
+  narration:
+    "The summary only counts completed orders, so the first real step of the pipeline is a filter. Line twenty-two keeps the rows where the status equals completed. Line twenty-three writes the same condition a second way: where, which is the same method by another name, given the condition as SQL text. Spark parses the text into the same expression, so the two produce identical plans. Lines twenty-four and twenty-five count both, and the terminal agrees: four of six orders completed, and four by the SQL text. Line twenty-seven then keeps only three columns, the order ID, the store and the amount, and line twenty-eight shows the four completed orders: o1 and o2 from store seven, o4 from store nine, o5 from store twelve. The cancelled order o3 and the pending order o6 are gone. The table on the right shows the three ways to write a filter, and the choice between them is style; inside Spark they are the same. What matters more is in the list. Filter keeps rows and select keeps columns, and both are narrow: each partition is filtered where it lies, and nothing moves between machines. That makes them the cheapest operations there are, and it gives the most important habit in Spark: keep less, early. Every row filtered out and every column dropped before a shuffle is data that never has to be written to disk, sent across the network, and read back. Spark's optimizer will often move a filter earlier for you, and drop columns nobody uses, but only when it can see that it is safe. Notice too that each count is an action, so this script ran its plan several times, once for every count. Next, grouping the completed orders by store, which is the first operation that does have to move data.",
+}

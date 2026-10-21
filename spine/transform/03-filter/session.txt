@@ -1,0 +1,12 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+4 of 6 orders completed
+by SQL text: 4
++--------+--------+------+
+|order_id|store_id|amount|
++--------+--------+------+
+|      o1|       7| 40.00|
+|      o2|       7| 25.00|
+|      o4|       9| 15.00|
+|      o5|      12| 80.00|
++--------+--------+------+

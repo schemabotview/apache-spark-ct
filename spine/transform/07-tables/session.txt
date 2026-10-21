@@ -1,0 +1,14 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
+daily_sales MANAGED
+orders TEMPORARY
++----------+-----+-----+------+
+|       day| city|sales|orders|
++----------+-----+-----+------+
+|2026-10-01| Hull|80.00|     1|
+|2026-10-01|Leeds|65.00|     2|
+|2026-10-01| York|15.00|     1|
++----------+-----+-----+------+
+$ ls spark-warehouse/daily_sales
+_SUCCESS
+part-00000-9a61c9b4-1547-449f-bce9-1d70972d007e-c000.snappy.parquet

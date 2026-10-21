@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const tablesAndTheCatalog: Section = {
+  id: 'tables-and-the-catalog',
+  title: 'Tables and the catalog',
+  scene: 'tables-catalog',
+  narration:
+    "A temporary view is a name for a plan. A table is a name for data. Line twenty-nine writes the daily summary with save as table, under the name daily sales, and line thirty registers the orders as a temporary view again, so we can compare the two. Lines thirty-two and thirty-three walk the catalog, and the terminal shows both: daily sales is a managed table, and orders is temporary. Line thirty-four reads the table back by its name, with spark dot table, and shows the three rows. The second command in the terminal looks at the disk. Save as table wrote real files, into a folder called spark warehouse, which has appeared in the explorer: a Parquet file, whose long name ends in a random identifier, and an empty file called underscore success, which Spark writes last to say the write finished. Managed means Spark owns both the name and the files: drop the table, and its folder goes too. The table on the right sets the two side by side. A temporary view stores nothing and lives for one session. A managed table stores Parquet files under the warehouse folder, and its files stay when the session ends. There is a subtlety in the last row of the list. Where the name is kept depends on the catalog, and the one this session uses is Spark's built-in in-memory catalog: it forgets the name when the session stops, even though the files remain. On a real platform the catalog is a shared metastore, such as a Hive metastore or a cloud data catalog, so every job and every analyst sees the same table names, and Course twelve comes back to it. For our pipeline we will not rely on names at all. The summary will be written to a path we choose, in data slash out, which is what the next course does. Next, writing the results.",
+}

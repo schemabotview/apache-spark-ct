@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const sparkSqlAndViews: Section = {
+  id: 'spark-sql-and-temporary-views',
+  title: 'Spark SQL and temporary views',
+  scene: 'spark-sql-views',
+  narration:
+    "Everything we built with DataFrame calls can also be written in SQL, and many teams prefer it. Lines twenty-two and twenty-three register the two DataFrames as temporary views, called orders and stores. A view is just a name: it stores no data, and refers to the DataFrame's plan, so a query against it reads the same files. Line twenty-four runs a SQL query through spark dot sql. It selects the day from the event time and the city, sums the amount and counts the orders, from orders joined to stores, where the status is completed, grouped by the first two columns, and ordered by day and city. The terminal shows the result, identical to the last section's, row for row. The table on the right maps one form to the other. A filter is a WHERE. A join is a JOIN with its ON condition. Group by and agg are GROUP BY with aggregate functions. Order by is ORDER BY, and alias is AS. These are not two engines. Spark parses the SQL into the same kind of plan the DataFrame calls build, and from there both go through the same analyzer and optimizer to the same physical plan, so neither is faster. Spark dot sql returns an ordinary DataFrame, so you can mix the two freely: a SQL query, then a DataFrame filter on its result, then a write. Choose by readability: SQL for a query a data analyst will maintain, DataFrame calls when the logic is assembled by Python code, such as columns chosen in a loop. The last line lists the session's catalog, and shows both views with the type temporary. A temporary view belongs to this Spark session and disappears when it stops. Next, something that does not disappear: a table.",
+}

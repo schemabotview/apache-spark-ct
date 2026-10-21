@@ -1,0 +1,11 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
++--------+-----+------+---------+
+|store_id|sales|orders|  average|
++--------+-----+------+---------+
+|       7|65.00|     2|32.500000|
+|       9|15.00|     1|15.000000|
+|      12|80.00|     1|80.000000|
++--------+-----+------+---------+
+
+[('sales', 'decimal(20,2)'), ('orders', 'bigint'), ('average', 'decimal(14,6)')]

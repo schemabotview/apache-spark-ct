@@ -1,0 +1,11 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
++----------+-----+-----+------+
+|       day| city|sales|orders|
++----------+-----+-----+------+
+|2026-10-01| Hull|80.00|     1|
+|2026-10-01|Leeds|65.00|     2|
+|2026-10-01| York|15.00|     1|
++----------+-----+-----+------+
+
+completed orders with no store: 0

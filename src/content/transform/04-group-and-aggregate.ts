@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const groupAndAggregate: Section = {
+  id: 'group-and-aggregate',
+  title: 'Group and aggregate',
+  scene: 'group-aggregate',
+  narration:
+    'Line twenty-three groups the completed orders by store, and lines twenty-five to twenty-nine compute three aggregates for each group: the sum of the amounts as sales, the number of orders with count, and the average amount with avg. Line thirty orders the result by store. The terminal shows the answer: store seven, sixty-five pounds from two orders, an average of thirty-two fifty; store nine, fifteen from one; store twelve, eighty from one. Line thirty-three prints the types of the three new columns, and they repay a look. The sum is decimal twenty two: Spark adds ten digits of precision to a decimal sum, so that adding up even billions of amounts cannot overflow. The count is a bigint. The average is decimal fourteen six, which is why it prints with six decimal places, thirty-two point five zero zero zero zero zero. Round it for display, not before. Two things in the list on the right are about how this runs. Group by on its own does not return a DataFrame. It returns a grouped data object, which only becomes a DataFrame when you tell it what to compute with agg. And grouping is the first wide operation of the pipeline. Every order for store seven must end up in the same partition, wherever it was read, so Spark computes partial sums in each partition, shuffles them by store, and adds them up: the plan you met in Course two, with its Exchange in the middle. Ordering is wide as well. To sort the whole result, Spark samples the data, cuts it into ranges, and shuffles each row to the partition for its range. On three rows none of this costs anything. On a year of data, the number of shuffles in a job is the first thing to look at. Next, the city: joining the orders to the stores.',
+}

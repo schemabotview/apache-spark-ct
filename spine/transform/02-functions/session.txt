@@ -1,0 +1,12 @@
+$ python jobs/daily_sales.py
+WARNING: Using incubator modules: jdk.incubator.vector
++--------+----------+----+---------+-----+
+|order_id|       day|hour|   status| sale|
++--------+----------+----+---------+-----+
+|      o1|2026-10-01|   9|completed|40.00|
+|      o2|2026-10-01|   9|completed|25.00|
+|      o3|2026-10-01|   9|cancelled| 0.00|
+|      o4|2026-10-01|   9|completed|15.00|
+|      o5|2026-10-01|   9|completed|80.00|
+|      o6|2026-10-01|   9|  pending| 0.00|
++--------+----------+----+---------+-----+

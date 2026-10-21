@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const joiningTheStores: Section = {
+  id: 'joining-the-stores',
+  title: 'Joining the stores',
+  scene: 'joining-stores',
+  narration:
+    "Sales per store number are not much use to the people reading the report. They want cities. Line twenty-three joins the completed orders to the stores on the store ID, with an inner join. Because we passed the column name with on, the result has a single store ID column rather than one from each side, and every order now carries its store's city. Lines twenty-four to twenty-eight then group by two things: the day, with to date, and the city, and compute the sales and the number of orders. The terminal shows the result, and it is the table from the very first course, now produced by our own job: Hull, eighty pounds from one order; Leeds, sixty-five from two; York, fifteen from one. All on the first of October. The table on the right lists the join types, because the choice is a decision about the business, not about code. An inner join keeps only orders that have a matching store. A left join keeps every order, with a null city when no store matches. A left anti join keeps exactly the orders that have no store, and a left semi join the orders that do, without adding any columns from the stores. A full join keeps everything from both sides. Lines thirty-one and thirty-two use left anti as a check: how many completed orders would the inner join silently drop? Today, none. But the inner join is a quiet filter, and an order for a store that is missing from the stores file would simply vanish from the revenue, with no error. Course eight meets exactly that, an order from store fifteen, along with the opposite danger, a store listed twice, which would double every sale it touches. Like grouping, a join is wide in general. Here Spark will be cleverer, because the stores table is tiny, as Course nine shows. Next, the same summary written as SQL.",
+}

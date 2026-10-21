@@ -1,0 +1,9 @@
+import type { Section } from '../types'
+
+export const builtInFunctions: Section = {
+  id: 'built-in-functions',
+  title: 'Built-in functions',
+  scene: 'built-in-functions',
+  narration:
+    "Arithmetic only goes so far. The functions module, F, holds hundreds of built-in functions for dates, text, numbers, conditions and collections, and the pipeline needs several of them. Line twenty-four turns each event time into its calendar day with to date, which is how we will group sales by day. Line twenty-five extracts the hour. Line twenty-six lower-cases the status. And lines twenty-seven to twenty-nine are a conditional: when the status is completed, the sale is the amount; otherwise it is zero. The terminal shows the six orders through those functions. Every order fell on the first of October, all in the nine o'clock hour. The statuses are lower case. And the cancelled and pending orders have a sale of zero point zero zero, kept as a decimal because the amount was one. The table on the right lists the four functions. Two details are worth remembering. A when without an otherwise produces null for the rows that do not match, not zero, and null behaves very differently in sums and comparisons, as Course eight shows. And the day and hour depend on a time zone. An event time is an instant; which calendar day it falls on depends on where you are standing. Spark uses the session time zone, which here is UTC, so nine-oh-one UTC is the ninth hour of the first of October. In New York it would be the fifth hour. The reason to prefer these functions to your own Python code is in the list on the right: built-in functions run inside the JVM, as part of the plan, where Spark can optimise them and generate fast code. A Python function applied to each row has to ship every row out to a Python process and back. Course eight measures that difference. Next, keeping only the rows and columns we need.",
+}
